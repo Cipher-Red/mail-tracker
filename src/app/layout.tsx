@@ -2,7 +2,6 @@ import "@/styles/globals.css";
 import React from "react";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import { DevtoolsProvider } from 'creatr-devtools';
 import { ThemeProvider } from "@/components/theme-provider";
 export const viewport = {
   width: "device-width",
@@ -11,12 +10,12 @@ export const viewport = {
 };
 export const metadata: Metadata = {
   title: {
-    default: "Detroit Axle Email Builder",
-    template: "%s | Detroit Axle Email Builder"
+    default: "Detroit Axle Tools",
+    template: "%s | Detroit Axle Tools"
   },
-  description: "A modern email template builder for Detroit Axle customer communications",
-  applicationName: "Detroit Axle Email Builder",
-  keywords: ["next.js", "react", "typescript", "email", "template", "builder", "detroit axle"],
+  description: "Professional tools for Detroit Axle customer communications and order processing",
+  applicationName: "Detroit Axle Tools",
+  keywords: ["email", "template", "builder", "detroit axle", "customer communications", "order processing"],
   authors: [{
     name: "Detroit Axle Team"
   }],
@@ -57,10 +56,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="cea4b009-73ab-436c-8080-32d86f5f4450" data-file-name="app/layout.tsx">
-      <body data-unique-id="d4a0c5b9-b544-4911-981b-03d32f3d0cce" data-file-name="app/layout.tsx">
+  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="7aae4865-9d2e-4f5f-bc5c-ab954e7a2b75" data-file-name="app/layout.tsx">
+      <body data-unique-id="f19082ae-d66a-44ca-a3fe-f90ab7ebd678" data-file-name="app/layout.tsx">
         <ThemeProvider defaultTheme="system">
-          <DevtoolsProvider>{children}</DevtoolsProvider>
+          {children}
         </ThemeProvider>
       </body>
     </html>;

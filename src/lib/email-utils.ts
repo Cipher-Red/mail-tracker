@@ -43,9 +43,20 @@ export const generateHtmlEmail = (
     content = content.replace(regex, safeValue);
   });
   
-  // Convert line breaks to HTML
+  // Process line breaks and make tracking numbers clickable
   const htmlContent = content.split("\n").map(line => {
-    return line.trim() === "" ? "<br />" : `<p>${line}</p>`;
+    if (line.trim() === "") return "<br />";
+    
+    // Look for tracking numbers in the line
+    const trackingNumberPattern = /\b([A-Z0-9]{8,30})\b/g;
+    let processedLine = line;
+    
+    // Replace tracking numbers with clickable FedEx links
+    processedLine = processedLine.replace(trackingNumberPattern, (match) => {
+      return `<a href="https://www.fedex.com/apps/fedextrack/?tracknumbers=${match}" target="_blank" style="color: #0063A5; text-decoration: underline; font-weight: 500;">${match}</a>`;
+    });
+    
+    return `<p>${processedLine}</p>`;
   }).join("");
   
   return `<!DOCTYPE html>
