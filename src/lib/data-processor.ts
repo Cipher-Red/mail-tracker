@@ -141,14 +141,14 @@ function formatPhoneNumber(phone: string | number | undefined): string {
   // Extract only digits
   const digits = phoneStr.replace(/\D/g, '');
   
-  // Format the digits according to North American number format
+  // Check if it's a valid North American number
   if (digits.length === 10) {
     return `${digits.slice(0, 3)}-${digits.slice(3, 6)}-${digits.slice(6)}`;
   } else if (digits.length === 11 && digits[0] === '1') {
     return `${digits.slice(1, 4)}-${digits.slice(4, 7)}-${digits.slice(7)}`;
   }
   
-  // Return just the digits for any other format
+  // Return as is if not a standard format
   return digits;
 }
 
@@ -235,14 +235,6 @@ function extractTrackingNumbers(trackingInfo: string | string[] | undefined): st
   
   const trackingStr = trackingInfo.toString();
   
-  // Extract tracking numbers from format "FEDEX2=Parcel=288916622855"
-  const carrierFormatPattern = /(?:FEDEX\d*|UPS|USPS|DHL)=(?:Parcel|Ground|Express)=([A-Z0-9]+)/g;
-  const carrierMatches = Array.from(trackingStr.matchAll(carrierFormatPattern));
-  
-  if (carrierMatches.length > 0) {
-    return carrierMatches.map(match => match[1]);
-  }
-  
   // Common tracking number patterns
   const patterns = [
     /\b(1Z[0-9A-Z]{16})\b/g, // UPS
@@ -276,17 +268,6 @@ function extractTrackingNumbers(trackingInfo: string | string[] | undefined): st
     if (cleaned.length > 8) {
       trackingNumbers.add(cleaned);
     }
-  }
-  
-  // Handle comma-separated tracking numbers
-  if (trackingNumbers.size === 0 && trackingStr.includes(',')) {
-    const parts = trackingStr.split(',');
-    parts.forEach(part => {
-      const cleaned = part.trim();
-      if (cleaned.length > 8 && cleaned.length < 30) {
-        trackingNumbers.add(cleaned);
-      }
-    });
   }
   
   return Array.from(trackingNumbers);

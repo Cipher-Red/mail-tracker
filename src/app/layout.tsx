@@ -51,24 +51,16 @@ export const metadata: Metadata = {
     telephone: false
   }
 };
-import { SmartGuideProvider } from "@/components/smart-guide-provider";
-import { DarkModeGuide } from "@/components/dark-mode-guide";
-
-// ThemeProvider is used in a client component wrapper to avoid hydration issues
-import { ThemeProviderWrapper } from "@/components/theme-provider-wrapper";
 export default function RootLayout({
   children
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="d1e403b9-0549-4c46-a4d2-1ca8bef6e081" data-file-name="app/layout.tsx">
-      <body data-unique-id="9701c6ab-dfd0-4aa9-99fe-fb6a80d113db" data-file-name="app/layout.tsx">
-        <ThemeProviderWrapper defaultTheme="system">
-          <SmartGuideProvider>
-            <DarkModeGuide />
-            {children}
-          </SmartGuideProvider>
-        </ThemeProviderWrapper>
+  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="c55bb0b0-e514-49bb-a9ba-6d7fdcd5bb51" data-file-name="app/layout.tsx">
+      <body data-unique-id="23c04154-7ac8-4c44-a7da-13d07c46d2c3" data-file-name="app/layout.tsx">
+        <ThemeProvider defaultTheme="system">
+          {children}
+        </ThemeProvider>
       </body>
     </html>;
 }
