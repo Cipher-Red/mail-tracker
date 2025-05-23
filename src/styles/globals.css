@@ -38,42 +38,56 @@
     --sidebar-accent-foreground: #18181B;
     --sidebar-border: #E5E7EB;
     --sidebar-ring: #3B82F6;
+
+    /* Onboarding and guidance colors */
+    --highlight: rgba(59, 130, 246, 0.15);
+    --highlight-border: rgba(59, 130, 246, 0.4);
+    --tooltip: #0063A5;
+    --tooltip-foreground: #FFFFFF;
+    --tooltip-shadow: rgba(0, 0, 0, 0.1);
   }
 
   .dark {
-    --background: #121212;
-    --foreground: #FAFAFA;
-    --card: #1E1E1E;
-    --card-foreground: #FAFAFA;
-    --popover: #1E1E1E;
-    --popover-foreground: #FAFAFA;
-    --primary: #3B82F6;
+    --background: #0F172A;
+    --foreground: #F8FAFC;
+    --card: #1E293B;
+    --card-foreground: #F1F5F9;
+    --popover: #1E293B;
+    --popover-foreground: #F1F5F9;
+    --primary: #60A5FA;
     --primary-foreground: #FFFFFF;
-    --secondary: #27272A;
-    --secondary-foreground: #FAFAFA;
-    --muted: #27272A;
-    --muted-foreground: #A1A1AA;
+    --secondary: #334155;
+    --secondary-foreground: #F1F5F9;
+    --muted: #334155;
+    --muted-foreground: #94A3B8;
     --accent: #1E293B;
-    --accent-foreground: #FAFAFA;
-    --destructive: #7F1D1D;
+    --accent-foreground: #F1F5F9;
+    --destructive: #DC2626;
     --destructive-foreground: #FAFAFA;
-    --border: #27272A;
-    --input: #27272A;
-    --ring: #3B82F6;
-    --chart-1: #3B82F6;
-    --chart-2: #2DD4BF;
+    --border: #334155;
+    --input: #334155;
+    --ring: #60A5FA;
+    --chart-1: #60A5FA;
+    --chart-2: #34D399;
     --chart-3: #FB923C;
     --chart-4: #C084FC;
     --chart-5: #F87171;
 
-    --sidebar-background: #18181B;
-    --sidebar-foreground: #F4F4F5;
-    --sidebar-primary: #3B82F6;
+    --sidebar-background: #0F172A;
+    --sidebar-foreground: #F1F5F9;
+    --sidebar-primary: #60A5FA;
     --sidebar-primary-foreground: #FFFFFF;
-    --sidebar-accent: #27272A;
-    --sidebar-accent-foreground: #F4F4F5;
-    --sidebar-border: #27272A;
-    --sidebar-ring: #3B82F6;
+    --sidebar-accent: #1E293B;
+    --sidebar-accent-foreground: #F1F5F9;
+    --sidebar-border: #334155;
+    --sidebar-ring: #60A5FA;
+
+    /* Onboarding and guidance colors for dark mode */
+    --highlight: rgba(96, 165, 250, 0.2);
+    --highlight-border: rgba(96, 165, 250, 0.5);
+    --tooltip: #60A5FA;
+    --tooltip-foreground: #FFFFFF;
+    --tooltip-shadow: rgba(0, 0, 0, 0.3);
   }
 }
 
@@ -109,6 +123,48 @@
   
   .animate-slide-left {
     @apply opacity-0 translate-x-4 animate-in fade-in slide-in-from-right-4 duration-500;
+  }
+
+  /* Onboarding and UI guide components */
+  .highlight-element {
+    @apply relative;
+  }
+  
+  .highlight-element::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: calc(var(--radius) + 2px);
+    background: var(--highlight);
+    border: 2px solid var(--highlight-border);
+    z-index: -1;
+    animation: pulse 2s infinite;
+  }
+
+  .tooltip-arrow {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+    background-color: var(--tooltip);
+  }
+
+  /* Guide step progress dots */
+  .guide-dot {
+    @apply w-2 h-2 rounded-full bg-border transition-colors;
+  }
+
+  .guide-dot.active {
+    @apply bg-primary;
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
   }
 }
 
