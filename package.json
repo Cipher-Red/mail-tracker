@@ -33,6 +33,7 @@
         "@typescript-eslint/eslint-plugin": "^8.1.0",
         "@typescript-eslint/parser": "^8.1.0",
         "class-variance-authority": "^0.7.1",
+        "clipboard-copy": "^4.0.1",
         "clsx": "^2.1.1",
         "copy-to-clipboard": "^3.3.3",
         "creatr-devtools": "latest",

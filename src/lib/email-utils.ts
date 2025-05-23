@@ -37,8 +37,10 @@ export const generateHtmlEmail = (
   
   Object.entries(previewData).forEach(([key, value]) => {
     const regex = new RegExp(`{{${key}}}`, "g");
-    subject = subject.replace(regex, value);
-    content = content.replace(regex, value);
+    // Use empty string instead of undefined/null for replacements
+    const safeValue = value !== undefined && value !== null ? value : '';
+    subject = subject.replace(regex, safeValue);
+    content = content.replace(regex, safeValue);
   });
   
   // Convert line breaks to HTML

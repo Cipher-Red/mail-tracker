@@ -58,7 +58,7 @@ export function Tooltip({
     bottom: 'top-[-6px] left-1/2 -translate-x-1/2 border-b-muted-foreground border-l-transparent border-r-transparent border-t-transparent',
     left: 'right-[-6px] top-1/2 -translate-y-1/2 border-l-muted-foreground border-t-transparent border-b-transparent border-r-transparent'
   };
-  return <div className="relative inline-block" onMouseEnter={showTooltip} onMouseLeave={hideTooltip} data-unique-id="efce9cbf-61ab-4ded-a091-90470060d733" data-file-name="components/tooltip.tsx" data-dynamic-text="true">
+  return <div className="relative inline-block" onMouseEnter={showTooltip} onMouseLeave={hideTooltip} data-unique-id="5cd8de0f-1639-4172-a5fe-9221063a5c4f" data-file-name="components/tooltip.tsx" data-dynamic-text="true">
       {children}
       <AnimatePresence>
         {isVisible && <motion.div initial={{
@@ -72,10 +72,10 @@ export function Tooltip({
         scale: 0.95
       }} transition={{
         duration: 0.15
-      }} className={`absolute z-50 pointer-events-none ${positions[side]}`} data-unique-id="685a6bb5-b7ba-49df-b22b-323a1172ded5" data-file-name="components/tooltip.tsx">
-            <div className="bg-muted-foreground text-white text-xs py-1.5 px-3 rounded whitespace-nowrap max-w-[200px]" data-unique-id="e7542dbc-8487-4f6e-9f18-1797a80a5a98" data-file-name="components/tooltip.tsx" data-dynamic-text="true">
+      }} className={`absolute z-50 pointer-events-none ${positions[side]}`} data-unique-id="72a0653e-6403-4828-b719-c5ac6eb0038e" data-file-name="components/tooltip.tsx">
+            <div className="bg-muted-foreground text-white text-xs py-1.5 px-3 rounded whitespace-nowrap max-w-[200px]" data-unique-id="686310f2-e04d-4a6d-bf02-22aa8490fe96" data-file-name="components/tooltip.tsx" data-dynamic-text="true">
               {content}
-              <div className={`absolute border-4 ${arrows[side]}`} data-unique-id="1cb53096-7905-4109-9082-89801185f9ac" data-file-name="components/tooltip.tsx"></div>
+              <div className={`absolute border-4 ${arrows[side]}`} data-unique-id="729dc11f-388c-4827-9b64-fd7f9db8bf85" data-file-name="components/tooltip.tsx"></div>
             </div>
           </motion.div>}
       </AnimatePresence>

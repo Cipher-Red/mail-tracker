@@ -85,108 +85,108 @@ export default function EmailAnalytics() {
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="ea8e028f-7b02-46fc-9ff7-1c54dc945362" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">
-      <div className="flex justify-between items-center mb-6" data-unique-id="915eb879-c68f-4af2-a486-fc0bbbdf2895" data-file-name="components/email-analytics.tsx">
-        <h2 className="text-xl font-medium flex items-center" data-unique-id="4b777f3f-2e8c-49cc-b2a5-56325b38d60d" data-file-name="components/email-analytics.tsx">
-          <BarChart className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="df031903-73df-443f-bed5-94d5bc1b2015" data-file-name="components/email-analytics.tsx"> Email Analytics
+  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="4691b165-282a-4879-a40b-8eb1751e5ebd" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">
+      <div className="flex justify-between items-center mb-6" data-unique-id="b15a7787-a9e9-4d4d-a57e-2b970670d7ad" data-file-name="components/email-analytics.tsx">
+        <h2 className="text-xl font-medium flex items-center" data-unique-id="0a747199-ca09-4083-81ce-186c28b076de" data-file-name="components/email-analytics.tsx">
+          <BarChart className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="5761678c-44d7-4975-99bb-e06c07cde421" data-file-name="components/email-analytics.tsx"> Email Analytics
         </span></h2>
-        <button onClick={fetchEmailStats} disabled={isLoading} className="flex items-center px-3 py-1.5 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors disabled:opacity-50" data-unique-id="ebbf3f75-1421-4396-b00c-e682314db125" data-file-name="components/email-analytics.tsx">
-          <RefreshCw className={`mr-1.5 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} /><span className="editable-text" data-unique-id="5e1da9f3-e80e-467e-a472-015bc059ab36" data-file-name="components/email-analytics.tsx">
+        <button onClick={fetchEmailStats} disabled={isLoading} className="flex items-center px-3 py-1.5 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors disabled:opacity-50" data-unique-id="806ec8a2-4107-467c-9cbe-7cc99c0baf1c" data-file-name="components/email-analytics.tsx">
+          <RefreshCw className={`mr-1.5 h-4 w-4 ${isLoading ? 'animate-spin' : ''}`} /><span className="editable-text" data-unique-id="70d26526-f36f-4cb0-8ba3-7540fa2fb5fc" data-file-name="components/email-analytics.tsx">
           Refresh
         </span></button>
       </div>
       
-      {isLoading ? <div className="flex justify-center items-center h-64" data-unique-id="9ff5dfc4-ebde-4d43-8c48-9885e633f30f" data-file-name="components/email-analytics.tsx">
-          <div className="animate-pulse flex flex-col items-center" data-unique-id="3d5b4129-5436-4bb6-86e0-0c9e7eddfb1d" data-file-name="components/email-analytics.tsx">
+      {isLoading ? <div className="flex justify-center items-center h-64" data-unique-id="c0654666-428e-4733-91dd-b6f912c63dc5" data-file-name="components/email-analytics.tsx">
+          <div className="animate-pulse flex flex-col items-center" data-unique-id="b7d8facb-5901-4413-b7e1-00b6720ce071" data-file-name="components/email-analytics.tsx">
             <RefreshCw className="animate-spin h-8 w-8 text-primary mb-2" />
-            <p className="text-muted-foreground" data-unique-id="177b8280-03a8-4d5e-adc1-ecae360de9c7" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="35c4ea54-bc7f-41f3-a96d-426e83f4f5b3" data-file-name="components/email-analytics.tsx">Loading analytics...</span></p>
+            <p className="text-muted-foreground" data-unique-id="2b5f1aeb-bb2d-447a-a297-ce0dc22208f8" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="c24cb4c1-bd81-4255-bd22-3e6fb9958a2e" data-file-name="components/email-analytics.tsx">Loading analytics...</span></p>
           </div>
-        </div> : <div className="space-y-6" data-unique-id="87dcb515-818d-4977-95bd-7122ace02556" data-file-name="components/email-analytics.tsx">
-          <div className="grid grid-cols-3 gap-4" data-unique-id="63595ad3-f84c-437a-8226-042e59078c9d" data-file-name="components/email-analytics.tsx">
-            <div className="bg-blue-50 p-4 rounded-lg" data-unique-id="3ed71901-8f9b-4043-b627-71f55a64bac1" data-file-name="components/email-analytics.tsx">
-              <p className="text-sm text-blue-600 mb-1" data-unique-id="e9a00176-b059-4ee1-84fe-1ec6fc868954" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="8dda67ff-1004-464d-b7f7-2756352bfe7a" data-file-name="components/email-analytics.tsx">Total Emails Sent</span></p>
-              <p className="text-2xl font-bold" data-unique-id="576360b4-f612-4403-942e-61261bbb4223" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.totalSent.toLocaleString()}</p>
+        </div> : <div className="space-y-6" data-unique-id="94bfc921-bbf5-4c92-994e-6c806ab1de79" data-file-name="components/email-analytics.tsx">
+          <div className="grid grid-cols-3 gap-4" data-unique-id="04f1ec48-add8-45de-904f-473a1fe1f021" data-file-name="components/email-analytics.tsx">
+            <div className="bg-blue-50 p-4 rounded-lg" data-unique-id="716e2277-d29c-45d5-9c15-2208d17168db" data-file-name="components/email-analytics.tsx">
+              <p className="text-sm text-blue-600 mb-1" data-unique-id="8464f05e-b65d-4d19-ac3a-b85a7a4a2f9f" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="1df7e95d-737b-4213-8b20-d20394d9d7f8" data-file-name="components/email-analytics.tsx">Total Emails Sent</span></p>
+              <p className="text-2xl font-bold" data-unique-id="19bb4080-fe6f-457a-96d5-f176589c15ad" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.totalSent.toLocaleString()}</p>
             </div>
-            <div className="bg-amber-50 p-4 rounded-lg" data-unique-id="86ac7b56-8f08-4205-9f9c-99e810a5606e" data-file-name="components/email-analytics.tsx">
-              <p className="text-sm text-amber-600 mb-1" data-unique-id="96c3eabd-c34a-4e1a-902d-cd21492bfc01" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="4b6a49a6-e7e7-418b-b2f2-af93d474ff22" data-file-name="components/email-analytics.tsx">Failed Deliveries</span></p>
-              <p className="text-2xl font-bold" data-unique-id="320d1cb9-7891-4c0b-9340-60fc7350470d" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.totalFailed.toLocaleString()}</p>
+            <div className="bg-amber-50 p-4 rounded-lg" data-unique-id="da562517-f5b3-4c6a-8d98-564e4acf2892" data-file-name="components/email-analytics.tsx">
+              <p className="text-sm text-amber-600 mb-1" data-unique-id="0225c993-9a75-4ef2-b289-8428c1354f08" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="376c5fd2-c853-47cf-b786-50642afc9c23" data-file-name="components/email-analytics.tsx">Failed Deliveries</span></p>
+              <p className="text-2xl font-bold" data-unique-id="de6407c4-08e7-47c5-8e3a-56cf3b96721e" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.totalFailed.toLocaleString()}</p>
             </div>
-            <div className="bg-green-50 p-4 rounded-lg" data-unique-id="234ecb6e-fa7a-4ee4-b221-c0d9110a8ee9" data-file-name="components/email-analytics.tsx">
-              <p className="text-sm text-green-600 mb-1" data-unique-id="6a4fb715-1561-4522-8800-afc213c76244" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="2cef9f1e-d8c6-4e39-983c-79a5c20e0ba8" data-file-name="components/email-analytics.tsx">Delivery Rate</span></p>
-              <p className="text-2xl font-bold" data-unique-id="b216fc67-e080-4b4c-8086-098d5a98cdd3" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.deliveryRate}<span className="editable-text" data-unique-id="2b4960d4-e3d0-40a0-9ee2-3bc8e0204c60" data-file-name="components/email-analytics.tsx">%</span></p>
+            <div className="bg-green-50 p-4 rounded-lg" data-unique-id="01f0bbaf-b7e2-45b8-9db1-3f05f598e34a" data-file-name="components/email-analytics.tsx">
+              <p className="text-sm text-green-600 mb-1" data-unique-id="6082e937-8b5d-4e88-9db3-71b260e749a7" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="f0761fcf-b7b4-4f18-9753-418d0ef875e8" data-file-name="components/email-analytics.tsx">Delivery Rate</span></p>
+              <p className="text-2xl font-bold" data-unique-id="5df2ec61-3024-4856-9385-3270dc09c63b" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.deliveryRate}<span className="editable-text" data-unique-id="889e1411-dc31-4334-b0e3-c62a58754d6c" data-file-name="components/email-analytics.tsx">%</span></p>
             </div>
           </div>
           
-          <div className="border border-border rounded-lg p-4" data-unique-id="e460d7f1-85db-4ce2-904d-5ef7951d8ec5" data-file-name="components/email-analytics.tsx">
-            <h3 className="text-sm font-medium mb-4 flex items-center" data-unique-id="f9e9fa27-749a-4ddf-a91c-6b8863b98d6c" data-file-name="components/email-analytics.tsx">
-              <Calendar className="h-4 w-4 mr-2" data-unique-id="89ed38bc-8db8-4be2-b3fe-2192cd8d3a1b" data-file-name="components/email-analytics.tsx" /><span className="editable-text" data-unique-id="d9e55a49-8970-4dda-9780-9da8fd209a55" data-file-name="components/email-analytics.tsx"> Daily Email Activity
+          <div className="border border-border rounded-lg p-4" data-unique-id="3c66c993-5f20-4741-ba93-d7a25559f49e" data-file-name="components/email-analytics.tsx">
+            <h3 className="text-sm font-medium mb-4 flex items-center" data-unique-id="86bd1af1-a41e-41cf-92fe-e78745f95075" data-file-name="components/email-analytics.tsx">
+              <Calendar className="h-4 w-4 mr-2" data-unique-id="138f298d-c314-4464-9cc3-fdb866431d6e" data-file-name="components/email-analytics.tsx" /><span className="editable-text" data-unique-id="8faae9b3-20ef-4f7c-b799-db5fde1d8244" data-file-name="components/email-analytics.tsx"> Daily Email Activity
             </span></h3>
-            <div className="h-64 relative" data-unique-id="6f151ac5-2e4c-4d57-99a5-d93164a01c6f" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">
+            <div className="h-64 relative" data-unique-id="f58f851d-ba1f-4201-b353-31a453b5de62" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">
               {/* Simple bar chart visualization */}
-              <div className="flex h-full items-end space-x-2" data-unique-id="307e80d2-5c50-4d36-8b51-326c07e12cbe" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">
-                {stats.dailySends.map(day => <div key={day.date} className="flex-1 flex flex-col items-center" data-unique-id="6a222d7d-ba12-49c6-b55e-7fc58e785b35" data-file-name="components/email-analytics.tsx">
-                    <div className="w-full flex flex-col items-center space-y-1" data-unique-id="d12c6646-a95e-4345-b62f-d23a57ce3171" data-file-name="components/email-analytics.tsx">
+              <div className="flex h-full items-end space-x-2" data-unique-id="53311afd-c66a-4a35-b982-ca70a821b914" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">
+                {stats.dailySends.map(day => <div key={day.date} className="flex-1 flex flex-col items-center" data-unique-id="a94d8243-2406-43a2-a8fa-53ff557314fb" data-file-name="components/email-analytics.tsx">
+                    <div className="w-full flex flex-col items-center space-y-1" data-unique-id="ab3fdb06-8063-4749-be22-49646bf5cf98" data-file-name="components/email-analytics.tsx">
                       <div className="w-full bg-red-200" style={{
                   height: `${day.failed / (day.sent + day.failed) * 100}%`,
                   minHeight: day.failed > 0 ? '4px' : '0'
-                }} data-unique-id="1eab939e-e0af-47c7-bc5d-7bb7de137401" data-file-name="components/email-analytics.tsx"></div>
+                }} data-unique-id="e24aab6d-0e7a-45ae-9f53-a6c0c8bf2bb8" data-file-name="components/email-analytics.tsx"></div>
                       <div className="w-full bg-blue-400" style={{
                   height: `${day.sent / Math.max(...stats.dailySends.map(d => d.sent + d.failed)) * 100}%`
-                }} data-unique-id="8cc7d858-f340-46fa-b8f1-48488f0c72e2" data-file-name="components/email-analytics.tsx"></div>
+                }} data-unique-id="c4aa0018-bcaa-42c9-a50b-9bdfc650d066" data-file-name="components/email-analytics.tsx"></div>
                     </div>
-                    <p className="text-xs mt-2" data-unique-id="8db41ad0-781c-4208-a92a-6d48474146be" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{new Date(day.date).toLocaleDateString('en-US', {
+                    <p className="text-xs mt-2" data-unique-id="960dc4d0-3b4c-4b2f-ba79-b3bab0b5f09f" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{new Date(day.date).toLocaleDateString('en-US', {
                   month: 'short',
                   day: 'numeric'
                 })}</p>
                   </div>)}
               </div>
               
-              <div className="absolute top-2 right-2 flex items-center space-x-4 text-xs" data-unique-id="dc412250-bbb7-4bce-8af6-200f7d76a907" data-file-name="components/email-analytics.tsx">
-                <div className="flex items-center" data-unique-id="5fbfee35-e2d9-4c76-9bc6-f493b814eeca" data-file-name="components/email-analytics.tsx">
-                  <div className="w-3 h-3 bg-blue-400 mr-1" data-unique-id="d06581f5-bdc1-48b9-b142-97eee413d07a" data-file-name="components/email-analytics.tsx"></div>
-                  <span data-unique-id="aba3722f-05a5-4426-90a0-83b3b314a26e" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="cac50b33-e50e-44da-8f85-038ed1f6380e" data-file-name="components/email-analytics.tsx">Successful</span></span>
+              <div className="absolute top-2 right-2 flex items-center space-x-4 text-xs" data-unique-id="dcd37c99-9c77-4ee4-a12d-ffaaf52c9100" data-file-name="components/email-analytics.tsx">
+                <div className="flex items-center" data-unique-id="74bd7955-857c-447b-86e2-bbb26d23c128" data-file-name="components/email-analytics.tsx">
+                  <div className="w-3 h-3 bg-blue-400 mr-1" data-unique-id="f8d3b9ee-e63f-4417-a771-dbeaddd8cda4" data-file-name="components/email-analytics.tsx"></div>
+                  <span data-unique-id="708d6023-65ec-4ace-b4f1-40e8804d56c7" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="dafb4ce3-4709-487e-83d5-14f5282ca0d1" data-file-name="components/email-analytics.tsx">Successful</span></span>
                 </div>
-                <div className="flex items-center" data-unique-id="2215e948-efa6-436b-bedc-bcf1a5e41261" data-file-name="components/email-analytics.tsx">
-                  <div className="w-3 h-3 bg-red-200 mr-1" data-unique-id="bff170de-891a-4265-b04b-08feb9e905d4" data-file-name="components/email-analytics.tsx"></div>
-                  <span data-unique-id="207bb481-a7c0-4f67-94cf-c6e3db002533" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="82c74076-c77f-4f07-b620-cef1d38a2c6a" data-file-name="components/email-analytics.tsx">Failed</span></span>
+                <div className="flex items-center" data-unique-id="737534f6-1944-481a-85de-c0dfa7d26907" data-file-name="components/email-analytics.tsx">
+                  <div className="w-3 h-3 bg-red-200 mr-1" data-unique-id="c81c4e85-c08c-4b1d-b3e0-fcc7c240466c" data-file-name="components/email-analytics.tsx"></div>
+                  <span data-unique-id="8817e631-c663-4f57-b2d3-5beba194a112" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="48a403a0-8e38-4c2d-88f0-6ef9a6420dcc" data-file-name="components/email-analytics.tsx">Failed</span></span>
                 </div>
               </div>
             </div>
           </div>
           
-          <div className="grid grid-cols-2 gap-4" data-unique-id="ad5e2725-2311-4da3-9ba4-3c693c3e692c" data-file-name="components/email-analytics.tsx">
-            <div className="border border-border rounded-lg p-4" data-unique-id="59176021-724a-43dd-be68-b2892fd13107" data-file-name="components/email-analytics.tsx">
-              <h3 className="text-sm font-medium mb-2" data-unique-id="7d43ac84-2c99-43ea-8073-5f232c74d3ff" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="92956a54-6b03-4ca8-ab1f-244a07f70c06" data-file-name="components/email-analytics.tsx">Top Delivery Issues</span></h3>
-              <ul className="space-y-2 text-sm" data-unique-id="4304172c-0499-43a5-a99d-0986568551d0" data-file-name="components/email-analytics.tsx">
-                <li className="flex justify-between" data-unique-id="06afe5a5-df44-4890-8564-045dd3c5121a" data-file-name="components/email-analytics.tsx">
-                  <span data-unique-id="858f0c9a-db99-47a7-bbcd-c028b45bc550" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="47e94713-cc78-42a4-8fce-718f2a267fa4" data-file-name="components/email-analytics.tsx">Invalid email address</span></span>
-                  <span className="font-medium" data-unique-id="edc7bb0b-2133-43dd-a970-8cce87fd0797" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="39c880ff-a7a4-4752-bd22-7bb1b522483c" data-file-name="components/email-analytics.tsx">42%</span></span>
+          <div className="grid grid-cols-2 gap-4" data-unique-id="c5d04ee9-5182-4e52-b4ec-de577b834bd2" data-file-name="components/email-analytics.tsx">
+            <div className="border border-border rounded-lg p-4" data-unique-id="c581ca39-f8a1-436c-b89b-b0ebded21d70" data-file-name="components/email-analytics.tsx">
+              <h3 className="text-sm font-medium mb-2" data-unique-id="5b9ea00d-d11f-46ff-962a-65ab115df948" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="43bc3f0d-d4f2-4aba-8972-877f7904585d" data-file-name="components/email-analytics.tsx">Top Delivery Issues</span></h3>
+              <ul className="space-y-2 text-sm" data-unique-id="62b3d4c4-5709-4e20-83fa-8299025b180d" data-file-name="components/email-analytics.tsx">
+                <li className="flex justify-between" data-unique-id="8e1d5780-df3e-4f6b-9c17-903ce83b9094" data-file-name="components/email-analytics.tsx">
+                  <span data-unique-id="2e82a8d7-cc0a-4cbd-a44e-fd7e68638d8c" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="d0ccdc4c-7f40-42e4-9683-78a68bb15579" data-file-name="components/email-analytics.tsx">Invalid email address</span></span>
+                  <span className="font-medium" data-unique-id="823e33d6-7961-46bc-932c-a442e0df7e27" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="06d957e2-b376-4e4e-b1e5-e860be0189e5" data-file-name="components/email-analytics.tsx">42%</span></span>
                 </li>
-                <li className="flex justify-between" data-unique-id="3f8725c5-c67a-4aeb-aecf-d171f414a9b3" data-file-name="components/email-analytics.tsx">
-                  <span data-unique-id="dfec5f1d-0674-48c7-a4f1-293062d26777" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="a153e489-ee99-4f54-9f7e-231b10654680" data-file-name="components/email-analytics.tsx">Mailbox full</span></span>
-                  <span className="font-medium" data-unique-id="fa091ac9-f333-4147-b73d-df99b04ffd0f" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="c3396a44-4215-48fc-8d34-c50f520b5d49" data-file-name="components/email-analytics.tsx">27%</span></span>
+                <li className="flex justify-between" data-unique-id="ee5e070a-184f-4e47-97f2-1f8a8f1c5f00" data-file-name="components/email-analytics.tsx">
+                  <span data-unique-id="e18084af-0d51-492b-9beb-d770acb9c9fa" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="fafaab17-aa85-4191-a65e-86b5d2ad9a5b" data-file-name="components/email-analytics.tsx">Mailbox full</span></span>
+                  <span className="font-medium" data-unique-id="b46a59bf-0046-4cfc-b0f3-0685cefeac40" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="8ebabacf-86ac-452b-ab5d-b16ad24faff9" data-file-name="components/email-analytics.tsx">27%</span></span>
                 </li>
-                <li className="flex justify-between" data-unique-id="e0f0a423-05a6-4bf4-b6df-c5dba2a10da7" data-file-name="components/email-analytics.tsx">
-                  <span data-unique-id="bef185f4-c202-4343-a2c4-e21e3f1a944d" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="98cab040-b722-4941-b26e-7d67a56cd516" data-file-name="components/email-analytics.tsx">Spam filters</span></span>
-                  <span className="font-medium" data-unique-id="36268812-8255-40fc-98be-2ee2832c8ee6" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="404d19dd-0d8f-4845-bc71-ccff6cd5747e" data-file-name="components/email-analytics.tsx">18%</span></span>
+                <li className="flex justify-between" data-unique-id="10e4bcd2-fb96-40a7-9366-61e5090087b1" data-file-name="components/email-analytics.tsx">
+                  <span data-unique-id="8f0751b8-8ba9-4a4a-a72c-1d0888db528f" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="757eb82d-0f2d-481e-8bc5-44d4fb9f2df1" data-file-name="components/email-analytics.tsx">Spam filters</span></span>
+                  <span className="font-medium" data-unique-id="2255a0a2-39f8-4c4f-9caa-958f49d1a500" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="3bdaf412-4b84-44e3-9778-a61376fb56bb" data-file-name="components/email-analytics.tsx">18%</span></span>
                 </li>
-                <li className="flex justify-between" data-unique-id="9bb123dc-c710-4f7b-b02a-f0b5f256397a" data-file-name="components/email-analytics.tsx">
-                  <span data-unique-id="f724980c-1dd6-4b49-a3a2-3de75793afd5" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="1ed8005c-fe9c-4191-b733-39238e4371f5" data-file-name="components/email-analytics.tsx">Other</span></span>
-                  <span className="font-medium" data-unique-id="60a696ba-f5b4-40d8-ba8f-1cdb3442305d" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="dede38d5-5bf0-4dd4-bbc9-5b053f668464" data-file-name="components/email-analytics.tsx">13%</span></span>
+                <li className="flex justify-between" data-unique-id="c9fefff3-1b2c-445e-9ae8-aa5e3b1d9bb5" data-file-name="components/email-analytics.tsx">
+                  <span data-unique-id="921f7ae3-7a26-43ae-b937-32e309b5d6bf" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="94be40d0-2a92-41b5-9e63-e04f3e7556c9" data-file-name="components/email-analytics.tsx">Other</span></span>
+                  <span className="font-medium" data-unique-id="eaddf10a-84b7-4534-bb29-5c6c86d4745d" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="19b7ce86-eaaa-4b65-bfab-21230eba93d6" data-file-name="components/email-analytics.tsx">13%</span></span>
                 </li>
               </ul>
             </div>
             
-            <div className="border border-border rounded-lg p-4" data-unique-id="8ef7ca6d-92ee-4c73-a37b-36e3bc67d172" data-file-name="components/email-analytics.tsx">
-              <h3 className="text-sm font-medium mb-2" data-unique-id="8549f15c-4106-4509-9dd1-844b6c924982" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="557658bb-d0b8-47d9-9f28-1df0c801fdbc" data-file-name="components/email-analytics.tsx">Delivery Performance</span></h3>
-              <div className="flex items-center justify-center h-32" data-unique-id="c9e7d8f1-c7b8-4be3-a634-f4822ad96b65" data-file-name="components/email-analytics.tsx">
-                <div className="relative w-32 h-32" data-unique-id="9e761c16-1dce-4aa8-9fb3-38c0cc7d8202" data-file-name="components/email-analytics.tsx">
-                  <svg viewBox="0 0 100 100" className="w-full h-full" data-unique-id="fb7a4e33-0537-497a-bbd4-f381244edb81" data-file-name="components/email-analytics.tsx">
+            <div className="border border-border rounded-lg p-4" data-unique-id="a9fdda3a-d698-452d-9f08-1eeed1cac529" data-file-name="components/email-analytics.tsx">
+              <h3 className="text-sm font-medium mb-2" data-unique-id="77bef977-d557-4c9c-8ba0-09c042958d6c" data-file-name="components/email-analytics.tsx"><span className="editable-text" data-unique-id="fa0f25b8-9bd6-44fc-925d-e0c6040a452d" data-file-name="components/email-analytics.tsx">Delivery Performance</span></h3>
+              <div className="flex items-center justify-center h-32" data-unique-id="6f9645df-6dae-4717-bb8e-b8f167b8083c" data-file-name="components/email-analytics.tsx">
+                <div className="relative w-32 h-32" data-unique-id="a0d104ec-5220-4e82-8212-445d43f7d68a" data-file-name="components/email-analytics.tsx">
+                  <svg viewBox="0 0 100 100" className="w-full h-full" data-unique-id="dbd49d52-a09f-428a-b3b0-f39f9204c932" data-file-name="components/email-analytics.tsx">
                     <circle cx="50" cy="50" r="40" fill="none" stroke="#e5e7eb" strokeWidth="15" />
                     <circle cx="50" cy="50" r="40" fill="none" stroke="#3b82f6" strokeWidth="15" strokeDasharray="251.2" strokeDashoffset={251.2 * (1 - stats.deliveryRate / 100)} transform="rotate(-90 50 50)" />
                   </svg>
-                  <div className="absolute inset-0 flex items-center justify-center" data-unique-id="b69fe268-2a76-49eb-851d-d36d85684b0e" data-file-name="components/email-analytics.tsx">
-                    <span className="text-2xl font-bold" data-unique-id="8667ce78-4194-441e-b97a-758327b5bc6d" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.deliveryRate}<span className="editable-text" data-unique-id="2d95786e-2a5d-449a-b1d8-7c0bbcc4e706" data-file-name="components/email-analytics.tsx">%</span></span>
+                  <div className="absolute inset-0 flex items-center justify-center" data-unique-id="760438ab-9cc1-4b33-b14e-d543a650481f" data-file-name="components/email-analytics.tsx">
+                    <span className="text-2xl font-bold" data-unique-id="bcbefaac-3376-4436-ba8b-8a3ded85c045" data-file-name="components/email-analytics.tsx" data-dynamic-text="true">{stats.deliveryRate}<span className="editable-text" data-unique-id="d2526e4d-458e-4ba0-a5c7-bf4f44be3f1b" data-file-name="components/email-analytics.tsx">%</span></span>
                   </div>
                 </div>
               </div>

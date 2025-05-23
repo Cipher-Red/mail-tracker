@@ -43,73 +43,73 @@ export default function TemplateEditor({
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="29977c17-f8b5-4d41-bc43-9d8de722afba" data-file-name="components/template-editor.tsx">
-      <div className="flex justify-between items-center mb-6" data-unique-id="9ec69f92-d045-4417-ad9f-5b547f9343dd" data-file-name="components/template-editor.tsx">
-        <h2 className="text-xl font-medium flex items-center" data-unique-id="1e532e4f-4268-4838-afe9-0176b6ae0f83" data-file-name="components/template-editor.tsx">
-          <Edit className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="cc93ae47-f8c8-447c-8f21-e7dbdadb88a2" data-file-name="components/template-editor.tsx"> Template Editor
+  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="e6df2aaf-f49f-4ce6-a7fb-7dab96ed0a58" data-file-name="components/template-editor.tsx">
+      <div className="flex justify-between items-center mb-6" data-unique-id="d6108eab-9e00-4a9e-a687-918eda739ed2" data-file-name="components/template-editor.tsx">
+        <h2 className="text-xl font-medium flex items-center" data-unique-id="45496722-c718-4a30-b11a-749fbe140255" data-file-name="components/template-editor.tsx">
+          <Edit className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="38e704df-40a3-4c00-82cb-9a0a1b6969b5" data-file-name="components/template-editor.tsx"> Template Editor
         </span></h2>
-        <div className="flex space-x-2" data-unique-id="67a82bec-a235-4848-9757-4c5e90f88e27" data-file-name="components/template-editor.tsx">
+        <div className="flex space-x-2" data-unique-id="f7848ea3-9f57-4303-8a3c-3328de9f8ae2" data-file-name="components/template-editor.tsx">
           <button onClick={() => {
           const html = generateHtmlEmail(template);
           copyToClipboard(html);
           alert("HTML copied to clipboard!");
-        }} className="flex items-center px-3 py-2 bg-accent hover:bg-accent/80 rounded-md transition-colors" title="Copy rendered HTML" data-unique-id="1ffa03ff-c16d-4666-9acd-d0982c321a22" data-file-name="components/template-editor.tsx">
+        }} className="flex items-center px-3 py-2 bg-accent hover:bg-accent/80 rounded-md transition-colors" title="Copy rendered HTML" data-unique-id="90b599b5-8c03-4b78-9f58-db64b38e28d9" data-file-name="components/template-editor.tsx">
             <Copy className="h-4 w-4" />
           </button>
-          <button onClick={() => downloadTemplate(template)} className="flex items-center px-3 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" title="Download as JSON" data-unique-id="52f79b27-e3ef-4258-b3bf-6128cdcc062e" data-file-name="components/template-editor.tsx">
+          <button onClick={() => downloadTemplate(template)} className="flex items-center px-3 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" title="Download as JSON" data-unique-id="532be3e9-44cf-4b06-b6a2-21e241854937" data-file-name="components/template-editor.tsx">
             <Download className="h-4 w-4" />
           </button>
-          <button onClick={saveTemplate} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="c39685a2-6766-45d3-b509-cbc9b0ba999a" data-file-name="components/template-editor.tsx" data-dynamic-text="true">
+          <button onClick={saveTemplate} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="ab71fc75-d80b-4f07-bc1d-1babd33bd922" data-file-name="components/template-editor.tsx" data-dynamic-text="true">
             <Save className="mr-2 h-4 w-4" />
             {isSaved ? "Saved!" : "Save Template"}
           </button>
         </div>
       </div>
       
-      <div className="space-y-5" data-unique-id="670a5f0c-4678-467e-ac7d-012ac2ca477a" data-file-name="components/template-editor.tsx">
-        <div data-unique-id="2ebc6e14-24c8-46f9-a501-d19eef35fecc" data-file-name="components/template-editor.tsx">
-          <label htmlFor="templateName" className="block text-sm font-medium mb-1" data-unique-id="1c558caa-14e3-4a0b-9847-f4bc22cc8203" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="4665863d-62fd-4588-add7-d9e6fbb2a239" data-file-name="components/template-editor.tsx">
+      <div className="space-y-5" data-unique-id="b24e0466-e734-4044-a818-e65781a5ec99" data-file-name="components/template-editor.tsx">
+        <div data-unique-id="5079e1ab-afc3-47f6-af2a-ac2c89ebe0a5" data-file-name="components/template-editor.tsx">
+          <label htmlFor="templateName" className="block text-sm font-medium mb-1" data-unique-id="41bf87ab-c60d-4a53-8b3c-9b29a9bf0950" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="18469122-c788-4bf5-af86-4dfad3ea0547" data-file-name="components/template-editor.tsx">
             Template Name
           </span></label>
-          <input id="templateName" type="text" value={template.name} onChange={e => handleChange("name", e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="b29a7910-c2e9-4fe4-ba9c-a648459ee2ae" data-file-name="components/template-editor.tsx" />
+          <input id="templateName" type="text" value={template.name} onChange={e => handleChange("name", e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="c742a4f8-e8a5-4c2c-9fd4-3ac6dc4419cb" data-file-name="components/template-editor.tsx" />
         </div>
         
-        <div data-unique-id="fcde4dc8-6eb9-414d-ae68-72f8c714a785" data-file-name="components/template-editor.tsx">
-          <label htmlFor="subject" className="block text-sm font-medium mb-1" data-unique-id="6c00d0bc-8c8b-488b-9890-feb3c3364f40" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="811e68ee-1fcd-4f13-97d0-aff66da93f4b" data-file-name="components/template-editor.tsx">
+        <div data-unique-id="13fb6649-ffe5-4957-b7f2-ecd85720de77" data-file-name="components/template-editor.tsx">
+          <label htmlFor="subject" className="block text-sm font-medium mb-1" data-unique-id="d75eb9d7-b685-48c1-b0ff-229614f3bd82" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="683e0a3f-e343-4099-9d32-2eb6e20e14dd" data-file-name="components/template-editor.tsx">
             Email Subject
           </span></label>
-          <input id="subject" type="text" value={template.subject} onChange={e => handleChange("subject", e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="cef61f0e-1ef2-4dc6-8b28-2f6a8a27bb82" data-file-name="components/template-editor.tsx" />
+          <input id="subject" type="text" value={template.subject} onChange={e => handleChange("subject", e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="7c231dd8-880b-4543-81bf-b5fa6ba5f9e2" data-file-name="components/template-editor.tsx" />
         </div>
         
-        <div data-unique-id="bd9edae0-e171-41f1-8fe3-ea33a747b4e8" data-file-name="components/template-editor.tsx">
-          <label htmlFor="preheader" className="block text-sm font-medium mb-1" data-unique-id="c47a430d-17e1-4a42-881f-aa43936bf1b0" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="bcde2b06-72d9-43af-8ca4-f93e8f6eebfe" data-file-name="components/template-editor.tsx">
+        <div data-unique-id="e99b0a52-2366-4fb0-a2dd-f09ccb359b80" data-file-name="components/template-editor.tsx">
+          <label htmlFor="preheader" className="block text-sm font-medium mb-1" data-unique-id="872bb460-ae4a-402a-bb7e-7f49d225ce3c" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="3f8925bd-42b1-49a1-9120-86a51acf7993" data-file-name="components/template-editor.tsx">
             Preheader Text
           </span></label>
-          <input id="preheader" type="text" value={template.preheader} onChange={e => handleChange("preheader", e.target.value)} placeholder="Brief text that appears in email clients" className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="0548ace6-7a6c-41da-921e-acbb1f673c03" data-file-name="components/template-editor.tsx" />
-          <p className="text-xs text-muted-foreground mt-1" data-unique-id="b56d0359-ca0e-4325-8038-888c3c6b3e3c" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="6d8b4099-88b1-4a81-aaa6-f4b6744cd040" data-file-name="components/template-editor.tsx">
+          <input id="preheader" type="text" value={template.preheader} onChange={e => handleChange("preheader", e.target.value)} placeholder="Brief text that appears in email clients" className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="eab5fd10-dc08-4148-bff9-b12e61018cbd" data-file-name="components/template-editor.tsx" />
+          <p className="text-xs text-muted-foreground mt-1" data-unique-id="5e6685cc-72ed-46fc-a20b-ddbfd96116aa" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="0b754505-3418-4c8b-adc9-c51081d01dba" data-file-name="components/template-editor.tsx">
             This text will show up in email clients as a preview
           </span></p>
         </div>
         
-        <div data-unique-id="3b071fb5-e279-4fcf-878a-1dbb53f45b1d" data-file-name="components/template-editor.tsx">
-          <label htmlFor="emailContent" className="block text-sm font-medium mb-1" data-unique-id="0579b361-e6ca-494e-998a-7e5d97349ed7" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="540d7b53-ab77-4755-a6e5-d02b73331c77" data-file-name="components/template-editor.tsx">
+        <div data-unique-id="202d39fa-9d1d-422b-8746-d65a40d3f9bc" data-file-name="components/template-editor.tsx">
+          <label htmlFor="emailContent" className="block text-sm font-medium mb-1" data-unique-id="c76d257f-9d27-43bd-ba9d-276a369c066d" data-file-name="components/template-editor.tsx"><span className="editable-text" data-unique-id="4ce70652-7ae4-49de-8a0a-d9849a049f5f" data-file-name="components/template-editor.tsx">
             Email Content
           </span></label>
-          <textarea id="emailContent" rows={12} value={template.content} onChange={e => handleChange("content", e.target.value)} className="w-full p-3 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary resize-y font-mono text-sm" data-unique-id="b9876bf6-6be6-4e74-bcdb-1060929f6c46" data-file-name="components/template-editor.tsx" />
+          <textarea id="emailContent" rows={12} value={template.content} onChange={e => handleChange("content", e.target.value)} className="w-full p-3 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary resize-y font-mono text-sm" data-unique-id="0af9670e-4426-4aa2-ad96-4ee50c878673" data-file-name="components/template-editor.tsx" />
         </div>
         
-        <div className="bg-accent/20 p-4 rounded-md" data-unique-id="ba82339c-9f79-4e78-8313-5ae076300b5e" data-file-name="components/template-editor.tsx">
-          <h3 className="flex items-center text-sm font-medium mb-2" data-unique-id="c180d37a-ad24-45fa-8206-66234a9f46dd" data-file-name="components/template-editor.tsx">
-            <AlertCircle className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="b9bfe88d-4f6a-42ae-b99a-90fae25d87b2" data-file-name="components/template-editor.tsx">
+        <div className="bg-accent/20 p-4 rounded-md" data-unique-id="5e0af70a-ef43-4e43-bbf1-138d8621b57c" data-file-name="components/template-editor.tsx">
+          <h3 className="flex items-center text-sm font-medium mb-2" data-unique-id="9a60ba17-9c08-4d0b-b8b9-17a07525808b" data-file-name="components/template-editor.tsx">
+            <AlertCircle className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="11d5d7d3-404c-46b6-b16f-02e02c6cc186" data-file-name="components/template-editor.tsx">
             Available Variables
           </span></h3>
-          <ul className="grid grid-cols-2 gap-2 text-sm" data-unique-id="e428e993-6123-4afe-89a4-3069392d4688" data-file-name="components/template-editor.tsx">
-            <li className="font-mono" data-unique-id="908a8b77-6bd7-4468-bcb4-1dc188462557" data-file-name="components/template-editor.tsx">{"{{customerName}}"}</li>
-            <li className="font-mono" data-unique-id="f71f2ac7-ca78-421e-b9d1-f48c432b384a" data-file-name="components/template-editor.tsx">{"{{orderNumber}}"}</li>
-            <li className="font-mono" data-unique-id="b231ba6e-0b38-4931-8c0c-429876f20e25" data-file-name="components/template-editor.tsx">{"{{trackingNumber}}"}</li>
-            <li className="font-mono" data-unique-id="3e0d83b1-5120-4e67-97be-e0bfe4d98971" data-file-name="components/template-editor.tsx">{"{{address}}"}</li>
-            <li className="font-mono" data-unique-id="22cd921a-d87a-4523-9a34-b9052a8feb93" data-file-name="components/template-editor.tsx">{"{{orderDate}}"}</li>
-            <li className="font-mono" data-unique-id="d09fcbc4-d1ef-4b72-9f19-4c1398d8ecdf" data-file-name="components/template-editor.tsx">{"{{items}}"}</li>
+          <ul className="grid grid-cols-2 gap-2 text-sm" data-unique-id="d57f6dd2-5233-45a3-beee-7fa929b3886a" data-file-name="components/template-editor.tsx">
+            <li className="font-mono" data-unique-id="0981cc91-2fcf-4e3f-8810-fa644224f30c" data-file-name="components/template-editor.tsx">{"{{customerName}}"}</li>
+            <li className="font-mono" data-unique-id="5689c67b-d1db-4c49-b1ba-f4a4f061f213" data-file-name="components/template-editor.tsx">{"{{orderNumber}}"}</li>
+            <li className="font-mono" data-unique-id="e565086f-d78e-4d09-99e5-b94ac0201c38" data-file-name="components/template-editor.tsx">{"{{trackingNumber}}"}</li>
+            <li className="font-mono" data-unique-id="a69f68dd-22db-4e48-9d16-fa3eb8be08ed" data-file-name="components/template-editor.tsx">{"{{address}}"}</li>
+            <li className="font-mono" data-unique-id="8a219c29-019d-4d78-8c95-92196a31e92e" data-file-name="components/template-editor.tsx">{"{{orderDate}}"}</li>
+            <li className="font-mono" data-unique-id="eea88668-ae9f-4e35-8d0f-96c0abcf8deb" data-file-name="components/template-editor.tsx">{"{{items}}"}</li>
           </ul>
         </div>
       </div>

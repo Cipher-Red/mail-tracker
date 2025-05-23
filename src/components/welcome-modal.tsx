@@ -22,17 +22,13 @@ export function WelcomeModal() {
   }, []);
   const closeModal = () => {
     setIsOpen(false);
-    const saveToLocalStorage = () => {
-      if (typeof window !== 'undefined') {
-        try {
-          const storage = window.localStorage;
-          storage.setItem('hasSeenWelcome', 'true');
-        } catch (e) {
-          console.error('Failed to save welcome modal status to localStorage', e);
-        }
+    if (typeof window !== 'undefined') {
+      try {
+        localStorage.setItem('hasSeenWelcome', 'true');
+      } catch (e) {
+        console.error('Failed to save welcome modal status to localStorage', e);
       }
-    };
-    saveToLocalStorage();
+    }
   };
   const steps = [{
     title: "Welcome to Detroit Axle Email Builder",
@@ -65,7 +61,7 @@ export function WelcomeModal() {
       opacity: 1
     }} exit={{
       opacity: 0
-    }} data-unique-id="2a99e41d-5dbc-40a8-8ba9-01a040b85afe" data-file-name="components/welcome-modal.tsx">
+    }} data-unique-id="2ad17b8b-7bf6-4721-8d95-65cb0494d5cb" data-file-name="components/welcome-modal.tsx">
           <motion.div className="bg-background rounded-lg shadow-xl max-w-md w-full mx-4" initial={{
         scale: 0.9,
         opacity: 0
@@ -79,35 +75,35 @@ export function WelcomeModal() {
         type: "spring",
         damping: 25,
         stiffness: 300
-      }} data-unique-id="a1168082-7054-4aa5-8f79-aa845b9eca71" data-file-name="components/welcome-modal.tsx">
-            <div className="flex justify-between items-center px-6 py-4 border-b border-border" data-unique-id="c8cd660f-21cb-468b-b305-48a100b79160" data-file-name="components/welcome-modal.tsx">
-              <h2 className="text-xl font-semibold text-foreground" data-unique-id="98fdfc9f-faf9-4af4-94f8-6b18ad78fcc6" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="46cd990c-64e3-47bf-a608-fc01cedd4643" data-file-name="components/welcome-modal.tsx">Getting Started</span></h2>
-              <button onClick={closeModal} className="text-muted-foreground hover:text-foreground" data-unique-id="2b674610-83bf-485f-85dc-d3539427bd03" data-file-name="components/welcome-modal.tsx">
+      }} data-unique-id="599f0645-4787-4177-a18b-d84daa222694" data-file-name="components/welcome-modal.tsx">
+            <div className="flex justify-between items-center px-6 py-4 border-b border-border" data-unique-id="bcbd0110-b977-43de-a94b-fe4d79d21942" data-file-name="components/welcome-modal.tsx">
+              <h2 className="text-xl font-semibold text-foreground" data-unique-id="5c93b617-7fa9-471e-be7d-da9fa4d69b03" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="6ed0c793-a473-47c6-88e5-6578c8c9c288" data-file-name="components/welcome-modal.tsx">Getting Started</span></h2>
+              <button onClick={closeModal} className="text-muted-foreground hover:text-foreground" data-unique-id="40634f8f-5a6a-4563-bcae-c66f2127745f" data-file-name="components/welcome-modal.tsx">
                 <X size={20} />
               </button>
             </div>
             
-            <div className="px-6 py-8" data-unique-id="9f2ba167-f80f-4e11-8cd4-7814a06c8eb4" data-file-name="components/welcome-modal.tsx">
-              <div className="flex flex-col items-center text-center" data-unique-id="52d4f973-8a81-4b83-ab4b-98508ddeaabf" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+            <div className="px-6 py-8" data-unique-id="2e69f651-f50e-4795-b925-311f6f9e360a" data-file-name="components/welcome-modal.tsx">
+              <div className="flex flex-col items-center text-center" data-unique-id="650ed043-9a2f-4ae1-862e-1293490009ee" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                 {steps[currentStep].icon}
-                <h3 className="mt-4 text-lg font-medium text-foreground" data-unique-id="228601b2-d173-43d8-b98d-90b5340df3db" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+                <h3 className="mt-4 text-lg font-medium text-foreground" data-unique-id="17c653ac-f26e-4396-a28d-3575af976a6d" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                   {steps[currentStep].title}
                 </h3>
-                <p className="mt-2 text-muted-foreground" data-unique-id="7e6b1e70-fe51-4a02-866f-93675d8d89f1" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+                <p className="mt-2 text-muted-foreground" data-unique-id="bc992e65-fa8a-4ef5-8551-ee07c2a9e732" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                   {steps[currentStep].description}
                 </p>
               </div>
               
-              <div className="flex justify-center mt-6" data-unique-id="c27a2bf2-da1d-4707-854a-d8677dfe1ab4" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
-                {steps.map((_, i) => <div key={i} className={`w-2 h-2 mx-1 rounded-full ${i === currentStep ? 'bg-primary' : 'bg-border'}`} data-unique-id="eb7d8ca2-c741-4106-9150-348653e792c1" data-file-name="components/welcome-modal.tsx" />)}
+              <div className="flex justify-center mt-6" data-unique-id="82543ffe-fd22-4d3b-a827-ebad5c596865" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+                {steps.map((_, i) => <div key={i} className={`w-2 h-2 mx-1 rounded-full ${i === currentStep ? 'bg-primary' : 'bg-border'}`} data-unique-id="e42e9076-2982-489e-95f9-4a12bf3b0891" data-file-name="components/welcome-modal.tsx" />)}
               </div>
             </div>
             
-            <div className="flex justify-between items-center px-6 py-4 border-t border-border" data-unique-id="c1901ef0-d731-4040-894d-67de983da24f" data-file-name="components/welcome-modal.tsx">
-              <button onClick={closeModal} className="text-sm text-muted-foreground hover:text-foreground" data-unique-id="1b2735e4-ac23-41b8-8bc9-623441fa04e8" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="ccc0f1f6-859c-40e7-93b3-cfbf0f719158" data-file-name="components/welcome-modal.tsx">
+            <div className="flex justify-between items-center px-6 py-4 border-t border-border" data-unique-id="269de658-9bd7-46a2-9b7b-2f3f2e8af10f" data-file-name="components/welcome-modal.tsx">
+              <button onClick={closeModal} className="text-sm text-muted-foreground hover:text-foreground" data-unique-id="9800c69f-37d7-409a-8be5-b86bdd24fe3d" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="e1d7ba3a-2c7a-4c7c-b226-0daab99512f9" data-file-name="components/welcome-modal.tsx">
                 Skip
               </span></button>
-              <button onClick={nextStep} className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/90 transition-colors" data-unique-id="95d5259b-9b65-41f3-8af4-50d4284ab8f1" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+              <button onClick={nextStep} className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/90 transition-colors" data-unique-id="86103579-0969-4026-8210-b88392c8fb9f" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                 {currentStep < steps.length - 1 ? 'Next' : 'Get Started'}
               </button>
             </div>

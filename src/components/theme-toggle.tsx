@@ -14,14 +14,14 @@ export function ThemeToggle() {
     setIsMounted(true);
   }, []);
   if (!isMounted) {
-    return <div className="w-9 h-9" data-unique-id="f10a4bde-559d-4c1d-b847-1990781337b8" data-file-name="components/theme-toggle.tsx"></div>;
+    return <div className="w-9 h-9" data-unique-id="83976af8-b1cc-4254-966f-9b3ec60bd63d" data-file-name="components/theme-toggle.tsx"></div>;
   }
   const handleToggle = () => {
     if (theme === 'light') setTheme('dark');else if (theme === 'dark') setTheme('system');else setTheme('light');
   };
   return <motion.button whileTap={{
     scale: 0.95
-  }} onClick={handleToggle} className="w-9 h-9 flex items-center justify-center rounded-md border border-border bg-background text-foreground hover:bg-accent transition-colors" title={`Current theme: ${theme}. Click to switch.`} data-unique-id="31ba9b0a-74b4-4da8-9710-ee7a9f4b26d8" data-file-name="components/theme-toggle.tsx" data-dynamic-text="true">
+  }} onClick={handleToggle} className="w-9 h-9 flex items-center justify-center rounded-md border border-border bg-background text-foreground hover:bg-accent transition-colors" title={`Current theme: ${theme}. Click to switch.`} data-unique-id="e49ff616-bbff-4f49-9a45-6eeda9a3c213" data-file-name="components/theme-toggle.tsx" data-dynamic-text="true">
       {theme === 'dark' ? <Moon size={18} /> : theme === 'light' ? <Sun size={18} /> : <Laptop size={18} />}
     </motion.button>;
 }
