@@ -2,7 +2,7 @@ import "@/styles/globals.css";
 import React from "react";
 import { GeistSans } from "geist/font/sans";
 import { type Metadata } from "next";
-import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeProviderWrapper } from "@/components/theme-provider-wrapper";
 export const viewport = {
   width: "device-width",
   initialScale: 1,
@@ -56,11 +56,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="3198fb5c-878b-4bd3-9a4b-22fd12881ec9" data-file-name="app/layout.tsx">
-      <body data-unique-id="e677b332-8bf2-46b9-8186-be682e97ff3c" data-file-name="app/layout.tsx">
-        <ThemeProvider defaultTheme="system">
+  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="3a4a8653-334f-47e3-b991-9c90b79cbdcc" data-file-name="app/layout.tsx">
+      <body data-unique-id="5e1a4e2f-3aae-4080-a46f-824d1f572ba2" data-file-name="app/layout.tsx">
+        <ThemeProviderWrapper defaultTheme="system">
           {children}
-        </ThemeProvider>
+        </ThemeProviderWrapper>
       </body>
     </html>;
 }

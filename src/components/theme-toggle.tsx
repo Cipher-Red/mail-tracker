@@ -15,7 +15,7 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <div className="w-9 h-9" data-unique-id="46000251-ae37-4ea8-8362-1a340346ec4a" data-file-name="components/theme-toggle.tsx"></div>;
+    return <div className="w-9 h-9" data-unique-id="62819a38-1c1e-4062-925b-94a9c56abd77" data-file-name="components/theme-toggle.tsx"></div>;
   }
   const handleToggle = () => {
     if (theme === 'light') {
@@ -51,12 +51,12 @@ export function ThemeToggle() {
       }
     }
   };
-  return <div className="relative" data-unique-id="6333b29d-a56f-469d-a727-691d90e86c8c" data-file-name="components/theme-toggle.tsx">
+  return <div className="relative" data-unique-id="85fafe8c-6e2e-4792-9529-baf1e9223191" data-file-name="components/theme-toggle.tsx">
       <motion.button id="theme-toggle-button" whileTap={{
       scale: 0.95
-    }} onClick={handleToggle} className={`w-9 h-9 flex items-center justify-center rounded-md border ${resolvedTheme === 'dark' ? 'border-slate-700' : 'border-border'} bg-background text-foreground hover:bg-accent transition-colors relative overflow-hidden`} title={`Current theme: ${theme}. Click to switch.`} aria-label={`Switch theme, current theme is ${theme}`} data-unique-id="8e2b04cf-831c-4d87-aef6-d6ef58d1f4ff" data-file-name="components/theme-toggle.tsx">
+    }} onClick={handleToggle} className={`w-9 h-9 flex items-center justify-center rounded-md border ${resolvedTheme === 'dark' ? 'border-slate-700' : 'border-border'} bg-background text-foreground hover:bg-accent transition-colors relative overflow-hidden`} title={`Current theme: ${theme}. Click to switch.`} aria-label={`Switch theme, current theme is ${theme}`} data-unique-id="12d6808a-b4ca-44ae-a840-0da9aa023ce3" data-file-name="components/theme-toggle.tsx">
         <AnimatePresence mode="wait">
-          <motion.div key={theme} initial="hidden" animate="visible" exit="exit" variants={variants} className="absolute" data-unique-id="4640e77a-312b-4195-b2d6-1d3bb3b5fa41" data-file-name="components/theme-toggle.tsx" data-dynamic-text="true">
+          <motion.div key={theme} initial="hidden" animate="visible" exit="exit" variants={variants} className="absolute" data-unique-id="e239444c-5477-4fa2-9c9a-f2a27916725c" data-file-name="components/theme-toggle.tsx" data-dynamic-text="true">
             {theme === 'dark' ? <Moon size={18} /> : theme === 'light' ? <Sun size={18} /> : <Laptop size={18} />}
           </motion.div>
         </AnimatePresence>

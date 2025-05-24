@@ -77,9 +77,18 @@ export function ThemeProvider({
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, [theme, mounted]);
 
+  // Create a default context value for SSR
+  const defaultContextValue: ThemeContextType = {
+    theme: defaultTheme,
+    setTheme: () => {},
+    resolvedTheme: 'light'
+  };
+
   // Skip rendering any UI until mounted to prevent hydration mismatch
   if (!mounted) {
-    return <>{children}</>;
+    return <ThemeContext.Provider value={defaultContextValue}>
+        {children}
+      </ThemeContext.Provider>;
   }
   return <ThemeContext.Provider value={{
     theme,

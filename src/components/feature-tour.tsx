@@ -198,7 +198,7 @@ export function FeatureTour() {
       tooltipStyles.transform = 'translate(-100%, -50%)';
       break;
   }
-  return <div className="fixed inset-0 z-[100] pointer-events-none" data-unique-id="12fda27b-aa6f-4ae1-82d0-0ead5a371f44" data-file-name="components/feature-tour.tsx">
+  return <div className="fixed inset-0 z-[100] pointer-events-none" data-unique-id="8c133f1b-c439-4d19-a035-7e4d3d909c8f" data-file-name="components/feature-tour.tsx">
       <AnimatePresence>
         <motion.div initial={{
         opacity: 0,
@@ -209,20 +209,20 @@ export function FeatureTour() {
       }} exit={{
         opacity: 0,
         scale: 0.9
-      }} style={tooltipStyles} className="max-w-xs pointer-events-auto" data-unique-id="869a260e-7395-41bc-9fa5-21d480c21203" data-file-name="components/feature-tour.tsx">
-          <div className="bg-primary text-primary-foreground rounded-lg shadow-lg p-4" data-unique-id="da51a4ae-227a-41e1-8dd7-4661be7d0b91" data-file-name="components/feature-tour.tsx">
-            <div className="flex justify-between items-center mb-2" data-unique-id="ae3a4f4f-ef3f-4cda-84d2-e74a6edecbc1" data-file-name="components/feature-tour.tsx">
-              <h3 className="font-medium" data-unique-id="69eefd2b-b793-4434-904d-6b4395c974bb" data-file-name="components/feature-tour.tsx" data-dynamic-text="true">{title}</h3>
-              <button onClick={endTour} className="text-primary-foreground opacity-70 hover:opacity-100" data-unique-id="5871ab90-c71e-408f-b4b4-ab9a8c0c9a39" data-file-name="components/feature-tour.tsx">
+      }} style={tooltipStyles} className="max-w-xs pointer-events-auto" data-unique-id="5b5de64e-e3fa-4b26-8574-2438805d7345" data-file-name="components/feature-tour.tsx">
+          <div className="bg-primary text-primary-foreground rounded-lg shadow-lg p-4" data-unique-id="911024fe-dd92-4c8b-a49a-46ad1b599624" data-file-name="components/feature-tour.tsx">
+            <div className="flex justify-between items-center mb-2" data-unique-id="e62989a8-4c26-41fd-8212-96f058d51a87" data-file-name="components/feature-tour.tsx">
+              <h3 className="font-medium" data-unique-id="f662df39-89be-4ef4-bf9f-484b68928ef8" data-file-name="components/feature-tour.tsx" data-dynamic-text="true">{title}</h3>
+              <button onClick={endTour} className="text-primary-foreground opacity-70 hover:opacity-100" data-unique-id="090d7653-b556-4502-8c08-8110b3784506" data-file-name="components/feature-tour.tsx">
                 <X size={18} />
               </button>
             </div>
-            <p className="text-sm mb-3" data-unique-id="08d04956-6705-449a-b53f-c25d7127729a" data-file-name="components/feature-tour.tsx" data-dynamic-text="true">{description}</p>
-            <div className="flex justify-between items-center" data-unique-id="0194d416-25c5-4cac-a527-8fad11c4c83f" data-file-name="components/feature-tour.tsx">
-              <div className="text-xs opacity-70" data-unique-id="9de1610e-b235-448a-9c04-b9eb8962bcf8" data-file-name="components/feature-tour.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="e4bf39ab-8775-41a0-b24f-07c67a6a3280" data-file-name="components/feature-tour.tsx">
-                Step </span>{currentStep + 1}<span className="editable-text" data-unique-id="05aa0331-96f0-430d-8979-f36602ee509d" data-file-name="components/feature-tour.tsx"> of </span>{tourSteps.length}
+            <p className="text-sm mb-3" data-unique-id="06cb9e05-0d5d-4c52-853c-6ea2fea6dfd8" data-file-name="components/feature-tour.tsx" data-dynamic-text="true">{description}</p>
+            <div className="flex justify-between items-center" data-unique-id="6beb435c-6d1b-462f-aa23-6770ab6cb52a" data-file-name="components/feature-tour.tsx">
+              <div className="text-xs opacity-70" data-unique-id="9ff8720b-9909-4720-b647-6e4b7fc0d941" data-file-name="components/feature-tour.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="2051a954-7a3a-4e98-94b0-0527421b9a06" data-file-name="components/feature-tour.tsx">
+                Step </span>{currentStep + 1}<span className="editable-text" data-unique-id="3f313e3c-5dbb-4ebd-89e1-22d17a286f1c" data-file-name="components/feature-tour.tsx"> of </span>{tourSteps.length}
               </div>
-              <button onClick={nextStep} className="flex items-center text-sm px-3 py-1 bg-white bg-opacity-20 rounded hover:bg-opacity-30" data-unique-id="d79d5b5f-369a-48cc-8474-3e7d61fd8edf" data-file-name="components/feature-tour.tsx" data-dynamic-text="true">
+              <button onClick={nextStep} className="flex items-center text-sm px-3 py-1 bg-white bg-opacity-20 rounded hover:bg-opacity-30" data-unique-id="3834fbaa-bfbe-449d-8f87-6129f0859d6d" data-file-name="components/feature-tour.tsx" data-dynamic-text="true">
                 {currentStep < tourSteps.length - 1 ? <>Next <ArrowRight size={14} className="ml-1" /></> : 'Finish'}
               </button>
             </div>

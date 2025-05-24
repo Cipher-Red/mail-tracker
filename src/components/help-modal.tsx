@@ -31,7 +31,7 @@ export function HelpModal({
       opacity: 0
     }} transition={{
       duration: 0.2
-    }} className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose} data-unique-id="7ee0c471-ad21-4c8b-a824-5d0715d14474" data-file-name="components/help-modal.tsx">
+    }} className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4" onClick={onClose} data-unique-id="82371c1b-b358-4792-96af-2982ecbf6bc9" data-file-name="components/help-modal.tsx">
           <motion.div initial={{
         scale: 0.95,
         opacity: 0
@@ -45,40 +45,40 @@ export function HelpModal({
         type: 'spring',
         damping: 25,
         stiffness: 300
-      }} className="bg-background rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="2a31fbc0-7256-4581-a686-e65687c3a80b" data-file-name="components/help-modal.tsx">
-            <div className="flex justify-between items-center p-6 border-b border-border" data-unique-id="1bf8a219-9509-4eb1-a9b4-3efe739787fd" data-file-name="components/help-modal.tsx">
-              <h2 className="text-2xl font-semibold" data-unique-id="c6e47298-c282-4bfd-906b-32762eeaca0f" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="d3692d60-81ed-45f5-9a16-dad51a773436" data-file-name="components/help-modal.tsx">Help & Getting Started</span></h2>
-              <button onClick={onClose} className="p-2 rounded-full hover:bg-accent" data-unique-id="a9557bbf-4d5e-416d-838b-c81dd0446ca8" data-file-name="components/help-modal.tsx">
+      }} className="bg-background rounded-xl shadow-xl w-full max-w-4xl max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="6c966320-f6b8-46ea-9b71-c9ab2355228a" data-file-name="components/help-modal.tsx">
+            <div className="flex justify-between items-center p-6 border-b border-border" data-unique-id="e24efe5d-eec3-4a07-b431-ae7ef8d01645" data-file-name="components/help-modal.tsx">
+              <h2 className="text-2xl font-semibold" data-unique-id="360ce362-a805-4783-b0d8-953eb0af556d" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="6aa33f3a-a3c5-4433-ac63-85c601b7b792" data-file-name="components/help-modal.tsx">Help & Getting Started</span></h2>
+              <button onClick={onClose} className="p-2 rounded-full hover:bg-accent" data-unique-id="46d5524f-d4bd-4797-b8d4-41eb17ecdb49" data-file-name="components/help-modal.tsx">
                 <X size={24} />
               </button>
             </div>
             
-            <div className="p-6 overflow-y-auto max-h-[calc(90vh-74px)]" data-unique-id="bdde84f2-93e8-42d5-8dc1-3edb3ab09e89" data-file-name="components/help-modal.tsx">
-              <h3 className="text-lg font-medium mb-4" data-unique-id="be3e0e35-8bbf-461f-adda-1267f27f6913" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="40eb6c37-9d9f-4afe-9669-43a18d7842ac" data-file-name="components/help-modal.tsx">Welcome to Detroit Axle Email Builder!</span></h3>
-              <p className="text-muted-foreground mb-6" data-unique-id="7d6d5862-d012-49e8-81cb-f05e1062d31b" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="af0e7282-dcd8-4677-bda1-66dd4e9bb003" data-file-name="components/help-modal.tsx">
+            <div className="p-6 overflow-y-auto max-h-[calc(90vh-74px)]" data-unique-id="178a1d9f-4da5-42b9-9bed-4d16d5a803de" data-file-name="components/help-modal.tsx">
+              <h3 className="text-lg font-medium mb-4" data-unique-id="36e85c1d-fc6e-424f-9e35-4c33732ab3b2" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="49cdb8a9-67a7-445d-a751-27fb47835fe0" data-file-name="components/help-modal.tsx">Welcome to Detroit Axle Email Builder!</span></h3>
+              <p className="text-muted-foreground mb-6" data-unique-id="c74275e8-8f52-4776-bf0c-13583a352a2b" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="de9c24c6-ede8-44b4-8181-b3280b1ea4b2" data-file-name="components/help-modal.tsx">
                 This application helps you create, manage, and send professional email templates to your customers.
                 Here's how to get the most out of it:
               </span></p>
               
               <FeatureHighlight title="Creating Email Templates" description="Design professional emails with customizable variables" defaultOpen={true} completionKey="create-template">
-                <div className="space-y-3" data-unique-id="2cd635ad-1d77-4d8c-9f91-7c37a67873be" data-file-name="components/help-modal.tsx">
-                  <div className="flex items-start" data-unique-id="8399abaa-b34a-4b86-b7c4-9c0f11c3095b" data-file-name="components/help-modal.tsx">
+                <div className="space-y-3" data-unique-id="617a2f21-7669-459c-8c30-c64313f97a88" data-file-name="components/help-modal.tsx">
+                  <div className="flex items-start" data-unique-id="ff88949d-7671-4cbb-8228-b4ae625845e4" data-file-name="components/help-modal.tsx">
                     <FileText className="mr-3 mt-1 text-primary" size={20} />
-                    <div data-unique-id="3742f983-080a-489f-b5b2-4afd79c43ea2" data-file-name="components/help-modal.tsx">
-                      <p className="font-medium" data-unique-id="2b5709d0-b39d-4ac5-a7a9-9eafadad2f6d" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="1ace9139-05e0-4668-8efe-9d3c5ebd6c9a" data-file-name="components/help-modal.tsx">Using the Template Editor</span></p>
-                      <p className="text-sm text-muted-foreground" data-unique-id="6e4e510c-d3b5-4865-8725-3ee4c2f2792e" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="c1fe09aa-356d-4067-b0e4-38e396f26f39" data-file-name="components/help-modal.tsx">
+                    <div data-unique-id="0c8c889b-0ef1-4bc0-a646-3357ec7c6a73" data-file-name="components/help-modal.tsx">
+                      <p className="font-medium" data-unique-id="75736714-f219-487d-8d15-4b78fcefbc85" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="5e818d61-f516-4024-9cdf-555197832e9d" data-file-name="components/help-modal.tsx">Using the Template Editor</span></p>
+                      <p className="text-sm text-muted-foreground" data-unique-id="9e788378-c515-476d-a98f-97e4b165bbec" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="30886a7f-9f77-42e9-94e4-179a1dc7aa46" data-file-name="components/help-modal.tsx">
                         The template editor allows you to create and customize email templates.
-                        You can use variables like </span><code className="text-xs px-1 py-0.5 bg-accent rounded" data-unique-id="6990b57a-cd51-4334-8dc3-39a623a45587" data-file-name="components/help-modal.tsx">{'{{customerName}}'}</code><span className="editable-text" data-unique-id="b5c96b90-cf44-4646-8be3-09792504746e" data-file-name="components/help-modal.tsx"> and
-                        </span><code className="text-xs px-1 py-0.5 bg-accent rounded" data-unique-id="24449b4d-1dc9-4f9d-be24-d781c2dfad61" data-file-name="components/help-modal.tsx">{'{{orderNumber}}'}</code><span className="editable-text" data-unique-id="5ffdc32b-e3ee-4910-a9d2-18b8c49ce530" data-file-name="components/help-modal.tsx"> that will be replaced with actual customer data when sending.
+                        You can use variables like </span><code className="text-xs px-1 py-0.5 bg-accent rounded" data-unique-id="a762f76a-ee4a-44f4-8593-154fe115f411" data-file-name="components/help-modal.tsx">{'{{customerName}}'}</code><span className="editable-text" data-unique-id="12752061-6abe-4445-9ebd-9274f4edee3b" data-file-name="components/help-modal.tsx"> and
+                        </span><code className="text-xs px-1 py-0.5 bg-accent rounded" data-unique-id="24c97a0d-a1e8-491f-8d76-74f55bb61235" data-file-name="components/help-modal.tsx">{'{{orderNumber}}'}</code><span className="editable-text" data-unique-id="461f519a-cbba-479d-bce2-714be8b258dd" data-file-name="components/help-modal.tsx"> that will be replaced with actual customer data when sending.
                       </span></p>
                     </div>
                   </div>
                   
-                  <div className="flex items-start" data-unique-id="321a53a2-12f2-4429-b71d-7ec0fea49420" data-file-name="components/help-modal.tsx">
+                  <div className="flex items-start" data-unique-id="616a9099-ae8a-4806-a8a6-00c9d6102a33" data-file-name="components/help-modal.tsx">
                     <Search className="mr-3 mt-1 text-primary" size={20} />
-                    <div data-unique-id="b7a949b0-d552-4226-b224-091c9ca1db44" data-file-name="components/help-modal.tsx">
-                      <p className="font-medium" data-unique-id="8687f718-d6ea-45d4-89eb-fbedbf51fc5f" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="8cbc86a1-1f37-4491-8c43-143be231f889" data-file-name="components/help-modal.tsx">Preview Your Templates</span></p>
-                      <p className="text-sm text-muted-foreground" data-unique-id="4d311589-0182-4a0c-9ab0-04b92f27ebbd" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="627bf30c-af48-46ee-a09c-401ae0dc3604" data-file-name="components/help-modal.tsx">
+                    <div data-unique-id="93ccbeea-c362-4692-a283-1727e5e9d352" data-file-name="components/help-modal.tsx">
+                      <p className="font-medium" data-unique-id="3fafeb82-db86-4b57-9c40-bbfefd9719be" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="d308a31c-b9d8-48cd-ae83-a23a23d8b65d" data-file-name="components/help-modal.tsx">Preview Your Templates</span></p>
+                      <p className="text-sm text-muted-foreground" data-unique-id="d701ee13-df0a-4c1f-a292-04c93d74daee" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="fdc65fc9-4780-427e-88ed-9c6fc4401143" data-file-name="components/help-modal.tsx">
                         Use the preview panel on the right to see how your email will look in real-time as you make changes.
                         You can also send a test email to yourself to see exactly how it will appear in an email client.
                       </span></p>
@@ -88,12 +88,12 @@ export function HelpModal({
               </FeatureHighlight>
               
               <FeatureHighlight title="Managing Customers" description="Add, organize and import customer data" completionKey="manage-customers">
-                <div className="space-y-3" data-unique-id="29debef8-1502-416a-9d14-efdbb7c388c7" data-file-name="components/help-modal.tsx">
-                  <div className="flex items-start" data-unique-id="d6809a46-aefa-4355-9155-ef49adc6389b" data-file-name="components/help-modal.tsx">
+                <div className="space-y-3" data-unique-id="98142917-23ad-45db-9b9e-1f693d9357fb" data-file-name="components/help-modal.tsx">
+                  <div className="flex items-start" data-unique-id="b88046e6-cd7d-4994-883d-e46bd90bdf8a" data-file-name="components/help-modal.tsx">
                     <Users className="mr-3 mt-1 text-primary" size={20} />
-                    <div data-unique-id="ec8cef56-136e-4477-9f44-f12a5cf47361" data-file-name="components/help-modal.tsx">
-                      <p className="font-medium" data-unique-id="2a22c022-f367-4d1d-8843-bd1842830642" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="8a39eacb-9f38-434f-8e67-8552952685d0" data-file-name="components/help-modal.tsx">Customer Database</span></p>
-                      <p className="text-sm text-muted-foreground" data-unique-id="9bbe417f-51c3-463b-b790-cd8c39010fe5" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="47451712-a588-4640-b306-ae33728234fc" data-file-name="components/help-modal.tsx">
+                    <div data-unique-id="b1b5d10b-67be-4cfa-9136-a0fd9e8a3ae7" data-file-name="components/help-modal.tsx">
+                      <p className="font-medium" data-unique-id="52613f21-661d-4241-854f-2727cc40e42b" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="1fb69f51-871f-4ab9-bcd7-e2964298b08a" data-file-name="components/help-modal.tsx">Customer Database</span></p>
+                      <p className="text-sm text-muted-foreground" data-unique-id="2b6f196b-d978-416e-a2e5-5e377d0ac226" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="9bbf455d-da59-47e1-9bfd-00aa0658d60d" data-file-name="components/help-modal.tsx">
                         Add customers manually or import them from Excel. You can add details like name, email,
                         company, tags, and custom notes. Your customer data is stored locally in your browser.
                       </span></p>
@@ -103,21 +103,21 @@ export function HelpModal({
               </FeatureHighlight>
               
               <FeatureHighlight title="Sending Emails" description="Send personalized emails to your customers" completionKey="send-emails">
-                <div className="space-y-3" data-unique-id="c356ac7a-ca2a-43b6-8763-64ba0244fdc2" data-file-name="components/help-modal.tsx">
-                  <div className="flex items-start" data-unique-id="7dae8d91-c812-4a47-a591-1d8e204272d9" data-file-name="components/help-modal.tsx">
+                <div className="space-y-3" data-unique-id="0c6eb181-9d8c-475a-b2f1-6df1408a1e35" data-file-name="components/help-modal.tsx">
+                  <div className="flex items-start" data-unique-id="880e1b30-9009-4d13-ba38-b3ad2cab4b95" data-file-name="components/help-modal.tsx">
                     <Send className="mr-3 mt-1 text-primary" size={20} />
-                    <div data-unique-id="33c5a52b-0562-4bfd-a751-9844f9e08475" data-file-name="components/help-modal.tsx">
-                      <p className="font-medium" data-unique-id="30db9523-04b3-444a-aaa9-9f404b54123c" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="8a92679a-7b8a-4373-9280-3cbd830177ca" data-file-name="components/help-modal.tsx">Sending Bulk Emails</span></p>
-                      <p className="text-sm text-muted-foreground" data-unique-id="97f18250-358f-49c8-be33-e792a91a02b1" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="c1420d5a-02e9-485a-b736-a81004cb0d86" data-file-name="components/help-modal.tsx">
+                    <div data-unique-id="266fbb42-6fac-40dc-8b57-f694723aa3b6" data-file-name="components/help-modal.tsx">
+                      <p className="font-medium" data-unique-id="9dfbef19-a15f-4270-8402-556c5cd818bf" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="b0aa8b8e-f114-43a5-9093-b1341e66a86a" data-file-name="components/help-modal.tsx">Sending Bulk Emails</span></p>
+                      <p className="text-sm text-muted-foreground" data-unique-id="eb95a86e-a8e6-409a-b764-846a5bf3213a" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="7735ede0-4ec6-409a-aa57-bf03a691ad27" data-file-name="components/help-modal.tsx">
                         Select customers from your database or import them from Excel to send personalized emails.
                         Each email will be customized with the customer's specific information.
                       </span></p>
                     </div>
                   </div>
                   
-                  <div className="bg-accent/20 p-4 rounded-md border border-border mt-2" data-unique-id="1fed5dc9-19b0-4178-9e2f-b678c2cad7ac" data-file-name="components/help-modal.tsx">
-                    <p className="text-sm font-medium" data-unique-id="a3b50bc7-6080-409e-afc8-34191b84d173" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="312d308d-88f1-403d-87ed-a5607d2e3de5" data-file-name="components/help-modal.tsx">Email Configuration Required</span></p>
-                    <p className="text-xs text-muted-foreground mt-1" data-unique-id="187b04d2-45fa-4ce1-8b44-7ecb4cb0b734" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="f9d2b812-3290-4127-996f-3d582151ca9e" data-file-name="components/help-modal.tsx">
+                  <div className="bg-accent/20 p-4 rounded-md border border-border mt-2" data-unique-id="f13216c3-0f68-413f-a7f2-0cd62b309276" data-file-name="components/help-modal.tsx">
+                    <p className="text-sm font-medium" data-unique-id="78aec105-fca0-49ca-94bc-155c4772cf7b" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="4c132cae-b51b-4da9-ac00-ef2b675a3145" data-file-name="components/help-modal.tsx">Email Configuration Required</span></p>
+                    <p className="text-xs text-muted-foreground mt-1" data-unique-id="dc92004b-39db-446b-ba4d-46997c4b65f9" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="252bd122-c7b5-4c6b-ad8b-2c74dffe6d0b" data-file-name="components/help-modal.tsx">
                       To send real emails, you'll need to set up an email service API key in your environment variables.
                       See the documentation for how to set this up.
                     </span></p>
@@ -126,40 +126,40 @@ export function HelpModal({
               </FeatureHighlight>
               
               <FeatureHighlight title="Theme Customization" description="Switch between light and dark mode" isNew={true} completionKey="theme">
-                <div className="space-y-3" data-unique-id="e622a6c7-8c55-46be-9163-99ddd5da66e1" data-file-name="components/help-modal.tsx">
-                  <p className="text-sm text-muted-foreground" data-unique-id="fa06d248-9755-4c9c-9c45-4738db9ddc54" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="53d16371-e3b1-4aab-8bfd-61576c475a21" data-file-name="components/help-modal.tsx">
+                <div className="space-y-3" data-unique-id="d7fb152d-03f2-474c-b988-70ca2aa1bcfb" data-file-name="components/help-modal.tsx">
+                  <p className="text-sm text-muted-foreground" data-unique-id="a4d5eb48-e66b-4d94-87d0-3dc1ea9eac4c" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="41592b9a-d62c-4a98-81ae-3061227ffecb" data-file-name="components/help-modal.tsx">
                     You can switch between light and dark mode by clicking the theme toggle button in the top-right corner.
                     The application will remember your preference for future visits.
                   </span></p>
                   
-                  <div className="flex items-center justify-center space-x-4 my-4" data-unique-id="6fcd41d8-3419-4e15-8659-62ead6d32433" data-file-name="components/help-modal.tsx">
-                    <div className="flex flex-col items-center" data-unique-id="43ece29b-08e8-46ab-a1e6-65ccfa876c1b" data-file-name="components/help-modal.tsx">
-                      <div className="w-16 h-16 rounded-md bg-white border border-border flex items-center justify-center mb-1" data-unique-id="46b94376-33ed-42ed-9970-15a83d53119a" data-file-name="components/help-modal.tsx">
+                  <div className="flex items-center justify-center space-x-4 my-4" data-unique-id="cbd2ce5d-a932-4cd1-acc1-d43eb10c94fb" data-file-name="components/help-modal.tsx">
+                    <div className="flex flex-col items-center" data-unique-id="f35438a9-9e09-4d71-9310-ec1a3402f674" data-file-name="components/help-modal.tsx">
+                      <div className="w-16 h-16 rounded-md bg-white border border-border flex items-center justify-center mb-1" data-unique-id="5998eb54-6c38-4847-b4d3-ea4df7e36a2f" data-file-name="components/help-modal.tsx">
                         <Sun className="w-8 h-8 text-amber-500" />
                       </div>
-                      <span className="text-xs" data-unique-id="a53c6c89-9778-4c6a-93f2-0856ba0fd295" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="3536ea7d-6b04-4f55-a46b-b5a92031bb38" data-file-name="components/help-modal.tsx">Light Mode</span></span>
+                      <span className="text-xs" data-unique-id="78fa55db-c084-477b-b1e2-8203829ee564" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="08335b63-09da-4d13-9649-cbaf24020052" data-file-name="components/help-modal.tsx">Light Mode</span></span>
                     </div>
                     
-                    <div className="flex flex-col items-center" data-unique-id="b6b7a456-d144-4396-92ca-331629da9d6b" data-file-name="components/help-modal.tsx">
-                      <div className="w-16 h-16 rounded-md bg-[#121212] border border-border flex items-center justify-center mb-1" data-unique-id="f442178a-a379-487e-b700-0239f160b950" data-file-name="components/help-modal.tsx">
+                    <div className="flex flex-col items-center" data-unique-id="385e1ff0-82a2-4107-ba68-24a6555ba094" data-file-name="components/help-modal.tsx">
+                      <div className="w-16 h-16 rounded-md bg-[#121212] border border-border flex items-center justify-center mb-1" data-unique-id="a2fcb671-7149-4cb9-9771-69420c662e72" data-file-name="components/help-modal.tsx">
                         <Moon className="w-8 h-8 text-sky-400" />
                       </div>
-                      <span className="text-xs" data-unique-id="d45494c9-2736-4aef-8efe-509db098af74" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="3bd9717c-7ad8-4113-ad21-174274d86ef3" data-file-name="components/help-modal.tsx">Dark Mode</span></span>
+                      <span className="text-xs" data-unique-id="4d7e8a2d-cf2b-4370-934d-40c9c7b03134" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="4e260f11-3bbd-40b4-82c6-4ccaea1d53db" data-file-name="components/help-modal.tsx">Dark Mode</span></span>
                     </div>
                     
-                    <div className="flex flex-col items-center" data-unique-id="6780035e-62ea-4178-b608-a697a2778590" data-file-name="components/help-modal.tsx">
-                      <div className="w-16 h-16 rounded-md bg-gradient-to-br from-white to-[#121212] border border-border flex items-center justify-center mb-1" data-unique-id="680bc7e5-9d49-4595-b842-e4cdd0e0d8ce" data-file-name="components/help-modal.tsx">
+                    <div className="flex flex-col items-center" data-unique-id="ab059667-495a-47b4-91f8-42109084ae55" data-file-name="components/help-modal.tsx">
+                      <div className="w-16 h-16 rounded-md bg-gradient-to-br from-white to-[#121212] border border-border flex items-center justify-center mb-1" data-unique-id="8dedc47f-e12c-4c8c-8533-21e0bdfc9914" data-file-name="components/help-modal.tsx">
                         <Laptop className="w-8 h-8 text-primary" />
                       </div>
-                      <span className="text-xs" data-unique-id="2d62435e-abcc-46a6-abd1-38e2fc9008d8" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="f1126cd8-544b-4302-9df8-049b58e63705" data-file-name="components/help-modal.tsx">System Preference</span></span>
+                      <span className="text-xs" data-unique-id="8f8b95b2-5b6c-48fe-948e-7136cf796d1d" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="189b318a-4ff6-4346-a715-263bc69d9ca4" data-file-name="components/help-modal.tsx">System Preference</span></span>
                     </div>
                   </div>
                 </div>
               </FeatureHighlight>
             </div>
             
-            <div className="p-6 border-t border-border flex justify-between items-center" data-unique-id="b94a2d28-5d3f-485e-ba4a-39a94e726c19" data-file-name="components/help-modal.tsx">
-              <p className="text-sm text-muted-foreground" data-unique-id="b639a60b-c15c-437c-82db-c249ea3fca2c" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="a9992f73-c904-4f3b-affa-607cbe66867a" data-file-name="components/help-modal.tsx">
+            <div className="p-6 border-t border-border flex justify-between items-center" data-unique-id="2e862029-2729-49b6-8b65-24819e7bc6e1" data-file-name="components/help-modal.tsx">
+              <p className="text-sm text-muted-foreground" data-unique-id="7b56a42e-1021-4bac-915a-0712fe626dbd" data-file-name="components/help-modal.tsx"><span className="editable-text" data-unique-id="3ea9da39-041e-4c1e-ab39-8716ea517ce8" data-file-name="components/help-modal.tsx">
                 Questions or feedback? Contact support@detroitaxle.com
               </span></p>
               <button onClick={() => {
@@ -167,8 +167,8 @@ export function HelpModal({
             if (typeof window !== 'undefined') {
               localStorage.setItem('helpModalClosed', 'true');
             }
-          }} className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors" data-unique-id="ffd7e3c3-7cb0-4032-8101-9b5911c28075" data-file-name="components/help-modal.tsx">
-                <span className="editable-text" data-unique-id="52613d3a-e12c-48bf-b546-2240ee8f0d2e" data-file-name="components/help-modal.tsx">Close</span>
+          }} className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90 transition-colors" data-unique-id="3d09b82e-a004-4bee-b7a4-45446b2966d7" data-file-name="components/help-modal.tsx">
+                <span className="editable-text" data-unique-id="4fe6c418-f5cf-4ca2-998e-fdf4a9806cbf" data-file-name="components/help-modal.tsx">Close</span>
               </button>
             </div>
           </motion.div>
