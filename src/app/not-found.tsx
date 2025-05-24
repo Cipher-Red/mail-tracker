@@ -2,17 +2,17 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 export default function NotFound() {
-  return <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-900" data-unique-id="febc836b-c8c0-4316-9f56-becc2c608ee5" data-file-name="app/not-found.tsx">
-      <div className="max-w-md w-full p-8" data-unique-id="166144d8-f403-4ca1-bfe8-3244946ec4ed" data-file-name="app/not-found.tsx">
-        <div className="text-center" data-unique-id="9c9852e5-9be6-4ea3-b220-5b5e14d1a283" data-file-name="app/not-found.tsx">
-          <h1 className="text-6xl font-bold text-blue-600 dark:text-blue-400" data-unique-id="c37a7c74-5f93-40ff-8f53-da29e0534f8a" data-file-name="app/not-found.tsx"><span className="editable-text" data-unique-id="baad4cc2-97b8-467c-93d5-b052755deaf0" data-file-name="app/not-found.tsx">404</span></h1>
-          <h2 className="text-2xl font-medium mt-4 text-slate-800 dark:text-slate-200" data-unique-id="70177e9c-3534-4493-b9b2-955d13960fb9" data-file-name="app/not-found.tsx"><span className="editable-text" data-unique-id="47750782-db66-469c-99a4-909b23b688ea" data-file-name="app/not-found.tsx">Page Not Found</span></h2>
-          <p className="mt-4 text-slate-600 dark:text-slate-400" data-unique-id="08d59a36-6f53-4a37-ac7d-bf35d7c4995a" data-file-name="app/not-found.tsx"><span className="editable-text" data-unique-id="247f7a85-4c2a-4c36-87ed-72a1336ed35a" data-file-name="app/not-found.tsx">
+  return <div className="min-h-screen flex items-center justify-center bg-white dark:bg-slate-900" data-unique-id="57aa960b-b5dd-4a1e-8a00-c1529df26e90" data-file-name="app/not-found.tsx">
+      <div className="max-w-md w-full p-8" data-unique-id="be106e35-e0ce-4a8a-8927-90ce8d140483" data-file-name="app/not-found.tsx">
+        <div className="text-center" data-unique-id="bdaec9b2-c14e-4c04-93ee-e69a64a14b00" data-file-name="app/not-found.tsx">
+          <h1 className="text-6xl font-bold text-blue-600 dark:text-blue-400" data-unique-id="7db8d943-551a-463c-b53a-02fe7f7a72e1" data-file-name="app/not-found.tsx"><span className="editable-text" data-unique-id="4c3c5697-72ad-4c2a-93c3-abcd582e2904" data-file-name="app/not-found.tsx">404</span></h1>
+          <h2 className="text-2xl font-medium mt-4 text-slate-800 dark:text-slate-200" data-unique-id="affe9cb6-1d21-473b-9e73-5a95c23dd275" data-file-name="app/not-found.tsx"><span className="editable-text" data-unique-id="3634ac9f-3701-492c-abda-27c979b153dd" data-file-name="app/not-found.tsx">Page Not Found</span></h2>
+          <p className="mt-4 text-slate-600 dark:text-slate-400" data-unique-id="e151c1ea-133b-4524-9b4e-19a32f334339" data-file-name="app/not-found.tsx"><span className="editable-text" data-unique-id="4327df4b-20ee-4183-afa9-6b46cf802f16" data-file-name="app/not-found.tsx">
             The page you are looking for doesn't exist or has been moved.
           </span></p>
           
-          <Link href="/" className="mt-8 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors" data-unique-id="ace8d953-16b6-444b-b733-fcf5e6d53d0f" data-file-name="app/not-found.tsx">
-            <ArrowLeft className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="0486e537-c17c-4494-bfa5-b04e4ed1024e" data-file-name="app/not-found.tsx">
+          <Link href="/" className="mt-8 inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors" data-unique-id="d82de65f-e6aa-41dc-809e-5fd5b9eca7b6" data-file-name="app/not-found.tsx">
+            <ArrowLeft className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="0a424b76-bb53-45c3-b11f-c3b7aebeb6a0" data-file-name="app/not-found.tsx">
             Back to Home
           </span></Link>
         </div>
