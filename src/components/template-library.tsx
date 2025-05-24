@@ -151,68 +151,68 @@ Detroit Axle Customer Support Team`
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="e547643e-c41e-4db4-8b49-b149d72da45c" data-file-name="components/template-library.tsx">
-      <div className="flex justify-between items-center mb-6" data-unique-id="e5700f0c-ff45-4d4b-8da3-f141ea4f5514" data-file-name="components/template-library.tsx">
-        <h2 className="text-xl font-medium flex items-center" data-unique-id="aa42698c-611a-40b6-ac96-85a9212141ae" data-file-name="components/template-library.tsx">
-          <Library className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="ae7113f8-923e-4233-a04d-df7b7851a685" data-file-name="components/template-library.tsx"> Template Library
+  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="5e61ecfb-e73c-4f1a-928e-a2f5525bd69d" data-file-name="components/template-library.tsx">
+      <div className="flex justify-between items-center mb-6" data-unique-id="782eb9b1-c54a-4bc9-9585-43c88ae35e28" data-file-name="components/template-library.tsx">
+        <h2 className="text-xl font-medium flex items-center" data-unique-id="e47b20d0-633e-4f7b-9e00-fd67e2c1ba78" data-file-name="components/template-library.tsx">
+          <Library className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="c34c2f60-af9c-4dac-a6f9-192d1ebfa4b2" data-file-name="components/template-library.tsx"> Template Library
         </span></h2>
-        <div className="flex space-x-2" data-unique-id="2b9de47f-3f5e-4d6b-8394-f07272ca7a39" data-file-name="components/template-library.tsx">
-          <input type="file" ref={fileInputRef} onChange={importTemplate} accept="application/json" className="hidden" id="template-import" data-unique-id="a01c996a-e80a-4254-a098-b21112b87f4e" data-file-name="components/template-library.tsx" />
-          <button onClick={() => fileInputRef.current?.click()} className="flex items-center px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors text-sm" data-unique-id="e30c96df-bfa4-4f19-bd0f-c4780f81dda6" data-file-name="components/template-library.tsx">
-            <Upload className="mr-1.5 h-4 w-4" /><span className="editable-text" data-unique-id="09e2a0da-7c63-46bb-84e7-e251206d65dc" data-file-name="components/template-library.tsx">
+        <div className="flex space-x-2" data-unique-id="dbdfd77b-bafb-4151-b889-eaf8701c6cc1" data-file-name="components/template-library.tsx">
+          <input type="file" ref={fileInputRef} onChange={importTemplate} accept="application/json" className="hidden" id="template-import" data-unique-id="c03c2079-ab52-408c-8e93-fb68b23580cd" data-file-name="components/template-library.tsx" />
+          <button onClick={() => fileInputRef.current?.click()} className="flex items-center px-3 py-1.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors text-sm" data-unique-id="cd3ebb08-d470-4128-99af-475b9da9130c" data-file-name="components/template-library.tsx">
+            <Upload className="mr-1.5 h-4 w-4" /><span className="editable-text" data-unique-id="1d653613-05c0-45fb-963d-4a4c4ea7e9d0" data-file-name="components/template-library.tsx">
             Import
           </span></button>
-          <button onClick={createTemplate} className="flex items-center px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors text-sm" data-unique-id="87dc25ba-4ffd-43c1-a6ed-7318c1929ce1" data-file-name="components/template-library.tsx">
-            <Plus className="mr-1.5 h-4 w-4" /><span className="editable-text" data-unique-id="ae526883-8477-44ec-9124-3db013ab9dcd" data-file-name="components/template-library.tsx">
+          <button onClick={createTemplate} className="flex items-center px-3 py-1.5 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors text-sm" data-unique-id="3df7a689-1a73-4bdc-bb3f-d547289f6db1" data-file-name="components/template-library.tsx">
+            <Plus className="mr-1.5 h-4 w-4" /><span className="editable-text" data-unique-id="537dc08b-19d9-4300-9ab8-dc096509b1aa" data-file-name="components/template-library.tsx">
             New Template
           </span></button>
         </div>
       </div>
       
-      <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2" data-unique-id="38087dff-b427-4c1c-8b43-6e41e102a6be" data-file-name="components/template-library.tsx" data-dynamic-text="true">
-        {templates.length === 0 ? <div className="text-center py-8 text-muted-foreground" data-unique-id="1d44cf81-9043-47d6-a0b5-b2e6812c582e" data-file-name="components/template-library.tsx"><span className="editable-text" data-unique-id="32ae9ec5-1d2e-4701-b71b-c142b620ab3e" data-file-name="components/template-library.tsx">
+      <div className="space-y-2 max-h-[500px] overflow-y-auto pr-2" data-unique-id="1652e16d-aef5-40bc-b545-4fae53e106d9" data-file-name="components/template-library.tsx" data-dynamic-text="true">
+        {templates.length === 0 ? <div className="text-center py-8 text-muted-foreground" data-unique-id="9ad8e71a-12f2-4c07-b22e-1dbaf7b99649" data-file-name="components/template-library.tsx"><span className="editable-text" data-unique-id="17962e25-2000-44e3-89bf-6ad8bb6da7ce" data-file-name="components/template-library.tsx">
             No saved templates found.
-          </span></div> : templates.map(template => <div key={template.id} className={`p-4 border rounded-md transition-colors cursor-pointer ${selectedId === template.id ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`} onClick={() => handleTemplateSelect(template)} data-unique-id="9b4aa072-5b85-40b2-8673-32fb8eabaf6c" data-file-name="components/template-library.tsx">
-              <div className="flex justify-between items-start" data-unique-id="071595dd-94ac-439a-b9cb-9d04ff49d2e0" data-file-name="components/template-library.tsx">
-                <div data-unique-id="379be9f3-a3d5-45f6-8ade-28ba9ff88b3a" data-file-name="components/template-library.tsx">
-                  <h3 className="font-medium" data-unique-id="31df754c-00d3-46a2-ace6-2ee87abcfb13" data-file-name="components/template-library.tsx" data-dynamic-text="true">
+          </span></div> : templates.map(template => <div key={template.id} className={`p-4 border rounded-md transition-colors cursor-pointer ${selectedId === template.id ? "border-primary bg-primary/5" : "border-border hover:border-primary/30"}`} onClick={() => handleTemplateSelect(template)} data-unique-id="c1e9750f-3a2a-42ef-b4e5-4f769314290a" data-file-name="components/template-library.tsx">
+              <div className="flex justify-between items-start" data-unique-id="1e0e1261-990b-42f6-9789-aa5f3d09243a" data-file-name="components/template-library.tsx">
+                <div data-unique-id="87bcea47-4b2b-42ea-b8fc-f5d4bdd4869c" data-file-name="components/template-library.tsx">
+                  <h3 className="font-medium" data-unique-id="76af3e16-5457-444f-a74e-579bb7884573" data-file-name="components/template-library.tsx" data-dynamic-text="true">
                     {template.name}
-                    {selectedId === template.id && <span className="ml-2 inline-flex items-center text-xs text-primary" data-unique-id="5871ca5f-b65a-433c-8987-ec05202ea6fe" data-file-name="components/template-library.tsx">
-                        <Check className="h-3 w-3 mr-0.5" /><span className="editable-text" data-unique-id="6bc907a1-d14e-4d51-b633-5b14b4efb411" data-file-name="components/template-library.tsx"> Active
+                    {selectedId === template.id && <span className="ml-2 inline-flex items-center text-xs text-primary" data-unique-id="e022c31e-0d03-42fe-aa85-405e7e78080c" data-file-name="components/template-library.tsx">
+                        <Check className="h-3 w-3 mr-0.5" /><span className="editable-text" data-unique-id="fe42647e-3e08-45fb-8c77-c2d91dfd531e" data-file-name="components/template-library.tsx"> Active
                       </span></span>}
                   </h3>
-                  <p className="text-sm text-muted-foreground mt-1 line-clamp-1" data-unique-id="b6e45d73-c72a-43db-9137-7c1445236943" data-file-name="components/template-library.tsx" data-dynamic-text="true">
+                  <p className="text-sm text-muted-foreground mt-1 line-clamp-1" data-unique-id="a175cd67-2178-493a-8dcc-c22dc0f145d2" data-file-name="components/template-library.tsx" data-dynamic-text="true">
                     {template.subject}
                   </p>
                 </div>
-                <div className="flex space-x-1" data-unique-id="f31966fd-8a56-458d-982e-72b3d44f59a5" data-file-name="components/template-library.tsx">
+                <div className="flex space-x-1" data-unique-id="786925d5-fa25-4c65-8da3-48a230850852" data-file-name="components/template-library.tsx">
                   <button onClick={e => {
               e.stopPropagation();
               handleTemplateSelect(template);
-            }} className="p-1 rounded-md hover:bg-accent" data-unique-id="91ba3e75-0c4c-4cea-9d60-232a103437c3" data-file-name="components/template-library.tsx">
+            }} className="p-1 rounded-md hover:bg-accent" data-unique-id="3497a2cc-be92-4562-9d7d-09c40ad4f61f" data-file-name="components/template-library.tsx">
                     <FileEdit className="h-4 w-4 text-muted-foreground" />
                   </button>
-                  <div className="relative" data-unique-id="dd796164-381f-49d1-8778-4ee517c6390a" data-file-name="components/template-library.tsx" data-dynamic-text="true">
+                  <div className="relative" data-unique-id="ef457fb1-f1e8-4e0b-b2a2-1ecdce2b2b5c" data-file-name="components/template-library.tsx" data-dynamic-text="true">
                     <button onClick={e => {
                 e.stopPropagation();
                 duplicateTemplate(template);
-              }} className="p-1 rounded-md hover:bg-accent" title="Duplicate template" data-unique-id="c0583ef3-549f-4a2a-a43d-8a33458e479f" data-file-name="components/template-library.tsx">
+              }} className="p-1 rounded-md hover:bg-accent" title="Duplicate template" data-unique-id="8767a4fe-45a6-4e3e-abdc-cfd65bd3863f" data-file-name="components/template-library.tsx">
                       <Copy className="h-4 w-4 text-muted-foreground" />
                     </button>
-                    {copySuccess === template.id && <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded whitespace-nowrap" data-unique-id="385f4a0b-ee1f-4188-acbe-35f1f4926b43" data-file-name="components/template-library.tsx"><span className="editable-text" data-unique-id="02da153c-a812-4e89-9ee7-a61e2e9f4534" data-file-name="components/template-library.tsx">
+                    {copySuccess === template.id && <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-black text-white text-xs py-1 px-2 rounded whitespace-nowrap" data-unique-id="04b0eb5f-b596-4a84-903c-61ae84603ad9" data-file-name="components/template-library.tsx"><span className="editable-text" data-unique-id="c33cc4df-ab4d-4db8-ab64-b4da2351b43e" data-file-name="components/template-library.tsx">
                         Copied!
                       </span></span>}
                   </div>
                   <button onClick={e => {
               e.stopPropagation();
               downloadTemplate(template);
-            }} className="p-1 rounded-md hover:bg-accent" title="Download template" data-unique-id="88607883-7103-4058-9f52-bd51d8821257" data-file-name="components/template-library.tsx">
+            }} className="p-1 rounded-md hover:bg-accent" title="Download template" data-unique-id="8e04cd95-5418-4530-bc63-3a0a1bd03881" data-file-name="components/template-library.tsx">
                     <Download className="h-4 w-4 text-muted-foreground" />
                   </button>
                   <button onClick={e => {
               e.stopPropagation();
               deleteTemplate(template.id);
-            }} className="p-1 rounded-md hover:bg-accent" data-unique-id="4f622444-af62-4896-9e65-6f4c50ea9978" data-file-name="components/template-library.tsx">
+            }} className="p-1 rounded-md hover:bg-accent" data-unique-id="e013a32d-89dd-4b81-9ca4-64a43abe9ba8" data-file-name="components/template-library.tsx">
                     <Trash2 className="h-4 w-4 text-destructive" />
                   </button>
                 </div>

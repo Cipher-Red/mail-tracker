@@ -24,9 +24,9 @@ export default function DataTable({
       row
     }: {
       row: any;
-    }) => <div data-unique-id="c8098dfa-e71e-4ce8-8f8e-403b2cafce5c" data-file-name="components/data-table.tsx">
-          <div data-unique-id="966d28b0-5ed8-41a3-9f24-a186eb16ea5e" data-file-name="components/data-table.tsx" data-dynamic-text="true">{row.original.shipToLine1}</div>
-          <div data-unique-id="f078a9a3-bf90-4bfb-b7eb-112a018d8500" data-file-name="components/data-table.tsx" data-dynamic-text="true">{row.original.shipToCity}<span className="editable-text" data-unique-id="7e385510-f5ca-4c2f-af35-5b9291cffcac" data-file-name="components/data-table.tsx">, </span>{row.original.shipToStateProvince} {row.original.shipToPostalCode}</div>
+    }) => <div data-unique-id="832d808f-5359-4ded-8c03-afc73ae3b1c6" data-file-name="components/data-table.tsx">
+          <div data-unique-id="1f3cc76c-b85d-47de-8a6b-38192aeecaff" data-file-name="components/data-table.tsx" data-dynamic-text="true">{row.original.shipToLine1}</div>
+          <div data-unique-id="c72ed216-3e15-4706-b09e-10ec3facc364" data-file-name="components/data-table.tsx" data-dynamic-text="true">{row.original.shipToCity}<span className="editable-text" data-unique-id="705177b6-814a-46c9-89b8-f26f4ad11e29" data-file-name="components/data-table.tsx">, </span>{row.original.shipToStateProvince} {row.original.shipToPostalCode}</div>
         </div>
   }, {
     Header: 'Phone',
@@ -54,8 +54,8 @@ export default function DataTable({
       value
     }: {
       value: string[];
-    }) => <div className="space-y-1" data-unique-id="666c5ad3-99a0-4582-b760-37f9362a8159" data-file-name="components/data-table.tsx" data-dynamic-text="true">
-          {value.map((num, idx) => <div key={idx} className="text-sm" data-unique-id="db2726a9-2f17-463a-966b-32287472ab9a" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+    }) => <div className="space-y-1" data-unique-id="3810b689-c3d9-40a5-8d3e-dca16234bae6" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+          {value.map((num, idx) => <div key={idx} className="text-sm" data-unique-id="90dee560-2858-4db2-848e-ec536f80e023" data-file-name="components/data-table.tsx" data-dynamic-text="true">
               {num.length > 15 ? `${num.slice(0, 15)}...` : num}
             </div>)}
         </div>
@@ -95,37 +95,37 @@ export default function DataTable({
     setGlobalFilter(value);
     setTableGlobalFilter(value);
   };
-  return <div className="w-full" data-unique-id="c85be963-0419-4f36-aa08-69fbb01072f0" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+  return <div className="w-full" data-unique-id="695734ae-a2fd-480b-8c46-2aa87e0d0a98" data-file-name="components/data-table.tsx" data-dynamic-text="true">
       {/* Search input */}
-      <div className="p-4 border-b border-border" data-unique-id="3ccb1d18-876b-4441-be1b-59bb2b0badef" data-file-name="components/data-table.tsx">
-        <div className="relative max-w-md" data-unique-id="c04a38f0-b7fd-4432-9c3a-9c7aaddc1650" data-file-name="components/data-table.tsx">
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" data-unique-id="0e147429-d5b8-4f9c-8083-408bebe6ca12" data-file-name="components/data-table.tsx">
+      <div className="p-4 border-b border-border" data-unique-id="42abf6ac-2422-49ba-ae3b-43b7d8397ee0" data-file-name="components/data-table.tsx">
+        <div className="relative max-w-md" data-unique-id="491fdd62-ba6a-471c-b875-bdc957b3015c" data-file-name="components/data-table.tsx">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none" data-unique-id="ac631e4a-0bdd-4e11-936c-77abe37ccc0b" data-file-name="components/data-table.tsx">
             <Search className="h-4 w-4 text-gray-400" />
           </div>
-          <input type="text" value={globalFilter || ''} onChange={handleSearchChange} placeholder="Search orders..." className="block w-full pl-10 pr-3 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm" data-unique-id="3631a42e-4cdf-48e6-86f6-641fa7882c06" data-file-name="components/data-table.tsx" />
+          <input type="text" value={globalFilter || ''} onChange={handleSearchChange} placeholder="Search orders..." className="block w-full pl-10 pr-3 py-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary focus:border-primary text-sm" data-unique-id="19adfb57-aa65-4538-91c4-2cc196940c1d" data-file-name="components/data-table.tsx" />
         </div>
       </div>
 
       {/* Table */}
-      <div className="overflow-x-auto" data-unique-id="519fdfcc-a4e2-49b3-bcba-e5030a0db00f" data-file-name="components/data-table.tsx">
-        <table {...getTableProps()} className="min-w-full divide-y divide-border" data-unique-id="e4875237-ff56-4b77-ac31-5e8943c49156" data-file-name="components/data-table.tsx">
-          <thead className="bg-muted" data-unique-id="c5ad3ef2-139a-4dc2-a12d-ec9644494cc3" data-file-name="components/data-table.tsx" data-dynamic-text="true">
-            {headerGroups.map(headerGroup => <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id} data-unique-id="4f0154a9-d97a-423d-b113-d1f467b91ebd" data-file-name="components/data-table.tsx" data-dynamic-text="true">
-                {headerGroup.headers.map(column => <th key={column.id} {...column.getHeaderProps(column.getSortByToggleProps())} className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-unique-id="713e07f7-0e2b-4944-bc01-fb1f98ee95a2" data-file-name="components/data-table.tsx">
-                    <div className="flex items-center space-x-1" data-unique-id="6c5c4e37-227f-4ef0-a2e2-6d4799f3ec9e" data-file-name="components/data-table.tsx">
-                      <span data-unique-id="2cfd9812-2773-4727-9b30-8a1ec129785e" data-file-name="components/data-table.tsx" data-dynamic-text="true">{column.render('Header')}</span>
-                      <span data-unique-id="e8186155-0679-4da4-9e16-22384495bdb6" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+      <div className="overflow-x-auto" data-unique-id="be2214e6-625d-4364-8326-67ec1a4d2d25" data-file-name="components/data-table.tsx">
+        <table {...getTableProps()} className="min-w-full divide-y divide-border" data-unique-id="fc242243-a5b7-4f13-a971-4f373f78e866" data-file-name="components/data-table.tsx">
+          <thead className="bg-muted" data-unique-id="8cd08241-1139-45b1-b924-67e82ab7c2f9" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+            {headerGroups.map(headerGroup => <tr {...headerGroup.getHeaderGroupProps()} key={headerGroup.id} data-unique-id="e186a919-5872-44da-ad67-0fe88a87454e" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+                {headerGroup.headers.map(column => <th key={column.id} {...column.getHeaderProps(column.getSortByToggleProps())} className="px-6 py-3 text-left text-xs font-medium text-muted-foreground uppercase tracking-wider" data-unique-id="f5939c33-2bf6-48ec-8c32-c643c723ba36" data-file-name="components/data-table.tsx">
+                    <div className="flex items-center space-x-1" data-unique-id="07ecfec1-bd7b-467c-bf14-ce58ce6dd909" data-file-name="components/data-table.tsx">
+                      <span data-unique-id="bd02ecc4-88f6-45a8-8280-765e48a2fdb9" data-file-name="components/data-table.tsx" data-dynamic-text="true">{column.render('Header')}</span>
+                      <span data-unique-id="4eec9343-240a-4a99-8166-61c25c9371ed" data-file-name="components/data-table.tsx" data-dynamic-text="true">
                         {column.isSorted ? column.isSortedDesc ? <ArrowDown className="h-3 w-3" /> : <ArrowUp className="h-3 w-3" /> : null}
                       </span>
                     </div>
                   </th>)}
               </tr>)}
           </thead>
-          <tbody {...getTableBodyProps()} className="bg-white divide-y divide-border" data-unique-id="1bd4f0ce-6a4f-4069-9c82-47cdb4130b0a" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+          <tbody {...getTableBodyProps()} className="bg-white divide-y divide-border" data-unique-id="08d55438-af89-450c-bf5d-d4feb27d9c7f" data-file-name="components/data-table.tsx" data-dynamic-text="true">
             {page.map(row => {
             prepareRow(row);
-            return <tr {...row.getRowProps()} className="hover:bg-accent/5" key={row.id} data-unique-id="19ab3aaf-e875-4a4c-8003-8386c6027a06" data-file-name="components/data-table.tsx" data-dynamic-text="true">
-                  {row.cells.map(cell => <td key={cell.column.id} {...cell.getCellProps()} className="px-6 py-4 whitespace-normal text-sm" data-unique-id="ea3e7d0b-8880-4dc2-afe1-7d43a7858d5a" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+            return <tr {...row.getRowProps()} className="hover:bg-accent/5" key={row.id} data-unique-id="1bc534ee-4e26-43f2-8914-b77406c3a1e7" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+                  {row.cells.map(cell => <td key={cell.column.id} {...cell.getCellProps()} className="px-6 py-4 whitespace-normal text-sm" data-unique-id="5f2bc10b-46a3-423f-a779-5270c1efffbe" data-file-name="components/data-table.tsx" data-dynamic-text="true">
                       {cell.render('Cell')}
                     </td>)}
                 </tr>;
@@ -135,44 +135,44 @@ export default function DataTable({
       </div>
 
       {/* Pagination */}
-      <div className="px-4 py-3 flex items-center justify-between border-t border-border bg-white" data-unique-id="4bd523d7-9e4a-429c-8783-c40c3a0b17c7" data-file-name="components/data-table.tsx">
-        <div className="flex-1 flex justify-between sm:hidden" data-unique-id="2538b6a5-0d7e-4b6d-a97e-2937981dacf3" data-file-name="components/data-table.tsx">
-          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="relative inline-flex items-center px-4 py-2 border border-border text-sm font-medium rounded-md bg-white disabled:opacity-50" data-unique-id="eed19d98-ebee-4010-8773-e3943168a91e" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="4d361140-438b-4460-9c48-6dea132a4f10" data-file-name="components/data-table.tsx">
+      <div className="px-4 py-3 flex items-center justify-between border-t border-border bg-white" data-unique-id="71986ff1-d521-43f8-b905-8ca620f82373" data-file-name="components/data-table.tsx">
+        <div className="flex-1 flex justify-between sm:hidden" data-unique-id="fc39b8b3-dc75-4ce5-9f4c-820f3d2ae7b8" data-file-name="components/data-table.tsx">
+          <button onClick={() => previousPage()} disabled={!canPreviousPage} className="relative inline-flex items-center px-4 py-2 border border-border text-sm font-medium rounded-md bg-white disabled:opacity-50" data-unique-id="3c5e7bcf-b8c6-4655-a0a5-0b04eac27bef" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="76aaca68-f5f1-46cf-91fe-f10d7cd4570f" data-file-name="components/data-table.tsx">
             Previous
           </span></button>
-          <button onClick={() => nextPage()} disabled={!canNextPage} className="ml-3 relative inline-flex items-center px-4 py-2 border border-border text-sm font-medium rounded-md bg-white disabled:opacity-50" data-unique-id="56e9f564-6936-4d15-9a09-2b65d5d70d50" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="674979c2-8ca6-478f-8df7-21d0e75c2f9e" data-file-name="components/data-table.tsx">
+          <button onClick={() => nextPage()} disabled={!canNextPage} className="ml-3 relative inline-flex items-center px-4 py-2 border border-border text-sm font-medium rounded-md bg-white disabled:opacity-50" data-unique-id="14c0f2aa-41d8-4760-818c-475b66225f30" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="a41b8b07-eb7e-43cd-937d-b4a56ed49c13" data-file-name="components/data-table.tsx">
             Next
           </span></button>
         </div>
-        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between" data-unique-id="2f95f76f-d002-42d5-b137-c9b4eeea08c8" data-file-name="components/data-table.tsx">
-          <div className="flex gap-x-2 items-baseline" data-unique-id="a9d84396-470f-459c-a8fd-cb8c872631d5" data-file-name="components/data-table.tsx">
-            <span className="text-sm text-gray-700" data-unique-id="7bd74bde-3102-4395-8f85-53906bab4ca7" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="b02efc69-fa64-47aa-a9a5-d1d14de2cc27" data-file-name="components/data-table.tsx">
-              Page </span><span className="font-medium" data-unique-id="8359e860-c3bb-4588-880c-29a75488182b" data-file-name="components/data-table.tsx" data-dynamic-text="true">{pageIndex + 1}</span><span className="editable-text" data-unique-id="2ec011aa-3610-4308-b52a-a67437abcc6c" data-file-name="components/data-table.tsx"> of </span><span className="font-medium" data-unique-id="25ecfbf2-f379-4d5a-a0b3-ede569511567" data-file-name="components/data-table.tsx" data-dynamic-text="true">{pageOptions.length}</span>
+        <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between" data-unique-id="1e36554f-f7d8-4b20-a96e-cdf932eef319" data-file-name="components/data-table.tsx">
+          <div className="flex gap-x-2 items-baseline" data-unique-id="e5155bc8-3fac-47a8-b34e-1011428d215d" data-file-name="components/data-table.tsx">
+            <span className="text-sm text-gray-700" data-unique-id="926973e3-2f10-4585-aee8-bceae50f8ef8" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="daff42ac-1fb8-4c0a-9466-4d6ef5177511" data-file-name="components/data-table.tsx">
+              Page </span><span className="font-medium" data-unique-id="fb1385ef-4fcf-496b-b547-9d6b0fdc829a" data-file-name="components/data-table.tsx" data-dynamic-text="true">{pageIndex + 1}</span><span className="editable-text" data-unique-id="9e9d3ce9-1219-4ffb-bb36-ac3dacf14098" data-file-name="components/data-table.tsx"> of </span><span className="font-medium" data-unique-id="91ac5eda-2450-4f12-84bc-7184ba3c22ec" data-file-name="components/data-table.tsx" data-dynamic-text="true">{pageOptions.length}</span>
             </span>
             <select value={pageSize} onChange={e => {
             setPageSize(Number(e.target.value));
-          }} className="mt-1 block w-full py-2 px-3 border border-border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm" data-unique-id="826eb1d9-e67b-453e-aa09-b7c3db2800ea" data-file-name="components/data-table.tsx" data-dynamic-text="true">
-              {[5, 10, 20, 30, 40, 50].map(pageSize => <option key={pageSize} value={pageSize} data-unique-id="97bc9e81-faa2-43cb-b821-99989ec75aae" data-file-name="components/data-table.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="f7d7bc55-6867-4ed4-9453-77fd69d5810e" data-file-name="components/data-table.tsx">
+          }} className="mt-1 block w-full py-2 px-3 border border-border bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary focus:border-primary text-sm" data-unique-id="27b71332-1a08-4db7-b59b-2b88340af827" data-file-name="components/data-table.tsx" data-dynamic-text="true">
+              {[5, 10, 20, 30, 40, 50].map(pageSize => <option key={pageSize} value={pageSize} data-unique-id="a7254f31-515a-43de-8ff7-3e19e2801a7d" data-file-name="components/data-table.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="ae27b846-5ccd-48b8-9d81-270016462bea" data-file-name="components/data-table.tsx">
                   Show </span>{pageSize}
                 </option>)}
             </select>
           </div>
-          <div data-unique-id="9c1d36a5-35af-457a-99c6-6167f9343ab1" data-file-name="components/data-table.tsx">
-            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination" data-unique-id="1e1fc15a-250a-45b2-8fbc-fa1610c84995" data-file-name="components/data-table.tsx">
-              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="b567766a-a4b1-4d20-b21c-99a26bed6598" data-file-name="components/data-table.tsx">
-                <span className="sr-only" data-unique-id="77adcdd0-08b5-4e59-afaf-91e41cd81889" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="a98da8aa-efa0-43e5-ac64-1caee4d9f60c" data-file-name="components/data-table.tsx">First</span></span>
+          <div data-unique-id="25b83158-99c5-4a82-b045-4cc758050b26" data-file-name="components/data-table.tsx">
+            <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination" data-unique-id="c615c005-2664-446f-b9d6-781a12e0ddfb" data-file-name="components/data-table.tsx">
+              <button onClick={() => gotoPage(0)} disabled={!canPreviousPage} className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="cd181dba-b2ec-4960-8e80-ccac0d4f7c16" data-file-name="components/data-table.tsx">
+                <span className="sr-only" data-unique-id="c785eafb-223b-44ca-a78b-93817a7b66ad" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="b271b9d0-ffee-466c-ae42-cb599e7d835a" data-file-name="components/data-table.tsx">First</span></span>
                 <ChevronsLeft className="h-5 w-5" aria-hidden="true" />
               </button>
-              <button onClick={() => previousPage()} disabled={!canPreviousPage} className="relative inline-flex items-center px-2 py-2 border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="8eca8e88-5123-4cb8-84cb-d81fddb9feb0" data-file-name="components/data-table.tsx">
-                <span className="sr-only" data-unique-id="e51fad6d-d7f7-4fbe-8437-77f782557546" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="7a0ea6e3-295e-4484-b0e7-9b06c113e9bb" data-file-name="components/data-table.tsx">Previous</span></span>
+              <button onClick={() => previousPage()} disabled={!canPreviousPage} className="relative inline-flex items-center px-2 py-2 border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="078cbb1a-470d-47f4-84b2-892ff308239e" data-file-name="components/data-table.tsx">
+                <span className="sr-only" data-unique-id="6397c8de-70c7-4263-8a51-f0c2c07fbcb3" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="49b1323f-772f-4214-87cd-780a4508738a" data-file-name="components/data-table.tsx">Previous</span></span>
                 <ChevronLeft className="h-5 w-5" aria-hidden="true" />
               </button>
-              <button onClick={() => nextPage()} disabled={!canNextPage} className="relative inline-flex items-center px-2 py-2 border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="1b976ecd-0e4b-4f63-9951-2cf014ce4001" data-file-name="components/data-table.tsx">
-                <span className="sr-only" data-unique-id="404fadd8-c12c-4aba-af2a-fa8e25fe5326" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="87efe2a7-f5aa-4069-85b8-dfb381f9eaab" data-file-name="components/data-table.tsx">Next</span></span>
+              <button onClick={() => nextPage()} disabled={!canNextPage} className="relative inline-flex items-center px-2 py-2 border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="28783648-926c-48b9-8fa6-1410c3b8e2da" data-file-name="components/data-table.tsx">
+                <span className="sr-only" data-unique-id="ee1b8007-ccd5-4c78-889e-0dad9283fd16" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="5b00c83d-0c2e-4a75-a71e-d9ad62eefc98" data-file-name="components/data-table.tsx">Next</span></span>
                 <ChevronRight className="h-5 w-5" aria-hidden="true" />
               </button>
-              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="1bb96275-6bd8-4941-9ede-2a6be1995cd4" data-file-name="components/data-table.tsx">
-                <span className="sr-only" data-unique-id="76914654-f7ec-4315-9f66-a13638e598c3" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="e4c584c2-f496-4d0e-a14d-c270e4c4c69e" data-file-name="components/data-table.tsx">Last</span></span>
+              <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage} className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-border bg-white text-sm font-medium hover:bg-accent/5 disabled:opacity-50" data-unique-id="40f3d3e0-33ca-42e7-a6c0-fc7cdcac3b62" data-file-name="components/data-table.tsx">
+                <span className="sr-only" data-unique-id="c6a28a06-e5ce-4ed7-aea7-cb7d028811a1" data-file-name="components/data-table.tsx"><span className="editable-text" data-unique-id="1b55eafc-6f81-47d7-85ea-9ae93059b106" data-file-name="components/data-table.tsx">Last</span></span>
                 <ChevronsRight className="h-5 w-5" aria-hidden="true" />
               </button>
             </nav>
