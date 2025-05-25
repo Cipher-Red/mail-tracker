@@ -57,8 +57,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="eea66b88-36f3-4c72-bba0-f0973bde2b6b" data-file-name="app/layout.tsx">
-      <body data-unique-id="44dffb2e-4090-4035-b108-bae713f75be7" data-file-name="app/layout.tsx">
+  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="7df0948d-7096-4899-a0e4-af27b54a4fe9" data-file-name="app/layout.tsx">
+      <body data-unique-id="d6760082-2987-465a-92b6-660f3d0b42b1" data-file-name="app/layout.tsx">
         <ThemeProviderWrapper defaultTheme="system">
           {children}
         </ThemeProviderWrapper>

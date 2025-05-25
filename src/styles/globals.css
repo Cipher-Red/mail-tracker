@@ -41,39 +41,39 @@
   }
 
   .dark {
-    --background: #121212;
-    --foreground: #FAFAFA;
-    --card: #1E1E1E;
-    --card-foreground: #FAFAFA;
-    --popover: #1E1E1E;
-    --popover-foreground: #FAFAFA;
-    --primary: #3B82F6;
-    --primary-foreground: #FFFFFF;
-    --secondary: #27272A;
-    --secondary-foreground: #FAFAFA;
-    --muted: #27272A;
-    --muted-foreground: #A1A1AA;
-    --accent: #1E293B;
-    --accent-foreground: #FAFAFA;
-    --destructive: #7F1D1D;
-    --destructive-foreground: #FAFAFA;
-    --border: #27272A;
-    --input: #27272A;
-    --ring: #3B82F6;
-    --chart-1: #3B82F6;
-    --chart-2: #2DD4BF;
-    --chart-3: #FB923C;
-    --chart-4: #C084FC;
-    --chart-5: #F87171;
+    --background: #0f172a;
+    --foreground: #f8fafc;
+    --card: #1e293b;
+    --card-foreground: #f8fafc;
+    --popover: #1e293b;
+    --popover-foreground: #f8fafc;
+    --primary: #60a5fa;
+    --primary-foreground: #f8fafc;
+    --secondary: #334155;
+    --secondary-foreground: #f8fafc;
+    --muted: #334155;
+    --muted-foreground: #94a3b8;
+    --accent: #1e293b;
+    --accent-foreground: #f8fafc;
+    --destructive: #ef4444;
+    --destructive-foreground: #f8fafc;
+    --border: #334155;
+    --input: #334155;
+    --ring: #60a5fa;
+    --chart-1: #60a5fa;
+    --chart-2: #4ade80;
+    --chart-3: #fb923c;
+    --chart-4: #c084fc;
+    --chart-5: #f87171;
 
-    --sidebar-background: #18181B;
-    --sidebar-foreground: #F4F4F5;
-    --sidebar-primary: #3B82F6;
+    --sidebar-background: #0f172a;
+    --sidebar-foreground: #f8fafc;
+    --sidebar-primary: #60a5fa;
     --sidebar-primary-foreground: #FFFFFF;
-    --sidebar-accent: #27272A;
-    --sidebar-accent-foreground: #F4F4F5;
-    --sidebar-border: #27272A;
-    --sidebar-ring: #3B82F6;
+    --sidebar-accent: #334155;
+    --sidebar-accent-foreground: #f8fafc;
+    --sidebar-border: #334155;
+    --sidebar-ring: #60a5fa;
   }
 }
 
@@ -83,18 +83,43 @@
   }
 
   html {
-    --transition-duration: 0.3s;
+    --transition-duration: 0.2s;
     transition: background-color var(--transition-duration) ease;
   }
 
   html * {
-    transition-property: background-color, border-color, color, fill, stroke;
+    transition-property: background-color, border-color, color, fill, stroke, transform, opacity;
     transition-duration: var(--transition-duration);
     transition-timing-function: ease;
   }
 
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Dark mode input styling */
+  .dark input, 
+  .dark select, 
+  .dark textarea {
+    @apply bg-card border-border text-card-foreground placeholder:text-muted-foreground;
+  }
+
+  /* Elegant focus styles */
+  input:focus, 
+  select:focus, 
+  textarea:focus {
+    @apply outline-none ring-2 ring-primary ring-opacity-20 ring-offset-1 ring-offset-background;
+  }
+
+  /* Interactive hover effects */
+  button:not([disabled]),
+  .btn {
+    @apply transition-all duration-200 hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  /* Modern card styles */
+  .modern-card {
+    @apply bg-card border border-border rounded-lg shadow-md hover:shadow-lg transition-all duration-300;
   }
 }
 

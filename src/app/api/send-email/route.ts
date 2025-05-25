@@ -36,7 +36,11 @@ export async function testSendGridConnection(): Promise<boolean> {
     // Get SendGrid account information to check if API key is valid
     // This doesn't send an actual email, just verifies the API key works
     try {
-      const [response] = await sgMail.request({
+      // Use client.request() method instead of sgMail.request()
+      const client = require('@sendgrid/client');
+      client.setApiKey(apiKey);
+      
+      const [response] = await client.request({
         method: 'GET',
         url: '/v3/user/credits',
       });

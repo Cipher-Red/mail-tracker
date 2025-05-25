@@ -107,28 +107,28 @@ export default function EmailPreview({
   const processedSubject = processContent(template.subject);
   return <>
       <Toaster position="top-center" />
-      <div className="border border-border rounded-md overflow-hidden" data-unique-id="44719a3e-9120-4ed7-9d71-a3abf59ef06a" data-file-name="components/email-preview.tsx">
-      <div className="bg-muted p-3 border-b border-border" data-unique-id="2f973131-99d5-40d5-bf43-59c292762c21" data-file-name="components/email-preview.tsx">
-        <div className="mb-3" data-unique-id="03628626-bbb3-42b6-88ff-d0c991a63118" data-file-name="components/email-preview.tsx">
-          <span className="text-xs text-muted-foreground" data-unique-id="83143f08-815e-483a-9f78-70e0c01f4d77" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="0b02b333-b393-4a0b-92c4-b5f0ad2a3d4b" data-file-name="components/email-preview.tsx">From: </span></span>
-          <span className="text-sm" data-unique-id="33bffe9f-0164-4310-8996-faa48915c0d5" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="bdeec0e0-6ade-4e1d-9a2c-cc58001d65c6" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{senderInfo.name} &lt;{senderInfo.email}&gt;</span></span>
+      <div className="border border-border rounded-md overflow-hidden shadow-md dark:shadow-none" data-unique-id="584d1eea-d672-4211-931b-d23f2f88393d" data-file-name="components/email-preview.tsx">
+      <div className="bg-muted p-3 border-b border-border dark:bg-card/60" data-unique-id="cd3ef202-4e4d-41b8-83db-c2cad9210e38" data-file-name="components/email-preview.tsx">
+        <div className="mb-3" data-unique-id="f533d01e-2d24-4236-8d7a-4eb920b2acc9" data-file-name="components/email-preview.tsx">
+          <span className="text-xs text-muted-foreground" data-unique-id="eb88a8a7-79d2-4b90-a3e8-368bd05362db" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="86cfe9f5-301e-4dab-898b-056b6c80a47d" data-file-name="components/email-preview.tsx">From: </span></span>
+          <span className="text-sm" data-unique-id="563940ea-f1bf-418d-97eb-2db1c057ad07" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="76979ceb-2495-4a56-9ae7-3f4527d61d5b" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{senderInfo.name} &lt;{senderInfo.email}&gt;</span></span>
         </div>
-        <div className="mb-3" data-unique-id="a3fcfc50-6b79-45f2-9f5a-7a9888cd5f31" data-file-name="components/email-preview.tsx">
-          <span className="text-xs text-muted-foreground" data-unique-id="26f4ba95-cfb9-4ec7-9dbf-4a3d299b96cb" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="a6eaad69-d5f6-404e-96f2-e1b61608b965" data-file-name="components/email-preview.tsx">To: </span></span>
-          <span className="text-sm" data-unique-id="39ca304a-0e88-4cbb-bcb8-619129f1bbe3" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{previewData.customerName}<span className="editable-text" data-unique-id="85df6168-56bc-4c69-85b7-ab7ed1044930" data-file-name="components/email-preview.tsx"> &lt;customer@example.com&gt;</span></span>
+        <div className="mb-3" data-unique-id="008cc518-2d3f-4521-9b3c-9a999aadc4d5" data-file-name="components/email-preview.tsx">
+          <span className="text-xs text-muted-foreground" data-unique-id="8959ab98-84e8-44a5-b155-19e1bed2e551" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="26465900-8ccc-4be7-bc99-50a43d6f3c59" data-file-name="components/email-preview.tsx">To: </span></span>
+          <span className="text-sm" data-unique-id="4f73eb74-6bed-4dcb-a45a-8c5cee1d8a7b" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{previewData.customerName}<span className="editable-text" data-unique-id="de2cfddc-47b6-475f-8c08-7a9466c30bf4" data-file-name="components/email-preview.tsx"> &lt;customer@example.com&gt;</span></span>
         </div>
-        <div className="mb-2" data-unique-id="ea929099-759f-4684-b327-0b71b4b2ff7d" data-file-name="components/email-preview.tsx">
-          <span className="text-xs text-muted-foreground" data-unique-id="1cad6c90-9fed-40f5-b539-616f94c958f7" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="604917a2-ec09-4639-93c8-5fcb37d5f446" data-file-name="components/email-preview.tsx">Subject: </span></span>
-          <span className="text-sm font-medium" data-unique-id="2c858cf0-ab9d-4538-bff2-15c4ee65eff7" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{processedSubject}</span>
+        <div className="mb-2" data-unique-id="63a29817-7c0a-46e1-9512-4fc365ed061c" data-file-name="components/email-preview.tsx">
+          <span className="text-xs text-muted-foreground" data-unique-id="f71b0c69-062f-4d9a-a396-0cb32dc3b375" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="5b9a551b-9dd2-4ef8-8cc3-bff3fb89164d" data-file-name="components/email-preview.tsx">Subject: </span></span>
+          <span className="text-sm font-medium" data-unique-id="fb929f7a-28b5-4aa1-a1ff-5c7f1f70686d" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{processedSubject}</span>
         </div>
-        <div data-unique-id="9f6c751d-373d-4e4d-aaf0-0600dd4214d5" data-file-name="components/email-preview.tsx">
-          <span className="text-xs text-muted-foreground" data-unique-id="cc8eadb7-0652-4e7d-b894-348c40412a5a" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="f772af47-bb15-4cd9-9c1b-af54a2797d13" data-file-name="components/email-preview.tsx">Preheader: </span></span>
-          <span className="text-xs italic" data-unique-id="98cf5ae5-6581-43c1-9bf4-b03ef0674408" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{template.preheader}</span>
+        <div data-unique-id="cbd70907-74ad-4f6d-9041-4032985999b7" data-file-name="components/email-preview.tsx">
+          <span className="text-xs text-muted-foreground" data-unique-id="03012336-7e8c-40f5-91b2-99762087bf8b" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="472164f2-ebc3-485c-adae-b8ec484c72a6" data-file-name="components/email-preview.tsx">Preheader: </span></span>
+          <span className="text-xs italic" data-unique-id="d25a6516-9f8a-4ddd-83e6-e50e9aba8b5b" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{template.preheader}</span>
         </div>
       </div>
 
-      <div className="p-4 bg-white" data-unique-id="d8f873f3-e14c-4124-bcf8-db715fd7a4c2" data-file-name="components/email-preview.tsx">
-        <div className="flex justify-end space-x-2 mb-4" data-unique-id="edbdc4fc-a7b6-4081-87b2-0572e1db589a" data-file-name="components/email-preview.tsx">
+      <div className="p-4 bg-card" data-unique-id="3cdabafc-0617-40a0-81de-aa82ad927507" data-file-name="components/email-preview.tsx">
+        <div className="flex justify-end space-x-2 mb-4" data-unique-id="3762cdd8-354e-49b5-8166-d5a0d41158aa" data-file-name="components/email-preview.tsx">
           <button onClick={() => {
             const html = generateHtmlEmail(template, previewData);
             const blob = new Blob([html], {
@@ -141,8 +141,8 @@ export default function EmailPreview({
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
-          }} className="flex items-center px-3 py-1 text-xs bg-secondary hover:bg-secondary/90 rounded-md transition-colors" title="Download HTML" data-unique-id="bd9e3233-d906-4639-819a-3a0a9594fee6" data-file-name="components/email-preview.tsx">
-            <Download className="h-3 w-3 mr-1" /><span className="editable-text" data-unique-id="adc3250f-47a9-4999-b423-394d430b19ce" data-file-name="components/email-preview.tsx">
+          }} className="flex items-center px-3 py-1 text-xs bg-secondary hover:bg-secondary/90 rounded-md transition-colors" title="Download HTML" data-unique-id="b6ea82b8-3cb9-49b1-83d8-b08daffa7dbf" data-file-name="components/email-preview.tsx">
+            <Download className="h-3 w-3 mr-1" /><span className="editable-text" data-unique-id="ae69e4a6-f765-4d4c-a875-ff85c679a8e0" data-file-name="components/email-preview.tsx">
             HTML
           </span></button>
           <button onClick={async () => {
@@ -153,8 +153,8 @@ export default function EmailPreview({
             } else {
               toast.error("Failed to copy HTML with formatting. Simple text copied instead.");
             }
-          }} className="flex items-center px-3 py-1 text-xs bg-accent hover:bg-accent/80 rounded-md transition-colors" title="Copy HTML with formatting preserved" data-unique-id="a5c2ce78-43e1-40e4-a400-1648a6e14eda" data-file-name="components/email-preview.tsx">
-            <Copy className="h-3 w-3 mr-1" /><span className="editable-text" data-unique-id="3d921c4c-7692-4029-a5d1-64363b51ccef" data-file-name="components/email-preview.tsx">
+          }} className="flex items-center px-3 py-1 text-xs bg-accent hover:bg-accent/80 rounded-md transition-colors" title="Copy HTML with formatting preserved" data-unique-id="5e4fc13c-92e1-4cda-a487-8a52ed4b52f9" data-file-name="components/email-preview.tsx">
+            <Copy className="h-3 w-3 mr-1" /><span className="editable-text" data-unique-id="6f9edb6f-66ad-464f-8293-3f5709b05822" data-file-name="components/email-preview.tsx">
             Copy HTML
           </span></button>
           <button onClick={() => {
@@ -164,15 +164,15 @@ export default function EmailPreview({
             } else if (testEmail) {
               alert("Please enter a valid email address");
             }
-          }} className="flex items-center px-3 py-1 text-xs bg-primary text-white hover:bg-primary/90 rounded-md transition-colors" title="Send Test Email" data-unique-id="46c7af8a-c98e-4d5b-ba75-e57787c99cc8" data-file-name="components/email-preview.tsx">
+          }} className="flex items-center px-3 py-1 text-xs bg-primary text-white hover:bg-primary/90 rounded-md transition-colors" title="Send Test Email" data-unique-id="42b4a270-1806-40a6-b805-ee8d36a45a62" data-file-name="components/email-preview.tsx">
             <Mail className="h-3 w-3 mr-1" />
-            <span data-unique-id="2bd79e9b-5ba3-4aac-8cc0-d4aae6bf8533" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="f1526958-9acb-4c65-8a81-2b80c2d116c3" data-file-name="components/email-preview.tsx">Test Send</span></span>
+            <span data-unique-id="9ac7a7ad-33aa-4904-b372-85d052fc566e" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="aa9d9a46-5f18-4c05-a365-1607343111b7" data-file-name="components/email-preview.tsx">Test Send</span></span>
           </button>
         </div>
-        <div className="border-b border-border pb-4 mb-4" data-unique-id="597a4e19-4e32-463e-a908-d1bab1c618be" data-file-name="components/email-preview.tsx">
-          <img src="https://picsum.photos/200" alt="Detroit Axle" className="h-10 object-contain mb-4" data-unique-id="8b40199b-0f02-43a1-87d1-cd65084569db" data-file-name="components/email-preview.tsx" />
+        <div className="border-b border-border pb-4 mb-4" data-unique-id="fb6f5c40-d529-4bf6-9496-ae9292e21604" data-file-name="components/email-preview.tsx">
+          <img src="https://picsum.photos/200" alt="Detroit Axle" className="h-10 object-contain mb-4" data-unique-id="a586fadd-1928-49b8-a7dd-483323e65adb" data-file-name="components/email-preview.tsx" />
         </div>
-        <div className="email-content whitespace-pre-wrap" data-unique-id="a4b131b7-06a7-4677-8985-236aaa954736" data-file-name="components/email-preview.tsx" data-dynamic-text="true">
+        <div className="email-content whitespace-pre-wrap" data-unique-id="e75d104f-e7e4-459c-b09c-2e047ab0e4c6" data-file-name="components/email-preview.tsx" data-dynamic-text="true">
           {processedContent.split("\n").map((line, i) => {
             // Make tracking numbers clickable in preview
             if (line.includes('Tracking Number:') || line.includes('trackingNumber')) {
@@ -188,8 +188,8 @@ export default function EmailPreview({
 
                 // Add the tracking number as a clickable link with copy button
                 const trackingNumber = match[0];
-                parts.push(<span key={`${i}-${match.index}`} className="inline-flex items-center" data-unique-id="319034ae-1c8e-44f0-bb56-81791dea0603" data-file-name="components/email-preview.tsx">
-                    <a href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${trackingNumber}`} target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium" data-unique-id="3f46afc6-aa76-4e16-b5f2-5dd3387fa9ed" data-file-name="components/email-preview.tsx" data-dynamic-text="true">
+                parts.push(<span key={`${i}-${match.index}`} className="inline-flex items-center" data-unique-id="c9a34ed8-0b76-4cee-8641-174fd8c2b154" data-file-name="components/email-preview.tsx">
+                    <a href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${trackingNumber}`} target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium" data-unique-id="aeaf02a2-d0a5-4f65-9a8c-ca9cf30d2ca1" data-file-name="components/email-preview.tsx" data-dynamic-text="true">
                       {trackingNumber}
                     </a>
                     <button onClick={() => {
@@ -198,8 +198,8 @@ export default function EmailPreview({
                         duration: 2000
                       })).catch(err => console.error('Failed to copy:', err));
                     }
-                  }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy tracking number" data-unique-id="c35a200f-3aff-4099-85df-aa3c9cc24447" data-file-name="components/email-preview.tsx">
-                      <Copy className="h-3 w-3 text-primary" data-unique-id="ac0a7a19-f4f9-410f-85a1-bc639b33eadf" data-file-name="components/email-preview.tsx" data-dynamic-text="true" />
+                  }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy tracking number" data-unique-id="ef33a4f3-bf5c-404f-97dc-cbd29f32785e" data-file-name="components/email-preview.tsx">
+                      <Copy className="h-3 w-3 text-primary" data-unique-id="70b6be9e-0fa5-4480-939e-a649af1c4109" data-file-name="components/email-preview.tsx" data-dynamic-text="true" />
                     </button>
                     <button onClick={() => {
                     const trackingUrl = `https://www.fedex.com/apps/fedextrack/?tracknumbers=${trackingNumber}`;
@@ -208,9 +208,9 @@ export default function EmailPreview({
                         duration: 2000
                       })).catch(err => console.error('Failed to copy link:', err));
                     }
-                  }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy FedEx link" data-unique-id="95ed87a8-68ca-40c8-9bf4-0224a7efba84" data-file-name="components/email-preview.tsx">
-                      <svg className="h-3 w-3 text-[#4D148C]" viewBox="0 0 24 24" fill="currentColor" data-unique-id="b4343116-7275-4813-a8ef-a43757216bf1" data-file-name="components/email-preview.tsx">
-                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 5a3 3 0 11-3 3 3 3 0 013-3zm0 11.13c-2.03-.31-3.88-1.47-5.14-3.13h10.28c-1.26 1.66-3.11 2.82-5.14 3.13z" data-unique-id="3f66b06c-76c1-4b5f-ba64-9fda79b668c9" data-file-name="components/email-preview.tsx" data-dynamic-text="true" />
+                  }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy FedEx link" data-unique-id="8ca8d962-91ee-4fef-b0ab-3772996687e5" data-file-name="components/email-preview.tsx">
+                      <svg className="h-3 w-3 text-[#4D148C]" viewBox="0 0 24 24" fill="currentColor" data-unique-id="f72a1c83-687b-4539-a575-9e5ac10484bc" data-file-name="components/email-preview.tsx">
+                        <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 5a3 3 0 11-3 3 3 3 0 013-3zm0 11.13c-2.03-.31-3.88-1.47-5.14-3.13h10.28c-1.26 1.66-3.11 2.82-5.14 3.13z" data-unique-id="8fe5a977-a321-445f-bf05-990bf1504f4a" data-file-name="components/email-preview.tsx" data-dynamic-text="true" />
                       </svg>
                     </button>
                   </span>);
@@ -219,15 +219,15 @@ export default function EmailPreview({
 
               // Add any remaining text
               parts.push(line.substring(lastIndex));
-              return <p key={i} className="mb-3" data-unique-id="40ca44e8-7e28-4646-8301-e2cda3553713" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{parts}</p>;
+              return <p key={i} className="mb-3" data-unique-id="150873c5-6343-40fc-95f0-82573ab2d9ea" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{parts}</p>;
             }
-            return <p key={i} className={`${line.trim() === "" ? "h-4" : "mb-3"}`} data-unique-id="182d4824-7968-4156-afcb-0bcdbef32228" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{line}</p>;
+            return <p key={i} className={`${line.trim() === "" ? "h-4" : "mb-3"}`} data-unique-id="ed3a738d-8e84-44e5-adcb-9ff147a8b6ca" data-file-name="components/email-preview.tsx" data-dynamic-text="true">{line}</p>;
           })}
         </div>
-        <div className="mt-6 pt-4 border-t border-border text-sm text-muted-foreground" data-unique-id="dc47f80e-41f9-4ae5-bf1b-2367e0929493" data-file-name="components/email-preview.tsx">
-          <p className="mb-2" data-unique-id="c89b5ac4-fff3-4605-9d6b-9615b0b27f0a" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="413a159b-06f4-4ffc-8d22-791b167528c1" data-file-name="components/email-preview.tsx">Detroit Axle</span></p>
-          <p className="mb-2" data-unique-id="d6b8e7d3-e615-427f-873d-89f4596b1aef" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="20cd4cca-6bde-4729-a30a-c307a082069d" data-file-name="components/email-preview.tsx">Customer Support: 888-583-0255</span></p>
-          <p data-unique-id="c0a6e0c2-9a1a-43fc-ad1d-a39a9f331b3e" data-file-name="components/email-preview.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="23bf30bf-5426-4f16-9a12-3e428958ff33" data-file-name="components/email-preview.tsx">© </span>{new Date().getFullYear()}<span className="editable-text" data-unique-id="3693797d-b1a0-499e-b32a-4c5e764f4411" data-file-name="components/email-preview.tsx"> Detroit Axle. All rights reserved.</span></p>
+        <div className="mt-6 pt-4 border-t border-border text-sm text-muted-foreground" data-unique-id="3789f814-9dac-4386-8d43-2580211cdc23" data-file-name="components/email-preview.tsx">
+          <p className="mb-2" data-unique-id="a5b9c3ad-34b0-42d2-91f8-62d6e51e8d09" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="a4d0f66a-0362-45dc-ad40-e15d2e255660" data-file-name="components/email-preview.tsx">Detroit Axle</span></p>
+          <p className="mb-2" data-unique-id="3e5a7d95-af91-4d1a-9b32-e6cfffee3a5b" data-file-name="components/email-preview.tsx"><span className="editable-text" data-unique-id="1ba5efbe-4818-452f-b26d-d805729d04a8" data-file-name="components/email-preview.tsx">Customer Support: 888-583-0255</span></p>
+          <p data-unique-id="556730a4-3648-4a50-bc7a-91e040e46959" data-file-name="components/email-preview.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="a7ba995b-8674-46f7-87c9-938b7929260e" data-file-name="components/email-preview.tsx">© </span>{new Date().getFullYear()}<span className="editable-text" data-unique-id="6fa57043-7e2e-49a1-bce0-4cbf1338b3bf" data-file-name="components/email-preview.tsx"> Detroit Axle. All rights reserved.</span></p>
         </div>
       </div>
     </div>

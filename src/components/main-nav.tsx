@@ -20,19 +20,19 @@ export function MainNav() {
     active: pathname === '/order-processor'
   }];
   return <>
-      <nav className="hidden md:flex items-center space-x-1" data-unique-id="b81d9777-3a87-4472-8ed2-01e59b4803d4" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
+      <nav className="hidden md:flex items-center space-x-1" data-unique-id="1dbfb072-11aa-4905-a7bf-6190b6f47607" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
         {routes.map(route => <Link key={route.href} href={route.href} className={`
               flex items-center px-4 py-2 text-sm font-medium rounded-md transition-colors
               ${route.active ? 'bg-primary text-primary-foreground' : 'text-muted-foreground hover:text-foreground hover:bg-accent'}
-            `} data-unique-id="206d9d9a-6165-421c-b84f-a311cd5d76dc" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
-            <span className="mr-2" data-unique-id="88c9dcc1-b2d5-4988-b04d-3e110b168b3d" data-file-name="components/main-nav.tsx" data-dynamic-text="true">{route.icon}</span>
+            `} data-unique-id="6c742f6e-3f90-41be-bf23-3c9012a7a48c" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
+            <span className="mr-2" data-unique-id="fa3ca268-e194-4302-a9cc-a99338b868ba" data-file-name="components/main-nav.tsx" data-dynamic-text="true">{route.icon}</span>
             {route.label}
           </Link>)}
       </nav>
       
       {/* Mobile Menu Button */}
-      <div className="md:hidden flex items-center" data-unique-id="6b10d07d-8bba-461c-be69-edfb031d679b" data-file-name="components/main-nav.tsx">
-        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-md hover:bg-accent/50" data-unique-id="9242b476-93bc-4434-b5b6-74a32e8c0ba9" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
+      <div className="md:hidden flex items-center" data-unique-id="9af8cce5-2810-421e-83f5-4c5706e6d520" data-file-name="components/main-nav.tsx">
+        <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="p-2 rounded-md hover:bg-accent/50" data-unique-id="c9ea9667-090b-4e31-8f18-e64265ad1bfc" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
@@ -47,13 +47,13 @@ export function MainNav() {
     }} exit={{
       opacity: 0,
       y: -20
-    }} className="md:hidden absolute top-16 right-0 left-0 z-50 bg-background border-b border-border shadow-lg" data-unique-id="33337fd8-f56a-45db-8fdf-549f82eb44b0" data-file-name="components/main-nav.tsx">
-          <div className="py-2" data-unique-id="114ff77d-0c9f-4ce7-867b-211c65ca50d7" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
+    }} className="md:hidden absolute top-16 right-0 left-0 z-50 bg-background border-b border-border shadow-lg" data-unique-id="51f1ab1c-ab64-4e71-b4c3-8e70087c810a" data-file-name="components/main-nav.tsx">
+          <div className="py-2" data-unique-id="6e720285-9ecf-443b-8180-b71a5ccbcb94" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
             {routes.map(route => <Link key={route.href} href={route.href} onClick={() => setMobileMenuOpen(false)} className={`
                   flex items-center px-6 py-3 w-full text-left
                   ${route.active ? 'bg-primary/10 text-primary' : 'hover:bg-accent/50'}
-                `} data-unique-id="db7c3b32-a16b-4225-ac5f-32719df55910" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
-                <span className="mr-3" data-unique-id="bfd31f6d-6c53-4756-b9c5-7f27e667e115" data-file-name="components/main-nav.tsx" data-dynamic-text="true">{route.icon}</span>
+                `} data-unique-id="1b58f0a6-befa-4aee-b1d1-bad00338ba9b" data-file-name="components/main-nav.tsx" data-dynamic-text="true">
+                <span className="mr-3" data-unique-id="c5045400-3178-483e-b339-0fe133f4b8fa" data-file-name="components/main-nav.tsx" data-dynamic-text="true">{route.icon}</span>
                 {route.label}
               </Link>)}
           </div>

@@ -40,30 +40,30 @@ export default function FileUploader({
     if (isDragActive) return 'border-blue-400';
     return 'border-border';
   };
-  return <div data-unique-id="2c80903d-4762-44a1-a6a5-80d549396885" data-file-name="components/file-uploader.tsx">
-      <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-lg cursor-pointer transition-colors
+  return <div data-unique-id="9b9c8eb3-98e1-4921-a3e4-81916bf014c9" data-file-name="components/file-uploader.tsx">
+      <div {...getRootProps()} className={`p-8 border-2 border-dashed rounded-lg cursor-pointer transition-all duration-300
           ${getBorderColor()}
-          ${isDragActive ? 'bg-primary/5' : 'bg-white hover:bg-accent/5'}
+          ${isDragActive ? 'bg-primary/5 scale-[1.02] shadow-lg' : 'bg-card/60 hover:bg-accent/5 hover:scale-[1.01] hover:shadow-md'}
           ${isProcessing ? 'opacity-50 cursor-not-allowed' : ''}
-        `} data-unique-id="450b9c62-b347-436c-a9c8-d45d21ea15c1" data-file-name="components/file-uploader.tsx">
-        <input {...getInputProps()} data-unique-id="1b1757e6-5f21-411f-9b9b-da33059d26c5" data-file-name="components/file-uploader.tsx" />
-        <div className="flex flex-col items-center justify-center text-center" data-unique-id="eaec1d71-29d7-456a-bdcf-01adce4e75da" data-file-name="components/file-uploader.tsx" data-dynamic-text="true">
-          {isProcessing ? <div className="flex flex-col items-center space-y-4" data-unique-id="689228ba-6317-4e2e-abb7-e1b7d2dbc72c" data-file-name="components/file-uploader.tsx">
+        `} data-unique-id="f6fd3593-1a28-4549-9936-98f7b9d858fc" data-file-name="components/file-uploader.tsx">
+        <input {...getInputProps()} data-unique-id="d4e91491-9798-4271-8aa8-17f35951f00e" data-file-name="components/file-uploader.tsx" />
+        <div className="flex flex-col items-center justify-center text-center" data-unique-id="30dfe41c-4009-44ff-ba7a-c05c698a9db8" data-file-name="components/file-uploader.tsx" data-dynamic-text="true">
+          {isProcessing ? <div className="flex flex-col items-center space-y-4" data-unique-id="4bfd2275-903c-4c8f-b60a-6bc6d466c70f" data-file-name="components/file-uploader.tsx">
               <Loader2 className="h-12 w-12 text-primary animate-spin" />
-              <p className="text-lg font-medium text-primary" data-unique-id="7d57e35a-3276-456c-be0c-4f6351d9e5a2" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="d73b0fea-c2cb-4e74-8560-3981458590c6" data-file-name="components/file-uploader.tsx">Processing file...</span></p>
-              <p className="text-sm text-muted-foreground" data-unique-id="2cdc5361-3f89-460c-b751-69d8c4bb1262" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="cde6cf57-a9f1-4b6d-817e-5481e26d7de1" data-file-name="components/file-uploader.tsx">This may take a moment depending on file size</span></p>
+              <p className="text-lg font-medium text-primary" data-unique-id="04ef6dd3-2142-4b4e-a328-bab4737af41f" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="e86895df-e98e-4de9-be82-1416dbe26ba4" data-file-name="components/file-uploader.tsx">Processing file...</span></p>
+              <p className="text-sm text-muted-foreground" data-unique-id="826163a6-cca8-41df-b4e6-901e5b1ad617" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="773685d9-03a3-4e6a-a7a3-f7a9eecf46b7" data-file-name="components/file-uploader.tsx">This may take a moment depending on file size</span></p>
             </div> : acceptedFiles.length > 0 ? <motion.div initial={{
           scale: 0.9
         }} animate={{
           scale: 1
-        }} className="flex flex-col items-center space-y-4" data-unique-id="5fd68d39-7f1a-4aa6-ac6a-02450a6120f4" data-file-name="components/file-uploader.tsx">
-              <div className="p-4 bg-primary/10 rounded-full" data-unique-id="74537829-38af-4b17-9000-a23d7b3e1a8a" data-file-name="components/file-uploader.tsx">
+        }} className="flex flex-col items-center space-y-4" data-unique-id="1bb877a1-6da7-4455-b5cb-ce1484076f10" data-file-name="components/file-uploader.tsx">
+              <div className="p-4 bg-primary/10 rounded-full" data-unique-id="e8571d5a-8bd7-4077-a883-190b2ebbcdbd" data-file-name="components/file-uploader.tsx">
                 <File className="h-10 w-10 text-primary" />
               </div>
-              <div data-unique-id="f11af85a-063e-4313-8a5f-2a473d699774" data-file-name="components/file-uploader.tsx">
-                <p className="text-lg font-medium" data-unique-id="a4b1fb59-8362-4ec5-8fa2-53489ff9d4b4" data-file-name="components/file-uploader.tsx" data-dynamic-text="true">{acceptedFiles[0].name}</p>
-                <p className="text-sm text-muted-foreground" data-unique-id="cd8b857c-de3e-4c0b-bca6-7607e512e6eb" data-file-name="components/file-uploader.tsx" data-dynamic-text="true">
-                  {(acceptedFiles[0].size / 1024 / 1024).toFixed(2)}<span className="editable-text" data-unique-id="f6e319e9-166a-48f6-b43b-135cb03a95ac" data-file-name="components/file-uploader.tsx"> MB
+              <div data-unique-id="6804964b-41ce-4dff-a6a1-43bd268fd7db" data-file-name="components/file-uploader.tsx">
+                <p className="text-lg font-medium" data-unique-id="2d7acf3f-23f4-41ea-8fcb-72bcb4405ad4" data-file-name="components/file-uploader.tsx" data-dynamic-text="true">{acceptedFiles[0].name}</p>
+                <p className="text-sm text-muted-foreground" data-unique-id="18b252c1-245c-4f76-8862-2977ba49c876" data-file-name="components/file-uploader.tsx" data-dynamic-text="true">
+                  {(acceptedFiles[0].size / 1024 / 1024).toFixed(2)}<span className="editable-text" data-unique-id="48aa772f-765d-435a-a171-ca946562cbde" data-file-name="components/file-uploader.tsx"> MB
                 </span></p>
               </div>
               <button onClick={e => {
@@ -72,16 +72,16 @@ export default function FileUploader({
             e.currentTarget.form?.reset();
             // Force re-render the component to clear the UI
             getRootProps().onClick?.(new MouseEvent('click') as any);
-          }} className="mt-2 p-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" data-unique-id="c4dc87c5-0f3d-47a1-a4ce-9f0764a7a41d" data-file-name="components/file-uploader.tsx">
+          }} className="mt-2 p-1 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors" data-unique-id="b1c58701-c990-492e-b8f1-58914e584d44" data-file-name="components/file-uploader.tsx">
                 <X className="h-4 w-4" />
               </button>
-            </motion.div> : <div className="flex flex-col items-center space-y-4" data-unique-id="ecc5779a-193a-4bb9-b69d-c01e8d77ce35" data-file-name="components/file-uploader.tsx">
-              <div className="p-4 bg-primary/10 rounded-full" data-unique-id="78aebaf4-8c52-458a-8268-5da8e8249b04" data-file-name="components/file-uploader.tsx">
+            </motion.div> : <div className="flex flex-col items-center space-y-4" data-unique-id="1fd49760-7c05-463c-b542-4afbc4a9c9e3" data-file-name="components/file-uploader.tsx">
+              <div className="p-4 bg-primary/10 rounded-full" data-unique-id="df73986e-629c-403a-afd4-b2cfd2959d80" data-file-name="components/file-uploader.tsx">
                 <Upload className="h-10 w-10 text-primary" />
               </div>
-              <div data-unique-id="582b521e-31e8-4b86-85cb-bcefd86f73e1" data-file-name="components/file-uploader.tsx">
-                <p className="text-lg font-medium" data-unique-id="d56a9397-49c1-411d-ba5b-508f07c0a24e" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="5d54e6ce-f070-4b12-8850-bc7b2cb50e98" data-file-name="components/file-uploader.tsx">Drop file here or click to upload</span></p>
-                <p className="text-sm text-muted-foreground" data-unique-id="9c1743a0-74e1-4ec2-846b-f1af36690593" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="741a85a5-bf58-4d1f-be15-961b408802d7" data-file-name="components/file-uploader.tsx">
+              <div data-unique-id="cc8c0ef7-defe-4b0d-bce5-ec60b0e52db6" data-file-name="components/file-uploader.tsx">
+                <p className="text-lg font-medium" data-unique-id="c6c041bf-af7e-48e6-8c89-f41dd027ad79" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="25883c7a-118a-4ded-86bf-cfafc6be7429" data-file-name="components/file-uploader.tsx">Drop file here or click to upload</span></p>
+                <p className="text-sm text-muted-foreground" data-unique-id="9349d3bb-c811-40b2-9248-f1a08d8b5087" data-file-name="components/file-uploader.tsx"><span className="editable-text" data-unique-id="569020a2-1fad-4aff-9a73-b0ff380e0356" data-file-name="components/file-uploader.tsx">
                   Support for .xlsx, .xls, and .csv files
                 </span></p>
               </div>
