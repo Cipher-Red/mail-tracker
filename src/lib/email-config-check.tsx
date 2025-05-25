@@ -82,10 +82,10 @@ export default function EmailConfigCheck() {
       }
     }} />
       
-      <div className="flex justify-end mb-4" data-unique-id="70a29abb-8d1e-4a18-a326-95719a04db05" data-file-name="lib/email-config-check.tsx">
-        <button onClick={verifyConnection} disabled={isVerifying} className="text-xs px-3 py-1.5 bg-primary/10 text-primary rounded-md flex items-center hover:bg-primary/20 transition-colors disabled:opacity-50" data-unique-id="17b4f081-51f6-45e2-b03e-84b9156059e1" data-file-name="lib/email-config-check.tsx" data-dynamic-text="true">
+      <div className="flex justify-end mb-4" data-unique-id="3bf2f33f-ea83-461c-9dfe-432245cfedfe" data-file-name="lib/email-config-check.tsx">
+        <button onClick={verifyConnection} disabled={isVerifying} className="text-xs px-3 py-1.5 bg-primary/10 text-primary rounded-md flex items-center hover:bg-primary/20 transition-colors disabled:opacity-50" data-unique-id="03dca5aa-5fbe-4f25-8735-d60d777e17ac" data-file-name="lib/email-config-check.tsx" data-dynamic-text="true">
           {isVerifying ? <RefreshCw className="h-3.5 w-3.5 mr-1.5 animate-spin" /> : <CheckCircle2 className="h-3.5 w-3.5 mr-1.5" />}
-          <span className="editable-text" data-unique-id="dae53266-0a41-42ef-a87d-b940381dd912" data-file-name="lib/email-config-check.tsx">Verify Email Connection</span>
+          <span className="editable-text" data-unique-id="20199dcb-b41f-4ca4-b51e-8bcbd452241c" data-file-name="lib/email-config-check.tsx">Verify Email Connection</span>
         </button>
       </div>
     </>;

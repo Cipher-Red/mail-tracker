@@ -131,9 +131,9 @@ Detroit Axle Customer Support Team`
     }
   }, []);
   return <>
-      <div className="container mx-auto py-8 px-4 max-w-7xl" data-unique-id="b49c951d-16bc-419a-a646-269d10638863" data-file-name="components/email-template-builder.tsx">
-        <header className="mb-8" data-unique-id="7bc0cc7f-f36c-46c8-a56f-5ba0b14a3ac0" data-file-name="components/email-template-builder.tsx">
-          <div className="flex justify-between items-center" data-unique-id="379264d0-1422-4d44-9178-0e4aa13dacfd" data-file-name="components/email-template-builder.tsx">
+      <div className="container mx-auto py-8 px-4 max-w-7xl" data-unique-id="2ec7eaf8-a010-4874-847d-10ca7a19bbf9" data-file-name="components/email-template-builder.tsx">
+        <header className="mb-8" data-unique-id="2d6ebd93-e0a0-493c-afb3-fda475fd669e" data-file-name="components/email-template-builder.tsx">
+          <div className="flex justify-between items-center" data-unique-id="6aa421f3-9ec4-48c1-a990-93d917303a2f" data-file-name="components/email-template-builder.tsx">
             <motion.div initial={{
             opacity: 0,
             y: -20
@@ -142,19 +142,19 @@ Detroit Axle Customer Support Team`
             y: 0
           }} transition={{
             duration: 0.5
-          }} data-unique-id="1bf89ffb-89ab-49e8-a7cb-5efd492ae8ec" data-file-name="components/email-template-builder.tsx">
-              <h1 className="text-3xl font-bold text-primary" data-unique-id="46310dc5-5333-4c9e-b4cd-e2f233e6fdcd" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="c03fd2c7-eca0-4b7f-9a8e-e5e6cd38595a" data-file-name="components/email-template-builder.tsx">
+          }} data-unique-id="313fa2d2-dd0f-4eb5-840c-217933539919" data-file-name="components/email-template-builder.tsx">
+              <h1 className="text-3xl font-bold text-primary" data-unique-id="69e2e0b5-9ed9-476a-b714-0606d9623271" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="592cbbe8-1294-4a3f-940c-6fb620dc4e5d" data-file-name="components/email-template-builder.tsx">
                 Detroit Axle Email Template Builder
               </span></h1>
-              <p className="text-muted-foreground mt-2" data-unique-id="239e6dc4-6912-45b0-86ce-4fe0732a2b12" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="57452124-45ce-4089-9f42-c3a86a461bee" data-file-name="components/email-template-builder.tsx">
+              <p className="text-muted-foreground mt-2" data-unique-id="443afc71-40d6-433b-95f4-393870d29db5" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="0649faed-58a0-4c2b-a236-4c542a74b8fe" data-file-name="components/email-template-builder.tsx">
                 Create and manage email templates for customer order updates
               </span></p>
             </motion.div>
-            <div className="flex items-center gap-3" data-unique-id="f3f461a9-e3f5-41c9-a3c4-beefbc974093" data-file-name="components/email-template-builder.tsx">
+            <div className="flex items-center gap-3" data-unique-id="e64ba927-0141-4864-84f9-69097b184627" data-file-name="components/email-template-builder.tsx">
               <Tooltip content="Click here to learn how to use this application">
-                <button onClick={() => setShowHelpModal(true)} className="flex items-center gap-1 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground" data-unique-id="292fa0bc-6272-4666-83af-d10f6a4ab88b" data-file-name="components/email-template-builder.tsx">
+                <button onClick={() => setShowHelpModal(true)} className="flex items-center gap-1 px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground" data-unique-id="2b1ff90b-055e-4093-80cd-e5fc63dabaa0" data-file-name="components/email-template-builder.tsx">
                   <HelpCircle size={16} />
-                  <span data-unique-id="3b034281-da42-4180-a75e-5ccb81f9fffa" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="fc17f508-f6fb-48e4-9120-8862ded2193c" data-file-name="components/email-template-builder.tsx">Help</span></span>
+                  <span data-unique-id="1547457a-2489-4149-a9d9-29ed43a0312d" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="4630d77f-a8d6-4348-ab56-400695d22da8" data-file-name="components/email-template-builder.tsx">Help</span></span>
                 </button>
               </Tooltip>
               <ThemeToggle />
@@ -162,55 +162,55 @@ Detroit Axle Customer Support Team`
           </div>
         </header>
 
-      <Tabs defaultValue={defaultTab} className="w-full" data-unique-id="7c10521c-3a29-492c-8835-123057815a37" data-file-name="components/email-template-builder.tsx">
-        <div className="bg-card p-4 rounded-lg shadow-sm mb-6" data-unique-id="adef5519-1cf2-4773-8690-b73a23a40c20" data-file-name="components/email-template-builder.tsx">
+      <Tabs defaultValue={defaultTab} className="w-full" data-unique-id="90821d50-7d76-449e-970d-8393211ad0a9" data-file-name="components/email-template-builder.tsx">
+        <div className="bg-card p-4 rounded-lg shadow-sm mb-6" data-unique-id="ba97cf08-670e-4e3d-878b-be027db2097d" data-file-name="components/email-template-builder.tsx">
           <TabsList className="w-full flex justify-between bg-transparent space-x-2">
             <TabsTrigger value="editor" className="flex-1 py-3 text-base">
-              <span className="flex items-center justify-center" data-unique-id="f1067437-0efb-4aa3-bc1d-6015fa9e6056" data-file-name="components/email-template-builder.tsx">
-                <FileText className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="ee135020-80d6-45a6-942c-5e11d089d670" data-file-name="components/email-template-builder.tsx">
+              <span className="flex items-center justify-center" data-unique-id="9a8f0871-b5f2-430a-8b6c-5b72301a3d62" data-file-name="components/email-template-builder.tsx">
+                <FileText className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="076ab4eb-294e-4d6f-96ba-f69171ad7615" data-file-name="components/email-template-builder.tsx">
                 Template Editor
               </span></span>
             </TabsTrigger>
             
             <TabsTrigger value="customers" className="flex-1 py-3 text-base">
-              <span className="flex items-center justify-center" data-unique-id="38d6c0c0-2253-44e9-8208-2503543ae547" data-file-name="components/email-template-builder.tsx">
-                <Users className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="389e7d80-0008-4213-997b-1fa76904ab67" data-file-name="components/email-template-builder.tsx">
+              <span className="flex items-center justify-center" data-unique-id="ffb51333-6e43-417f-af70-78e681da339d" data-file-name="components/email-template-builder.tsx">
+                <Users className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="39e03cd7-7f64-49a0-b8f8-d08a04d30505" data-file-name="components/email-template-builder.tsx">
                 Customers
               </span></span>
             </TabsTrigger>
             
             <TabsTrigger value="bulkUpload" className="flex-1 py-3 text-base">
-              <span className="flex items-center justify-center" data-unique-id="fd628560-a734-4b6e-be63-7e99b6ff330e" data-file-name="components/email-template-builder.tsx">
-                <Send className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="ae5d4599-47d2-4760-892d-811572696a55" data-file-name="components/email-template-builder.tsx">
+              <span className="flex items-center justify-center" data-unique-id="ba7d7164-5eba-4556-a866-926eb913ab26" data-file-name="components/email-template-builder.tsx">
+                <Send className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="227e61c5-3b18-4cbd-a69f-4ce3fb8ebbca" data-file-name="components/email-template-builder.tsx">
                 Send Emails
               </span></span>
             </TabsTrigger>
             
             <TabsTrigger value="library" className="flex-1 py-3 text-base">
-              <span className="flex items-center justify-center" data-unique-id="b12dd733-c03e-4e65-8ab4-cf04ca9e4072" data-file-name="components/email-template-builder.tsx">
-                <Library className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="8fe67ef4-cc8e-42a1-a917-1f24cf20fe20" data-file-name="components/email-template-builder.tsx">
+              <span className="flex items-center justify-center" data-unique-id="9f8f9de1-a3e5-48f6-a99d-24c95174e596" data-file-name="components/email-template-builder.tsx">
+                <Library className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="a0546b2e-6c57-4b6e-bd9e-939a08de2e6a" data-file-name="components/email-template-builder.tsx">
                 Templates
               </span></span>
             </TabsTrigger>
           </TabsList>
         </div>
 
-        <div className={cn("grid gap-8", "lg:grid-cols-2")} data-unique-id="c878fa45-9b95-4b18-ac31-642ef059f160" data-file-name="components/email-template-builder.tsx">
-          <div className="space-y-6" data-unique-id="097e6b1e-923c-4482-8af9-900d1d7f7744" data-file-name="components/email-template-builder.tsx">
+        <div className={cn("grid gap-8", "lg:grid-cols-2")} data-unique-id="65f2e39d-1237-4fe3-8863-37010509a46e" data-file-name="components/email-template-builder.tsx">
+          <div className="space-y-6" data-unique-id="990bc443-f556-4e54-a580-b49a58a11888" data-file-name="components/email-template-builder.tsx">
             <TabsContent value="editor">
-              <div id="tour-template-editor" data-unique-id="0b9bbe3d-20e4-4d65-b74c-a63f129cdd91" data-file-name="components/email-template-builder.tsx">
+              <div id="tour-template-editor" data-unique-id="2b8262cf-779b-47eb-9eb2-9ac398a373d2" data-file-name="components/email-template-builder.tsx">
                 <TemplateEditor template={activeTemplate} onChange={setActiveTemplate} />
               </div>
             </TabsContent>
             
             <TabsContent value="customers">
-              <div id="tour-customers" data-unique-id="ea6acf7e-6933-4ef7-a26e-f41fb9140c96" data-file-name="components/email-template-builder.tsx">
+              <div id="tour-customers" data-unique-id="ab5b5661-5352-4998-b428-1b7f4078f5c1" data-file-name="components/email-template-builder.tsx">
                 <CustomerManagement />
               </div>
             </TabsContent>
             
             <TabsContent value="bulkUpload">
-              <div className="space-y-4" data-unique-id="672c72b0-94a4-46a0-a759-f860a786fadf" data-file-name="components/email-template-builder.tsx">
+              <div className="space-y-4" data-unique-id="b9c9ffc9-45f7-4287-b2c1-a9a74582029b" data-file-name="components/email-template-builder.tsx">
                 <EmailConfigCheck />
                 <BulkEmailUpload template={activeTemplate} onSenderEmailChange={info => {
                   setSenderInfo(info);
@@ -232,8 +232,8 @@ Detroit Axle Customer Support Team`
             
           </div>
 
-          <div className="bg-card p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl" id="tour-email-preview" data-unique-id="5290c62e-c03b-4797-bf50-31d630f22881" data-file-name="components/email-template-builder.tsx">
-            <h2 className="text-lg font-medium mb-4" data-unique-id="e6c34fc1-7040-46a7-9247-79339af741d4" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="be35fdaa-7e04-41e8-9407-0ef8deb3899d" data-file-name="components/email-template-builder.tsx">Email Preview</span></h2>
+          <div className="bg-card p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl" id="tour-email-preview" data-unique-id="0234549e-5d44-4ca4-89c2-6882ce659795" data-file-name="components/email-template-builder.tsx">
+            <h2 className="text-lg font-medium mb-4" data-unique-id="ebe8af22-5bdb-426a-8279-8724275feef8" data-file-name="components/email-template-builder.tsx"><span className="editable-text" data-unique-id="0770e656-a4dc-4133-82a0-7821ca25f254" data-file-name="components/email-template-builder.tsx">Email Preview</span></h2>
             <EmailPreview template={activeTemplate} senderInfo={senderInfo} />
           </div>
         </div>
