@@ -43,22 +43,22 @@ export function FeatureHighlight({
       saveToLocalStorage();
     }
   };
-  return <div className="mb-6 border border-border rounded-lg overflow-hidden" data-unique-id="fbc08920-78f0-4de0-8f98-c477a08f17ea" data-file-name="components/feature-highlight.tsx">
-      <button onClick={() => setIsOpen(!isOpen)} className={`w-full p-4 text-left flex justify-between items-center ${isOpen ? 'bg-accent/20' : 'bg-background'} hover:bg-accent/20 transition-colors`} data-unique-id="f79d9efc-2030-4045-b90c-c768b1066cae" data-file-name="components/feature-highlight.tsx">
-        <div className="flex items-center" data-unique-id="1e1109b1-8d04-4297-ba77-4b8bbc45faa9" data-file-name="components/feature-highlight.tsx">
+  return <div className="mb-6 border border-border rounded-lg overflow-hidden" data-unique-id="ddb820fd-da1b-4898-85fb-d155c53299fa" data-file-name="components/feature-highlight.tsx">
+      <button onClick={() => setIsOpen(!isOpen)} className={`w-full p-4 text-left flex justify-between items-center ${isOpen ? 'bg-accent/20' : 'bg-background'} hover:bg-accent/20 transition-colors`} data-unique-id="ae389e4c-a62b-403c-a08b-4f536234462d" data-file-name="components/feature-highlight.tsx">
+        <div className="flex items-center" data-unique-id="c2526bd7-4410-4732-8a26-d623621b093a" data-file-name="components/feature-highlight.tsx">
           <Lightbulb className={`mr-2 ${isNew ? 'text-primary' : 'text-muted-foreground'}`} size={20} />
-          <div data-unique-id="85866e61-b6d5-4aa0-9c09-b75993540e67" data-file-name="components/feature-highlight.tsx">
-            <div className="flex items-center" data-unique-id="15a1a709-4c45-4453-9532-c89c5b6d81fe" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">
-              <h3 className="font-medium text-foreground" data-unique-id="e51d0226-8fa9-48b1-bdbe-91381d0abd15" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">{title}</h3>
-              {isNew && <span className="ml-2 px-1.5 py-0.5 text-[10px] font-bold uppercase bg-primary text-white rounded" data-unique-id="b1f0a7f6-c94d-4894-974f-4dd69c413e23" data-file-name="components/feature-highlight.tsx"><span className="editable-text" data-unique-id="90cb2719-1e75-4d05-b404-8ddb0b660da3" data-file-name="components/feature-highlight.tsx">
+          <div data-unique-id="6e0fa9b9-980a-46e3-becf-782fedfd425e" data-file-name="components/feature-highlight.tsx">
+            <div className="flex items-center" data-unique-id="76dea38f-768a-4005-9a0a-173c7dc1c29a" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">
+              <h3 className="font-medium text-foreground" data-unique-id="9309dfa5-d72d-4dc5-bb71-b19aa4a93af0" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">{title}</h3>
+              {isNew && <span className="ml-2 px-1.5 py-0.5 text-[10px] font-bold uppercase bg-primary text-white rounded" data-unique-id="f07990ca-17c4-42ca-95a7-28bc723aa4be" data-file-name="components/feature-highlight.tsx"><span className="editable-text" data-unique-id="74103867-714a-46d3-bc7d-83e585b0ec99" data-file-name="components/feature-highlight.tsx">
                   New
                 </span></span>}
             </div>
-            <p className="text-sm text-muted-foreground" data-unique-id="6765236c-b9ed-4ccb-a5f9-1ba06efc7888" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">{description}</p>
+            <p className="text-sm text-muted-foreground" data-unique-id="eae5f2cd-da68-48a7-81e9-b9506a026205" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">{description}</p>
           </div>
         </div>
-        <div className="flex items-center" data-unique-id="58ffcc2a-aa22-46f4-9984-5f04d4d9b79f" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">
-          {isComplete && <span className="mr-2 text-xs text-green-500 font-medium" data-unique-id="65f4c5eb-48bd-45de-83ab-e244a6223ce4" data-file-name="components/feature-highlight.tsx"><span className="editable-text" data-unique-id="53ad1145-a22e-4559-9d41-ef75647fd81b" data-file-name="components/feature-highlight.tsx">Completed</span></span>}
+        <div className="flex items-center" data-unique-id="63cb41a6-dcdf-4474-82e9-363b934a3fc5" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">
+          {isComplete && <span className="mr-2 text-xs text-green-500 font-medium" data-unique-id="5f1205d7-e438-4aaa-b8fa-086fc3360c93" data-file-name="components/feature-highlight.tsx"><span className="editable-text" data-unique-id="d9692564-3005-45c8-804d-a00db771cc6b" data-file-name="components/feature-highlight.tsx">Completed</span></span>}
           {isOpen ? <ChevronDown size={20} /> : <ChevronRight size={20} />}
         </div>
       </button>
@@ -75,12 +75,12 @@ export function FeatureHighlight({
         opacity: 0
       }} transition={{
         duration: 0.2
-      }} data-unique-id="f8f6ab48-8fcd-4791-8a05-5252e1b63d46" data-file-name="components/feature-highlight.tsx">
-            <div className="p-4 border-t border-border bg-card" data-unique-id="b7db99ab-6342-4bc6-8e83-cf576d4f7caf" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">
+      }} data-unique-id="9775b6c8-9d88-4f40-a98a-350369dcab3c" data-file-name="components/feature-highlight.tsx">
+            <div className="p-4 border-t border-border bg-card" data-unique-id="c57791bf-6f60-49b9-903f-95278890042e" data-file-name="components/feature-highlight.tsx" data-dynamic-text="true">
               {children}
               
-              {completionKey && !isComplete && <div className="mt-4 flex justify-end" data-unique-id="bf6b796e-5e11-4e11-8397-7bf90d3e0771" data-file-name="components/feature-highlight.tsx">
-                  <button onClick={markComplete} className="text-sm text-primary hover:underline focus:outline-none" data-unique-id="bcbf4cbb-8d27-490e-b345-3bef9d5bdc39" data-file-name="components/feature-highlight.tsx"><span className="editable-text" data-unique-id="b96881f0-65c6-44bf-b61e-fe004a379357" data-file-name="components/feature-highlight.tsx">
+              {completionKey && !isComplete && <div className="mt-4 flex justify-end" data-unique-id="97b7efc8-d66b-41ed-b6fb-93d48b0e7c2f" data-file-name="components/feature-highlight.tsx">
+                  <button onClick={markComplete} className="text-sm text-primary hover:underline focus:outline-none" data-unique-id="f6ad5893-36e8-4604-b16a-17795534d14f" data-file-name="components/feature-highlight.tsx"><span className="editable-text" data-unique-id="aba3323b-3281-49d7-8476-1cb538bb33ce" data-file-name="components/feature-highlight.tsx">
                     Mark as completed
                   </span></button>
                 </div>}

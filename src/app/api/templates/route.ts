@@ -1,12 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { emailTemplates, NewEmailTemplate } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { templateStorage } from '@/lib/storage-service';
 
 // GET all templates
 export async function GET() {
   try {
-    const templates = await db.select().from(emailTemplates).orderBy(desc(emailTemplates.updatedAt));
+    // Get templates from localStorage and sort by updatedAt
+    const templates = templateStorage.getAll();
+    
+    // Sort by updatedAt in descending order (newest first)
+    templates.sort((a, b) => {
+      const dateA = new Date(a.updatedAt).getTime();
+      const dateB = new Date(b.updatedAt).getTime();
+      return dateB - dateA;
+    });
+    
     return NextResponse.json(templates);
   } catch (error) {
     console.error('Error fetching templates:', error);
@@ -30,17 +37,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newTemplate: NewEmailTemplate = {
+    // Add new template to localStorage
+    const newTemplate = templateStorage.add({
       name,
       subject,
       preheader: preheader || '',
       content,
       createdAt: new Date(),
       updatedAt: new Date(),
-    };
+    });
 
-    const result = await db.insert(emailTemplates).values(newTemplate).returning();
-    return NextResponse.json(result[0]);
+    return NextResponse.json(newTemplate);
   } catch (error) {
     console.error('Error creating template:', error);
     return NextResponse.json(

@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { emailTemplates } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { templateStorage } from '@/lib/storage-service';
 
 // GET a specific template
 export async function GET(
@@ -17,16 +15,17 @@ export async function GET(
       );
     }
 
-    const template = await db.select().from(emailTemplates).where(eq(emailTemplates.id, id));
+    // Get template from localStorage
+    const template = templateStorage.getById(id);
     
-    if (!template.length) {
+    if (!template) {
       return NextResponse.json(
         { error: 'Template not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(template[0]);
+    return NextResponse.json(template);
   } catch (error) {
     console.error('Error fetching template:', error);
     return NextResponse.json(
@@ -60,25 +59,23 @@ export async function PUT(
       );
     }
 
-    const updatedTemplate = await db.update(emailTemplates)
-      .set({
-        name,
-        subject,
-        preheader: preheader || '',
-        content,
-        updatedAt: new Date(),
-      })
-      .where(eq(emailTemplates.id, id))
-      .returning();
+    // Update template in localStorage
+    const updatedTemplate = templateStorage.update(id, {
+      name,
+      subject,
+      preheader: preheader || '',
+      content,
+      updatedAt: new Date()
+    });
 
-    if (!updatedTemplate.length) {
+    if (!updatedTemplate) {
       return NextResponse.json(
         { error: 'Template not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(updatedTemplate[0]);
+    return NextResponse.json(updatedTemplate);
   } catch (error) {
     console.error('Error updating template:', error);
     return NextResponse.json(
@@ -102,11 +99,10 @@ export async function DELETE(
       );
     }
 
-    const deletedTemplate = await db.delete(emailTemplates)
-      .where(eq(emailTemplates.id, id))
-      .returning();
+    // Delete template from localStorage
+    const success = templateStorage.delete(id);
 
-    if (!deletedTemplate.length) {
+    if (!success) {
       return NextResponse.json(
         { error: 'Template not found' },
         { status: 404 }

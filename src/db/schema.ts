@@ -1,82 +1,131 @@
-import { pgTable, serial, text, timestamp, integer, boolean } from "drizzle-orm/pg-core";
-import { InferInsertModel, InferSelectModel } from "drizzle-orm";
+// Define the types for localStorage storage
+// We're maintaining similar structure to the original schema
 
-// Email Templates table
-export const emailTemplates = pgTable('email_templates', {
-  id: serial('id').primaryKey(),
-  name: text('name').notNull(),
-  subject: text('subject').notNull(),
-  preheader: text('preheader'),
-  content: text('content').notNull(),
-  createdAt: timestamp('created_at').defaultNow().notNull(),
-  updatedAt: timestamp('updated_at').defaultNow().notNull(),
-});
+// Email Templates type
+export interface EmailTemplate {
+  id: number;
+  name: string;
+  subject: string;
+  preheader?: string | null;
+  content: string;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
 
-// Customers table
-export const customers = pgTable('customers', {
-  id: serial('id').primaryKey(),
-  name: text('name').notNull(),
-  email: text('email').notNull(),
-  company: text('company'),
-  phone: text('phone'),
-  address: text('address'),
-  tags: text('tags').array(),
-  addedAt: timestamp('added_at').defaultNow().notNull(),
-  lastContact: timestamp('last_contact'),
-  notes: text('notes'),
-});
+// Customer type
+export interface Customer {
+  id: number;
+  name: string;
+  email: string;
+  company?: string | null;
+  phone?: string | null;
+  address?: string | null;
+  city?: string | null;
+  state?: string | null;
+  postalCode?: string | null;
+  tags?: string[] | null;
+  addedAt: Date | string;
+  lastContact?: Date | string | null;
+  notes?: string | null;
+  metadata?: Record<string, any> | null;
+}
 
-// Sent Emails table
-export const sentEmails = pgTable('sent_emails', {
-  id: serial('id').primaryKey(),
-  customerId: integer('customer_id').references(() => customers.id),
-  templateId: integer('template_id').references(() => emailTemplates.id),
-  subject: text('subject').notNull(),
-  content: text('content').notNull(),
-  sentAt: timestamp('sent_at').defaultNow().notNull(),
-  status: text('status').notNull(), // 'sent', 'failed', 'pending'
-  errorMessage: text('error_message'),
-});
+// Sent Email type
+export interface SentEmail {
+  id: number;
+  customerId?: number | null;
+  templateId?: number | null;
+  subject: string;
+  content: string;
+  sentAt: Date | string;
+  status: string; // 'sent', 'failed', 'pending'
+  errorMessage?: string | null;
+}
 
-// Order Data table
-export const orderData = pgTable('order_data', {
-  id: serial('id').primaryKey(),
-  customerOrderNumber: text('customer_order_number').notNull(),
-  shipToName: text('ship_to_name').notNull(),
-  shipToPhone: text('ship_to_phone'),
-  shipToLine1: text('ship_to_line1').notNull(),
-  shipToCity: text('ship_to_city').notNull(),
-  shipToStateProvince: text('ship_to_state_province').notNull(),
-  shipToPostalCode: text('ship_to_postal_code').notNull(),
-  orderTotal: integer('order_total').notNull(),
-  actualShipDate: timestamp('actual_ship_date').notNull(),
-  trackingNumbers: text('tracking_numbers').array(),
-  orderSource: text('order_source'),
-  orderSummary: text('order_summary'),
-  processedAt: timestamp('processed_at').defaultNow().notNull(),
-});
+// Order type
+export interface Order {
+  id: number;
+  customerOrderNumber: string;
+  customerId?: number | null;
+  orderTotal: number;
+  orderDate: Date | string;
+  actualShipDate?: Date | string | null;
+  orderStatus: string; // 'new', 'processing', 'shipped', 'delivered', 'cancelled'
+  orderSource?: string | null;
+  orderSummary?: string | null;
+  metadata?: Record<string, any> | null;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+  // Related data embedded directly (for localStorage)
+  shippingAddress?: ShippingAddress;
+  tracking?: TrackingInfo[];
+  customer?: Customer;
+  items?: OrderItem[];
+}
 
-// Email Analytics table
-export const emailAnalytics = pgTable('email_analytics', {
-  id: serial('id').primaryKey(),
-  date: timestamp('date').defaultNow().notNull(),
-  sent: integer('sent').notNull().default(0),
-  failed: integer('failed').notNull().default(0),
-  deliveryIssues: text('delivery_issues'),
-});
+// Shipping Address type
+export interface ShippingAddress {
+  id: number;
+  orderId: number;
+  shipToName: string;
+  shipToPhone?: string | null;
+  shipToEmail?: string | null;
+  shipToLine1: string;
+  shipToLine2?: string | null;
+  shipToCity: string;
+  shipToStateProvince: string;
+  shipToPostalCode: string;
+  shipToCountry?: string;
+  // Extra fields to handle various Excel import formats
+  additionalData?: Record<string, any> | null;
+}
 
-// Define types for select and insert operations
-export type EmailTemplate = InferSelectModel<typeof emailTemplates>;
-export type NewEmailTemplate = InferInsertModel<typeof emailTemplates>;
+// Tracking Information type
+export interface TrackingInfo {
+  id: number;
+  orderId: number;
+  trackingNumber: string;
+  carrier?: string;
+  trackingUrl?: string | null;
+  status?: string | null; // 'in_transit', 'delivered', 'exception'
+  lastUpdated: Date | string;
+}
 
-export type Customer = InferSelectModel<typeof customers>;
-export type NewCustomer = InferInsertModel<typeof customers>;
+// Order Item type
+export interface OrderItem {
+  id: number;
+  orderId: number;
+  productName: string;
+  quantity: number;
+  unitPrice: number;
+  sku?: string | null;
+  productDescription?: string | null;
+}
 
-export type SentEmail = InferSelectModel<typeof sentEmails>;
-export type NewSentEmail = InferInsertModel<typeof sentEmails>;
+// Email Analytics type
+export interface EmailAnalytic {
+  id: number;
+  date: Date | string;
+  sent: number;
+  failed: number;
+  deliveryIssues?: string | null;
+}
 
-export type OrderData = InferSelectModel<typeof orderData>;
-export type NewOrderData = InferInsertModel<typeof orderData>;
+// For pagination
+export interface PaginationState {
+  page: number;
+  pageSize: number;
+  totalItems: number;
+  sortField?: string;
+  sortDirection?: string;
+}
 
-export type EmailAnalytic = InferSelectModel<typeof emailAnalytics>;
-export type NewEmailAnalytic = InferInsertModel<typeof emailAnalytics>;
+// NewX types (for creating new records)
+export type NewEmailTemplate = Omit<EmailTemplate, 'id'>;
+export type NewCustomer = Omit<Customer, 'id'>;
+export type NewSentEmail = Omit<SentEmail, 'id'>;
+export type NewOrder = Omit<Order, 'id'>;
+export type NewShippingAddress = Omit<ShippingAddress, 'id'>;
+export type NewTrackingInfo = Omit<TrackingInfo, 'id'>;
+export type NewOrderItem = Omit<OrderItem, 'id'>;
+export type NewEmailAnalytic = Omit<EmailAnalytic, 'id'>;

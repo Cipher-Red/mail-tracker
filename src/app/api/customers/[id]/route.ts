@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { customers } from '@/db/schema';
-import { eq } from 'drizzle-orm';
+import { customerStorage } from '@/lib/storage-service';
 
 // GET a specific customer
 export async function GET(
@@ -17,16 +15,17 @@ export async function GET(
       );
     }
 
-    const customer = await db.select().from(customers).where(eq(customers.id, id));
+    // Get customer from localStorage
+    const customer = customerStorage.getById(id);
     
-    if (!customer.length) {
+    if (!customer) {
       return NextResponse.json(
         { error: 'Customer not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(customer[0]);
+    return NextResponse.json(customer);
   } catch (error) {
     console.error('Error fetching customer:', error);
     return NextResponse.json(
@@ -60,28 +59,26 @@ export async function PUT(
       );
     }
 
-    const updatedCustomer = await db.update(customers)
-      .set({
-        name,
-        email,
-        company: company || null,
-        phone: phone || null,
-        address: address || null,
-        tags: tags || [],
-        lastContact: lastContact ? new Date(lastContact) : null,
-        notes: notes || null,
-      })
-      .where(eq(customers.id, id))
-      .returning();
+    // Update customer in localStorage
+    const updatedCustomer = customerStorage.update(id, {
+      name,
+      email,
+      company: company || null,
+      phone: phone || null,
+      address: address || null,
+      tags: tags || [],
+      lastContact: lastContact ? new Date(lastContact) : null,
+      notes: notes || null,
+    });
 
-    if (!updatedCustomer.length) {
+    if (!updatedCustomer) {
       return NextResponse.json(
         { error: 'Customer not found' },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(updatedCustomer[0]);
+    return NextResponse.json(updatedCustomer);
   } catch (error) {
     console.error('Error updating customer:', error);
     return NextResponse.json(
@@ -105,11 +102,10 @@ export async function DELETE(
       );
     }
 
-    const deletedCustomer = await db.delete(customers)
-      .where(eq(customers.id, id))
-      .returning();
-
-    if (!deletedCustomer.length) {
+    // Delete customer from localStorage
+    const success = customerStorage.delete(id);
+    
+    if (!success) {
       return NextResponse.json(
         { error: 'Customer not found' },
         { status: 404 }

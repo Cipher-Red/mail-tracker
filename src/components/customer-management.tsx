@@ -1,9 +1,12 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Search, UserPlus, Users, X, Edit, Trash2, Check, Download, ChevronDown, ChevronUp, Filter } from 'lucide-react';
+import { Toaster } from 'react-hot-toast';
+import { Search, UserPlus, Users, X, Edit, Trash2, Check, Download, ChevronDown, ChevronUp, Filter, Calendar, Mail, Phone, Clock, AlertCircle } from 'lucide-react';
 import { getLocalStorage, setLocalStorage } from '@/lib/utils';
+import toast from 'react-hot-toast';
+import CustomerStats from './customer-stats';
 export interface Customer {
   id: string;
   name: string;
@@ -19,13 +22,21 @@ export interface Customer {
 export default function CustomerManagement() {
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+
+  // Add Toaster for notifications
+  const [visibleFilters, setVisibleFilters] = useState(false);
+  const [dateFilter, setDateFilter] = useState<string>('');
+  const [tagFilter, setTagFilter] = useState<string | null>(null);
+  const [statusFilter, setStatusFilter] = useState<string>('');
   const [isAddingCustomer, setIsAddingCustomer] = useState(false);
   const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
   const [selectedCustomers, setSelectedCustomers] = useState<string[]>([]);
   const [sortField, setSortField] = useState<keyof Customer>('addedAt');
   const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc');
   const [filterTag, setFilterTag] = useState<string | null>(null);
+  const [showConfirmDelete, setShowConfirmDelete] = useState<string | null>(null);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
+  const isInitialLoad = useRef(true);
 
   // New customer template
   const newCustomerTemplate: Omit<Customer, 'id'> = {
@@ -46,26 +57,43 @@ export default function CustomerManagement() {
 
   // Load customers from localStorage on component mount
   useEffect(() => {
-    const savedCustomers = getLocalStorage<Customer[]>('emailCustomers', []);
-    setCustomers(savedCustomers);
+    try {
+      // Load directly from localStorage
+      const savedCustomers = getLocalStorage<Customer[]>('emailCustomers', []);
+      setCustomers(savedCustomers);
 
-    // Extract all unique tags from customers
-    const tags = savedCustomers.flatMap(customer => customer.tags || []);
-    setAvailableTags([...new Set(tags)]);
+      // Extract all unique tags from customers
+      const tags = savedCustomers.flatMap(customer => customer.tags || []);
+      setAvailableTags([...new Set(tags)]);
+    } catch (error) {
+      console.error('Error loading customers from localStorage:', error);
+      // Initialize with empty array if there was an error
+      setCustomers([]);
+      setAvailableTags([]);
+    }
   }, []);
 
   // Save customers to localStorage whenever they change
   useEffect(() => {
-    if (customers.length > 0) {
-      setLocalStorage('emailCustomers', customers);
+    // We don't want to save on initial load
+    if (!isInitialLoad.current) {
+      try {
+        // Update available tags
+        const tags = customers.flatMap(customer => customer.tags || []);
+        setAvailableTags([...new Set(tags)]);
 
-      // Update available tags
-      const tags = customers.flatMap(customer => customer.tags || []);
-      setAvailableTags([...new Set(tags)]);
+        // Save directly to localStorage
+        setLocalStorage('emailCustomers', customers);
+      } catch (error) {
+        console.error('Error saving customers to localStorage:', error);
+      }
     }
+
+    // After first render, set isInitialLoad to false
+    isInitialLoad.current = false;
   }, [customers]);
 
-  // Filter and sort customers based on search query, tag filter, and sort settings
+  // Filter and sort customers based on multiple criteria
   const filteredCustomers = customers.filter(customer => {
     // Apply search filter
     const searchLower = searchQuery.toLowerCase();
@@ -73,7 +101,13 @@ export default function CustomerManagement() {
 
     // Apply tag filter
     const matchesTag = !filterTag || customer.tags?.includes(filterTag);
-    return matchesSearch && matchesTag;
+
+    // Apply date filter
+    const matchesDate = !dateFilter || customer.addedAt && new Date(customer.addedAt).toISOString().split('T')[0] === dateFilter || customer.lastContact && new Date(customer.lastContact).toISOString().split('T')[0] === dateFilter;
+
+    // Apply status filter (based on presence of certain data)
+    const matchesStatus = !statusFilter || statusFilter === 'withEmail' && !!customer.email || statusFilter === 'withPhone' && !!customer.phone || statusFilter === 'withNotes' && !!customer.notes || statusFilter === 'withoutNotes' && !customer.notes || statusFilter === 'recentlyAdded' && customer.addedAt && new Date().getTime() - new Date(customer.addedAt).getTime() < 7 * 24 * 60 * 60 * 1000;
+    return matchesSearch && matchesTag && matchesDate && matchesStatus;
   }).sort((a, b) => {
     // Handle string comparison
     if (typeof a[sortField] === 'string' && typeof b[sortField] === 'string') {
@@ -116,32 +150,56 @@ export default function CustomerManagement() {
   };
 
   // Add or update a customer
-  const saveCustomer = () => {
+  const saveCustomer = async () => {
     if (!formData.name || !formData.email) {
       alert('Name and email are required');
       return;
     }
-    if (editingCustomer) {
-      // Update existing customer
-      const updatedCustomers = customers.map(customer => customer.id === editingCustomer.id ? {
-        ...formData,
-        id: customer.id
-      } : customer);
-      setCustomers(updatedCustomers);
-      setEditingCustomer(null);
-    } else {
-      // Add new customer with generated id
-      const newCustomer: Customer = {
-        ...formData,
-        id: Date.now().toString()
-      };
-      setCustomers([...customers, newCustomer]);
-    }
+    try {
+      if (editingCustomer) {
+        // Update existing customer via API
+        const response = await fetch(`/api/customers/${editingCustomer.id}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to update customer');
+        }
+        const updatedCustomer = await response.json();
 
-    // Reset form
-    setFormData(newCustomerTemplate);
-    setIsAddingCustomer(false);
-    setShowAdvancedFields(false);
+        // Update local state
+        const updatedCustomers = customers.map(customer => customer.id === editingCustomer.id ? updatedCustomer : customer);
+        setCustomers(updatedCustomers);
+        setEditingCustomer(null);
+      } else {
+        // Add new customer via API
+        const response = await fetch('/api/customers', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(formData)
+        });
+        if (!response.ok) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to create customer');
+        }
+        const newCustomer = await response.json();
+        setCustomers([...customers, newCustomer]);
+      }
+
+      // Reset form
+      setFormData(newCustomerTemplate);
+      setIsAddingCustomer(false);
+      setShowAdvancedFields(false);
+    } catch (error) {
+      console.error('Error saving customer:', error);
+      alert(`Error saving customer: ${error instanceof Error ? error.message : 'Unknown error'}`);
+    }
   };
 
   // Start editing a customer
@@ -162,13 +220,67 @@ export default function CustomerManagement() {
     setShowAdvancedFields(true);
   };
 
-  // Delete a customer
-  const deleteCustomer = (id: string) => {
-    if (confirm('Are you sure you want to delete this customer?')) {
+  // Delete a customer with better UI and error handling
+  const deleteCustomer = async (id: string) => {
+    try {
+      // Show loading state
+      const toastId = toast.loading('Removing customer data...');
+
+      // Get customer name for confirmation message
+      const customerToDelete = customers.find(c => c.id === id);
+      const customerName = customerToDelete?.name || 'Customer';
+
+      // Delete from API
+      const response = await fetch(`/api/customers/${id}`, {
+        method: 'DELETE'
+      });
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to delete customer');
+      }
+
+      // Update local state
       setCustomers(customers.filter(customer => customer.id !== id));
+
       // Also remove from selected list if present
       setSelectedCustomers(selectedCustomers.filter(customerId => customerId !== id));
+
+      // Remove from localStorage as fallback in case API fails silently
+      try {
+        if (typeof window !== 'undefined') {
+          const localCustomers = getLocalStorage<Customer[]>('emailCustomers', []);
+          const filteredLocalCustomers = localCustomers.filter(c => c.id !== id);
+          setLocalStorage('emailCustomers', filteredLocalCustomers);
+        }
+      } catch (localError) {
+        console.warn('Could not update localStorage:', localError);
+      }
+
+      // Clear any pending confirmation
+      setShowConfirmDelete(null);
+
+      // Show success toast with customer name
+      toast.success(`"${customerName}" has been successfully removed`, {
+        id: toastId,
+        duration: 3000
+      });
+    } catch (error) {
+      console.error('Error deleting customer:', error);
+      toast.error(`Error removing customer data: ${error instanceof Error ? error.message : 'Unknown error'}`, {
+        duration: 4000
+      });
+      setShowConfirmDelete(null);
     }
+  };
+
+  // Function to show delete confirmation
+  const confirmDelete = (id: string) => {
+    setShowConfirmDelete(id);
+
+    // Auto-hide after a few seconds if not acted upon
+    setTimeout(() => {
+      setShowConfirmDelete(prev => prev === id ? null : prev);
+    }, 8000);
   };
 
   // Toggle customer selection
@@ -229,61 +341,150 @@ export default function CustomerManagement() {
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="39c0df3c-3b58-4654-b65b-951e99aa4a60" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+  }} className="bg-white rounded-lg shadow-md p-6" data-unique-id="96042f84-6536-4daa-b2f6-218a00880b3a" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+      <Toaster position="top-center" />
+      <Toaster position="top-center" />
       {/* Header section */}
-      <div className="flex justify-between items-center mb-6" data-unique-id="d034873f-d6f5-441f-9f67-751ba9eb69d9" data-file-name="components/customer-management.tsx">
-        <h2 className="text-xl font-medium flex items-center" data-unique-id="90bbdc3c-0029-43cf-91e8-5fe7c2f0b3a1" data-file-name="components/customer-management.tsx">
-          <Users className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="bab654bf-4c64-4e4d-86f5-b30e334aba25" data-file-name="components/customer-management.tsx"> Customer Management
+      <div className="flex justify-between items-center mb-6" data-unique-id="9fab54cd-4dbd-4a1b-9094-80be5d5bdd7a" data-file-name="components/customer-management.tsx">
+        <h2 className="text-xl font-medium flex items-center" data-unique-id="85cc5c82-1c88-45b4-ab60-3856a13b82a5" data-file-name="components/customer-management.tsx">
+          <Users className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="d8460587-4065-4457-8d23-c4c42cf65848" data-file-name="components/customer-management.tsx"> Customer Management
         </span></h2>
         <button onClick={() => {
         setIsAddingCustomer(true);
         setEditingCustomer(null);
         setFormData(newCustomerTemplate);
         setShowAdvancedFields(false);
-      }} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="6d7d9ef3-cb28-4887-a5b1-327ae3e31568" data-file-name="components/customer-management.tsx">
-          <UserPlus className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="53e6952f-e7ee-4331-9637-fec83ee2f7aa" data-file-name="components/customer-management.tsx">
+      }} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="3c760b6e-4634-42bf-ac43-b12970da4503" data-file-name="components/customer-management.tsx">
+          <UserPlus className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="fed7f1b1-5a6f-4bb6-af91-dff00fe53473" data-file-name="components/customer-management.tsx">
           Add Customer
         </span></button>
       </div>
       
+      {/* Customer statistics overview */}
+      <CustomerStats customers={customers} />
+      
       {/* Search and filter section */}
-      <div className="mb-6 flex flex-wrap items-center gap-4" data-unique-id="b73f1214-d7cd-4630-9d98-d4c69a87c8af" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
-        <div className="relative flex-grow" data-unique-id="9063131d-b116-4422-8880-5b5002f93805" data-file-name="components/customer-management.tsx">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <input type="text" placeholder="Search customers by name, email, company..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 pr-4 py-2 w-full border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" data-unique-id="429c50a3-f995-4600-a77c-ce77fccf4b25" data-file-name="components/customer-management.tsx" />
-        </div>
-        
-        {/* Tag filter dropdown */}
-        <div className="relative" data-unique-id="5ab64c44-06de-4560-b4a2-305e7e64f39d" data-file-name="components/customer-management.tsx">
-          <button className="px-4 py-2 border border-border rounded-md flex items-center space-x-2 bg-white hover:bg-accent/10" onClick={() => document.getElementById('tagDropdown')?.classList.toggle('hidden')} data-unique-id="4b33d3fa-1cea-4cf5-aba2-7f2cc0783229" data-file-name="components/customer-management.tsx">
-            <Filter className="h-4 w-4" />
-            <span data-unique-id="75a0e820-c780-47d0-8038-fac65d02eec1" data-file-name="components/customer-management.tsx" data-dynamic-text="true">{filterTag || 'Filter by Tag'}</span>
-            <ChevronDown className="h-4 w-4" />
+      <div className="mb-6 space-y-4" data-unique-id="0020ad7b-701d-47b7-8c7c-37911375bb29" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+        <div className="flex flex-wrap items-center gap-4" data-unique-id="3b72c071-e846-4517-bb70-1a3582442a89" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+          <div className="relative flex-grow" data-unique-id="e44b257b-0b37-4068-85b0-e1bbeee4d150" data-file-name="components/customer-management.tsx">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+            <input type="text" placeholder="Search customers by name, email, company..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="pl-10 pr-4 py-2 w-full border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" data-unique-id="42272827-a7e6-4051-9efe-9d81186c8da5" data-file-name="components/customer-management.tsx" />
+          </div>
+          
+          <button onClick={() => setVisibleFilters(!visibleFilters)} className={`px-4 py-2 border ${visibleFilters ? 'border-primary bg-primary/5' : 'border-border'} rounded-md flex items-center space-x-2 hover:bg-accent/10 transition-colors`} data-unique-id="f126ce2c-c877-4a62-aab6-7abc448fa0f5" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+            <Filter className={`h-4 w-4 ${visibleFilters ? 'text-primary' : ''}`} />
+            <span data-unique-id="4db8a6f4-3987-4842-94d1-9a57f69326c8" data-file-name="components/customer-management.tsx" data-dynamic-text="true">{visibleFilters ? 'Hide Filters' : 'Show Filters'}</span>
+            {visibleFilters ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </button>
           
-          <div id="tagDropdown" className="hidden absolute z-10 mt-2 w-48 bg-white shadow-lg rounded-md border border-border" data-unique-id="ba1cb36c-c9ae-4f45-8526-1fe64ccdd0e6" data-file-name="components/customer-management.tsx">
-            <div className="p-2" data-unique-id="ea5a5d77-72c1-4a01-9c4d-7c2dea552121" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
-              <button className={`w-full text-left px-3 py-2 rounded-md ${!filterTag ? 'bg-accent/20' : 'hover:bg-accent/10'}`} onClick={() => {
-              setFilterTag(null);
-              document.getElementById('tagDropdown')?.classList.add('hidden');
-            }} data-unique-id="322a5e73-a5d9-44b1-a958-668b1968a4ff" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="95f0292e-9eef-4d10-a9f7-3c0da4d09615" data-file-name="components/customer-management.tsx">
-                All Tags
-              </span></button>
-              {availableTags.map(tag => <button key={tag} className={`w-full text-left px-3 py-2 rounded-md ${filterTag === tag ? 'bg-accent/20' : 'hover:bg-accent/10'}`} onClick={() => {
-              setFilterTag(tag);
-              document.getElementById('tagDropdown')?.classList.add('hidden');
-            }} data-unique-id="9a2e805f-7f11-4917-9251-616a8674388c" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
-                  {tag}
-                </button>)}
-            </div>
-          </div>
+          {/* Export button */}
+          <button onClick={exportCustomersCSV} className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" data-unique-id="e9c3d479-d8d3-4459-9977-640774ca87d0" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+            <Download className="h-4 w-4 inline mr-2" />
+            {selectedCustomers.length > 0 ? `Export (${selectedCustomers.length})` : 'Export All'}
+          </button>
         </div>
         
-        {/* Export button */}
-        <button onClick={exportCustomersCSV} className="px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" data-unique-id="e2b3cd0e-4f92-468d-98a2-ad2b1729a3ab" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
-          <Download className="h-4 w-4 inline mr-2" />
-          {selectedCustomers.length > 0 ? `Export (${selectedCustomers.length})` : 'Export All'}
-        </button>
+        {/* Advanced filters */}
+        {visibleFilters && <motion.div initial={{
+        opacity: 0,
+        height: 0
+      }} animate={{
+        opacity: 1,
+        height: 'auto'
+      }} exit={{
+        opacity: 0,
+        height: 0
+      }} transition={{
+        duration: 0.2
+      }} className="grid grid-cols-1 md:grid-cols-3 gap-4 p-4 bg-accent/5 rounded-lg border border-border" data-unique-id="9413d802-8bdb-4777-8bbe-67d1f32202f3" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+            {/* Tag filter */}
+            <div data-unique-id="d71793aa-c7fc-4290-b7d8-d3b41ac57ce3" data-file-name="components/customer-management.tsx">
+              <label className="block text-sm font-medium mb-2" data-unique-id="eb0cde42-7f01-441b-ace8-b84c18889f87" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="1152f775-32a3-4d73-862c-d5fc62f37c9e" data-file-name="components/customer-management.tsx">Filter by Tag</span></label>
+              <div className="relative" data-unique-id="896db636-ece0-454d-816e-c781de79dcc7" data-file-name="components/customer-management.tsx">
+                <select value={filterTag || ''} onChange={e => setFilterTag(e.target.value === '' ? null : e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary pr-8" data-unique-id="da99a8c1-82a2-4b7d-be77-34bfed95b2c8" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                  <option value="" data-unique-id="a12602a4-f5db-4ba1-a30d-c853c8c4dd88" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="c08110bd-ff20-45f9-a982-527a444634f4" data-file-name="components/customer-management.tsx">All Tags</span></option>
+                  {availableTags.map(tag => <option key={tag} value={tag} data-unique-id="d5c8f21b-8085-4f23-9c66-25a8b4b54dba" data-file-name="components/customer-management.tsx" data-dynamic-text="true">{tag}</option>)}
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 pointer-events-none text-muted-foreground" />
+              </div>
+            </div>
+            
+            {/* Date filter */}
+            <div data-unique-id="7b09021b-108c-4da3-870c-dbf877b3acca" data-file-name="components/customer-management.tsx">
+              <label className="block text-sm font-medium mb-2 flex items-center" data-unique-id="bb33f4d7-a950-49ac-b618-b5faad4c4c38" data-file-name="components/customer-management.tsx">
+                <Calendar className="h-4 w-4 mr-1" data-unique-id="c0723593-8384-47da-9149-eca4d2b4105e" data-file-name="components/customer-management.tsx" /><span className="editable-text" data-unique-id="779d5333-2ceb-4f21-9c74-94f82ea76f64" data-file-name="components/customer-management.tsx">
+                Filter by Date
+              </span></label>
+              <div className="relative" data-unique-id="87d05655-0005-4690-bc80-e8317b39652f" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <input type="date" value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="006a7827-ecc4-48e5-927e-6bcecd3dfa19" data-file-name="components/customer-management.tsx" />
+                {dateFilter && <button onClick={() => setDateFilter('')} className="absolute right-2 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground" title="Clear date filter" data-unique-id="359a4b0d-5cc9-4c89-82c1-6c088c64938f" data-file-name="components/customer-management.tsx">
+                    <X className="h-4 w-4" />
+                  </button>}
+              </div>
+            </div>
+            
+            {/* Status filter */}
+            <div data-unique-id="0d7a62a4-8f61-471c-8bfa-3c735da7b616" data-file-name="components/customer-management.tsx">
+              <label className="block text-sm font-medium mb-2" data-unique-id="87e15e55-a1f8-4338-b498-63a035385bd6" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="774451a2-f51e-4846-8940-f8620f45a916" data-file-name="components/customer-management.tsx">Customer Status</span></label>
+              <div className="relative" data-unique-id="4b97a1a0-a9b4-4468-a510-95a347a6891d" data-file-name="components/customer-management.tsx">
+                <select value={statusFilter} onChange={e => setStatusFilter(e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary pr-8" data-unique-id="9664d9a1-b9f6-442f-b02b-0d2afaa7b641" data-file-name="components/customer-management.tsx">
+                  <option value="" data-unique-id="a4cd6ef9-44f7-4065-bcd2-5a92e9180258" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="8e9dfd8a-db00-4273-86ee-80bd0d30bf90" data-file-name="components/customer-management.tsx">All Customers</span></option>
+                  <option value="withEmail" data-unique-id="bea8e48b-908a-4d8d-81f9-759e66cf93d3" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="09982fac-b4a5-464e-bcbe-3b67f6c9229c" data-file-name="components/customer-management.tsx">With Email</span></option>
+                  <option value="withPhone" data-unique-id="72b7e899-8138-4ac6-b56f-3ee2803344f0" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="05ccdc25-f7ec-45fb-b1fb-df74d3da600d" data-file-name="components/customer-management.tsx">With Phone</span></option>
+                  <option value="withNotes" data-unique-id="c31d170b-0c3c-4616-af44-9133bc6dbe81" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="dd3773fb-193f-461e-af6c-e3d90a2c226e" data-file-name="components/customer-management.tsx">With Notes</span></option>
+                  <option value="withoutNotes" data-unique-id="3d135381-850c-4ffa-870e-734427cd45ea" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="ce74c25b-f704-417f-830d-bbca0f842159" data-file-name="components/customer-management.tsx">Without Notes</span></option>
+                  <option value="recentlyAdded" data-unique-id="9dadc548-50c0-4022-bc90-0719f933c112" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="2197e39a-40fd-4039-8ff6-11213409d17c" data-file-name="components/customer-management.tsx">Recently Added (7 days)</span></option>
+                </select>
+                <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 pointer-events-none text-muted-foreground" />
+              </div>
+            </div>
+          </motion.div>}
+        
+        {/* Active filters display */}
+        {(searchQuery || filterTag || dateFilter || statusFilter) && <div className="flex flex-wrap gap-2 mt-2" data-unique-id="f97caf85-f8d0-43e7-be61-ba2e8791b919" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+            {searchQuery && <div className="bg-primary/10 text-primary px-3 py-1 rounded-full text-xs flex items-center" data-unique-id="5de5eb3a-d35a-4918-8644-4c9c4ac5f5e9" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <Search className="h-3 w-3 mr-1" /><span className="editable-text" data-unique-id="4f3d3be5-b1ac-4470-abec-14aa65ca25d4" data-file-name="components/customer-management.tsx">
+                Search: </span>{searchQuery}
+                <button onClick={() => setSearchQuery('')} className="ml-1 hover:text-primary/70" data-unique-id="838d3c3b-7963-4c7e-aab5-6330b629da91" data-file-name="components/customer-management.tsx">
+                  <X className="h-3 w-3" />
+                </button>
+              </div>}
+            
+            {filterTag && <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-xs flex items-center" data-unique-id="973a4d8d-8e4f-4586-a46d-b14ed94bcbf3" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <Filter className="h-3 w-3 mr-1" /><span className="editable-text" data-unique-id="0f212050-713c-4272-ad4e-83d88780e5e7" data-file-name="components/customer-management.tsx">
+                Tag: </span>{filterTag}
+                <button onClick={() => setFilterTag(null)} className="ml-1 hover:text-blue-500" data-unique-id="07bab377-d8b1-4b33-b219-687a508c7c8b" data-file-name="components/customer-management.tsx">
+                  <X className="h-3 w-3" />
+                </button>
+              </div>}
+            
+            {dateFilter && <div className="bg-green-50 text-green-700 px-3 py-1 rounded-full text-xs flex items-center" data-unique-id="084c2591-3192-401b-b971-452764ea8c81" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <Calendar className="h-3 w-3 mr-1" data-unique-id="d615a5da-2260-4216-b527-7bbc41e553ad" data-file-name="components/customer-management.tsx" /><span className="editable-text" data-unique-id="d2891220-baf4-488c-af5f-4d02f27c907d" data-file-name="components/customer-management.tsx">
+                Date: </span>{new Date(dateFilter).toLocaleDateString()}
+                <button onClick={() => setDateFilter('')} className="ml-1 hover:text-green-500" data-unique-id="3e058bd4-6f8c-4565-bda2-db55e5ec32d7" data-file-name="components/customer-management.tsx">
+                  <X className="h-3 w-3" />
+                </button>
+              </div>}
+            
+            {statusFilter && <div className="bg-amber-50 text-amber-700 px-3 py-1 rounded-full text-xs flex items-center" data-unique-id="41543328-4c71-4e4c-9555-e046878cd611" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                {statusFilter === 'withEmail' && <Mail className="h-3 w-3 mr-1" />}
+                {statusFilter === 'withPhone' && <Phone className="h-3 w-3 mr-1" />}
+                {statusFilter === 'withNotes' || statusFilter === 'withoutNotes' ? <Edit className="h-3 w-3 mr-1" /> : <Clock className="h-3 w-3 mr-1" />}<span className="editable-text" data-unique-id="5511a9d5-9566-49c3-8a43-4dbcff301613" data-file-name="components/customer-management.tsx">
+                Status: </span>{statusFilter === 'withEmail' ? 'With Email' : statusFilter === 'withPhone' ? 'With Phone' : statusFilter === 'withNotes' ? 'With Notes' : statusFilter === 'withoutNotes' ? 'Without Notes' : 'Recently Added'}
+                <button onClick={() => setStatusFilter('')} className="ml-1 hover:text-amber-500" data-unique-id="66fbed92-5ab3-4cb5-8d6b-dea2a4d7f484" data-file-name="components/customer-management.tsx">
+                  <X className="h-3 w-3" />
+                </button>
+              </div>}
+            
+            <button onClick={() => {
+          setSearchQuery('');
+          setFilterTag(null);
+          setDateFilter('');
+          setStatusFilter('');
+        }} className="bg-gray-100 text-gray-600 px-3 py-1 rounded-full text-xs flex items-center hover:bg-gray-200" data-unique-id="38b3985c-8ab0-474c-af10-2f588043b1f4" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="a90889c6-aca4-427e-8adb-3c2628941043" data-file-name="components/customer-management.tsx">
+              Clear All Filters
+            </span></button>
+          </div>}
       </div>
       
       {/* Add/Edit customer form */}
@@ -293,50 +494,50 @@ export default function CustomerManagement() {
     }} animate={{
       opacity: 1,
       y: 0
-    }} className="mb-6 border border-border rounded-md p-4" data-unique-id="6f0137c2-0243-4bad-bb13-78bb8dae9447" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
-          <div className="flex justify-between items-center mb-4" data-unique-id="8d25c029-eb95-4893-a978-522213954f5b" data-file-name="components/customer-management.tsx">
-            <h3 className="font-medium" data-unique-id="6620f08e-c18b-4d75-9a16-91127c4cd31b" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+    }} className="mb-6 border border-border rounded-md p-4" data-unique-id="5aef919b-65f7-41ff-ab17-26c9ec18ccc6" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+          <div className="flex justify-between items-center mb-4" data-unique-id="f71ba3fc-03e0-4c73-933e-ef12e88f2927" data-file-name="components/customer-management.tsx">
+            <h3 className="font-medium" data-unique-id="cd758d82-4ce2-49ff-bf0a-84650b6046ea" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
               {editingCustomer ? 'Edit Customer' : 'Add New Customer'}
             </h3>
             <button onClick={() => {
           setIsAddingCustomer(false);
           setEditingCustomer(null);
-        }} className="p-1 rounded-full hover:bg-accent/20" data-unique-id="8f87ceb1-fab9-4762-aa0b-e70656bc088e" data-file-name="components/customer-management.tsx">
+        }} className="p-1 rounded-full hover:bg-accent/20" data-unique-id="3fcf0831-2a94-46ec-b42a-dc7c2634cb60" data-file-name="components/customer-management.tsx">
               <X className="h-5 w-5" />
             </button>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" data-unique-id="a028bd26-3531-4cef-9a4f-13a01d6da247" data-file-name="components/customer-management.tsx">
-            <div data-unique-id="45b3301b-050f-47f6-808c-6cff98597d8d" data-file-name="components/customer-management.tsx">
-              <label htmlFor="customerName" className="block text-sm font-medium mb-1" data-unique-id="f18c3ce3-67ab-4644-892c-25f42b0505fd" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="46f91eea-5871-4593-b1da-1b45b95df116" data-file-name="components/customer-management.tsx">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" data-unique-id="2fbb673c-44ef-49c4-b919-e75d50f19ecb" data-file-name="components/customer-management.tsx">
+            <div data-unique-id="a161fe1d-f776-499b-80a1-aa34db69d437" data-file-name="components/customer-management.tsx">
+              <label htmlFor="customerName" className="block text-sm font-medium mb-1" data-unique-id="f9ab1811-c0f3-4cad-8e22-12c6e031e24e" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="74a7608f-bea1-4d91-81c6-e116aca1e817" data-file-name="components/customer-management.tsx">
                 Name *
               </span></label>
-              <input id="customerName" type="text" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" required data-unique-id="adb95439-7e0a-40a7-aeb3-170a69513e4a" data-file-name="components/customer-management.tsx" />
+              <input id="customerName" type="text" value={formData.name} onChange={e => handleInputChange('name', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" required data-unique-id="6d5041ea-17fa-4cfb-8c03-20b3aa03d4b4" data-file-name="components/customer-management.tsx" />
             </div>
             
-            <div data-unique-id="f63831b7-9c63-403a-984d-c5c6567aa141" data-file-name="components/customer-management.tsx">
-              <label htmlFor="customerEmail" className="block text-sm font-medium mb-1" data-unique-id="6709fcbd-4068-4c4e-a7e0-b2ffb00d7a8f" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="540eb0e9-9d80-4bef-a29b-24234c100f65" data-file-name="components/customer-management.tsx">
+            <div data-unique-id="b97dfc0b-baff-4adb-a189-b4d961f73408" data-file-name="components/customer-management.tsx">
+              <label htmlFor="customerEmail" className="block text-sm font-medium mb-1" data-unique-id="5dbca124-cdc2-4761-807b-e757b1ffd99e" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="42505a98-9859-4f10-9252-d0bbf1913a7e" data-file-name="components/customer-management.tsx">
                 Email Address *
               </span></label>
-              <input id="customerEmail" type="email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" required data-unique-id="db049b23-7b22-44e9-aa12-3f36a04bb897" data-file-name="components/customer-management.tsx" />
+              <input id="customerEmail" type="email" value={formData.email} onChange={e => handleInputChange('email', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" required data-unique-id="f2c13fe7-c5a6-46a5-a93f-86da2ae481ab" data-file-name="components/customer-management.tsx" />
             </div>
             
-            <div data-unique-id="6537cc50-ac0f-469f-aca6-dbc563b20214" data-file-name="components/customer-management.tsx">
-              <label htmlFor="customerCompany" className="block text-sm font-medium mb-1" data-unique-id="58a6aadc-f878-4b8c-bfe6-f9c686a2a34b" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="b11b6dc0-44db-4f48-b0a3-6bc2c097bc2d" data-file-name="components/customer-management.tsx">
+            <div data-unique-id="c766e430-defb-4bab-a954-1ec19f5e8e82" data-file-name="components/customer-management.tsx">
+              <label htmlFor="customerCompany" className="block text-sm font-medium mb-1" data-unique-id="3d6357d5-3cf4-4dff-adc1-f71da69f33ba" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="bcc5ee11-3125-4410-b537-6eed060b9c8d" data-file-name="components/customer-management.tsx">
                 Company
               </span></label>
-              <input id="customerCompany" type="text" value={formData.company} onChange={e => handleInputChange('company', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="e1c0f144-e096-4fb6-a020-24ed1eda5bdb" data-file-name="components/customer-management.tsx" />
+              <input id="customerCompany" type="text" value={formData.company} onChange={e => handleInputChange('company', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="12f1790e-5802-45fe-82af-a7a869bb01a6" data-file-name="components/customer-management.tsx" />
             </div>
             
-            <div data-unique-id="62380513-b6e8-4375-af0b-0f90f02d86e2" data-file-name="components/customer-management.tsx">
-              <label htmlFor="customerTags" className="block text-sm font-medium mb-1" data-unique-id="5821af93-aaa8-439d-9a39-1112c651e65c" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="c7e77c38-4edd-4d8f-bd57-b091b17e3ce4" data-file-name="components/customer-management.tsx">
+            <div data-unique-id="ad2f0042-d6fc-470c-bc8e-1f7750b124bc" data-file-name="components/customer-management.tsx">
+              <label htmlFor="customerTags" className="block text-sm font-medium mb-1" data-unique-id="56f0c2ce-7c24-4f60-99bf-92a3b4404b47" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="136b20ff-8846-4c46-b6a1-9aa4dafd11ae" data-file-name="components/customer-management.tsx">
                 Tags (press Enter to add)
               </span></label>
-              <input id="customerTags" type="text" placeholder="Add tags..." onKeyDown={handleTagInput} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="0b7f8ee7-460f-483d-8382-27db503b5660" data-file-name="components/customer-management.tsx" />
-              <div className="flex flex-wrap gap-2 mt-2" data-unique-id="2f56e2db-01f6-4746-ab89-1322af186d00" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
-                {formData.tags?.map(tag => <span key={tag} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent/30" data-unique-id="0e675a9d-3819-4fb6-ba8d-9eb79241de99" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+              <input id="customerTags" type="text" placeholder="Add tags..." onKeyDown={handleTagInput} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="1ebd04f3-6531-4415-badf-bf48412f6979" data-file-name="components/customer-management.tsx" />
+              <div className="flex flex-wrap gap-2 mt-2" data-unique-id="0ea93339-7549-410a-ad0c-01382c362e44" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                {formData.tags?.map(tag => <span key={tag} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-accent/30" data-unique-id="20b58d8b-7f38-49b8-bcbf-27695eddfbda" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
                     {tag}
-                    <button type="button" onClick={() => removeTag(tag)} className="ml-1 focus:outline-none" data-unique-id="5ba05bbc-f1d3-4bd5-b694-1fe3898e6c58" data-file-name="components/customer-management.tsx">
+                    <button type="button" onClick={() => removeTag(tag)} className="ml-1 focus:outline-none" data-unique-id="9457b351-9ed1-4a4d-ae49-05ba831d1265" data-file-name="components/customer-management.tsx">
                       <X className="h-3 w-3" />
                     </button>
                   </span>)}
@@ -344,7 +545,7 @@ export default function CustomerManagement() {
             </div>
           </div>
           
-          <button type="button" onClick={() => setShowAdvancedFields(!showAdvancedFields)} className="text-sm text-primary flex items-center mb-4" data-unique-id="bd3b71e1-d810-43b6-8308-86ecdc06c7c6" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+          <button type="button" onClick={() => setShowAdvancedFields(!showAdvancedFields)} className="text-sm text-primary flex items-center mb-4" data-unique-id="a6333aba-62a2-4d60-9edf-83caf2ef84eb" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
             {showAdvancedFields ? <ChevronUp className="h-4 w-4 mr-1" /> : <ChevronDown className="h-4 w-4 mr-1" />}
             {showAdvancedFields ? 'Hide Advanced Fields' : 'Show Advanced Fields'}
           </button>
@@ -355,119 +556,130 @@ export default function CustomerManagement() {
       }} animate={{
         opacity: 1,
         height: 'auto'
-      }} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" data-unique-id="e3c73885-aa82-4ea1-99f8-c18cd2125f6e" data-file-name="components/customer-management.tsx">
-              <div data-unique-id="43a255b4-3fa9-4706-8e02-c6763985d7ab" data-file-name="components/customer-management.tsx">
-                <label htmlFor="customerPhone" className="block text-sm font-medium mb-1" data-unique-id="dcf26dd4-0ebc-4b29-9b0d-be98ec845470" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="f450ac6c-4163-4839-8be9-fb5303736c3f" data-file-name="components/customer-management.tsx">
+      }} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4" data-unique-id="e506ed79-bd74-4c8a-92d9-7e9c206618b7" data-file-name="components/customer-management.tsx">
+              <div data-unique-id="5eaa5e7a-00b4-4f69-a931-171ec6e5fe3a" data-file-name="components/customer-management.tsx">
+                <label htmlFor="customerPhone" className="block text-sm font-medium mb-1" data-unique-id="26e1429f-4245-4693-939f-7d267246528a" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="1808b34e-19d2-4d33-8c84-778131c59d6f" data-file-name="components/customer-management.tsx">
                   Phone Number
                 </span></label>
-                <input id="customerPhone" type="tel" value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="ce82b0ad-3e2f-4e12-8660-d906611f50df" data-file-name="components/customer-management.tsx" />
+                <input id="customerPhone" type="tel" value={formData.phone} onChange={e => handleInputChange('phone', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="1ce71a1b-683a-4d22-b772-55409308c64e" data-file-name="components/customer-management.tsx" />
               </div>
               
-              <div data-unique-id="02ab4f74-d0b3-42c3-af23-a05ee84fa50e" data-file-name="components/customer-management.tsx">
-                <label htmlFor="customerLastContact" className="block text-sm font-medium mb-1" data-unique-id="2908b9f5-e473-4662-99c3-36d384ea314a" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="85f5b362-9945-42b9-bf5d-cb90189d15b3" data-file-name="components/customer-management.tsx">
+              <div data-unique-id="09baaba1-10c7-429f-9258-6717338ab7ec" data-file-name="components/customer-management.tsx">
+                <label htmlFor="customerLastContact" className="block text-sm font-medium mb-1" data-unique-id="b297346f-f253-4a98-afe4-192046e11bfc" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="7af9ebde-6e3a-4b04-8039-6fae6a2cf2e9" data-file-name="components/customer-management.tsx">
                   Last Contact Date
                 </span></label>
-                <input id="customerLastContact" type="date" value={formData.lastContact ? new Date(formData.lastContact).toISOString().split('T')[0] : ''} onChange={e => handleInputChange('lastContact', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="344ca1d4-c5e1-4ad8-8bfd-a27925a82b12" data-file-name="components/customer-management.tsx" />
+                <input id="customerLastContact" type="date" value={formData.lastContact ? new Date(formData.lastContact).toISOString().split('T')[0] : ''} onChange={e => handleInputChange('lastContact', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="0893d55f-1005-4474-a942-3578ee630c16" data-file-name="components/customer-management.tsx" />
               </div>
               
-              <div className="col-span-full" data-unique-id="e5fa5e7f-e17d-4f77-875b-f6c237b1db22" data-file-name="components/customer-management.tsx">
-                <label htmlFor="customerAddress" className="block text-sm font-medium mb-1" data-unique-id="08dae607-d832-4052-8dce-7c4a1aaefcb6" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="53fc98d2-eae8-4102-9b72-de0ed04466e9" data-file-name="components/customer-management.tsx">
+              <div className="col-span-full" data-unique-id="ff31e380-0497-45f4-b5a0-dc075e697cdc" data-file-name="components/customer-management.tsx">
+                <label htmlFor="customerAddress" className="block text-sm font-medium mb-1" data-unique-id="4011e701-71bb-48f1-80c6-2e4c77ec6b03" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="833c07aa-f794-4868-88af-1769533122eb" data-file-name="components/customer-management.tsx">
                   Address
                 </span></label>
-                <input id="customerAddress" type="text" value={formData.address} onChange={e => handleInputChange('address', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="f8a342c7-0661-435d-83a2-d40a47c2f291" data-file-name="components/customer-management.tsx" />
+                <input id="customerAddress" type="text" value={formData.address} onChange={e => handleInputChange('address', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary" data-unique-id="fbf3f8e2-9b83-48cf-ab07-988b505eb817" data-file-name="components/customer-management.tsx" />
               </div>
               
-              <div className="col-span-full" data-unique-id="72dfe22b-396d-471c-b8fe-5513c8fb37ff" data-file-name="components/customer-management.tsx">
-                <label htmlFor="customerNotes" className="block text-sm font-medium mb-1" data-unique-id="fd8cd91d-8714-456b-bce9-260cfaac9941" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="9ac78304-8a89-4e56-ac33-aef410fdd6b7" data-file-name="components/customer-management.tsx">
+              <div className="col-span-full" data-unique-id="613394b8-8edb-493f-a52a-28e4e6f60896" data-file-name="components/customer-management.tsx">
+                <label htmlFor="customerNotes" className="block text-sm font-medium mb-1" data-unique-id="29002f45-47fa-483d-9f36-a25f328eaf29" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="2dc953f2-cb46-4ca9-9e69-7a1dbc8634c1" data-file-name="components/customer-management.tsx">
                   Notes
                 </span></label>
-                <textarea id="customerNotes" rows={3} value={formData.notes} onChange={e => handleInputChange('notes', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary resize-none" data-unique-id="87d60e30-0390-45d4-b9a0-df51a8c72c17" data-file-name="components/customer-management.tsx" />
+                <textarea id="customerNotes" rows={3} value={formData.notes} onChange={e => handleInputChange('notes', e.target.value)} className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-1 focus:ring-primary resize-none" data-unique-id="217ceba9-f20c-423e-8630-8e6e93b118d6" data-file-name="components/customer-management.tsx" />
               </div>
             </motion.div>}
           
-          <div className="flex justify-end space-x-2" data-unique-id="1b9acce6-6d3f-4d47-8783-dc2f619e25b4" data-file-name="components/customer-management.tsx">
+          <div className="flex justify-end space-x-2" data-unique-id="46d0222f-a608-4a20-af00-f0ad88307165" data-file-name="components/customer-management.tsx">
             <button onClick={() => {
           setIsAddingCustomer(false);
           setEditingCustomer(null);
-        }} className="px-4 py-2 border border-border rounded-md hover:bg-accent/10" data-unique-id="71019cc4-4121-4ebb-b728-ada9a22fa55e" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="c9f9e322-f35a-48e4-ae3c-8895b74acd43" data-file-name="components/customer-management.tsx">
+        }} className="px-4 py-2 border border-border rounded-md hover:bg-accent/10" data-unique-id="e1ebee41-d806-42d8-bb58-c4c64c9c2fc0" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="a45e34a2-2f5f-4db4-9681-aac15cd535e8" data-file-name="components/customer-management.tsx">
               Cancel
             </span></button>
-            <button onClick={saveCustomer} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90" data-unique-id="248883a5-050d-4c90-a2f6-9c18b36e072f" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+            <button onClick={saveCustomer} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90" data-unique-id="9b4c185d-9766-4922-8ca1-1871633a1a9d" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
               {editingCustomer ? 'Update Customer' : 'Add Customer'}
             </button>
           </div>
         </motion.div>}
       
       {/* Customer list */}
-      <div className="border border-border rounded-md overflow-hidden" data-unique-id="82479245-cb8b-4472-9a1b-6fee90fc5919" data-file-name="components/customer-management.tsx">
-        <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="c22695f0-bea9-4756-b717-ecc739539299" data-file-name="components/customer-management.tsx">
-          <div className="col-span-1" data-unique-id="2e35cb7b-93da-4cfe-8cac-53c4afd7732b" data-file-name="components/customer-management.tsx">
+      <div className="border border-border rounded-md overflow-hidden" data-unique-id="63c08cd7-069a-48be-83ac-ff211b9de9df" data-file-name="components/customer-management.tsx">
+        <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="0a5702d5-02a7-4bbc-95a0-7ef5c1b54fb2" data-file-name="components/customer-management.tsx">
+          <div className="col-span-1" data-unique-id="0a591c4c-b554-4755-a488-fb8907f4e40f" data-file-name="components/customer-management.tsx">
             <input type="checkbox" checked={selectedCustomers.length > 0 && selectedCustomers.length === filteredCustomers.length} onChange={() => {
             if (selectedCustomers.length === filteredCustomers.length) {
               setSelectedCustomers([]);
             } else {
               setSelectedCustomers(filteredCustomers.map(c => c.id));
             }
-          }} className="rounded border-gray-300" data-unique-id="5eba770c-0dad-4469-bbe4-d64a86c5c407" data-file-name="components/customer-management.tsx" />
+          }} className="rounded border-gray-300" data-unique-id="fbf263a2-f8fd-4189-9e38-1ab589adee17" data-file-name="components/customer-management.tsx" />
           </div>
-          <div className="col-span-3 flex items-center cursor-pointer" onClick={() => handleSortChange('name')} data-unique-id="990aec73-41d2-40de-995c-3045e8398234" data-file-name="components/customer-management.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="de09ef7d-472f-4d33-a186-e62addb384e3" data-file-name="components/customer-management.tsx">
+          <div className="col-span-3 flex items-center cursor-pointer" onClick={() => handleSortChange('name')} data-unique-id="a94d8404-0c55-4214-aeec-d32337de253b" data-file-name="components/customer-management.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="4a976ead-4f54-4edf-a6d5-86bfc562549e" data-file-name="components/customer-management.tsx">
             Name
             </span>{sortField === 'name' && (sortDirection === 'asc' ? <ChevronUp className="h-3 w-3 ml-1" /> : <ChevronDown className="h-3 w-3 ml-1" />)}
           </div>
-          <div className="col-span-3 flex items-center cursor-pointer" onClick={() => handleSortChange('email')} data-unique-id="611ac08c-17a7-4656-bf24-2c91880eaafd" data-file-name="components/customer-management.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="ccadd5f6-04d0-4c1b-b167-a58fd3705744" data-file-name="components/customer-management.tsx">
+          <div className="col-span-3 flex items-center cursor-pointer" onClick={() => handleSortChange('email')} data-unique-id="965cbbec-515f-4ed8-a613-167629ca1ceb" data-file-name="components/customer-management.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="160a8e4c-c8b1-48fc-a2c6-6502ad70ba7c" data-file-name="components/customer-management.tsx">
             Email
             </span>{sortField === 'email' && (sortDirection === 'asc' ? <ChevronUp className="h-3 w-3 ml-1" /> : <ChevronDown className="h-3 w-3 ml-1" />)}
           </div>
-          <div className="col-span-2" data-unique-id="6ea45988-dcfc-4948-b90e-fb769df815c0" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="e64da90a-66d3-4adf-ba9a-eb3f9e00bf85" data-file-name="components/customer-management.tsx">Company</span></div>
-          <div className="col-span-2 flex items-center cursor-pointer" onClick={() => handleSortChange('addedAt')} data-unique-id="098b5cd5-960b-44b1-8676-f027fad76b42" data-file-name="components/customer-management.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="5e704f54-04c0-4998-82e9-decdff4e9709" data-file-name="components/customer-management.tsx">
+          <div className="col-span-2" data-unique-id="389df187-39bb-48ea-bbea-4e7bb5d69cbb" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="734712ca-540b-4762-989c-4da0ff91ed66" data-file-name="components/customer-management.tsx">Company</span></div>
+          <div className="col-span-2 flex items-center cursor-pointer" onClick={() => handleSortChange('addedAt')} data-unique-id="05be377c-aa65-4cd2-8c0b-23de2e00a3aa" data-file-name="components/customer-management.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="a140067c-8bf9-41ba-8216-ab76d7946a7a" data-file-name="components/customer-management.tsx">
             Added Date
             </span>{sortField === 'addedAt' && (sortDirection === 'asc' ? <ChevronUp className="h-3 w-3 ml-1" /> : <ChevronDown className="h-3 w-3 ml-1" />)}
           </div>
-          <div className="col-span-1" data-unique-id="fc276874-87aa-4fd1-a901-0a519fd5c18e" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="d8f85157-3bc6-42cf-8fb5-47414bc62810" data-file-name="components/customer-management.tsx">Actions</span></div>
+          <div className="col-span-1" data-unique-id="5f0e0005-35ae-4ced-9265-9100cecd978d" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="42f2b3b2-76e7-4afd-9bb0-60e38f2a7eb6" data-file-name="components/customer-management.tsx">Actions</span></div>
         </div>
         
-        <div className="max-h-[400px] overflow-y-auto" data-unique-id="6c68532c-12c1-40f0-a033-086445fb7f3f" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
-          {filteredCustomers.length === 0 ? <div className="p-6 text-center text-muted-foreground" data-unique-id="b0a1fc94-cff2-42f9-8791-4a052fe22413" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+        <div className="w-full" data-unique-id="5058c27a-3ac8-45fd-aebd-e5570c0d9417" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+          {filteredCustomers.length === 0 ? <div className="p-6 text-center text-muted-foreground" data-unique-id="4b62789b-41c9-4ac2-b5f8-b571bd531df5" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
               {searchQuery || filterTag ? 'No customers matching your search criteria' : 'No customers yet. Add your first customer!'}
-            </div> : filteredCustomers.map(customer => <div key={customer.id} className={`grid grid-cols-12 gap-2 p-3 border-t border-border items-center text-sm ${selectedCustomers.includes(customer.id) ? 'bg-accent/10' : 'hover:bg-accent/5'}`} data-unique-id="4e2728e4-a8bd-48c9-b7c7-2efb3cfd7137" data-file-name="components/customer-management.tsx">
-                <div className="col-span-1" data-unique-id="940751cd-00e4-41bc-a62d-8bac8e60805a" data-file-name="components/customer-management.tsx">
-                  <input type="checkbox" checked={selectedCustomers.includes(customer.id)} onChange={() => toggleSelectCustomer(customer.id)} className="rounded border-gray-300" data-unique-id="be228f79-0203-4c07-8439-712ae84045a3" data-file-name="components/customer-management.tsx" />
+            </div> : filteredCustomers.map(customer => <div key={customer.id} className={`grid grid-cols-12 gap-2 p-3 border-t border-border items-center text-sm ${selectedCustomers.includes(customer.id) ? 'bg-accent/10' : 'hover:bg-accent/5'}`} data-unique-id="251762d7-1b9d-43e7-b606-51992c95b1f6" data-file-name="components/customer-management.tsx">
+                <div className="col-span-1" data-unique-id="a5d5f94f-3a36-42c2-9a93-410dc357b222" data-file-name="components/customer-management.tsx">
+                  <input type="checkbox" checked={selectedCustomers.includes(customer.id)} onChange={() => toggleSelectCustomer(customer.id)} className="rounded border-gray-300" data-unique-id="d71a633f-a06c-4832-8d42-f598e5809763" data-file-name="components/customer-management.tsx" />
                 </div>
-                <div className="col-span-3 font-medium truncate" title={customer.name} data-unique-id="6d8708c4-5d03-47d1-9d7f-24260a85b775" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <div className="col-span-3 font-medium truncate" title={customer.name} data-unique-id="b3c17887-1503-4997-a915-cd88e82836bf" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
                   {customer.name}
                 </div>
-                <div className="col-span-3 truncate" title={customer.email} data-unique-id="b56c2834-fd50-4d5a-aeb5-b09c623b83df" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <div className="col-span-3 truncate" title={customer.email} data-unique-id="9e7c952b-9213-4ad6-9bf8-982a60de7c08" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
                   {customer.email}
                 </div>
-                <div className="col-span-2 truncate" title={customer.company || ''} data-unique-id="07572c04-56bd-42b5-83ce-9c6ce798b30c" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <div className="col-span-2 truncate" title={customer.company || ''} data-unique-id="f3aa8fe3-3e74-4c87-b129-d8c55bae6152" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
                   {customer.company || '—'}
                 </div>
-                <div className="col-span-2 text-sm text-muted-foreground" data-unique-id="5625e0b5-43c8-4365-916b-fff6fbc190cd" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                <div className="col-span-2 text-sm text-muted-foreground" data-unique-id="e0d10f33-fa38-4ec3-adba-eae13b882923" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
                   {new Date(customer.addedAt).toLocaleDateString()}
                 </div>
-                <div className="col-span-1 flex space-x-1 justify-end" data-unique-id="897940d3-4ebb-413d-b7bb-5be6a0535fe5" data-file-name="components/customer-management.tsx">
-                  <button onClick={() => startEdit(customer)} className="p-1 rounded-md hover:bg-accent/20" title="Edit" data-unique-id="8070a3ff-7f2d-414e-8f25-d6dfc24a9a1e" data-file-name="components/customer-management.tsx">
-                    <Edit className="h-4 w-4 text-muted-foreground" />
-                  </button>
-                  <button onClick={() => deleteCustomer(customer.id)} className="p-1 rounded-md hover:bg-accent/20" title="Delete" data-unique-id="bfae92a5-1d4c-4146-9e0e-6225716d82a4" data-file-name="components/customer-management.tsx">
-                    <Trash2 className="h-4 w-4 text-destructive" />
-                  </button>
+                <div className="col-span-1 flex space-x-1 justify-end" data-unique-id="880202f0-02ee-4b7a-8e02-67c739971302" data-file-name="components/customer-management.tsx" data-dynamic-text="true">
+                  {showConfirmDelete === customer.id ? <div className="flex space-x-1" data-unique-id="86450304-89d4-4ddf-bf6e-0651ed881f56" data-file-name="components/customer-management.tsx">
+                      <button onClick={() => deleteCustomer(customer.id)} className="p-1.5 bg-red-50 rounded-md hover:bg-red-100 flex items-center space-x-1" title="Confirm delete" data-unique-id="e6982f58-f1e4-41a6-94ec-49303c46113e" data-file-name="components/customer-management.tsx">
+                        <Check className="h-4 w-4 text-red-600" />
+                        <span className="text-xs text-red-600" data-unique-id="684f7aed-cfb8-4e57-97f8-a3c0d674f0e4" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="cf60821c-5d33-4c29-b453-6d9f30f37537" data-file-name="components/customer-management.tsx">Confirm</span></span>
+                      </button>
+                      <button onClick={() => setShowConfirmDelete(null)} className="p-1.5 bg-gray-50 rounded-md hover:bg-gray-100" title="Cancel" data-unique-id="8e04fe17-0e3a-4b2b-a0cf-9a098e39984b" data-file-name="components/customer-management.tsx">
+                        <X className="h-4 w-4 text-gray-600" />
+                      </button>
+                    </div> : <>
+                      <button onClick={() => startEdit(customer)} className="p-1 rounded-md hover:bg-accent/20" title="Edit customer" data-unique-id="0ddb9fc0-0737-42dd-a1f3-fc6e71956d58" data-file-name="components/customer-management.tsx">
+                        <Edit className="h-4 w-4 text-muted-foreground" />
+                      </button>
+                      <button onClick={() => confirmDelete(customer.id)} className="p-1.5 rounded-md bg-red-50 hover:bg-red-100 transition-colors flex items-center space-x-1" title="Delete customer data" data-unique-id="d35886da-ce36-4817-b475-0f755f0aca64" data-file-name="components/customer-management.tsx">
+                        <Trash2 className="h-4 w-4 text-red-500" />
+                        <span className="text-xs text-red-500 hidden sm:inline" data-unique-id="dff89af4-b492-48d0-88c3-3a499014f72c" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="dca7e43c-dee1-4d4d-b99e-43485f44c352" data-file-name="components/customer-management.tsx">Delete</span></span>
+                      </button>
+                    </>}
                 </div>
               </div>)}
         </div>
       </div>
       
       {/* Selection actions */}
-      {selectedCustomers.length > 0 && <div className="flex items-center justify-between mt-4 p-3 bg-accent/5 rounded-md" data-unique-id="e3357788-849d-4a7e-847a-fb3fbf87d613" data-file-name="components/customer-management.tsx">
-          <div data-unique-id="5301ca8d-babc-4c20-a92f-11d83eed9fa8" data-file-name="components/customer-management.tsx">
-            <span className="font-medium" data-unique-id="b78f5a5d-da1c-44d1-afd9-dda4c9814413" data-file-name="components/customer-management.tsx" data-dynamic-text="true">{selectedCustomers.length}</span><span className="editable-text" data-unique-id="dc2dd252-4107-423a-bf1b-2403f3c1e198" data-file-name="components/customer-management.tsx"> customers selected
+      {selectedCustomers.length > 0 && <div className="flex items-center justify-between mt-4 p-3 bg-accent/5 rounded-md" data-unique-id="d89b7cc0-819b-492f-a24e-21118f708bd9" data-file-name="components/customer-management.tsx">
+          <div data-unique-id="0fcad583-7786-4e22-8ad8-ba670fab87b2" data-file-name="components/customer-management.tsx">
+            <span className="font-medium" data-unique-id="c7faa566-8086-4c31-8547-2445e65c105c" data-file-name="components/customer-management.tsx" data-dynamic-text="true">{selectedCustomers.length}</span><span className="editable-text" data-unique-id="1c8fd5e0-ec03-448a-a209-b252cebab494" data-file-name="components/customer-management.tsx"> customers selected
           </span></div>
-          <div className="flex space-x-2" data-unique-id="942c00be-8d95-4210-b243-b8bebdad283f" data-file-name="components/customer-management.tsx">
-            <button onClick={() => setSelectedCustomers([])} className="px-3 py-1 text-sm border border-border rounded-md hover:bg-accent/10" data-unique-id="b6666f30-080f-4ecd-86e2-39d362444583" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="56196eed-8936-448a-9040-db385f715ea8" data-file-name="components/customer-management.tsx">
+          <div className="flex space-x-2" data-unique-id="69abe262-f201-4b4a-bc97-a5b3bbdc5310" data-file-name="components/customer-management.tsx">
+            <button onClick={() => setSelectedCustomers([])} className="px-3 py-1 text-sm border border-border rounded-md hover:bg-accent/10" data-unique-id="d0bee66b-428c-404c-a580-be68ddf1cc07" data-file-name="components/customer-management.tsx"><span className="editable-text" data-unique-id="8f715e43-1466-42f5-9955-a839b3fad509" data-file-name="components/customer-management.tsx">
               Clear Selection
             </span></button>
-            <button onClick={exportCustomersCSV} className="px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90" data-unique-id="bb285f0b-3d9c-48b8-aac4-66b068f036c4" data-file-name="components/customer-management.tsx">
-              <Download className="h-3 w-3 inline mr-1" /><span className="editable-text" data-unique-id="39f9c64f-020b-4488-8d12-419d50fb06b4" data-file-name="components/customer-management.tsx">
+            <button onClick={exportCustomersCSV} className="px-3 py-1 text-sm bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90" data-unique-id="94532000-5699-46f1-84e3-97868f46f3e7" data-file-name="components/customer-management.tsx">
+              <Download className="h-3 w-3 inline mr-1" /><span className="editable-text" data-unique-id="7fa61164-ba29-472a-ae7b-ad74f6a95b76" data-file-name="components/customer-management.tsx">
               Export Selected
             </span></button>
           </div>

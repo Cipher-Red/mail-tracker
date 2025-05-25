@@ -1,12 +1,20 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { db } from '@/db';
-import { customers, NewCustomer } from '@/db/schema';
-import { desc, eq } from 'drizzle-orm';
+import { Customer } from '@/db/schema';
+import { customerStorage } from '@/lib/storage-service';
 
 // GET all customers
 export async function GET() {
   try {
-    const allCustomers = await db.select().from(customers).orderBy(desc(customers.addedAt));
+    // Get customers from localStorage
+    const allCustomers = customerStorage.getAll();
+    
+    // Sort by addedAt in descending order (newest first)
+    allCustomers.sort((a, b) => {
+      const dateA = new Date(a.addedAt).getTime();
+      const dateB = new Date(b.addedAt).getTime();
+      return dateB - dateA;
+    });
+    
     return NextResponse.json(allCustomers);
   } catch (error) {
     console.error('Error fetching customers:', error);
@@ -30,7 +38,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const newCustomer: NewCustomer = {
+    // Add new customer to localStorage
+    const newCustomer = customerStorage.add({
       name,
       email,
       company: company || null,
@@ -40,10 +49,9 @@ export async function POST(request: NextRequest) {
       addedAt: new Date(),
       lastContact: body.lastContact ? new Date(body.lastContact) : null,
       notes: notes || null,
-    };
-
-    const result = await db.insert(customers).values(newCustomer).returning();
-    return NextResponse.json(result[0]);
+    });
+    
+    return NextResponse.json(newCustomer);
   } catch (error) {
     console.error('Error creating customer:', error);
     return NextResponse.json(

@@ -21,6 +21,104 @@ export const copyToClipboard = (text: string): boolean => {
   return copy(text);
 };
 
+export const copyRichEmailContent = async (html: string): Promise<boolean> => {
+  try {
+    // For modern browsers supporting ClipboardItem
+    if (typeof window !== 'undefined' && typeof navigator !== 'undefined') {
+      const nav = navigator;
+      const win = window;
+      if (nav.clipboard && win.ClipboardItem) {
+        // Process the HTML to enhance tracking links before copying
+        const processedHtml = enhanceTrackingLinksForCopy(html);
+        
+        // Create both HTML and text versions for better compatibility
+        const htmlBlob = new Blob([processedHtml], { type: 'text/html' });
+        
+        // Create a better plain text version that includes tracking URLs
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = processedHtml;
+        
+        // Replace tracking links with a better format in plain text
+        const trackingLinks = tempDiv.querySelectorAll('.tracking-link');
+        trackingLinks.forEach(link => {
+          const trackingNumber = link.getAttribute('data-tracking');
+          const trackingUrl = link.getAttribute('href');
+          if (trackingNumber && trackingUrl) {
+            const textNode = document.createTextNode(`${trackingNumber} (${trackingUrl})`);
+            link.parentNode?.replaceChild(textNode, link);
+          }
+        });
+        
+        const plainText = tempDiv.textContent || tempDiv.innerText || '';
+        const textBlob = new Blob([plainText], { type: 'text/plain' });
+        
+        // Copy both formats to the clipboard
+        const data = [
+          new win.ClipboardItem({
+            'text/html': htmlBlob,
+            'text/plain': textBlob
+          })
+        ];
+        
+        await nav.clipboard.write(data);
+        return true;
+      }
+    }
+    // Fallback to standard copy method
+    return copy(html);
+  } catch (error) {
+    console.error('Error copying rich content:', error);
+    // Fallback to simple copy
+    return copy(html);
+  }
+};
+
+// Helper function to enhance tracking links for better copy-paste experience
+function enhanceTrackingLinksForCopy(html: string): string {
+  if (typeof document === 'undefined') return html;
+  
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = html;
+  
+  // Find all tracking links
+  const trackingLinks = tempDiv.querySelectorAll('.tracking-link');
+  trackingLinks.forEach(link => {
+    const trackingNumber = link.getAttribute('data-tracking');
+    const href = link.getAttribute('href');
+    
+    if (trackingNumber && href) {
+      // Make sure the link has proper attributes for copying
+      link.setAttribute('title', `Track package: ${trackingNumber}`);
+      link.setAttribute('data-url', href);
+      
+      // Add a hidden span with the URL for better plain text copying if it doesn't exist
+      if (!link.parentElement?.querySelector('span[style*="font-size:0"]')) {
+        const urlSpan = document.createElement('span');
+        urlSpan.style.fontSize = '0';
+        urlSpan.style.position = 'absolute';
+        urlSpan.style.height = '1px';
+        urlSpan.style.width = '1px';
+        urlSpan.style.overflow = 'hidden';
+        urlSpan.textContent = `(${href})`;
+        
+        // Wrap in a span if not already wrapped
+        if (!link.parentElement?.classList.contains('tracking-wrapper')) {
+          const wrapper = document.createElement('span');
+          wrapper.classList.add('tracking-wrapper');
+          wrapper.style.display = 'inline';
+          link.parentNode?.insertBefore(wrapper, link);
+          wrapper.appendChild(link);
+          wrapper.appendChild(urlSpan);
+        } else {
+          link.parentElement.appendChild(urlSpan);
+        }
+      }
+    }
+  });
+  
+  return tempDiv.innerHTML;
+}
+
 export interface SenderInfo {
   name: string;
   email: string;
@@ -51,9 +149,14 @@ export const generateHtmlEmail = (
     const trackingNumberPattern = /\b([A-Z0-9]{8,30})\b/g;
     let processedLine = line;
     
-    // Replace tracking numbers with clickable FedEx links
+    // Replace tracking numbers with copyable FedEx links
     processedLine = processedLine.replace(trackingNumberPattern, (match) => {
-      return `<a href="https://www.fedex.com/apps/fedextrack/?tracknumbers=${match}" target="_blank" style="color: #0063A5; text-decoration: underline; font-weight: 500;">${match}</a>`;
+      const trackingUrl = `https://www.fedex.com/apps/fedextrack/?tracknumbers=${match}`;
+      // Enhanced link with better copy-paste attributes and a special wrapper span
+      return `<span class="tracking-wrapper" style="display:inline;">
+        <a href="${trackingUrl}" target="_blank" style="color: #0063A5; text-decoration: underline; font-weight: 500;" data-tracking="${match}" class="tracking-link">${match}</a>
+        <span style="font-size:0;position:absolute;height:1px;width:1px;overflow:hidden;">(${trackingUrl})</span>
+      </span>`;
     });
     
     return `<p>${processedLine}</p>`;
