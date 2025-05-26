@@ -108,7 +108,24 @@ export default {
 			}
 		}
 	},
-	plugins: [animate, addVariablesForColors],
+	plugins: [
+		animate, 
+		addVariablesForColors,
+		function({ addUtilities, matchUtilities, theme }) {
+			// Add support for border-{color}/{opacity} utilities
+			matchUtilities(
+				{
+					border: (value) => ({
+						borderColor: value,
+					}),
+				},
+				{
+					values: flattenColorPalette(theme('borderColor')),
+					type: ['color', 'any'],
+				}
+			);
+		}
+	],
 } satisfies Config;
 
 

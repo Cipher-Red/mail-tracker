@@ -101,7 +101,6 @@ export async function PUT(
       if (shipToPhone !== undefined) updatedOrder.shippingAddress.shipToPhone = shipToPhone;
       if (shipToEmail !== undefined) updatedOrder.shippingAddress.shipToEmail = shipToEmail;
       if (shipToLine1 !== undefined) updatedOrder.shippingAddress.shipToLine1 = shipToLine1;
-      if (shipToLine2 !== undefined) updatedOrder.shippingAddress.shipToLine2 = shipToLine2;
       if (shipToCity !== undefined) updatedOrder.shippingAddress.shipToCity = shipToCity;
       if (shipToStateProvince !== undefined) updatedOrder.shippingAddress.shipToStateProvince = shipToStateProvince;
       if (shipToPostalCode !== undefined) updatedOrder.shippingAddress.shipToPostalCode = shipToPostalCode;

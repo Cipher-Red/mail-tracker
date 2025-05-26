@@ -1,27 +1,23 @@
 'use client';
 
-// This file now provides mock versions of the functions that were previously
-// implemented with Supabase. All data is now stored in localStorage.
 import { getLocalStorage, setLocalStorage } from '@/lib/utils';
 
-// Mock storage helper functions
+// Mock Supabase client implementation 
+export const supabase = null;
+
+// Storage helper functions that use local storage
 export const uploadFile = async (bucket: string, path: string, file: File) => {
-  // Mock implementation using localStorage
-  console.info('File upload now uses local storage');
-  // Return mock data structure
-  return { 
-    path: path 
-  };
+  console.info('Mock file upload to local storage');
+  return { path }; // Mock return
 };
 
 export const getFileUrl = (bucket: string, path: string) => {
-  // Return a mock URL
   return `/mock-storage/${bucket}/${path}`;
 };
 
-// Mock authentication helper functions
+// Authentication helper functions
 export const signIn = async (email: string, password: string) => {
-  // Return a mock user session for local development
+  // Return mock session for development
   return {
     user: { 
       id: 'local-user', 
@@ -36,18 +32,54 @@ export const signIn = async (email: string, password: string) => {
 };
 
 export const signOut = async () => {
-  // Mock sign out function
-  console.info('User signed out from local session');
+  console.info('User signed out from mock session');
   return;
 };
 
-// Mock realtime subscription helper
+// Realtime subscription helper
 export const subscribeToChanges = (
   table: string,
   callback: (payload: any) => void
 ) => {
-  // Return a function to "unsubscribe" from the mock subscription
+  // Return mock unsubscribe function
   return () => {
-    console.info(`Unsubscribed from ${table} changes`);
+    console.info(`Unsubscribed from ${table} changes (mock)`);
   };
+};
+
+// Log user activity to localStorage
+export const logActivity = async (action: string, details: Record<string, any> = {}) => {
+  try {
+    // Get current date/time
+    const timestamp = new Date().toISOString();
+    
+    // Create activity log entry
+    const logEntry = {
+      id: `local-${Date.now()}`,
+      user_id: 'local-user',
+      user_email: 'anonymous',
+      action,
+      details,
+      ip_address: null,
+      user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
+      created_at: timestamp,
+    };
+    
+    // Store in localStorage
+    if (typeof window !== 'undefined') {
+      try {
+        const existingLogs = getLocalStorage('activity-logs', []);
+        existingLogs.unshift(logEntry); // Add to beginning
+        const logsToKeep = existingLogs.slice(0, 1000); // Keep last 1000 logs
+        setLocalStorage('activity-logs', logsToKeep);
+      } catch (err) {
+        console.warn('Could not save activity log to localStorage:', err);
+      }
+    }
+    
+    // Also log to console in development
+    console.info('Activity log:', action, details);
+  } catch (err) {
+    console.error('Failed to log activity:', err);
+  }
 };

@@ -13,16 +13,16 @@ export function Header() {
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="sticky top-0 z-40 bg-background border-b border-border" data-unique-id="9095af0f-efd6-4d90-98e6-df5974659092" data-file-name="components/header.tsx">
-      <div className="container mx-auto px-4 h-16 flex items-center justify-between" data-unique-id="d2cddc6f-9f70-411d-9daa-4e7ec5b5e3ef" data-file-name="components/header.tsx">
-        <div className="flex items-center" data-unique-id="5d5ff0b9-a162-408e-a1a3-50c4535c2459" data-file-name="components/header.tsx">
-          <Link href="/" className="flex items-center space-x-2" data-unique-id="94c25d69-1694-4970-8092-97d1e95fcafb" data-file-name="components/header.tsx">
-            <span className="font-bold text-xl text-primary" data-unique-id="c5ce300b-0ce1-443f-9ac2-b0cc3fd9d94d" data-file-name="components/header.tsx"><span className="editable-text" data-unique-id="1b18969c-bd35-4434-90ca-0076cf720b46" data-file-name="components/header.tsx">Detroit Axle</span></span>
-            <span className="text-sm text-muted-foreground" data-unique-id="00a36cc1-f71e-4e11-8f3d-85fb5bea5490" data-file-name="components/header.tsx"><span className="editable-text" data-unique-id="aa0208e3-8611-4ca1-b49f-bc3703b31d80" data-file-name="components/header.tsx">Tools</span></span>
+  }} className="sticky top-0 z-40 bg-background border-b border-border" data-unique-id="13ea1164-02df-4af4-a0df-a3a3bbf116d4" data-file-name="components/header.tsx">
+      <div className="container mx-auto px-4 h-16 flex items-center justify-between" data-unique-id="75253bf7-acd2-4c32-b5f9-59ce3b0c794c" data-file-name="components/header.tsx">
+        <div className="flex items-center" data-unique-id="cbcc7a89-05e5-4b57-bf1b-a6a6479c123f" data-file-name="components/header.tsx">
+          <Link href="/" className="flex items-center space-x-2" data-unique-id="ec4f003c-4b68-4ada-98e3-642e1a1a96e6" data-file-name="components/header.tsx">
+            <span className="font-bold text-xl text-primary" data-unique-id="c70637f6-a138-4e11-b06c-1cd8e189b950" data-file-name="components/header.tsx"><span className="editable-text" data-unique-id="02f4b65e-0178-48bb-8dee-a9a77eaab8f7" data-file-name="components/header.tsx">Detroit Axle</span></span>
+            <span className="text-sm text-muted-foreground" data-unique-id="aa03ad17-d15e-4893-9498-2e1e489f6173" data-file-name="components/header.tsx"><span className="editable-text" data-unique-id="1b0d0890-da1a-475e-b6ad-23742469dd74" data-file-name="components/header.tsx">Tools</span></span>
           </Link>
         </div>
         
-        <div className="flex items-center space-x-4" data-unique-id="2fe59e9b-99ed-4a98-bd63-c90b038cb124" data-file-name="components/header.tsx">
+        <div className="flex items-center space-x-4" data-unique-id="0af39944-3d20-4cf0-9db8-55a025b261c6" data-file-name="components/header.tsx">
           <MainNav />
           <ThemeToggle />
         </div>

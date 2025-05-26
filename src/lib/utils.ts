@@ -87,3 +87,25 @@ function fallbackCopyToClipboard(text: string): boolean {
     return false;
   }
 }
+
+/**
+ * Track user activity (lazy loads the activity store)
+ */
+export function trackActivity(action: string, details: Record<string, any> = {}): void {
+  // Use dynamic import to avoid SSR issues and circular dependencies
+  if (isBrowser) {
+    // Add browser context information
+    const contextDetails = {
+      ...details,
+      url: window.location.href,
+      timestamp: new Date().toISOString(),
+    };
+    
+    // Lazy import activity store
+    import('./activity-store').then(({ useActivityStore }) => {
+      useActivityStore.getState().trackActivity(action, contextDetails);
+    }).catch(err => {
+      console.error('Failed to load activity store:', err);
+    });
+  }
+}

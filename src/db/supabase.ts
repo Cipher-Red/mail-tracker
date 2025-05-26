@@ -1,10 +1,6 @@
-// Replaced with localStorage implementation
-import { getLocalStorage, setLocalStorage } from '@/lib/utils';
+import { createClient } from '@supabase/supabase-js';
 
-export const mockSupabase = {
-  // Mock method for simple logging
-  logEvent: (eventName: string, data: any) => {
-    console.info(`Event logged (previously Supabase): ${eventName}`, data);
-    return { error: null };
-  }
-};
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL as string;
+const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY as string;
+
+export const supabase = createClient(supabaseUrl, supabaseAnonKey);

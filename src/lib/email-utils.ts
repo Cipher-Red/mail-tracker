@@ -196,9 +196,7 @@ export const generateHtmlEmail = (
 </head>
 <body>
   <div class="header">
-    <img src="https://images.unsplash.com/photo-1612159593345-d117058858d4?auto=format&fit=crop&w=600&h=100&q=80" 
-         alt="Detroit Axle" 
-         style="height: 40px; object-fit: contain;">
+    <h2 style="margin: 0; color: #6366f1;">Detroit Axle</h2>
   </div>
   
   <div class="content">

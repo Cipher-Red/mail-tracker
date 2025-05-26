@@ -66,7 +66,8 @@ export async function GET(req: NextRequest) {
       id: item.id || 0, // Ensure id is present
       date: new Date(item.date).toISOString().split('T')[0],
       sent: item.sent,
-      failed: item.failed
+      failed: item.failed,
+      deliveryIssues: item.deliveryIssues || null
     }));
     
     // Calculate totals

@@ -1,36 +1,22 @@
-import * as schema from './schema';
+import { drizzle } from 'drizzle-orm/postgres-js';
+import * as schema from "./schema";
+// For server-side only
+let db: ReturnType<typeof drizzle>;
+// Only initialize postgres on the server side
+if (typeof window === 'undefined') {
+	// Dynamic import to avoid client-side import
+	const initDb = async () => {
+		const postgres = (await import('postgres')).default;
+		const sql = postgres(process.env.DATABASE_URL || '', { prepare: false });
+		return drizzle({ client: sql, schema });
+	};
 
-// Enhanced implementation for localStorage-based data persistence
-const localStorageDb = {
-  // This implementation fully embraces localStorage for data persistence
-  select: () => ({ 
-    from: () => ({ 
-      where: () => ({ 
-        limit: () => [] 
-      }) 
-    }) 
-  }),
-  insert: () => ({ 
-    values: () => ({ 
-      returning: () => [] 
-    }) 
-  }),
-  update: () => ({ 
-    set: () => ({ 
-      where: () => ({ 
-        returning: () => [] 
-      }) 
-    }) 
-  }),
-  delete: () => ({ 
-    where: () => ({ 
-      returning: () => [] 
-    }) 
-  }),
-};
-
-// Export the localStorage DB implementation
-export const db = localStorageDb;
-
-// Add a clear note about localStorage usage
-console.log('Using localStorage for all data persistence');
+	// Initialize db (will only run on server)
+	initDb().then(drizzleInstance => {
+		db = drizzleInstance;
+	});
+} else {
+	// Provide a dummy db object for client-side
+	db = {} as ReturnType<typeof drizzle>;
+}
+export { db };
