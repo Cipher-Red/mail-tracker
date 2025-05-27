@@ -45,7 +45,7 @@ export default function CustomerStats({
     y: 0
   }} transition={{
     duration: 0.3
-  }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" data-unique-id="5ef9f716-2c8d-468a-8010-a8422ab083eb" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">
+  }} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-6" data-unique-id="c0d7e14c-d878-4f7f-bc2e-b50fc46a596e" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">
       {stats.map((stat, i) => <motion.div key={stat.title} initial={{
       opacity: 0,
       y: 20
@@ -55,13 +55,13 @@ export default function CustomerStats({
     }} transition={{
       duration: 0.3,
       delay: 0.1 * i
-    }} className={`${stat.color} p-4 rounded-lg shadow-sm flex justify-between items-center`} data-unique-id="ee9dbc5e-de37-4fbe-bb5d-686048528426" data-file-name="components/customer-stats.tsx">
-          <div data-unique-id="14088b88-b869-4967-9efa-18da713d9446" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">
-            <h3 className="text-sm font-medium mb-1" data-unique-id="fb9a5a98-9a16-4098-a681-669de72eeec7" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">{stat.title}</h3>
-            <p className="text-2xl font-bold" data-unique-id="039252e7-0ffe-490b-a8ad-6a74d6292d44" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">{stat.value}</p>
-            {stat.percentage !== undefined && <p className="text-xs mt-1" data-unique-id="0606ecf6-ab93-436a-8f37-73c4d0b7c8d5" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">{stat.percentage}<span className="editable-text" data-unique-id="c9cfa722-8f61-4499-8554-8f3ae199df06" data-file-name="components/customer-stats.tsx">% of total</span></p>}
+    }} className={`${stat.color} p-4 rounded-lg shadow-sm flex justify-between items-center`} data-unique-id="9baf8034-2ee1-4119-9230-74cda35ccee5" data-file-name="components/customer-stats.tsx">
+          <div data-unique-id="75c77696-79ee-45d8-a62a-dd3b790fc8a1" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">
+            <h3 className="text-sm font-medium mb-1" data-unique-id="92ee41b1-eb60-4012-a6db-b2976b5cc6c6" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">{stat.title}</h3>
+            <p className="text-2xl font-bold" data-unique-id="a1206fec-1404-4d43-96d1-dabc34d50b01" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">{stat.value}</p>
+            {stat.percentage !== undefined && <p className="text-xs mt-1" data-unique-id="44b9303e-1113-4e3e-bcd8-1b5615585a7e" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">{stat.percentage}<span className="editable-text" data-unique-id="bdba7651-c2cb-4d92-8544-5c7aaaad47cf" data-file-name="components/customer-stats.tsx">% of total</span></p>}
           </div>
-          <div className="rounded-full p-2 bg-white bg-opacity-30" data-unique-id="e49e444a-e9c2-486b-bdd3-0a11d1ff05f9" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">
+          <div className="rounded-full p-2 bg-white bg-opacity-30" data-unique-id="2a7dca2f-cd02-4dec-a5f3-c973981f20ea" data-file-name="components/customer-stats.tsx" data-dynamic-text="true">
             {stat.icon}
           </div>
         </motion.div>)}

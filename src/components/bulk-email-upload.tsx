@@ -91,6 +91,7 @@ export default function BulkEmailUpload({
   const [copySuccess, setCopySuccess] = useState<string | null>(null);
   const [showManualEmailModal, setShowManualEmailModal] = useState(false);
   const [hasOrderData, setHasOrderData] = useState(false);
+  const [includeSurvey, setIncludeSurvey] = useState(false);
   // Define TemplateProps type to match the template structure
   type TemplateProps = {
     id: string;
@@ -527,6 +528,11 @@ export default function BulkEmailUpload({
     if (data.name && !processed.includes('{{customerName}}')) {
       processed = processed.replace(/{{name}}/g, data.name || '');
     }
+
+    // Add survey link if option is selected
+    if (includeSurvey) {
+      processed += `\n\n------------------\n\nWe value your feedback! Please take a moment to complete our customer satisfaction survey:\nhttps://feed-back-dax.netlify.app\n\nThank you for helping us improve our service.`;
+    }
     return processed;
   };
 
@@ -673,35 +679,35 @@ export default function BulkEmailUpload({
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="bg-card rounded-lg shadow-md p-6" data-unique-id="75bdfe5f-c878-4c5a-82ee-5cea06290da9" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-      <div className="mb-6" data-unique-id="2c229596-5c05-4592-bb97-6409f23bef27" data-file-name="components/bulk-email-upload.tsx">
-        <h2 className="text-xl font-medium mb-2" data-unique-id="2f134e72-6f34-46c3-ab02-b19b82ebffb1" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="1084b119-c922-40ed-a15c-825e9f55aa7a" data-file-name="components/bulk-email-upload.tsx">Bulk Email Sender</span></h2>
-        <p className="text-muted-foreground" data-unique-id="338c8060-8782-456b-9fa1-5aa1597e5f13" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="a232838b-835e-439b-9e7d-cf857abdb772" data-file-name="components/bulk-email-upload.tsx">
+  }} className="bg-card rounded-lg shadow-md p-6" data-unique-id="5944d3f5-bb51-4421-a5cd-fd93a8571c43" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+      <div className="mb-6" data-unique-id="283392e7-3890-4f0e-b919-42d6a3dd3327" data-file-name="components/bulk-email-upload.tsx">
+        <h2 className="text-xl font-medium mb-2" data-unique-id="88bb3e81-3aea-4d34-b79b-4c1af3f0137c" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="2accd5c8-84fc-488a-9600-62055a7c978f" data-file-name="components/bulk-email-upload.tsx">Bulk Email Sender</span></h2>
+        <p className="text-muted-foreground" data-unique-id="d059d967-d6cc-43c4-ae43-efdf337487ef" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="e37f4725-418d-4d12-9645-4f80a689245b" data-file-name="components/bulk-email-upload.tsx">
           Upload customer data or select saved customers to send bulk emails
         </span></p>
       </div>
       
       {/* Sending mode selector */}
-      <div className="mb-6" data-unique-id="c2fc456f-dbf2-4e27-a862-c771daf1917b" data-file-name="components/bulk-email-upload.tsx">
-        <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="fb5e61e5-dcb6-4113-aaf5-745137a94b84" data-file-name="components/bulk-email-upload.tsx">
-          <h3 className="font-medium mb-4 text-base flex items-center" data-unique-id="0dddd611-f04d-4618-a4ee-97eed5829b6b" data-file-name="components/bulk-email-upload.tsx">
-            <Mail className="mr-2 h-5 w-5 text-primary" /><span className="editable-text" data-unique-id="6d910422-bfe5-4d64-a5c1-6f2dd557b0df" data-file-name="components/bulk-email-upload.tsx">
+      <div className="mb-6" data-unique-id="7c9a72e1-8d40-43f6-aa49-fc34f305cdc8" data-file-name="components/bulk-email-upload.tsx">
+        <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="607ab932-0118-4896-a89f-0ba004ce9370" data-file-name="components/bulk-email-upload.tsx">
+          <h3 className="font-medium mb-4 text-base flex items-center" data-unique-id="a54eb0c6-2f16-4667-af03-4b1c3bd70c5c" data-file-name="components/bulk-email-upload.tsx">
+            <Mail className="mr-2 h-5 w-5 text-primary" /><span className="editable-text" data-unique-id="d7f32185-b32c-4f54-872f-2798aa817446" data-file-name="components/bulk-email-upload.tsx">
             Email Sending Method
           </span></h3>
           
-          <div className="grid grid-cols-2 gap-4" data-unique-id="6e0a01ba-0060-42ab-bef3-6c6de8a4e026" data-file-name="components/bulk-email-upload.tsx">
-            <button onClick={() => setManualSendMode(false)} disabled={!isEmailServiceAvailable} className={`p-4 rounded-md border ${!manualSendMode ? 'border-primary bg-primary/5' : 'border-border'} flex flex-col items-center text-center transition-all ${!isEmailServiceAvailable ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary/50'}`} data-unique-id="5c4f8ffd-c358-416f-aaa2-183b064eaf3c" data-file-name="components/bulk-email-upload.tsx">
+          <div className="grid grid-cols-2 gap-4" data-unique-id="fbc7cdb2-5a0b-44b9-a2c9-32acf704f598" data-file-name="components/bulk-email-upload.tsx">
+            <button onClick={() => setManualSendMode(false)} disabled={!isEmailServiceAvailable} className={`p-4 rounded-md border ${!manualSendMode ? 'border-primary bg-primary/5' : 'border-border'} flex flex-col items-center text-center transition-all ${!isEmailServiceAvailable ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary/50'}`} data-unique-id="b979de69-94b8-467a-a2bf-9221d9a9573b" data-file-name="components/bulk-email-upload.tsx">
               <Send className="h-8 w-8 text-primary mb-2" />
-              <div className="font-medium mb-1" data-unique-id="6f492eac-0efc-4ab3-b6d3-f66a413b3da0" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="e7768a09-a6b0-4b26-819e-58e298ab480e" data-file-name="components/bulk-email-upload.tsx">Automated Sending</span></div>
-              <div className="text-xs text-muted-foreground" data-unique-id="01743e44-5dea-496c-a399-28c7df5da9c0" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+              <div className="font-medium mb-1" data-unique-id="0d6a94e2-13dc-4232-a2c6-91672b3c13f6" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="03e8bc59-cb28-4464-90df-32107d882587" data-file-name="components/bulk-email-upload.tsx">Automated Sending</span></div>
+              <div className="text-xs text-muted-foreground" data-unique-id="dff3b7ad-e875-4cd2-baf3-2a2861e5e0ed" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
                 {isEmailServiceAvailable ? "Emails will be sent automatically via the system" : "Email service not configured"}
               </div>
             </button>
             
-            <button onClick={() => setManualSendMode(true)} className={`p-4 rounded-md border ${manualSendMode ? 'border-primary bg-primary/5' : 'border-border'} flex flex-col items-center text-center transition-all hover:border-primary/50`} data-unique-id="c8eaf1e7-ea4a-4099-be4a-eafc043e02c8" data-file-name="components/bulk-email-upload.tsx">
+            <button onClick={() => setManualSendMode(true)} className={`p-4 rounded-md border ${manualSendMode ? 'border-primary bg-primary/5' : 'border-border'} flex flex-col items-center text-center transition-all hover:border-primary/50`} data-unique-id="be4fa1ab-d080-4222-aaa6-a5258f6f6ba9" data-file-name="components/bulk-email-upload.tsx">
               <ExternalLink className="h-8 w-8 text-primary mb-2" />
-              <div className="font-medium mb-1" data-unique-id="79339a29-08bd-4e69-b54d-49b7bea76843" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="fce8d885-0944-4a70-ba0d-c900a9d14bee" data-file-name="components/bulk-email-upload.tsx">Manual Sending</span></div>
-              <div className="text-xs text-muted-foreground" data-unique-id="a5e832e0-087d-4e78-8ed1-f904808bbb6b" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="769bb71b-8b86-492d-bca2-cf2053257a11" data-file-name="components/bulk-email-upload.tsx">
+              <div className="font-medium mb-1" data-unique-id="ba3f49d3-caf0-4c64-a1bb-0a2aa78b8812" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="47a01dc5-3f0e-4f66-a4fc-a06d7095f0d4" data-file-name="components/bulk-email-upload.tsx">Manual Sending</span></div>
+              <div className="text-xs text-muted-foreground" data-unique-id="282d3852-c2e4-4272-8328-4d4dbcd71a3d" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="bf727774-3c41-4ed7-8c8b-035acd41e1c4" data-file-name="components/bulk-email-upload.tsx">
                 Review and send emails through your own email client
               </span></div>
             </button>
@@ -709,89 +715,99 @@ export default function BulkEmailUpload({
         </div>
       </div>
 
-      <div className="mb-6 space-y-4" data-unique-id="71dfd99f-7434-4415-b393-d9c2cc854ea1" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-        <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="f2b91aef-78e4-4436-8ba6-7e71a51b8b93" data-file-name="components/bulk-email-upload.tsx">
-          <h3 className="font-medium mb-3 text-base flex items-center" data-unique-id="b7fb77b5-a317-4279-9496-373c1d5a24fc" data-file-name="components/bulk-email-upload.tsx">
+      <div className="mb-6 space-y-4" data-unique-id="4a880567-0aab-497f-99fd-d97b6ce48e76" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+        <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="d045cd47-ee4a-462d-9b8e-7690ed1a90f0" data-file-name="components/bulk-email-upload.tsx">
+          <h3 className="font-medium mb-3 text-base flex items-center" data-unique-id="84b17966-548a-4615-b4a2-7849b9a81394" data-file-name="components/bulk-email-upload.tsx">
             <UserRound className="mr-2 h-4 w-4 text-primary" />
-            <span className="editable-text" data-unique-id="d9302096-e4ff-41da-b171-1d30833b82d9" data-file-name="components/bulk-email-upload.tsx">Employee Sender Information</span>
+            <span className="editable-text" data-unique-id="49dda0d6-6ed9-4571-887c-3b8eb0d8f027" data-file-name="components/bulk-email-upload.tsx">Employee Sender Information</span>
           </h3>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2" data-unique-id="f72876b3-5c4c-4ea7-8a17-5f91afb15277" data-file-name="components/bulk-email-upload.tsx">
-            <div data-unique-id="12339542-2db0-47d9-9f44-41c050d2fb6d" data-file-name="components/bulk-email-upload.tsx">
-              <label htmlFor="senderName" className="block text-sm font-medium mb-1" data-unique-id="61c5bd22-d2fc-469a-a7a7-e6ea1f702e72" data-file-name="components/bulk-email-upload.tsx">
-                <span className="editable-text" data-unique-id="c36cca37-9d95-4ce4-b1ec-788111624033" data-file-name="components/bulk-email-upload.tsx">Employee Name</span>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-2" data-unique-id="676fefec-3a08-4d50-ba94-f6f5455c3d36" data-file-name="components/bulk-email-upload.tsx">
+            <div data-unique-id="7be1aeca-c84f-45c4-96c7-9b75ae8ad36a" data-file-name="components/bulk-email-upload.tsx">
+              <label htmlFor="senderName" className="block text-sm font-medium mb-1" data-unique-id="242dda70-a6dc-499d-b08a-552682885ffa" data-file-name="components/bulk-email-upload.tsx">
+                <span className="editable-text" data-unique-id="7f81a085-b72b-475e-997c-01be7ea45faf" data-file-name="components/bulk-email-upload.tsx">Employee Name</span>
               </label>
               <input id="senderName" type="text" value={senderName} onChange={e => {
               setSenderName(e.target.value);
               setTimeout(() => handleSenderInfoChange(), 0); // Ensure state is updated before callback
-            }} placeholder="John Smith" className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30" data-unique-id="646631c2-8f8c-4d50-9b79-5b72d3954f75" data-file-name="components/bulk-email-upload.tsx" />
+            }} placeholder="John Smith" className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30" data-unique-id="4c6b31c0-846d-4273-90f3-cad4b5bd57a5" data-file-name="components/bulk-email-upload.tsx" />
             </div>
             
-            <div data-unique-id="2bc2fbce-3574-48bc-ac06-cdc801cb4013" data-file-name="components/bulk-email-upload.tsx">
-              <label htmlFor="senderEmail" className="block text-sm font-medium mb-1" data-unique-id="c46cb8a2-f2e6-45fb-b761-3d6898f22ce4" data-file-name="components/bulk-email-upload.tsx">
+            <div data-unique-id="902489ac-13dd-4401-a245-3bcdc831ff88" data-file-name="components/bulk-email-upload.tsx">
+              <label htmlFor="senderEmail" className="block text-sm font-medium mb-1" data-unique-id="86d01058-bea2-42b2-ad0b-6bf93de600d0" data-file-name="components/bulk-email-upload.tsx">
                 <Mail className="inline-block h-3 w-3 mr-1 text-muted-foreground" />
-                <span className="editable-text" data-unique-id="7ce29304-7c0c-47d5-bbd5-81c0a2f182c5" data-file-name="components/bulk-email-upload.tsx">Employee Email</span>
+                <span className="editable-text" data-unique-id="23768346-673a-4cb5-9648-6f3193e6cb21" data-file-name="components/bulk-email-upload.tsx">Employee Email</span>
               </label>
               <input id="senderEmail" type="email" value={senderEmail} onChange={e => {
               setSenderEmail(e.target.value);
               setTimeout(() => handleSenderInfoChange(), 0); // Ensure state is updated before callback
-            }} placeholder="employee@detroitaxle.com" className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30" data-unique-id="550a7ba2-79f3-4a07-ac2b-c6e7df5b4c6c" data-file-name="components/bulk-email-upload.tsx" />
-              <p className="text-xs text-muted-foreground mt-1" data-unique-id="bd58c8f2-ec15-4403-8873-c5b8f05ff54c" data-file-name="components/bulk-email-upload.tsx">
-                <span className="editable-text" data-unique-id="ce983952-9eda-4e7f-8e08-c03252180d75" data-file-name="components/bulk-email-upload.tsx">This employee will appear as the sender of all emails</span>
+            }} placeholder="employee@detroitaxle.com" className="w-full p-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30" data-unique-id="e29d9225-606d-4177-8587-808d2b8d8ad5" data-file-name="components/bulk-email-upload.tsx" />
+              <p className="text-xs text-muted-foreground mt-1" data-unique-id="967b12e4-0dfc-44e8-886b-5ceda4028760" data-file-name="components/bulk-email-upload.tsx">
+                <span className="editable-text" data-unique-id="8b3fffb1-f532-485b-a7de-def3b9114428" data-file-name="components/bulk-email-upload.tsx">This employee will appear as the sender of all emails</span>
               </p>
             </div>
+          </div>
+          
+          <div className="mt-4 flex items-center" data-unique-id="4d9a7edc-f942-4d52-877e-ad45bcb1a461" data-file-name="components/bulk-email-upload.tsx">
+            <input type="checkbox" id="includeSurvey" checked={includeSurvey} onChange={() => setIncludeSurvey(!includeSurvey)} className="rounded border-gray-300 text-primary focus:ring-primary h-4 w-4" data-unique-id="6d132e06-ea6f-43c8-8f4a-d8ab735a3442" data-file-name="components/bulk-email-upload.tsx" />
+            <label htmlFor="includeSurvey" className="ml-2 block text-sm" data-unique-id="6877cd3f-06d7-444f-8c5a-195e2bfa2b55" data-file-name="components/bulk-email-upload.tsx">
+              <span className="text-foreground font-medium" data-unique-id="d34293bf-e887-42bb-9511-37ece2b4d3a2" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="49409078-a970-4a46-9196-1e5dae2d9142" data-file-name="components/bulk-email-upload.tsx">Include customer feedback survey</span></span>
+              <p className="text-xs text-muted-foreground" data-unique-id="f039fad7-a09b-4d3a-b5c2-a8deda9adcdc" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="c8755cd1-6acb-4258-8d0b-48e0cfeffc8b" data-file-name="components/bulk-email-upload.tsx">
+                Add a link to our customer satisfaction survey: https://feed-back-dax.netlify.app
+              </span></p>
+            </label>
           </div>
         </div>
         
       {/* Import Order Data Alert - Show when order data is available */}
-      {hasOrderData && <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-md animate-pulse" data-unique-id="b12a8688-dba6-436b-84ec-0a8ceeba0a46" data-file-name="components/bulk-email-upload.tsx">
-          <div className="flex items-center justify-between" data-unique-id="7def083e-732d-40f5-b796-b41839bbfdf3" data-file-name="components/bulk-email-upload.tsx">
-            <div className="flex items-center" data-unique-id="307090b3-f900-437c-ae27-a0a0a133797f" data-file-name="components/bulk-email-upload.tsx">
+      {hasOrderData && <div className="mb-6 p-4 bg-blue-50 border border-blue-200 rounded-md animate-pulse" data-unique-id="6c4b4b30-b02c-485d-818f-bf0686dada91" data-file-name="components/bulk-email-upload.tsx">
+          <div className="flex items-center justify-between" data-unique-id="518c6019-c1ee-4629-a06b-9121d10743ea" data-file-name="components/bulk-email-upload.tsx">
+            <div className="flex items-center" data-unique-id="b7d35d8f-756e-4944-adff-793c43cc401f" data-file-name="components/bulk-email-upload.tsx">
               <PackageCheck className="h-5 w-5 text-blue-500 mr-3" />
-              <div data-unique-id="eadf4f53-58ad-40c9-87a2-e252b4a5fc2a" data-file-name="components/bulk-email-upload.tsx">
-                <h4 className="font-medium text-blue-700" data-unique-id="217fc898-46f9-441e-afd7-8765f956bafe" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="a06b9bda-ce73-44a6-83a7-61dc7540ab0d" data-file-name="components/bulk-email-upload.tsx">Order Data Available</span></h4>
-                <p className="text-sm text-blue-600" data-unique-id="df5e04bb-f039-4c14-a2dc-24af9f9d96ba" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="1e219a97-1b4d-487a-851c-b3a7f080a329" data-file-name="components/bulk-email-upload.tsx">
+              <div data-unique-id="ba85c93c-115c-4c21-b0ca-2384285443c0" data-file-name="components/bulk-email-upload.tsx">
+                <h4 className="font-medium text-blue-700" data-unique-id="a98275a3-67c4-4f8d-bc04-d79ad70efbc2" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="988067c0-ddc6-4827-9341-254d2feaa8ec" data-file-name="components/bulk-email-upload.tsx">Order Data Available</span></h4>
+                <p className="text-sm text-blue-600" data-unique-id="d7965a65-0136-4985-974e-be46e3773b16" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="7a800ae3-0edb-44a2-9edc-56c8074ac6e8" data-file-name="components/bulk-email-upload.tsx">
                   Order data from the Order Processor is ready to be imported for email sending
                 </span></p>
               </div>
             </div>
             
-            <button onClick={importOrderData} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors" data-unique-id="3a04c3ea-195b-4803-ada8-609202a18cc2" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="4968fb98-c966-4de8-a695-2872aac9ada7" data-file-name="components/bulk-email-upload.tsx">
+            <button onClick={importOrderData} className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors" data-unique-id="64785b52-f50f-46d7-96b6-639dd3cb712e" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="eef564c6-30bd-4d68-8107-6fa5c8e93f48" data-file-name="components/bulk-email-upload.tsx">
               Import Order Data
             </span></button>
           </div>
         </div>}
     
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" data-unique-id="2cad9b6f-af38-48c9-954f-f24349fc94f9" data-file-name="components/bulk-email-upload.tsx">
-          <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="69679943-6d77-4d17-b8ce-39514dfa9c69" data-file-name="components/bulk-email-upload.tsx">
-            <h3 className="font-medium mb-3 text-base flex items-center" data-unique-id="d1503e20-3e6b-4329-af09-ddd9e80bbc17" data-file-name="components/bulk-email-upload.tsx">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6" data-unique-id="b03229ef-642f-4451-9fe2-6905e674200e" data-file-name="components/bulk-email-upload.tsx">
+          <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="154e3dd8-284d-4f32-8358-ba7689a88138" data-file-name="components/bulk-email-upload.tsx">
+            <h3 className="font-medium mb-3 text-base flex items-center" data-unique-id="fd1e3a8d-cde1-4741-bef3-1fcd40ea1ab7" data-file-name="components/bulk-email-upload.tsx">
               <Users className="mr-2 h-4 w-4 text-primary" />
-              <span className="editable-text" data-unique-id="ead6d066-5f6d-4050-a61e-e8fc71426a67" data-file-name="components/bulk-email-upload.tsx">Select Saved Customers</span>
+              <span className="editable-text" data-unique-id="1603a125-a02b-4a5d-8e91-aef42451a330" data-file-name="components/bulk-email-upload.tsx">Select Saved Customers</span>
             </h3>
             
-            <div className="flex flex-col space-y-4" data-unique-id="6c9be0ea-07a5-4a26-ad49-2525022e563a" data-file-name="components/bulk-email-upload.tsx">
-              <p className="text-sm" data-unique-id="b4dcd461-5f64-4266-a5c7-49df5e429ac9" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+            <div className="flex flex-col space-y-4" data-unique-id="36d437be-ed8a-46d9-a93d-dbf392015aec" data-file-name="components/bulk-email-upload.tsx">
+              <p className="text-sm" data-unique-id="afb68ff5-8c8e-4a3f-aa52-d73195de22f0" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
                 {savedCustomers.length > 0 ? `You have ${savedCustomers.length} saved customers` : "No saved customers found. Add customers in the Customers tab."}
               </p>
               
-              <button onClick={() => setShowCustomerSelector(true)} disabled={savedCustomers.length === 0} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50" data-unique-id="86f0ce5f-51b6-4285-a0ed-9b661e132b5a" data-file-name="components/bulk-email-upload.tsx">
-                <PlusCircle className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="ccccb960-e662-4bba-ace3-152a6576c798" data-file-name="components/bulk-email-upload.tsx">
+              <button onClick={() => setShowCustomerSelector(true)} disabled={savedCustomers.length === 0} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50" data-unique-id="6deacfcc-b6f6-4d48-a4af-c27eefeafd21" data-file-name="components/bulk-email-upload.tsx">
+                <PlusCircle className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="c9b4b373-b10e-4275-852d-d0a714930a57" data-file-name="components/bulk-email-upload.tsx">
                 Select Customers
               </span></button>
             </div>
           </div>
           
-          <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="d323201d-3170-48cc-8646-4b71c2ade9b1" data-file-name="components/bulk-email-upload.tsx">
-            <h3 className="font-medium mb-3 text-base flex items-center" data-unique-id="9f086b77-0bb7-438f-88f5-a7e2908252c3" data-file-name="components/bulk-email-upload.tsx">
+          <div className="bg-card p-5 border border-border rounded-md shadow-sm" data-unique-id="0ababaff-44ec-4f04-a169-e791773b9c68" data-file-name="components/bulk-email-upload.tsx">
+            <h3 className="font-medium mb-3 text-base flex items-center" data-unique-id="2fc29b98-d916-41c8-9224-ccb93fee8a2e" data-file-name="components/bulk-email-upload.tsx">
               <FileSpreadsheet className="mr-2 h-4 w-4 text-primary" />
-              <span className="editable-text" data-unique-id="33b2b6fc-3dca-4161-82be-115b40ce0892" data-file-name="components/bulk-email-upload.tsx">Customer Data Import</span>
+              <span className="editable-text" data-unique-id="cf34bf1c-b11b-477a-aec4-ef606dec3971" data-file-name="components/bulk-email-upload.tsx">Customer Data Import</span>
             </h3>
             
-            <div className="flex flex-col space-y-4" data-unique-id="e2b2ef35-ffe4-48d6-bcd2-1aab5b3f42d7" data-file-name="components/bulk-email-upload.tsx">
-              <input type="file" ref={fileInputRef} accept=".xlsx, .xls" onChange={handleFileUpload} className="hidden" id="excel-upload" data-unique-id="a7f411b1-ab7f-402d-8d73-4a39a06cb7f6" data-file-name="components/bulk-email-upload.tsx" />
+            <div className="flex flex-col space-y-4" data-unique-id="4dcf3e0c-e0c6-45a0-abd3-5f49900cf367" data-file-name="components/bulk-email-upload.tsx">
+              <input type="file" ref={fileInputRef} accept=".xlsx, .xls" onChange={handleFileUpload} className="hidden" id="excel-upload" data-unique-id="e3cc00a6-58a7-434b-ac0b-9e350c442f54" data-file-name="components/bulk-email-upload.tsx" />
               
-              <div className="flex items-center space-x-2" data-unique-id="c04182b1-f67b-4dc8-b74e-ff96cb1122ae" data-file-name="components/bulk-email-upload.tsx">
-                <button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors disabled:opacity-50" data-unique-id="5141e4a7-4053-46f4-9332-efd37720b7e5" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+              <div className="flex items-center space-x-2" data-unique-id="5111f0a1-e162-4219-8e38-ef50e1d5257f" data-file-name="components/bulk-email-upload.tsx">
+                <button onClick={() => fileInputRef.current?.click()} disabled={isUploading} className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors disabled:opacity-50" data-unique-id="a7bb697a-bcd1-4d90-9578-a6ab407474fd" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
                   <Upload className="mr-2 h-4 w-4" />
                   {isUploading ? "Processing..." : "Upload Excel Sheet"}
                 </button>
@@ -805,60 +821,60 @@ export default function BulkEmailUpload({
 
                 // Generate and download the Excel file
                 XLSX.writeFile(wb, "detroit-axle-customer-template.xlsx");
-              }} className="text-primary underline text-sm hover:text-primary/90" data-unique-id="b397d7ff-b771-44e6-8c8f-80b9d88add61" data-file-name="components/bulk-email-upload.tsx">
-                  <span className="editable-text" data-unique-id="9fda07c8-e756-4266-84dc-b4f7822d1609" data-file-name="components/bulk-email-upload.tsx">Download Excel Template</span>
+              }} className="text-primary underline text-sm hover:text-primary/90" data-unique-id="a35dad3b-42df-49d1-a355-42e9020713e1" data-file-name="components/bulk-email-upload.tsx">
+                  <span className="editable-text" data-unique-id="da51ef19-5155-42f9-879e-b6bba1b0bcae" data-file-name="components/bulk-email-upload.tsx">Download Excel Template</span>
                 </button>
               </div>
               
-              <p className="text-xs text-muted-foreground" data-unique-id="3cae0829-74e1-47ef-8b6d-2796d4eee6c7" data-file-name="components/bulk-email-upload.tsx">
-                <span className="editable-text" data-unique-id="0f739a43-29ba-4416-88c9-dda6cd996841" data-file-name="components/bulk-email-upload.tsx">Upload an Excel file (.xlsx or .xls) with customer information</span>
+              <p className="text-xs text-muted-foreground" data-unique-id="298d704d-f0a4-4d5a-a74c-813daa5cc704" data-file-name="components/bulk-email-upload.tsx">
+                <span className="editable-text" data-unique-id="8166861a-d626-47b4-aed1-fee5ec9fa203" data-file-name="components/bulk-email-upload.tsx">Upload an Excel file (.xlsx or .xls) with customer information</span>
               </p>
             </div>
           </div>
         </div>
       </div>
       
-      <div className="mb-6" data-unique-id="2539668e-b149-436f-ad40-4702b240b503" data-file-name="components/bulk-email-upload.tsx">
-        <div className="flex justify-between items-center mb-3" data-unique-id="9c951c69-6375-40b0-82cb-018b989745ec" data-file-name="components/bulk-email-upload.tsx">
-          <h3 className="font-medium" data-unique-id="b706b3dc-2eec-41ce-829c-b4db6b7f256a" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="40380b2e-559c-4483-8dbf-8a9535c7ccce" data-file-name="components/bulk-email-upload.tsx">Customer Data</span></h3>
-          <button onClick={addCustomer} className="text-sm text-primary hover:underline" data-unique-id="40f7d674-464b-4118-8ee2-483c0cddcf56" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="02a2bd96-cd21-49f5-8538-5406ecf4a1a9" data-file-name="components/bulk-email-upload.tsx">
+      <div className="mb-6" data-unique-id="defb0a6f-ee17-4c05-89aa-b76a58884c67" data-file-name="components/bulk-email-upload.tsx">
+        <div className="flex justify-between items-center mb-3" data-unique-id="caf63162-1f43-406c-b702-9fb98fd19215" data-file-name="components/bulk-email-upload.tsx">
+          <h3 className="font-medium" data-unique-id="34320792-518d-4b0a-b636-6068f086a28c" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="ade3a60b-314f-4791-9b7e-7c168ac58394" data-file-name="components/bulk-email-upload.tsx">Customer Data</span></h3>
+          <button onClick={addCustomer} className="text-sm text-primary hover:underline" data-unique-id="ac9e9059-39ad-4e12-baa9-efb1f6b7bd6d" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="1c94b365-989b-430a-86fe-a04ccefc4e20" data-file-name="components/bulk-email-upload.tsx">
             + Add Customer
           </span></button>
         </div>
         
-        <div className="border border-border rounded-md overflow-hidden" data-unique-id="df3072da-029f-4518-93fd-297d978719ef" data-file-name="components/bulk-email-upload.tsx">
-          <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="0ffc65e0-d426-4aaf-85bc-9e63b75c8f5b" data-file-name="components/bulk-email-upload.tsx">
-            <div className="col-span-3" data-unique-id="72a8a247-0e6f-4347-b21b-1a1924a2da0e" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="c804bf6d-9f49-4571-b689-a9bfe5afa691" data-file-name="components/bulk-email-upload.tsx">Name</span></div>
-            <div className="col-span-3" data-unique-id="2c1cf002-c12b-48b5-9d63-72ac5ea2abe2" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="562d28a0-46a2-40ad-9ccf-012ee0350947" data-file-name="components/bulk-email-upload.tsx">Order Number</span></div>
-            <div className="col-span-3" data-unique-id="c5133baa-22d4-497f-8191-a512654f408e" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="f3dc8a1a-406f-418f-8e0a-fbd8ba1772db" data-file-name="components/bulk-email-upload.tsx">Tracking Number</span></div>
-            <div className="col-span-2" data-unique-id="18c68949-0458-4d58-aa34-b541feb0f3fc" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="a9faed86-cf39-4aed-9fa9-6fbbfef8d8d5" data-file-name="components/bulk-email-upload.tsx">Status</span></div>
-            <div className="col-span-1" data-unique-id="65ae8d96-41fe-4fcd-95c6-5aeb92f4be72" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="8e5db56a-09d5-4daa-97ae-61f0b81e726d" data-file-name="components/bulk-email-upload.tsx">Actions</span></div>
+        <div className="border border-border rounded-md overflow-hidden" data-unique-id="4fa0f2cb-7275-4ade-af02-351d2348fd8f" data-file-name="components/bulk-email-upload.tsx">
+          <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="fc39ebe6-30ec-4494-9bcd-bf2014b5aa6a" data-file-name="components/bulk-email-upload.tsx">
+            <div className="col-span-3" data-unique-id="e5f8013c-8632-4516-b948-3cbfb9938aa7" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="d070f259-064f-4c2e-8cab-6e7662bac391" data-file-name="components/bulk-email-upload.tsx">Name</span></div>
+            <div className="col-span-3" data-unique-id="5159c886-7cae-4022-8cfa-809b21400696" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="83705c11-c247-42d2-bb6c-3ee1568dcebd" data-file-name="components/bulk-email-upload.tsx">Order Number</span></div>
+            <div className="col-span-3" data-unique-id="fd2bd720-50c9-453a-89c8-89d8677f1fb6" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="f2a080b5-0325-441e-a074-c38a44281c5c" data-file-name="components/bulk-email-upload.tsx">Tracking Number</span></div>
+            <div className="col-span-2" data-unique-id="3b73c118-2915-4a29-95fd-0bc9b6388b43" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="38abeb48-2a6e-4960-bedc-8582223f96f6" data-file-name="components/bulk-email-upload.tsx">Status</span></div>
+            <div className="col-span-1" data-unique-id="e709842e-da81-4936-a26f-2023afd81921" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="7e2cc7ef-bc69-4bea-8800-d9d10cef04e2" data-file-name="components/bulk-email-upload.tsx">Actions</span></div>
           </div>
           
-          <div className="max-h-64 overflow-y-auto" data-unique-id="16d9f639-f59a-43bb-8e29-29d775a54983" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-            {customers.map(customer => <div key={customer.id} className="grid grid-cols-12 gap-2 p-3 border-t border-border items-center text-sm" data-unique-id="7b4c588d-cd8a-4bc8-9d4d-c01df981bbba" data-file-name="components/bulk-email-upload.tsx">
-                <div className="col-span-3" data-unique-id="c132b68b-a965-4c81-b81a-4a03e453d909" data-file-name="components/bulk-email-upload.tsx">
-                  <input value={customer.name} onChange={e => updateCustomer(customer.id, "name", e.target.value)} placeholder="Customer Name" className="w-full p-1 border border-border rounded text-sm" data-unique-id="d1fe36c3-fa03-4401-ae9f-fd3aa16a20e3" data-file-name="components/bulk-email-upload.tsx" />
+          <div className="max-h-64 overflow-y-auto" data-unique-id="1305622f-127a-4f7d-b7d8-00da6d5548c1" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+            {customers.map(customer => <div key={customer.id} className="grid grid-cols-12 gap-2 p-3 border-t border-border items-center text-sm" data-unique-id="8b102daf-89ae-4088-9082-ec066343c3d9" data-file-name="components/bulk-email-upload.tsx">
+                <div className="col-span-3" data-unique-id="38157209-eabd-47a9-aabf-7179cffb026b" data-file-name="components/bulk-email-upload.tsx">
+                  <input value={customer.name} onChange={e => updateCustomer(customer.id, "name", e.target.value)} placeholder="Customer Name" className="w-full p-1 border border-border rounded text-sm" data-unique-id="7e1f5ea5-065b-47b6-84ba-a070fe2687cb" data-file-name="components/bulk-email-upload.tsx" />
                 </div>
-                <div className="col-span-3" data-unique-id="cbd2533c-a428-4c85-87d9-96b3987ac3f7" data-file-name="components/bulk-email-upload.tsx">
-                  <input value={customer.orderNumber} onChange={e => updateCustomer(customer.id, "orderNumber", e.target.value)} placeholder="Order #" className="w-full p-1 border border-border rounded text-sm" data-unique-id="e645f4e4-5af2-4d6c-b3f3-7a6b4f7db031" data-file-name="components/bulk-email-upload.tsx" />
+                <div className="col-span-3" data-unique-id="1af1fb73-b26e-41de-8af9-4913e376907e" data-file-name="components/bulk-email-upload.tsx">
+                  <input value={customer.orderNumber} onChange={e => updateCustomer(customer.id, "orderNumber", e.target.value)} placeholder="Order #" className="w-full p-1 border border-border rounded text-sm" data-unique-id="9a749300-4237-42ec-a087-3b9ec21e373b" data-file-name="components/bulk-email-upload.tsx" />
                 </div>
-                <div className="col-span-3" data-unique-id="009f3aaf-e857-4f27-8ba0-6a04b186a854" data-file-name="components/bulk-email-upload.tsx">
-                  <input value={customer.trackingNumber} onChange={e => updateCustomer(customer.id, "trackingNumber", e.target.value)} placeholder="Tracking #" className="w-full p-1 border border-border rounded text-sm" data-unique-id="3b79eeee-ae5d-431b-b75c-97051f8b77f1" data-file-name="components/bulk-email-upload.tsx" />
+                <div className="col-span-3" data-unique-id="3b52ab51-6b6f-4b6b-98e1-d734f975c48b" data-file-name="components/bulk-email-upload.tsx">
+                  <input value={customer.trackingNumber} onChange={e => updateCustomer(customer.id, "trackingNumber", e.target.value)} placeholder="Tracking #" className="w-full p-1 border border-border rounded text-sm" data-unique-id="8fc50093-2932-454e-81c7-889450d982fd" data-file-name="components/bulk-email-upload.tsx" />
                 </div>
-                <div className="col-span-2" data-unique-id="05e8dad7-dc7f-450d-ba41-8fe71596fec9" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-                  {sentStatus[customer.id] ? <span className="flex items-center text-green-600" data-unique-id="8e471a79-a80b-4ab8-934e-2b91173453c2" data-file-name="components/bulk-email-upload.tsx">
+                <div className="col-span-2" data-unique-id="6f2ba3fe-cdc4-42fd-9763-d7a3cb039c01" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+                  {sentStatus[customer.id] ? <span className="flex items-center text-green-600" data-unique-id="c5fbf22e-b5fb-4b88-9692-9b37eaddb2d2" data-file-name="components/bulk-email-upload.tsx">
                       <Check className="h-4 w-4 mr-1" />
-                      <span data-unique-id="9ea10a65-75ac-461e-a99b-a1853e3c6afc" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="48210a9e-e500-4a8b-ba30-3519b7436dae" data-file-name="components/bulk-email-upload.tsx">Sent</span></span>
-                    </span> : failedEmails && failedEmails[customer.id] ? <span className="flex items-center text-red-600" title={failedEmails[customer.id]} data-unique-id="3a2ceea8-c856-4781-9652-db8c45e37dc1" data-file-name="components/bulk-email-upload.tsx">
+                      <span data-unique-id="86b351ed-eae1-42b9-8166-9ac5d28a28c3" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="8e2ff9a9-488f-41f0-98f8-92d8ee12e669" data-file-name="components/bulk-email-upload.tsx">Sent</span></span>
+                    </span> : failedEmails && failedEmails[customer.id] ? <span className="flex items-center text-red-600" title={failedEmails[customer.id]} data-unique-id="1048353c-5fee-437b-a760-887f0f0dee66" data-file-name="components/bulk-email-upload.tsx">
                       <X className="h-4 w-4 mr-1" />
-                      <span data-unique-id="f278fc14-4639-4835-8114-2079243cd2f5" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="4153f64d-f1de-40eb-adfe-2e8de4ff0032" data-file-name="components/bulk-email-upload.tsx">Failed</span></span>
-                    </span> : <span className="text-muted-foreground" data-unique-id="0c02ca47-c631-4d63-9da4-f96c1110c462" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="853bf92b-5a77-4592-85ef-7436b1edfedd" data-file-name="components/bulk-email-upload.tsx">
+                      <span data-unique-id="56d51390-f788-4733-8129-dc5da190cf1f" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="4faceaba-c27f-486e-a9a1-120cafdb22f8" data-file-name="components/bulk-email-upload.tsx">Failed</span></span>
+                    </span> : <span className="text-muted-foreground" data-unique-id="7ff8af1f-69de-4fa5-a4ce-666ec57af87b" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="a75a6c7b-884a-49eb-bbdc-40847d18a61f" data-file-name="components/bulk-email-upload.tsx">
                       Pending
                     </span></span>}
                 </div>
-                <div className="col-span-1 flex justify-end" data-unique-id="f6440a67-75f9-4a6f-ac34-04560aaa1157" data-file-name="components/bulk-email-upload.tsx">
-                  <button onClick={() => removeCustomer(customer.id)} className="text-destructive hover:bg-destructive/10 p-1 rounded" data-unique-id="3e6a27fe-063d-43a6-ae15-8d2d3330b4bd" data-file-name="components/bulk-email-upload.tsx">
+                <div className="col-span-1 flex justify-end" data-unique-id="d3d9bdf0-26f6-47e4-8c72-ddd58520cce8" data-file-name="components/bulk-email-upload.tsx">
+                  <button onClick={() => removeCustomer(customer.id)} className="text-destructive hover:bg-destructive/10 p-1 rounded" data-unique-id="0d6349a7-6a54-4bfe-b67f-649a68274492" data-file-name="components/bulk-email-upload.tsx">
                     <X className="h-4 w-4" />
                   </button>
                 </div>
@@ -885,15 +901,15 @@ export default function BulkEmailUpload({
     }} currentEmail={getCurrentEmail()} currentEmailIndex={currentEmailIndex} totalEmails={customers.length} completionPercentage={getCompletionPercentage()} onPrevious={goToPrevEmail} onNext={goToNextEmail} onMarkAsSent={markAsSent} onOpenInEmailClient={openInEmailClient} isSent={customers.length > 0 && currentEmailIndex < customers.length ? !!sentStatus[customers[currentEmailIndex]?.id] : false} availableTemplates={emailTemplates} onSelectTemplate={selectTemplateForEmail} currentTemplateId={customers.length > 0 && currentEmailIndex < customers.length ? selectedTemplates[customers[currentEmailIndex]?.id] : undefined} />
 
       {/* Add a button to show the manual email interface when in manual mode */}
-      {manualSendMode && customers.length > 0 && Object.keys(reviewedEmails).length > 0 && <div className="mb-6 p-4 border border-primary/20 rounded-md bg-accent/5" data-unique-id="c43af606-2562-4289-8883-d5c509fc6b39" data-file-name="components/bulk-email-upload.tsx">
-          <div className="flex items-center justify-between" data-unique-id="e84b2ba5-ec8c-4abe-98e8-a48a4f3b62aa" data-file-name="components/bulk-email-upload.tsx">
-            <div data-unique-id="bd7be573-b892-4cb8-b885-b33c5f55b06c" data-file-name="components/bulk-email-upload.tsx">
-              <h3 className="font-medium flex items-center" data-unique-id="3c81284d-e856-460c-9323-37bfa2febaa0" data-file-name="components/bulk-email-upload.tsx">
-                <Eye className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="c4ee6280-924b-47cf-929f-e5a8976e38e7" data-file-name="components/bulk-email-upload.tsx">
+      {manualSendMode && customers.length > 0 && Object.keys(reviewedEmails).length > 0 && <div className="mb-6 p-4 border border-primary/20 rounded-md bg-accent/5" data-unique-id="da8e14ba-ad2f-4610-8f1f-6b00c06fa8eb" data-file-name="components/bulk-email-upload.tsx">
+          <div className="flex items-center justify-between" data-unique-id="69fdc123-face-485e-95a7-f1f314febb51" data-file-name="components/bulk-email-upload.tsx">
+            <div data-unique-id="88ca2b4e-8464-43dc-b9e5-fc9a018c4426" data-file-name="components/bulk-email-upload.tsx">
+              <h3 className="font-medium flex items-center" data-unique-id="bc3dfe0c-3a25-47ba-a976-d4f673e73592" data-file-name="components/bulk-email-upload.tsx">
+                <Eye className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="a50feda3-fc2d-45df-b04e-78f70684199b" data-file-name="components/bulk-email-upload.tsx">
                 Email Preview & Manual Send
               </span></h3>
-              <p className="text-sm text-muted-foreground mt-1" data-unique-id="892ec4b5-5ef0-401b-8f53-0853fea38f3d" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-                {getCompletionPercentage()}<span className="editable-text" data-unique-id="e7d9ba95-cbe2-45c9-ab61-4dfe1ce20cb6" data-file-name="components/bulk-email-upload.tsx">% complete (</span>{Object.values(sentStatus).filter(Boolean).length}<span className="editable-text" data-unique-id="f50a27ee-e967-46af-abb2-d0f4beebd275" data-file-name="components/bulk-email-upload.tsx"> of </span>{customers.length}<span className="editable-text" data-unique-id="bf0e5fb8-b567-446f-a366-62d7fe63d0af" data-file-name="components/bulk-email-upload.tsx"> emails sent)
+              <p className="text-sm text-muted-foreground mt-1" data-unique-id="c53d28f7-986b-44f3-94c1-697b1421cce2" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+                {getCompletionPercentage()}<span className="editable-text" data-unique-id="01137413-3a49-4751-95c1-20c1221c37bb" data-file-name="components/bulk-email-upload.tsx">% complete (</span>{Object.values(sentStatus).filter(Boolean).length}<span className="editable-text" data-unique-id="b9c08383-8643-45d5-8cd3-ebe76db8a9c4" data-file-name="components/bulk-email-upload.tsx"> of </span>{customers.length}<span className="editable-text" data-unique-id="5eec3ce5-074c-47f2-9eb0-879c5ee95f14" data-file-name="components/bulk-email-upload.tsx"> emails sent)
               </span></p>
             </div>
             <button onClick={() => {
@@ -906,46 +922,46 @@ export default function BulkEmailUpload({
             }
             setShowManualEmailModal(true);
           }
-        }} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="cd51ea7e-0f22-4b5e-ad60-3fd6fae52875" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="d164f3e7-0b7e-49dc-8875-e3467badf0c4" data-file-name="components/bulk-email-upload.tsx">
+        }} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="bd3a312c-fb85-41d6-b3e7-6dee12ca8413" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="6b344861-0e7c-4036-bf1b-39f7c3a4d675" data-file-name="components/bulk-email-upload.tsx">
               Continue Sending Emails
             </span></button>
           </div>
           
-          <div className="w-full bg-gray-200 h-2 mt-4 rounded-full" data-unique-id="138f9a6c-50c6-4436-9ce0-7f750dedfafc" data-file-name="components/bulk-email-upload.tsx">
+          <div className="w-full bg-gray-200 h-2 mt-4 rounded-full" data-unique-id="05c7c1da-1fb2-4bab-a8c5-0d5ee1ed6def" data-file-name="components/bulk-email-upload.tsx">
             <div className="bg-primary h-2 rounded-full transition-all duration-300" style={{
           width: `${getCompletionPercentage()}%`
-        }} data-unique-id="a7351498-d2ca-4d7c-a47d-296fb9277df1" data-file-name="components/bulk-email-upload.tsx"></div>
+        }} data-unique-id="9ae46f20-cc11-4b59-9c03-992f31ff0afa" data-file-name="components/bulk-email-upload.tsx"></div>
           </div>
         </div>}
       
-      {manualSendMode ? <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-md" data-unique-id="120f643a-6853-41ae-8372-1e559177f930" data-file-name="components/bulk-email-upload.tsx">
-          <div className="flex items-center" data-unique-id="093aede7-ae87-444b-9109-093ec9ab3fc2" data-file-name="components/bulk-email-upload.tsx">
+      {manualSendMode ? <div className="mb-4 p-3 bg-amber-50 border border-amber-200 rounded-md" data-unique-id="2a0b0200-ee27-40fe-b844-f9302417a346" data-file-name="components/bulk-email-upload.tsx">
+          <div className="flex items-center" data-unique-id="42a4717d-ade3-4198-beb6-b34da85dd0b8" data-file-name="components/bulk-email-upload.tsx">
             <AlertCircle className="h-5 w-5 mr-2 text-amber-600" />
-            <p className="text-amber-800 font-medium" data-unique-id="652724e9-f58e-4ca6-9bef-b2ede989e831" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="ab215c9a-c405-4321-9ce6-d251e388bf3d" data-file-name="components/bulk-email-upload.tsx">Manual Email Sending Mode</span></p>
+            <p className="text-amber-800 font-medium" data-unique-id="648d670c-63d3-4da2-ad62-e9676cc7a371" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="73105e3c-4515-46c3-82bf-da1c6ac3273e" data-file-name="components/bulk-email-upload.tsx">Manual Email Sending Mode</span></p>
           </div>
-          <p className="mt-1 text-sm text-amber-700" data-unique-id="797b68be-3a85-465a-9f32-205c15a16acb" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="ff9f3c35-a771-46ee-9bea-152583a14da4" data-file-name="components/bulk-email-upload.tsx">
+          <p className="mt-1 text-sm text-amber-700" data-unique-id="38de1c3b-dd4e-49f8-956e-1113bcb93331" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="82031637-4a4a-4a9c-9dda-5d17522d6d25" data-file-name="components/bulk-email-upload.tsx">
             You are in manual email sending mode. After clicking "Send Emails", you'll be guided through 
             reviewing each email. You can copy the content and send it using your own email client.
           </span></p>
-          <p className="mt-1 text-sm text-amber-700" data-unique-id="e6f44667-63c7-439e-b9ef-68367086b536" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="ab1313fb-3549-4c8a-bf7e-2370dd1f86f8" data-file-name="components/bulk-email-upload.tsx">
+          <p className="mt-1 text-sm text-amber-700" data-unique-id="601c8381-9427-4429-bb04-17e755e806e1" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="b16a0100-6414-4d0a-9f3f-3132708a5741" data-file-name="components/bulk-email-upload.tsx">
             Don't forget to mark emails as sent after you've sent them to keep track of your progress.
           </span></p>
-        </div> : sendingError ? <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md" data-unique-id="033fed09-5edd-42d2-a608-fe67be055276" data-file-name="components/bulk-email-upload.tsx">
-          <div className="flex items-center" data-unique-id="91ace33c-3f10-4b0a-8e77-fe607d86ab3c" data-file-name="components/bulk-email-upload.tsx">
+        </div> : sendingError ? <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-md" data-unique-id="df15e38d-1f90-417c-877d-cd0cd5198c2e" data-file-name="components/bulk-email-upload.tsx">
+          <div className="flex items-center" data-unique-id="e96af541-d8ee-4347-b94e-6a0a71e38a8a" data-file-name="components/bulk-email-upload.tsx">
             <AlertCircle className="h-5 w-5 mr-2 text-red-600" />
-            <p className="text-red-800 font-medium" data-unique-id="418304c6-6055-4a91-9ab0-94449d9dff66" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="14cb6a67-de32-447b-9107-f215499b7094" data-file-name="components/bulk-email-upload.tsx">Error Sending Emails</span></p>
+            <p className="text-red-800 font-medium" data-unique-id="3cc52666-137d-4176-8508-418cfaebbebc" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="2e43313c-2829-426c-a577-6416056fed55" data-file-name="components/bulk-email-upload.tsx">Error Sending Emails</span></p>
           </div>
-          <p className="mt-1 text-sm text-red-700" data-unique-id="06441d0a-8124-4c51-a107-a6c17a627232" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+          <p className="mt-1 text-sm text-red-700" data-unique-id="19a6b603-acd2-4ecb-9059-964f1e149fd7" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
             {sendingError}
           </p>
-          <div className="mt-2 text-xs text-red-600" data-unique-id="ec6f37b2-1484-4dc4-a2f5-80fc44c7fbd8" data-file-name="components/bulk-email-upload.tsx">
+          <div className="mt-2 text-xs text-red-600" data-unique-id="6f60e5cf-4a9c-4cfb-8b62-0e323719de22" data-file-name="components/bulk-email-upload.tsx">
             <button className="underline" onClick={() => {
           setManualSendMode(true);
           alert("Switched to manual sending mode. You'll be able to send emails through your own email client.");
-        }} data-unique-id="09ef79fd-09dd-42d7-a622-93c8f4db5224" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="2bc5059e-8cb3-4cc0-852e-b3be7d4bb823" data-file-name="components/bulk-email-upload.tsx">
+        }} data-unique-id="203fc8ba-f725-419f-9a60-345c511c3922" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="99d2e9ef-592a-43ac-a351-b33c425ea7b3" data-file-name="components/bulk-email-upload.tsx">
               Switch to manual sending mode
             </span></button>
-            <span className="mx-2" data-unique-id="25ca2450-6b29-4983-94e2-8d6331224ccf" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="997d4722-81e3-4815-a5ad-136554ac18d7" data-file-name="components/bulk-email-upload.tsx">•</span></span>
+            <span className="mx-2" data-unique-id="604c130f-03d5-4ecd-9861-a737ae3a6bf8" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="3745aad0-6f95-4855-97aa-321f230fcece" data-file-name="components/bulk-email-upload.tsx">•</span></span>
             <button className="underline" onClick={() => {
           const debugInfo = {
             senderInfo: {
@@ -958,38 +974,38 @@ export default function BulkEmailUpload({
             timestamp: new Date().toISOString()
           };
           alert("Debug Info: " + JSON.stringify(debugInfo, null, 2));
-        }} data-unique-id="07eb0365-5d6d-47c8-96ab-4b221970ede9" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="df8f7cac-577d-4ff7-a82d-c257f03e1aac" data-file-name="components/bulk-email-upload.tsx">
+        }} data-unique-id="81dab3a5-dad9-439d-924e-14603ada42cc" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="8a081306-3054-48c1-9901-17afff3e6927" data-file-name="components/bulk-email-upload.tsx">
               Show Debug Info
             </span></button>
           </div>
-        </div> : <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md" data-unique-id="d9667565-c856-4708-8246-c096ce7dfb79" data-file-name="components/bulk-email-upload.tsx">
-          <div className="flex items-center" data-unique-id="93cfb0ff-230c-447b-82e9-8311641ace78" data-file-name="components/bulk-email-upload.tsx">
+        </div> : <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded-md" data-unique-id="85dc106b-53dc-4165-bfc6-6531dbe10caa" data-file-name="components/bulk-email-upload.tsx">
+          <div className="flex items-center" data-unique-id="23c1b7b6-08e8-4d60-a661-ddf99d4962c2" data-file-name="components/bulk-email-upload.tsx">
             <AlertCircle className="h-5 w-5 mr-2 text-blue-600" />
-            <p className="text-blue-800 font-medium" data-unique-id="f8bb0d0f-6f30-477b-8740-641b82103ae8" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+            <p className="text-blue-800 font-medium" data-unique-id="f87bac05-1dd4-461b-8819-3fef5f493ed8" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
               {isEmailServiceAvailable ? "Email Sending Enabled" : "Email Service Not Configured"}
             </p>
           </div>
-          <p className="mt-1 text-sm text-blue-700" data-unique-id="88dc26f7-6594-4aff-ac41-613798c80d98" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+          <p className="mt-1 text-sm text-blue-700" data-unique-id="82a7d56d-0dbd-457b-9007-776415eaebf9" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
             {isEmailServiceAvailable ? "This application is now connected to a real email service. Emails will be sent to the customer email addresses provided. Please ensure all email addresses are valid and have opted in to receive communications." : "The email service is not configured properly. You can use manual mode to send emails through your own email client."}
           </p>
         </div>}
       
-      {sendingProgress > 0 && sendingProgress < 100 && <div className="mb-4" data-unique-id="9dc01dbc-9702-4ae7-b9b6-820d185f24d8" data-file-name="components/bulk-email-upload.tsx">
-          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden" data-unique-id="3fe59c12-f17e-455c-8529-81d52a3a382a" data-file-name="components/bulk-email-upload.tsx">
+      {sendingProgress > 0 && sendingProgress < 100 && <div className="mb-4" data-unique-id="7b55d32a-46d5-4494-863f-7ece657711af" data-file-name="components/bulk-email-upload.tsx">
+          <div className="w-full h-2 bg-gray-200 rounded-full overflow-hidden" data-unique-id="86a26b18-2ffb-4e92-8544-82cd41e50de2" data-file-name="components/bulk-email-upload.tsx">
             <div className="h-full bg-primary transition-all duration-300 ease-out" style={{
           width: `${sendingProgress}%`
-        }} data-unique-id="fd6cf947-24c3-4e14-aea8-26267646e59d" data-file-name="components/bulk-email-upload.tsx"></div>
+        }} data-unique-id="6580b770-9947-4e6f-afaa-04e698bfe6a8" data-file-name="components/bulk-email-upload.tsx"></div>
           </div>
-          <p className="text-xs text-right mt-1 text-gray-500" data-unique-id="cda29137-13d9-408e-a953-422200b8d331" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="399d2b49-1cb8-442f-bb24-a945dddbeac0" data-file-name="components/bulk-email-upload.tsx">Sending email: </span>{sendingProgress}<span className="editable-text" data-unique-id="a56cd8d1-aaed-44a2-b9ba-ee7924d06fb2" data-file-name="components/bulk-email-upload.tsx">% complete</span></p>
+          <p className="text-xs text-right mt-1 text-gray-500" data-unique-id="ec968e1a-cb08-480d-a856-adebb71acc2b" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="895a37f8-2431-4d8c-b2e4-29a8cf328efb" data-file-name="components/bulk-email-upload.tsx">Sending email: </span>{sendingProgress}<span className="editable-text" data-unique-id="cc875024-d161-4235-b04e-d2262827fffc" data-file-name="components/bulk-email-upload.tsx">% complete</span></p>
         </div>}
       
-      <div className="flex items-center justify-between" data-unique-id="8da0f011-301c-483f-946e-8d345fecc434" data-file-name="components/bulk-email-upload.tsx">
-        <div className="flex items-center text-sm text-muted-foreground" data-unique-id="e8e63cf5-55b8-4e34-9901-21baaaaad8e0" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+      <div className="flex items-center justify-between" data-unique-id="cad0b08b-aaa4-4556-ab32-215f34b78036" data-file-name="components/bulk-email-upload.tsx">
+        <div className="flex items-center text-sm text-muted-foreground" data-unique-id="b0f405d4-7c70-4ac7-a0a7-ec7c23972da1" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
           <AlertCircle className="h-4 w-4 mr-1" />
-          {customers.length}<span className="editable-text" data-unique-id="20930c3b-dc00-4010-ab6e-1d8ba12468d9" data-file-name="components/bulk-email-upload.tsx"> customers loaded
+          {customers.length}<span className="editable-text" data-unique-id="ac3dccd5-8206-4325-b203-6d083a4f79ef" data-file-name="components/bulk-email-upload.tsx"> customers loaded
         </span></div>
         
-        <button onClick={sendEmails} disabled={isSending || customers.length === 0} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50" data-unique-id="dc7b192d-d576-4d34-bb85-4eae65471ec0" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+        <button onClick={sendEmails} disabled={isSending || customers.length === 0} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors disabled:opacity-50" data-unique-id="8ac6fb41-23ca-4507-89c2-5f6bebc58248" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
           {isSending ? <>
               <RefreshCw className="mr-2 h-4 w-4 animate-spin" />
               {manualSendMode ? "Preparing..." : "Sending..."}
@@ -1004,65 +1020,65 @@ export default function BulkEmailUpload({
       {showCustomerSelector && <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50" onClick={() => {
       setShowCustomerSelector(false);
       setSelectedCustomerIds([]);
-    }} data-unique-id="81ca9f9c-2ab2-444a-8cb1-710a25b05fb9" data-file-name="components/bulk-email-upload.tsx">
-          <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[80vh] flex flex-col" onClick={e => e.stopPropagation()} data-unique-id="59f25edb-5ab6-44c8-a431-54f76d9d0560" data-file-name="components/bulk-email-upload.tsx">
-            <div className="flex justify-between items-center border-b border-border p-4" data-unique-id="4af39c48-5f3e-4a91-a1a0-cf4b502156dd" data-file-name="components/bulk-email-upload.tsx">
-              <h3 className="font-medium text-lg" data-unique-id="08762565-fa4c-40fd-ac87-15c85711e9f0" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="f1187870-ca2c-4ebf-bf00-ae2a2bd93a9c" data-file-name="components/bulk-email-upload.tsx">Select Customers</span></h3>
+    }} data-unique-id="04da2cfa-40bb-46e0-838f-6cd795c11111" data-file-name="components/bulk-email-upload.tsx">
+          <div className="bg-white rounded-lg shadow-xl w-full max-w-3xl max-h-[80vh] flex flex-col" onClick={e => e.stopPropagation()} data-unique-id="853812eb-fc3f-410b-82a4-490c347b8839" data-file-name="components/bulk-email-upload.tsx">
+            <div className="flex justify-between items-center border-b border-border p-4" data-unique-id="14a22619-1614-4b09-8620-61b23085871e" data-file-name="components/bulk-email-upload.tsx">
+              <h3 className="font-medium text-lg" data-unique-id="53e53aca-a5f9-4571-9956-217efb40a8ee" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="3106948c-16a7-4ec7-a587-bdbe65011abb" data-file-name="components/bulk-email-upload.tsx">Select Customers</span></h3>
               <button onClick={() => {
             setShowCustomerSelector(false);
             setSelectedCustomerIds([]);
-          }} className="p-1 rounded-full hover:bg-accent/20" data-unique-id="c43ddcca-966a-4347-a5e4-6bdcc98955d9" data-file-name="components/bulk-email-upload.tsx">
+          }} className="p-1 rounded-full hover:bg-accent/20" data-unique-id="43fb76be-ea0b-4be1-8643-f63c50020296" data-file-name="components/bulk-email-upload.tsx">
                 <X className="h-5 w-5" />
               </button>
             </div>
             
-            <div className="p-4 flex-1 overflow-y-auto" data-unique-id="fe899485-3338-4bdc-8a84-e10396632c40" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-              {savedCustomers.length === 0 ? <div className="text-center py-8 text-muted-foreground" data-unique-id="108efd63-f57a-493f-9e03-a79bb50d22d4" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="56140620-8645-47f3-8fe5-81473b92aef7" data-file-name="components/bulk-email-upload.tsx">
+            <div className="p-4 flex-1 overflow-y-auto" data-unique-id="7e60650f-c5b3-4133-b6c4-c02922f16790" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+              {savedCustomers.length === 0 ? <div className="text-center py-8 text-muted-foreground" data-unique-id="547b712b-ce93-4530-a3af-be91bf03745a" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="f36a91c8-539e-4d5b-962f-4a3b55125c57" data-file-name="components/bulk-email-upload.tsx">
                   No saved customers found. Add customers in the Customers tab.
-                </span></div> : <div data-unique-id="f2cdce11-ccf5-40e9-a5a8-498c1f069660" data-file-name="components/bulk-email-upload.tsx">
-                  <div className="mb-4 flex justify-between items-center" data-unique-id="d93193b0-0019-4394-acd8-77a5ec3b108f" data-file-name="components/bulk-email-upload.tsx">
-                    <div className="text-sm text-muted-foreground" data-unique-id="fe18dcdc-6e61-4747-a44e-ba2266ae5f99" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-                      {selectedCustomerIds.length}<span className="editable-text" data-unique-id="db3cb0e3-b0bc-4f0f-8d33-9111bc2371bc" data-file-name="components/bulk-email-upload.tsx"> of </span>{savedCustomers.length}<span className="editable-text" data-unique-id="b22b937f-8cc7-4fcd-b836-36c1e337478b" data-file-name="components/bulk-email-upload.tsx"> customers selected
+                </span></div> : <div data-unique-id="4a8cf0e2-bc63-4cb1-b06b-b835c9fed870" data-file-name="components/bulk-email-upload.tsx">
+                  <div className="mb-4 flex justify-between items-center" data-unique-id="3764b423-f918-41f9-82a5-9c78c56005a5" data-file-name="components/bulk-email-upload.tsx">
+                    <div className="text-sm text-muted-foreground" data-unique-id="8b0b335f-e480-4d15-afe9-16f29ce8fe8e" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+                      {selectedCustomerIds.length}<span className="editable-text" data-unique-id="da157f0e-7dde-4e97-bb3c-504a82f47f44" data-file-name="components/bulk-email-upload.tsx"> of </span>{savedCustomers.length}<span className="editable-text" data-unique-id="73c9f4f4-d5fd-48d7-a4ad-c9a7c1de7e39" data-file-name="components/bulk-email-upload.tsx"> customers selected
                     </span></div>
-                    <button onClick={() => setSelectedCustomerIds(savedCustomers.map(c => c.id))} className="text-sm text-primary" data-unique-id="7a6a4ebf-05f6-4615-8744-fce20da92ebe" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="38d87fb8-a8a3-4624-be97-f7e7c4fecfdf" data-file-name="components/bulk-email-upload.tsx">
+                    <button onClick={() => setSelectedCustomerIds(savedCustomers.map(c => c.id))} className="text-sm text-primary" data-unique-id="44c57861-34c0-4005-a6e9-25f2bf306f10" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="360a8574-daed-484c-b98b-812bce3b5eeb" data-file-name="components/bulk-email-upload.tsx">
                       Select All
                     </span></button>
                   </div>
                   
-                  <div className="border border-border rounded-md overflow-hidden" data-unique-id="718f3bc7-38a0-41a6-a461-9fb308cf634a" data-file-name="components/bulk-email-upload.tsx">
-                    <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="f911cb3f-ea0a-476d-94e1-9f6010a56ee6" data-file-name="components/bulk-email-upload.tsx">
-                      <div className="col-span-1" data-unique-id="5f3cd758-16f1-4574-be3e-78b69450cdb4" data-file-name="components/bulk-email-upload.tsx"></div>
-                      <div className="col-span-4" data-unique-id="3c6a4989-7f5a-4e96-8a5f-29601cd524e9" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="99013254-d749-45c4-a5a4-f9fd2b3d48ab" data-file-name="components/bulk-email-upload.tsx">Name</span></div>
-                      <div className="col-span-4" data-unique-id="32c3ace8-cd56-4cb9-b479-30541a7d0d25" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="a775a577-3b62-4e5b-a180-7e5bfa24a10e" data-file-name="components/bulk-email-upload.tsx">Email</span></div>
-                      <div className="col-span-3" data-unique-id="966b9935-e948-41e9-9d0d-f1186f8ae86a" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="09595d0c-0897-45ff-9a58-d4c5f2ad17f5" data-file-name="components/bulk-email-upload.tsx">Company</span></div>
+                  <div className="border border-border rounded-md overflow-hidden" data-unique-id="1f455f44-0266-4b2f-9043-efdeb9b89853" data-file-name="components/bulk-email-upload.tsx">
+                    <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="362fff7b-bc9c-4aba-88fb-0180456c937c" data-file-name="components/bulk-email-upload.tsx">
+                      <div className="col-span-1" data-unique-id="6ace7dc4-cfd3-40eb-b17b-22e5a7e13fa4" data-file-name="components/bulk-email-upload.tsx"></div>
+                      <div className="col-span-4" data-unique-id="a5da0072-5597-4de3-9297-fdbbbb65a6a5" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="8b049003-196a-4246-ac68-3dc762073e66" data-file-name="components/bulk-email-upload.tsx">Name</span></div>
+                      <div className="col-span-4" data-unique-id="0ae66539-360c-46a6-a7b4-4867f6ca0daa" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="23f09aa9-c530-462e-8ec5-c8499fb04199" data-file-name="components/bulk-email-upload.tsx">Email</span></div>
+                      <div className="col-span-3" data-unique-id="0777ce77-c010-41e8-b708-45c6b3621894" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="b98b073b-e4d5-41fa-8f78-0f3f7f6fad02" data-file-name="components/bulk-email-upload.tsx">Company</span></div>
                     </div>
                     
-                    <div className="max-h-64 overflow-y-auto" data-unique-id="19bc926f-c76c-4134-8575-295cdc6f940b" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
-                      {savedCustomers.map(customer => <div key={customer.id} onClick={() => toggleCustomerSelection(customer.id)} className={`grid grid-cols-12 gap-2 p-3 border-t border-border items-center text-sm cursor-pointer ${selectedCustomerIds.includes(customer.id) ? 'bg-accent/20' : 'hover:bg-accent/5'}`} data-unique-id="b3fcd894-a56f-4a2c-b60a-d87c2cced5bd" data-file-name="components/bulk-email-upload.tsx">
-                          <div className="col-span-1" data-unique-id="446b37f3-b8d2-4603-b79a-c3aacf708795" data-file-name="components/bulk-email-upload.tsx">
+                    <div className="max-h-64 overflow-y-auto" data-unique-id="473b291a-c4c9-4970-a82d-641a0eec3c4b" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">
+                      {savedCustomers.map(customer => <div key={customer.id} onClick={() => toggleCustomerSelection(customer.id)} className={`grid grid-cols-12 gap-2 p-3 border-t border-border items-center text-sm cursor-pointer ${selectedCustomerIds.includes(customer.id) ? 'bg-accent/20' : 'hover:bg-accent/5'}`} data-unique-id="a92cc948-6813-4758-9f9b-c400a38909b7" data-file-name="components/bulk-email-upload.tsx">
+                          <div className="col-span-1" data-unique-id="f5c539ef-fbce-4ce3-92a5-a817d108798c" data-file-name="components/bulk-email-upload.tsx">
                             <input type="checkbox" checked={selectedCustomerIds.includes(customer.id)} onChange={e => {
                       e.stopPropagation();
                       toggleCustomerSelection(customer.id);
-                    }} className="rounded border-gray-300" data-unique-id="b0a4cf55-5977-4a0a-ac7c-279e80618dc1" data-file-name="components/bulk-email-upload.tsx" />
+                    }} className="rounded border-gray-300" data-unique-id="a7f8b5fb-3ebf-42ae-ae32-9ec621e3ef0f" data-file-name="components/bulk-email-upload.tsx" />
                           </div>
-                          <div className="col-span-4 truncate" data-unique-id="6c8fdd46-5d93-4bad-8ebd-2326f53511cb" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">{customer.name}</div>
-                          <div className="col-span-4 truncate" data-unique-id="3c0d2589-ca8f-481e-93a0-f147e5b3aa62" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">{customer.email}</div>
-                          <div className="col-span-3 truncate" data-unique-id="16150c62-73a3-40b6-9b5c-d1c3c20bbd7c" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">{customer.company || '—'}</div>
+                          <div className="col-span-4 truncate" data-unique-id="b9354d5b-beed-4d9b-b0af-7c96035aecc2" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">{customer.name}</div>
+                          <div className="col-span-4 truncate" data-unique-id="57bf7243-7291-410e-baf7-00f3fcea7e79" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">{customer.email}</div>
+                          <div className="col-span-3 truncate" data-unique-id="6d8bca86-8c3a-488b-910c-0355cb4f4319" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true">{customer.company || '—'}</div>
                         </div>)}
                     </div>
                   </div>
                 </div>}
             </div>
             
-            <div className="border-t border-border p-4 flex justify-end space-x-2" data-unique-id="a9b6eb51-a5db-4c90-acfe-792063eb5e25" data-file-name="components/bulk-email-upload.tsx">
+            <div className="border-t border-border p-4 flex justify-end space-x-2" data-unique-id="5dca061e-b3eb-47c0-8867-c294df233bf7" data-file-name="components/bulk-email-upload.tsx">
               <button onClick={() => {
             setShowCustomerSelector(false);
             setSelectedCustomerIds([]);
-          }} className="px-4 py-2 border border-border rounded-md hover:bg-accent/10" data-unique-id="9563d80c-624f-4f99-9187-5333ed5aada8" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="78dd577b-c67f-462c-96c2-1491f16daa87" data-file-name="components/bulk-email-upload.tsx">
+          }} className="px-4 py-2 border border-border rounded-md hover:bg-accent/10" data-unique-id="d2ce97d7-c543-4b34-a618-eb1ba037f0d9" data-file-name="components/bulk-email-upload.tsx"><span className="editable-text" data-unique-id="6fab6d75-abfe-4ae2-8308-7108137ae705" data-file-name="components/bulk-email-upload.tsx">
                 Cancel
               </span></button>
-              <button onClick={addSelectedCustomersToEmailList} disabled={selectedCustomerIds.length === 0} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 disabled:opacity-50" data-unique-id="9d6f1627-afef-4fda-b4a6-735691238778" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="28542c16-1f35-4a4a-8609-7f0d81d36983" data-file-name="components/bulk-email-upload.tsx">
-                Add </span>{selectedCustomerIds.length}<span className="editable-text" data-unique-id="01b94eeb-2af7-4e53-94a0-5560b27567b8" data-file-name="components/bulk-email-upload.tsx"> Customers
+              <button onClick={addSelectedCustomersToEmailList} disabled={selectedCustomerIds.length === 0} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 disabled:opacity-50" data-unique-id="e767b549-faa4-4da9-9fa7-bf9b652dab5a" data-file-name="components/bulk-email-upload.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="d8dc1ae3-aafb-4b50-897e-243dcdfc360f" data-file-name="components/bulk-email-upload.tsx">
+                Add </span>{selectedCustomerIds.length}<span className="editable-text" data-unique-id="1b0d0811-bd73-4a82-b520-f3e598613fe6" data-file-name="components/bulk-email-upload.tsx"> Customers
               </span></button>
             </div>
           </div>

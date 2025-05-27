@@ -1,4 +1,5 @@
-// Create the schema here
+'use client';
+
 import { pgTable } from "drizzle-orm/pg-core";
 
 // Define order entity types

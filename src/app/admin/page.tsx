@@ -39,10 +39,10 @@ export default function AdminDashboard() {
 
   // Get recent activity (last 5)
   const recentActivity = logs.slice(0, 5);
-  return <div className="space-y-8" data-unique-id="bcdebb06-6757-44e5-8df7-018973d3f338" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
-      <div className="flex justify-between items-center" data-unique-id="c416badc-af1d-49ed-b080-9824f87a8473" data-file-name="app/admin/page.tsx">
-        <h1 className="text-3xl font-bold text-white" data-unique-id="f5fe84d2-6827-477a-9937-03198ad50e49" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="506d59f4-47d6-4d84-a742-09cada6eddb0" data-file-name="app/admin/page.tsx">Admin Dashboard</span></h1>
-        <span className="px-3 py-1 bg-indigo-900/50 border border-indigo-800/60 rounded-md text-indigo-300 text-sm" data-unique-id="3c7295bb-de4b-4183-9563-0b404e1c688d" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+  return <div className="space-y-8" data-unique-id="fe7eeced-cd46-4c00-9e47-5295c64ece5a" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+      <div className="flex justify-between items-center" data-unique-id="93da8235-a40c-463a-9873-7e48901cff94" data-file-name="app/admin/page.tsx">
+        <h1 className="text-3xl font-bold text-white" data-unique-id="3678aa59-a775-40b2-88b7-19e61e2c90fc" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="1d7eb48d-1513-4557-93af-7671d9c8f796" data-file-name="app/admin/page.tsx">Admin Dashboard</span></h1>
+        <span className="px-3 py-1 bg-indigo-900/50 border border-indigo-800/60 rounded-md text-indigo-300 text-sm" data-unique-id="641c58f5-cc65-425d-a3ea-96eef3dff26b" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
           {new Date().toLocaleDateString(undefined, {
           weekday: 'long',
           year: 'numeric',
@@ -53,7 +53,7 @@ export default function AdminDashboard() {
       </div>
       
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-unique-id="7f7dd436-fd9a-4b06-b1ea-d2946d732b7f" data-file-name="app/admin/page.tsx">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" data-unique-id="3c37ced2-18cc-4153-b63e-7923fe88febc" data-file-name="app/admin/page.tsx">
         <StatsCard title="Total Users" value={stats.totalUsers} icon={<Users className="h-8 w-8" />} color="bg-blue-600" />
         <StatsCard title="Total Emails Sent" value={stats.totalEmails} icon={<Mail className="h-8 w-8" />} color="bg-green-600" />
         <StatsCard title="Orders Processed" value={stats.totalOrders} icon={<FileText className="h-8 w-8" />} color="bg-purple-600" />
@@ -61,7 +61,7 @@ export default function AdminDashboard() {
       </div>
       
       {/* Activity and DataStore sections */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" data-unique-id="f2ad5407-0345-4de0-851a-9b1bd3dadfb1" data-file-name="app/admin/page.tsx">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6" data-unique-id="6e9528c1-d5f3-4eb8-8dc1-f560a144ee79" data-file-name="app/admin/page.tsx">
         <motion.div initial={{
         opacity: 0,
         y: 10
@@ -70,41 +70,41 @@ export default function AdminDashboard() {
         y: 0
       }} transition={{
         delay: 0.2
-      }} className="lg:col-span-2 bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="56f422f6-49cd-4830-a9f8-099d58c5c15a" data-file-name="app/admin/page.tsx">
-          <div className="flex justify-between items-center mb-6" data-unique-id="67d431f2-0885-4156-89f9-2e24966ce499" data-file-name="app/admin/page.tsx">
-            <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="64390d3f-a59e-4d48-8cd5-9ab66dcedc72" data-file-name="app/admin/page.tsx">
-              <Activity className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="a97ddff7-9ee9-4f00-84ab-b7a3d5bff29a" data-file-name="app/admin/page.tsx">
+      }} className="lg:col-span-2 bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="dae48233-5521-4f3a-a098-f278a3fb8ec9" data-file-name="app/admin/page.tsx">
+          <div className="flex justify-between items-center mb-6" data-unique-id="8d5d0fdc-b185-4e19-8ee1-af5665f42001" data-file-name="app/admin/page.tsx">
+            <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="5e915111-8a90-43c1-b5cf-5fd303faac6c" data-file-name="app/admin/page.tsx">
+              <Activity className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="540bdc2d-0033-43b2-ab92-4b729fcc62e1" data-file-name="app/admin/page.tsx">
               Recent Activity
             </span></h2>
-            <a href="/admin/activity" className="text-sm text-indigo-400 hover:text-indigo-300 flex items-center" data-unique-id="879ba8b5-c88b-43da-8dcc-56c986e0b131" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="89a96b9c-a2fc-4b6e-b6c6-d6c74afdbe05" data-file-name="app/admin/page.tsx">
+            <a href="/admin/activity" className="text-sm text-indigo-400 hover:text-indigo-300 flex items-center" data-unique-id="d09f31b1-7bb1-4b5e-834e-2925928a7107" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="cbeb2baa-107b-49cd-b0fd-d5bb8712a2ce" data-file-name="app/admin/page.tsx">
               View All </span><ChevronRight className="h-4 w-4 ml-1" />
             </a>
           </div>
           
-          <div className="space-y-4" data-unique-id="73e868a4-779d-40f3-8ca0-e7e33222dc6c" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
-            {recentActivity.length > 0 ? recentActivity.map((log, index) => <div key={index} className="flex items-start gap-3 p-3 bg-gray-700/40 rounded-lg" data-unique-id="37763723-2b08-47fe-9c35-d1c2cb54a048" data-file-name="app/admin/page.tsx">
-                  <div className="w-10 h-10 rounded-full bg-indigo-800/30 flex items-center justify-center" data-unique-id="872d9c2c-08d3-4c60-93ab-99384819f745" data-file-name="app/admin/page.tsx">
-                    <Activity className="w-5 h-5 text-indigo-400" data-unique-id="69188013-53b5-43b9-bc41-71a20b0aa553" data-file-name="app/admin/page.tsx" data-dynamic-text="true" />
+          <div className="space-y-4" data-unique-id="0da1761d-4784-4586-aef0-2661888fd9de" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+            {recentActivity.length > 0 ? recentActivity.map((log, index) => <div key={index} className="flex items-start gap-3 p-3 bg-gray-700/40 rounded-lg" data-unique-id="6e11ce65-2438-4233-982c-486ea78cb0e4" data-file-name="app/admin/page.tsx">
+                  <div className="w-10 h-10 rounded-full bg-indigo-800/30 flex items-center justify-center" data-unique-id="71bff633-cef0-425c-83c5-27a0614c853d" data-file-name="app/admin/page.tsx">
+                    <Activity className="w-5 h-5 text-indigo-400" data-unique-id="45e377eb-7803-4542-af71-aefa5701bc81" data-file-name="app/admin/page.tsx" data-dynamic-text="true" />
                   </div>
-                  <div data-unique-id="8ee42e0e-dba4-4c67-81e8-f3335b94a1fa" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
-                    <div className="flex items-center" data-unique-id="18d97190-f666-48ca-92c6-cbb6702052c2" data-file-name="app/admin/page.tsx">
-                      <span className="font-medium text-gray-200" data-unique-id="3b1c3c6c-16eb-4550-ac1e-6c0ffa891f25" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{log.action}</span>
-                      <span className="ml-2 text-xs px-2 py-0.5 bg-gray-700 rounded-full text-gray-300" data-unique-id="6267e5b0-46ca-47ae-a464-3bc17007c934" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+                  <div data-unique-id="6d0855df-abb1-45ca-9772-0985561ca67f" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+                    <div className="flex items-center" data-unique-id="7b677c11-11f6-424c-807c-13d1a1f1bbdf" data-file-name="app/admin/page.tsx">
+                      <span className="font-medium text-gray-200" data-unique-id="fdc5d349-eefd-47f7-863c-d0f2b2bbf0f8" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{log.action}</span>
+                      <span className="ml-2 text-xs px-2 py-0.5 bg-gray-700 rounded-full text-gray-300" data-unique-id="099ddb48-158e-47e0-85ad-2b90b4fc5572" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
                         {log.user_email || 'Anonymous'}
                       </span>
                     </div>
-                    <div className="text-sm text-gray-400 mt-1" data-unique-id="cd23d6af-2929-4aaa-8af6-460079302190" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+                    <div className="text-sm text-gray-400 mt-1" data-unique-id="55fe0619-9701-4b6a-8e2d-fda5f9cd6925" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
                       {new Date(log.created_at).toLocaleString()}
                     </div>
-                    {log.details && Object.keys(log.details).length > 0 && <div className="mt-2 text-xs text-gray-400" data-unique-id="fd9b8923-9d1d-4388-8bed-9dd6f3b57028" data-file-name="app/admin/page.tsx">
-                        <div className="bg-gray-800/80 p-2 rounded" data-unique-id="59329752-d611-418b-b307-19faa1821526" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
-                          {Object.entries(log.details).filter(([key]) => key !== 'timestamp' && key !== 'user_agent').map(([key, value]) => <div key={key} data-unique-id="14cf7e6a-faec-4eff-bb42-df9ed9ec8331" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
-                                <span className="text-gray-500" data-unique-id="dcd9dc1a-2e04-40b7-af6c-e42b34e37073" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{key}<span className="editable-text" data-unique-id="a9f66f73-d253-4698-bbd2-a886d114bb48" data-file-name="app/admin/page.tsx">:</span></span> {String(value)}
+                    {log.details && Object.keys(log.details).length > 0 && <div className="mt-2 text-xs text-gray-400" data-unique-id="f0bb01f3-12dc-47ff-b779-73c034aecfb7" data-file-name="app/admin/page.tsx">
+                        <div className="bg-gray-800/80 p-2 rounded" data-unique-id="64f809b3-5cb5-4ec0-957c-566f070e221f" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+                          {Object.entries(log.details).filter(([key]) => key !== 'timestamp' && key !== 'user_agent').map(([key, value]) => <div key={key} data-unique-id="f062c228-54af-4c0d-b165-e3aa5b2a2617" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+                                <span className="text-gray-500" data-unique-id="0267c96e-00df-492d-bec8-5bbcdf7bf0d8" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{key}<span className="editable-text" data-unique-id="826e85a8-6ba4-4611-af69-7ddda0cf824b" data-file-name="app/admin/page.tsx">:</span></span> {String(value)}
                               </div>)}
                         </div>
                       </div>}
                   </div>
-                </div>) : <div className="text-center py-8 text-gray-400" data-unique-id="3fe38779-4ee6-4e93-93c4-752db56486c2" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="ed113bcb-5009-45fd-9607-aecfe610480f" data-file-name="app/admin/page.tsx">
+                </div>) : <div className="text-center py-8 text-gray-400" data-unique-id="abb54ca7-f0a8-4b98-8fa5-8be77be11ab2" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="e2203ef9-2a4e-4090-ba67-47c5e04de1a4" data-file-name="app/admin/page.tsx">
                 No recent activity found
               </span></div>}
           </div>
@@ -118,24 +118,24 @@ export default function AdminDashboard() {
         y: 0
       }} transition={{
         delay: 0.3
-      }} className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="cf56cfa0-71c2-4489-a994-5e3357fb3932" data-file-name="app/admin/page.tsx">
-          <div className="flex justify-between items-center mb-6" data-unique-id="92d5a0a6-10c5-4e70-95f5-b0ea83422782" data-file-name="app/admin/page.tsx">
-            <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="21ccf80c-b9e6-4104-8772-1fe46e824668" data-file-name="app/admin/page.tsx">
-              <Database className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="313de81f-5035-48e2-9c3a-a033c3822f77" data-file-name="app/admin/page.tsx">
+      }} className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="e6f95503-074c-42c1-a599-08c75bfee23d" data-file-name="app/admin/page.tsx">
+          <div className="flex justify-between items-center mb-6" data-unique-id="4ac24a25-3953-4791-a70b-4355cbb0b1a2" data-file-name="app/admin/page.tsx">
+            <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="19613bb5-7307-40a4-8827-f7e03be1aead" data-file-name="app/admin/page.tsx">
+              <Database className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="fb71f338-9225-477d-b760-c244bf6c9e86" data-file-name="app/admin/page.tsx">
               Data Storage
             </span></h2>
-            <a href="/admin/database" className="text-sm text-indigo-400 hover:text-indigo-300 flex items-center" data-unique-id="5fd1d680-a377-4c07-a6c7-8ec577d2393e" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="5935a80b-3c34-4d5d-9e8d-db4daae343a9" data-file-name="app/admin/page.tsx">
+            <a href="/admin/database" className="text-sm text-indigo-400 hover:text-indigo-300 flex items-center" data-unique-id="d7cbe0da-73e8-4281-90a2-adce7a0ffac3" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="4629c61f-a7ef-49c1-9018-226ab8326e33" data-file-name="app/admin/page.tsx">
               Manage </span><ChevronRight className="h-4 w-4 ml-1" />
             </a>
           </div>
           
-          <div className="space-y-4" data-unique-id="9514a03d-5a4c-41e5-a56a-69a25387f1c2" data-file-name="app/admin/page.tsx">
+          <div className="space-y-4" data-unique-id="e147f422-6649-42aa-b556-7d9d8caa0b4d" data-file-name="app/admin/page.tsx">
             <DataStorageItem name="Customers" count={43} status="Synced" icon={<Users className="h-4 w-4" />} />
             <DataStorageItem name="Templates" count={12} status="Synced" icon={<FileText className="h-4 w-4" />} />
             <DataStorageItem name="Orders" count={87} status="Pending" icon={<Database className="h-4 w-4" />} isPending={true} />
             
-            <div className="pt-4 mt-4 border-t border-gray-700" data-unique-id="71c70a1f-c03b-47f5-aa85-b43c39e5c165" data-file-name="app/admin/page.tsx">
-              <button className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors" data-unique-id="a874cde7-360f-4ec2-9a11-bcb3a38c6a3d" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="9719d980-1bca-4d78-b9fc-fa4411e9eb1a" data-file-name="app/admin/page.tsx">
+            <div className="pt-4 mt-4 border-t border-gray-700" data-unique-id="710e8864-f5fb-48ed-9ddb-e04526f8b0d1" data-file-name="app/admin/page.tsx">
+              <button className="w-full py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors" data-unique-id="419e9a57-bc23-468b-a4e4-bc9ba9c2e7b8" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="ff67c9a9-89ae-47c7-a52f-e30a553055ba" data-file-name="app/admin/page.tsx">
                 Sync All Data
               </span></button>
             </div>
@@ -152,35 +152,35 @@ export default function AdminDashboard() {
       y: 0
     }} transition={{
       delay: 0.4
-    }} className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="64eb03ec-a94f-45f4-a854-65a9527bba2a" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
-        <div className="flex justify-between items-center mb-6" data-unique-id="42ff66a8-81f8-494f-95d7-c06d1ed75745" data-file-name="app/admin/page.tsx">
-          <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="02d4d689-e4b0-4c01-9bb4-a55528c4f8bc" data-file-name="app/admin/page.tsx">
-            <BarChart3 className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="400db232-1dad-48cc-aa82-ffbddc8a37ce" data-file-name="app/admin/page.tsx">
+    }} className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="e3039b46-7619-499c-a889-a24f6ac3a474" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+        <div className="flex justify-between items-center mb-6" data-unique-id="9e531e7a-85cc-4bed-9608-7f9e3d518a86" data-file-name="app/admin/page.tsx">
+          <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="d03035e3-804c-4c84-a068-f06073db918d" data-file-name="app/admin/page.tsx">
+            <BarChart3 className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="79595cde-0116-4288-8293-7d738d7f3136" data-file-name="app/admin/page.tsx">
             Usage Analytics
           </span></h2>
         </div>
         
         {/* Mock chart visualization - in a real app you'd use a charting library */}
-        <div className="h-64 w-full" data-unique-id="6f1899bf-4b6d-4948-8934-0c1af711cf6f" data-file-name="app/admin/page.tsx">
-          <div className="h-full flex items-end justify-between" data-unique-id="99cfe51f-5bb2-4593-837c-7b220595dcc5" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
-            {[35, 45, 30, 65, 85, 45, 30].map((value, i) => <div key={i} className="h-full flex flex-col justify-end items-center" data-unique-id="2c4276f3-6148-40f1-898c-e2957c7ae66c" data-file-name="app/admin/page.tsx">
+        <div className="h-64 w-full" data-unique-id="36e7b3e9-aeff-41c3-b6c0-db88689ce8b6" data-file-name="app/admin/page.tsx">
+          <div className="h-full flex items-end justify-between" data-unique-id="e5517160-52da-4bf9-8df2-dbf630c7377a" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+            {[35, 45, 30, 65, 85, 45, 30].map((value, i) => <div key={i} className="h-full flex flex-col justify-end items-center" data-unique-id="179ea9a7-0961-44b7-b0bd-ef237ca2de68" data-file-name="app/admin/page.tsx">
                 <div className="w-12 bg-indigo-600 hover:bg-indigo-500 transition-colors rounded-t" style={{
               height: `${value}%`
-            }} data-unique-id="c859ecd8-6c75-451e-84c8-f0be3f995c24" data-file-name="app/admin/page.tsx"></div>
-                <span className="text-xs text-gray-400 mt-2" data-unique-id="5230a5e0-6401-4d85-b91f-3a3d423117e4" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+            }} data-unique-id="22a972b7-63a4-4c06-bb9e-ce881b686e5a" data-file-name="app/admin/page.tsx"></div>
+                <span className="text-xs text-gray-400 mt-2" data-unique-id="dd1048f9-549c-4202-9b87-cd06532930e3" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
                   {['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][i]}
                 </span>
               </div>)}
           </div>
         </div>
         
-        <div className="flex justify-between items-center mt-6 text-sm text-gray-400" data-unique-id="d8b4abcf-19e6-415c-9d7a-de741cee2e39" data-file-name="app/admin/page.tsx">
-          <span data-unique-id="a3c5382b-ea8e-4d80-8bbe-b775bcbabe6a" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="d1bb2d71-a394-436c-a39d-e39d729fc06b" data-file-name="app/admin/page.tsx">Last 7 days</span></span>
-          <div className="flex items-center" data-unique-id="de248a62-ec97-464d-b090-7983e234f691" data-file-name="app/admin/page.tsx">
-            <span className="flex items-center mr-4" data-unique-id="39180ec7-6c58-414d-92b7-eb070e5b3a84" data-file-name="app/admin/page.tsx">
-              <SmilePlus className="h-4 w-4 mr-1 text-green-500" /><span className="editable-text" data-unique-id="0e3e8ef2-ce9a-4f3d-849e-3f2df8f810e1" data-file-name="app/admin/page.tsx"> 32% increase
+        <div className="flex justify-between items-center mt-6 text-sm text-gray-400" data-unique-id="9b840ad3-0698-4da3-98ee-3119b2eadbbd" data-file-name="app/admin/page.tsx">
+          <span data-unique-id="9dee3cc8-9c1e-4453-a663-4eb0d0b5eba3" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="cb73035e-72f0-4f7a-b396-ffb35ec8b1c0" data-file-name="app/admin/page.tsx">Last 7 days</span></span>
+          <div className="flex items-center" data-unique-id="112388a8-080f-4f57-aead-04532f512861" data-file-name="app/admin/page.tsx">
+            <span className="flex items-center mr-4" data-unique-id="e71456e9-6c27-484c-aa9a-5ca66c767a8f" data-file-name="app/admin/page.tsx">
+              <SmilePlus className="h-4 w-4 mr-1 text-green-500" /><span className="editable-text" data-unique-id="306c9379-fef0-4b24-9973-c523a347a1d3" data-file-name="app/admin/page.tsx"> 32% increase
             </span></span>
-            <span data-unique-id="9b9d781a-85ff-4a4e-b685-87d8efc2f37f" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="0356e8c6-6ee8-4114-a214-2eda68a240f7" data-file-name="app/admin/page.tsx">Total interactions: 458</span></span>
+            <span data-unique-id="06a8b5ea-12da-4374-a21d-414755860119" data-file-name="app/admin/page.tsx"><span className="editable-text" data-unique-id="dfc5a18d-035a-4ab6-a2ff-ff549fd48ca6" data-file-name="app/admin/page.tsx">Total interactions: 458</span></span>
           </div>
         </div>
       </motion.div>
@@ -205,13 +205,13 @@ function StatsCard({
     y: 0
   }} transition={{
     duration: 0.3
-  }} className={`${color} rounded-xl shadow-lg p-6 flex items-center`} data-unique-id="589c09cd-740b-49f9-ad44-c6310eb6e249" data-file-name="app/admin/page.tsx">
-      <div className="p-4 bg-white/10 rounded-xl" data-unique-id="5a4a76f9-6e77-4468-b332-472d38750d57" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+  }} className={`${color} rounded-xl shadow-lg p-6 flex items-center`} data-unique-id="fd5a3777-7b3a-4af1-a8f9-c52cde33eb5c" data-file-name="app/admin/page.tsx">
+      <div className="p-4 bg-white/10 rounded-xl" data-unique-id="9fbe1a4b-950e-4afc-88e8-886783d797d0" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
         {icon}
       </div>
-      <div className="ml-4" data-unique-id="3c84d6ab-3f83-4438-a722-c2e8cb3d47ff" data-file-name="app/admin/page.tsx">
-        <h3 className="text-gray-100 text-sm font-medium" data-unique-id="116c799a-cce9-4992-a074-d7db0697f5e3" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{title}</h3>
-        <p className="text-white text-2xl font-bold" data-unique-id="2956cc61-2c97-4b14-85a7-f1a9093e52f8" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{value.toLocaleString()}</p>
+      <div className="ml-4" data-unique-id="b2070191-f489-4c56-9bec-0f65fd7a3bf3" data-file-name="app/admin/page.tsx">
+        <h3 className="text-gray-100 text-sm font-medium" data-unique-id="0258ee16-bd7a-4853-8701-8f9fc54c0d4c" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{title}</h3>
+        <p className="text-white text-2xl font-bold" data-unique-id="dc73ece7-d11b-4cd4-abcd-d314dc6437f7" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{value.toLocaleString()}</p>
       </div>
     </motion.div>;
 }
@@ -228,17 +228,17 @@ function DataStorageItem({
   icon: React.ReactNode;
   isPending?: boolean;
 }) {
-  return <div className="flex justify-between items-center p-3 bg-gray-700/30 rounded-lg" data-unique-id="3b4f331c-ec9d-448a-8760-1f84ce4c0904" data-file-name="app/admin/page.tsx">
-      <div className="flex items-center" data-unique-id="d1edb8c7-ec70-43c7-8c4f-b862ab0ad91d" data-file-name="app/admin/page.tsx">
-        <span className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center mr-3" data-unique-id="950c3327-2e8c-4720-aef2-856a855b9aa1" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+  return <div className="flex justify-between items-center p-3 bg-gray-700/30 rounded-lg" data-unique-id="ea0ad8ec-fa73-481c-914d-9335b95d18bb" data-file-name="app/admin/page.tsx">
+      <div className="flex items-center" data-unique-id="b477b3a7-8ebb-4fa7-839a-716b4de7c138" data-file-name="app/admin/page.tsx">
+        <span className="w-8 h-8 rounded-full bg-gray-700 flex items-center justify-center mr-3" data-unique-id="4b156349-5a3f-41f1-8702-b88480217cc8" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
           {icon}
         </span>
-        <div data-unique-id="63ee4af1-f761-49bc-a87b-39191c05ded6" data-file-name="app/admin/page.tsx">
-          <div className="font-medium text-gray-200" data-unique-id="b442a314-697b-44f5-852f-8f2f431cb77c" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{name}</div>
-          <div className="text-xs text-gray-400" data-unique-id="fd8ce4ab-db0e-4761-a551-efe67375c63e" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{count.toLocaleString()}<span className="editable-text" data-unique-id="72eef510-3e07-43cb-8cff-b29d2f92bcef" data-file-name="app/admin/page.tsx"> records</span></div>
+        <div data-unique-id="f503339f-cfcf-4f46-b6dc-77a25fdbc881" data-file-name="app/admin/page.tsx">
+          <div className="font-medium text-gray-200" data-unique-id="413a5e24-11eb-4413-88e4-85ad0379178b" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{name}</div>
+          <div className="text-xs text-gray-400" data-unique-id="bb073add-5375-43d4-9821-bb73f259b292" data-file-name="app/admin/page.tsx" data-dynamic-text="true">{count.toLocaleString()}<span className="editable-text" data-unique-id="6bf2a07b-cd26-418b-968b-af778d67bd38" data-file-name="app/admin/page.tsx"> records</span></div>
         </div>
       </div>
-      <div className={`flex items-center text-sm ${isPending ? 'text-amber-400' : 'text-green-400'}`} data-unique-id="568f1c5b-bc6d-4582-b8e3-ea13243fb1a1" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
+      <div className={`flex items-center text-sm ${isPending ? 'text-amber-400' : 'text-green-400'}`} data-unique-id="e9b7b3c5-fe09-4d5c-adfc-8d4d88b6df96" data-file-name="app/admin/page.tsx" data-dynamic-text="true">
         {isPending ? <XCircle className="h-4 w-4 mr-1" /> : <CheckCircle2 className="h-4 w-4 mr-1" />}
         {status}
       </div>

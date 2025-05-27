@@ -1,9 +1,11 @@
 'use client';
+'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FileUp, FileSpreadsheet, AlertCircle, DownloadIcon, Mail, Search, X, Eye, Edit, Save, ExternalLink, Phone, Home, Calendar, Package, MapPin, DollarSign, Info, Trash2, Copy } from 'lucide-react';
+import { FileUp, FileSpreadsheet, AlertCircle, DownloadIcon, Mail, Search, X, Eye, Edit, Save, ExternalLink, Phone, Home, Calendar, Package, MapPin, DollarSign, Info, Trash2, Copy, Archive } from 'lucide-react';
 import * as XLSX from 'xlsx';
+import ExcelArchivesManager from '@/components/excel-archives-manager';
 import { useDropzone } from 'react-dropzone';
 import toast, { Toaster } from 'react-hot-toast';
 import FileUploader from '@/components/file-uploader';
@@ -50,6 +52,9 @@ export default function OrderDataProcessor() {
   const [selectedOrder, setSelectedOrder] = useState<CleanedOrderData | null>(null);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
   const [tempEmail, setTempEmail] = useState('');
+  const [showArchives, setShowArchives] = useState(false);
+  const [selectedArchive, setSelectedArchive] = useState<any>(null);
+  const [currentFileName, setCurrentFileName] = useState<string>('');
   // State for pagination
   const [paginationState, setPaginationState] = useState({
     page: 0,
@@ -337,9 +342,69 @@ export default function OrderDataProcessor() {
   // Filter data based on search query (order number)
   const filteredData = data.filter(order => searchQuery ? order.customerOrderNumber.toLowerCase().includes(searchQuery.toLowerCase()) : true);
 
+  // Function to archive current Excel data
+  const archiveCurrentExcel = useCallback(async () => {
+    if (!rawData.length) {
+      toast.error('No Excel data to archive');
+      return;
+    }
+    try {
+      // Show loading toast
+      toast.loading('Archiving Excel data...', {
+        id: 'archiving'
+      });
+
+      // Get the file information from state or use a default name
+      const fileToArchive = {
+        name: currentFileName || `order-data-${new Date().toISOString().slice(0, 10)}.xlsx`,
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+        size: new TextEncoder().encode(JSON.stringify(rawData)).length
+      };
+
+      // Convert data back to Excel format
+      const wb = XLSX.utils.book_new();
+      const ws = XLSX.utils.json_to_sheet(rawData);
+      XLSX.utils.book_append_sheet(wb, ws, 'Orders');
+      const excelBuffer = XLSX.write(wb, {
+        bookType: 'xlsx',
+        type: 'array'
+      });
+
+      // Convert to base64 for storage
+      const base64data = 'data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,' + btoa([].reduce.call(new Uint8Array(excelBuffer), (p, c) => p + String.fromCharCode(c), ''));
+
+      // Use the excelArchiveService to store the file
+      try {
+        const {
+          excelArchiveService
+        } = await import('@/lib/excel-archive-service');
+        await excelArchiveService.archiveExcelFile(fileToArchive as File, base64data, {
+          rowCount: rawData.length,
+          description: `Order data archived on ${new Date().toLocaleString()}`,
+          sheets: ['Orders']
+        });
+        toast.success('Excel data archived successfully to Supabase and local storage', {
+          id: 'archiving'
+        });
+      } catch (err) {
+        console.error('Error importing archive service:', err);
+        toast.error('Failed to archive Excel data', {
+          id: 'archiving'
+        });
+      }
+    } catch (error) {
+      console.error('Error archiving Excel data:', error);
+      toast.error('Failed to archive Excel data', {
+        id: 'archiving'
+      });
+    }
+  }, [rawData, currentFileName]);
+
   // Function to process uploaded files
   const processFile = useCallback(async (file: File) => {
     setIsProcessing(true);
+    // Store the filename for archive purposes
+    setCurrentFileName(file.name);
     try {
       const reader = new FileReader();
       reader.onload = async e => {
@@ -548,6 +613,105 @@ export default function OrderDataProcessor() {
       }
     }
   };
+  // Function to load data from an archived file
+  const loadArchiveData = useCallback(async (archive: any) => {
+    try {
+      toast.loading('Loading archived data...', {
+        id: 'loading-archive'
+      });
+
+      // Get the latest version of the archive (in case it's stored in Supabase)
+      const {
+        excelArchiveService
+      } = await import('@/lib/excel-archive-service');
+      const freshArchive = await excelArchiveService.getArchivedExcelFileById(archive.id);
+      if (!freshArchive) {
+        toast.error('Archive not found', {
+          id: 'loading-archive'
+        });
+        return;
+      }
+      let binaryString: string;
+      let bytes: Uint8Array;
+
+      // Handle data based on format (URL or base64)
+      if (freshArchive.data.startsWith('http')) {
+        // It's a URL, fetch the data
+        const response = await fetch(freshArchive.data);
+        if (!response.ok) {
+          throw new Error('Failed to fetch archive from Supabase');
+        }
+        const arrayBuffer = await response.arrayBuffer();
+        bytes = new Uint8Array(arrayBuffer);
+      } else {
+        // It's base64 data
+        const base64Data = freshArchive.data;
+        const base64Content = base64Data.split(',')[1];
+        binaryString = atob(base64Content);
+        bytes = new Uint8Array(binaryString.length);
+        for (let i = 0; i < binaryString.length; i++) {
+          bytes[i] = binaryString.charCodeAt(i);
+        }
+      }
+
+      // Parse the Excel data
+      const workbook = XLSX.read(bytes, {
+        type: 'array'
+      });
+      const wsname = workbook.SheetNames[0];
+      const ws = workbook.Sheets[wsname];
+
+      // Convert to JSON
+      const parsedData = XLSX.utils.sheet_to_json<RawOrderData>(ws);
+      if (parsedData.length === 0) {
+        toast.error('No data found in archived file', {
+          id: 'loading-archive'
+        });
+        return;
+      }
+
+      // Update state with the loaded data
+      setRawData(parsedData);
+
+      // Process the data as if it was freshly uploaded
+      const {
+        cleanedData,
+        stats
+      } = cleanAndValidateData(parsedData);
+      if (cleanedData.length > 0) {
+        setData(cleanedData);
+        setProcessingStats(stats);
+
+        // Store in localStorage as usual
+        if (typeof window !== 'undefined') {
+          try {
+            localStorage.setItem('lastProcessedOrders', JSON.stringify(cleanedData));
+            localStorage.setItem('lastProcessedDate', new Date().toISOString());
+          } catch (err) {
+            console.warn('Could not save to localStorage:', err);
+          }
+        }
+        toast.success(`Successfully loaded ${cleanedData.length} orders from archive`, {
+          id: 'loading-archive'
+        });
+      } else {
+        toast.error('No valid orders found in archived file', {
+          id: 'loading-archive'
+        });
+      }
+
+      // Store the current filename
+      setCurrentFileName(freshArchive.fileName);
+
+      // Hide the archives panel after loading
+      setShowArchives(false);
+    } catch (error) {
+      console.error('Error loading archived data:', error);
+      toast.error(`Error loading archived data: ${error instanceof Error ? error.message : 'Unknown error'}`, {
+        id: 'loading-archive'
+      });
+    }
+  }, []);
   const exportProcessedData = async () => {
     if (data.length === 0) {
       toast.error('No data to export');
@@ -661,16 +825,16 @@ export default function OrderDataProcessor() {
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="w-full max-w-[100%] mx-auto px-2" data-unique-id="b6dd3840-1566-438d-8387-972bce43e9e2" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+  }} className="w-full max-w-[100%] mx-auto px-2" data-unique-id="7355d434-a9e4-461f-a996-5af01a9aa0f4" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
       <Toaster position="top-center" toastOptions={{
       duration: 3000
     }} />
       
-      <div className="mb-8" data-unique-id="1f56dcd0-d17b-4978-b455-1f1749a9d731" data-file-name="components/order-data-processor.tsx">
-        <h1 className="text-3xl font-bold text-primary mb-2" data-unique-id="0795b5df-875e-4989-98c6-e5dae74371ea" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="77c36002-bddd-4099-94ca-c41de2c591da" data-file-name="components/order-data-processor.tsx">
+      <div className="mb-8" data-unique-id="b83390e0-3f76-4186-85bd-47c66d811a19" data-file-name="components/order-data-processor.tsx">
+        <h1 className="text-3xl font-bold text-primary mb-2" data-unique-id="f5d00173-f57e-456b-b809-16b4d71c6afd" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="0de2977a-536a-405c-b365-419ffb1a3395" data-file-name="components/order-data-processor.tsx">
           Order Data Processor
         </span></h1>
-        <p className="text-muted-foreground" data-unique-id="abafa15c-2619-4547-b770-064394e04977" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="b69c5e09-6408-4088-be2a-1389a4344822" data-file-name="components/order-data-processor.tsx">
+        <p className="text-muted-foreground" data-unique-id="9642d7a1-93c3-4fff-947e-017804dd734e" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="04517258-2094-4e75-aaf9-ae22a77d4238" data-file-name="components/order-data-processor.tsx">
           Upload Excel (.xlsx) or CSV (.csv) files to clean and validate customer order data
         </span></p>
       </div>
@@ -688,93 +852,132 @@ export default function OrderDataProcessor() {
     }} transition={{
       duration: 0.4,
       delay: 0.2
-    }} className="mt-8" data-unique-id="b4b83771-ebc2-428e-8253-5c1792b9b162" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-          <div className="flex justify-between items-center mb-6" data-unique-id="5ed63f34-55c9-42b8-af01-ae54b5e154d4" data-file-name="components/order-data-processor.tsx">
-            <div data-unique-id="b5c3053e-f259-43aa-9c12-c1251108cca6" data-file-name="components/order-data-processor.tsx">
-              <h2 className="text-xl font-semibold flex items-center" data-unique-id="21670323-e5f4-457b-8351-3064ba4cea99" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-                <FileSpreadsheet className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="0c348c03-3fa9-4e10-85b9-5fbefc164cb0" data-file-name="components/order-data-processor.tsx">
-                Processed Orders (</span>{data.length}<span className="editable-text" data-unique-id="f296fcf7-895d-4a77-9cc0-67db53baf7d3" data-file-name="components/order-data-processor.tsx">)
+    }} className="mt-8" data-unique-id="fa766dfd-1be6-479d-a6ae-39f20b3b99ef" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+          <div className="flex justify-between items-center mb-6" data-unique-id="6d434db0-8c45-43a7-a553-bf10417f8170" data-file-name="components/order-data-processor.tsx">
+            <div data-unique-id="6928a7ba-d115-46ba-9708-07af06a0ccd4" data-file-name="components/order-data-processor.tsx">
+              <h2 className="text-xl font-semibold flex items-center" data-unique-id="61cc6990-1c9f-47a6-8ec4-fc91d8c72f3d" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                <FileSpreadsheet className="mr-2 h-5 w-5" /><span className="editable-text" data-unique-id="e028f0d8-46b4-4807-b7c5-05ae8f281e4e" data-file-name="components/order-data-processor.tsx">
+                Processed Orders (</span>{data.length}<span className="editable-text" data-unique-id="ea994d0b-4f6c-4704-ad50-060155865a49" data-file-name="components/order-data-processor.tsx">)
               </span></h2>
               
-              <div className="mt-2 flex flex-wrap gap-3" data-unique-id="9a548587-6f68-4d6c-9848-5ed282f154de" data-file-name="components/order-data-processor.tsx">
-                <div className="text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded-full" data-unique-id="c89f8ea7-1b47-45e2-96cd-020a74faa502" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="0d645a09-92c4-46a3-802c-323e8256de20" data-file-name="components/order-data-processor.tsx">
+              <div className="mt-2 flex flex-wrap gap-3" data-unique-id="006d170c-a63c-4716-b423-27e70cb1c2f4" data-file-name="components/order-data-processor.tsx">
+                <div className="text-sm bg-blue-50 text-blue-700 px-3 py-1 rounded-full" data-unique-id="01cd209a-6d8c-40ef-adc4-b63e1c74ae29" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="cfac7e6b-6105-4391-8f1a-64629dfbd7d3" data-file-name="components/order-data-processor.tsx">
                   Total: </span>{processingStats.total}
                 </div>
-                <div className="text-sm bg-green-50 text-green-700 px-3 py-1 rounded-full" data-unique-id="e8e1802e-37a6-4e28-8730-49988593a4ed" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="719bde8c-8258-4662-9bf0-ae08b5885055" data-file-name="components/order-data-processor.tsx">
+                <div className="text-sm bg-green-50 text-green-700 px-3 py-1 rounded-full" data-unique-id="7d182ba3-7cb6-4076-a862-6452de2904c3" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="5288ebd3-e7c3-4018-b763-26cfa6535f6e" data-file-name="components/order-data-processor.tsx">
                   Processed: </span>{processingStats.processed}
                 </div>
-                <div className="text-sm bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full" data-unique-id="a28c6d75-d0d9-43c8-9610-18cf58d4b9f3" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="da549bae-8b0b-4955-94c9-90c4100f50a7" data-file-name="components/order-data-processor.tsx">
+                <div className="text-sm bg-yellow-50 text-yellow-600 px-3 py-1 rounded-full" data-unique-id="4b5291a7-9251-4d20-87f7-f5eb75aa23d7" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="1f3331ec-b61e-4b8d-ab25-0a674c09a6df" data-file-name="components/order-data-processor.tsx">
                   Filtered: </span>{processingStats.filtered}
                 </div>
-                <div className="text-sm bg-red-50 text-red-600 px-3 py-1 rounded-full" data-unique-id="d91680d5-7ea1-4a98-9590-68607aa38ca4" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="6a8cc78a-ee0f-48fe-86c1-6238b61f0f83" data-file-name="components/order-data-processor.tsx">
+                <div className="text-sm bg-red-50 text-red-600 px-3 py-1 rounded-full" data-unique-id="c0d709c3-5eb2-4630-85e7-92282d5be327" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="cc8897b8-330a-495e-b4b5-ece42d56c45f" data-file-name="components/order-data-processor.tsx">
                   Invalid: </span>{processingStats.invalid}
                 </div>
               </div>
             </div>
             
-            <div className="flex space-x-3" data-unique-id="7caa4ce0-5a82-4219-afa6-4f9e586f1a91" data-file-name="components/order-data-processor.tsx">
-              <button onClick={sendEmailsToCustomers} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="16bf3280-1477-4278-9d86-ceb8fc684962" data-file-name="components/order-data-processor.tsx">
-                <Mail className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="f72583c0-a7e1-4510-bb74-0739ab8b0d4e" data-file-name="components/order-data-processor.tsx">
+            <div className="flex space-x-3" data-unique-id="36aaa65b-1eeb-43ae-810f-591aa0c7597e" data-file-name="components/order-data-processor.tsx">
+              <button onClick={sendEmailsToCustomers} className="flex items-center px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="9765cbf9-51bd-48dc-8e3f-c0573e95c91c" data-file-name="components/order-data-processor.tsx">
+                <Mail className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="8e7b4464-7d37-41f7-9b57-a464c07269af" data-file-name="components/order-data-processor.tsx">
                 Create Emails
               </span></button>
               
-              <button onClick={exportProcessedData} className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" data-unique-id="249cb5fb-50b8-4b07-b9f2-5ed3cf3b0b0c" data-file-name="components/order-data-processor.tsx">
-                <DownloadIcon className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="674ee853-88d5-43fc-9554-951c1900ba9d" data-file-name="components/order-data-processor.tsx">
+              <button onClick={exportProcessedData} className="flex items-center px-4 py-2 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" data-unique-id="41e092fb-bb2f-4aa3-9afd-b0c032594d14" data-file-name="components/order-data-processor.tsx">
+                <DownloadIcon className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="2f538069-05fc-4b9c-a9b1-580af9d866fc" data-file-name="components/order-data-processor.tsx">
                 Export Data
               </span></button>
               
-              <button onClick={cleanAllOrders} className="flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors" data-unique-id="a7ea210f-3a95-471a-9347-55a1a4081c64" data-file-name="components/order-data-processor.tsx">
-                <Trash2 className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="9179fe65-f13c-4f15-b507-2832b3a0c53f" data-file-name="components/order-data-processor.tsx">
+              <button onClick={cleanAllOrders} className="flex items-center px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-colors" data-unique-id="3dff15e9-05ed-473f-bc2a-19e2d0cef8d0" data-file-name="components/order-data-processor.tsx">
+                <Trash2 className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="4e696d10-6abc-4387-b047-68969228c6d0" data-file-name="components/order-data-processor.tsx">
                 Clean All
+              </span></button>
+              
+              <button onClick={archiveCurrentExcel} className="flex items-center px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 transition-colors ml-3" data-unique-id="5b3a9a86-71e8-4a95-ae62-f2c884f8c053" data-file-name="components/order-data-processor.tsx">
+                <Archive className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="cb37f874-53bf-445b-802c-0940878a299c" data-file-name="components/order-data-processor.tsx">
+                Archive Data
+              </span></button>
+              
+              <button onClick={() => setShowArchives(!showArchives)} className={`flex items-center px-4 py-2 ${showArchives ? 'bg-amber-600' : 'bg-blue-600'} text-white rounded-md hover:${showArchives ? 'bg-amber-700' : 'bg-blue-700'} transition-colors ml-3`} data-unique-id="dce53e11-5ae9-4d56-bd40-e4447b335e70" data-file-name="components/order-data-processor.tsx">
+                <FileSpreadsheet className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="1c9441d2-93c6-46e0-a560-237f3148c469" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                {showArchives ? 'Hide Archives' : 'Show Archives'}
               </span></button>
             </div>
           </div>
 
+          {/* Archives Section */}
+          <AnimatePresence>
+            {showArchives && <motion.div initial={{
+          opacity: 0,
+          height: 0
+        }} animate={{
+          opacity: 1,
+          height: 'auto'
+        }} exit={{
+          opacity: 0,
+          height: 0
+        }} transition={{
+          duration: 0.3
+        }} className="mb-6 mt-4" data-unique-id="227d6da7-a138-4789-b4bf-08b0ba91e89d" data-file-name="components/order-data-processor.tsx">
+                <div className="bg-card border border-border rounded-lg p-4 shadow-md" data-unique-id="4b1f7958-8bee-4188-8742-a42a6d46a385" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                  <h3 className="text-lg font-medium mb-4 flex items-center" data-unique-id="cee64439-b3ff-4bca-8011-d03b1d965741" data-file-name="components/order-data-processor.tsx">
+                    <Archive className="mr-2 h-5 w-5 text-amber-500" />
+                    <span className="editable-text" data-unique-id="808facaf-3b06-49e0-b1d9-f60b26244ab1" data-file-name="components/order-data-processor.tsx">Archived Excel Files</span>
+                  </h3>
+                  
+                  {/* Use the existing ExcelArchivesManager component */}
+                  <ExcelArchivesManager onSelectArchive={archive => {
+              setSelectedArchive(archive);
+              loadArchiveData(archive);
+            }} compact={true} />
+                </div>
+              </motion.div>}
+          </AnimatePresence>
+
           {/* Search by Order Number */}
-          <div className="mb-6 relative" data-unique-id="e86108fb-67f5-42d3-94b1-13d3ab27e8b4" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-            <div className="relative" data-unique-id="ddcb6945-2509-4e9c-a1d3-4201b35496f9" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+          <div className="mb-6 relative" data-unique-id="3fe1bb03-e8f8-4798-87e5-a9cbcc81c1a3" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+            <div className="relative" data-unique-id="7fd1d1bb-2883-42bb-b53c-a81a0263797b" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search by order number..." className="pl-10 pr-4 py-2 w-full border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" data-unique-id="e395e48f-bec7-47ac-ab31-fbef50259384" data-file-name="components/order-data-processor.tsx" />
-              {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground" data-unique-id="54651787-8a2f-43af-bc49-9497a6003814" data-file-name="components/order-data-processor.tsx">
+              <input type="text" value={searchQuery} onChange={e => setSearchQuery(e.target.value)} placeholder="Search by order number..." className="pl-10 pr-4 py-2 w-full border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" data-unique-id="a145727b-ca24-4623-b6c3-e27b10f864ac" data-file-name="components/order-data-processor.tsx" />
+              {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground" data-unique-id="cdd8e788-149d-45b2-809a-9042ae3e05ed" data-file-name="components/order-data-processor.tsx">
                   <X className="h-4 w-4" />
                 </button>}
             </div>
-            {searchQuery && <div className="mt-2 text-sm text-muted-foreground" data-unique-id="20ccafc6-715f-49f4-81bc-29b01f0de188" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="e311aaf2-6b52-4871-aea8-f33b4fe8553c" data-file-name="components/order-data-processor.tsx">
-                Found </span>{filteredData.length}<span className="editable-text" data-unique-id="46c77e5b-2502-49fa-b87c-34d7c258854b" data-file-name="components/order-data-processor.tsx"> orders matching "</span>{searchQuery}<span className="editable-text" data-unique-id="c77da44c-2de8-4036-9a14-94722932f439" data-file-name="components/order-data-processor.tsx">"
+            {searchQuery && <div className="mt-2 text-sm text-muted-foreground" data-unique-id="9c6730f9-df9c-4682-b2d0-1d46bffa7e6a" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="5c1802d8-c384-4a1b-adfa-43d7f362d706" data-file-name="components/order-data-processor.tsx">
+                Found </span>{filteredData.length}<span className="editable-text" data-unique-id="571aed94-6fc2-444f-bfd4-a91fae412630" data-file-name="components/order-data-processor.tsx"> orders matching "</span>{searchQuery}<span className="editable-text" data-unique-id="c55e804e-8818-4ae4-81cc-3594ae7b7e8d" data-file-name="components/order-data-processor.tsx">"
               </span></div>}
           </div>
           
           {/* Display Table */}
-          <div className="bg-card rounded-lg border border-border shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" data-unique-id="a5871717-df9f-4d04-b7f5-2e480b0f84de" data-file-name="components/order-data-processor.tsx">
-            <DataTable data={filteredData} onRowClick={showCustomerDetails} actionColumn={row => <div className="flex space-x-1" data-unique-id="aac7dec7-7704-46e7-be97-2319ebf9d279" data-file-name="components/order-data-processor.tsx">
-                  <button onClick={() => showCustomerDetails(row)} className="p-2 rounded-full hover:bg-accent/20" title="View Customer Details" data-unique-id="2fa4d390-a782-450f-8f51-5ed3cf3d82a4" data-file-name="components/order-data-processor.tsx">
+          <div className="bg-card rounded-lg border border-border shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl" data-unique-id="856b396a-2833-4ff0-b674-a4046fab6302" data-file-name="components/order-data-processor.tsx">
+            <DataTable data={filteredData} onRowClick={showCustomerDetails} actionColumn={row => <div className="flex space-x-1" data-unique-id="725c0cc0-d126-418a-bd9f-2545c09a80e0" data-file-name="components/order-data-processor.tsx">
+                  <button onClick={() => showCustomerDetails(row)} className="p-2 rounded-full hover:bg-accent/20" title="View Customer Details" data-unique-id="16baf5e9-7717-411d-9b1d-126e770caab7" data-file-name="components/order-data-processor.tsx">
                     <Eye className="h-4 w-4 text-primary" />
                   </button>
                   <button onClick={e => {
             e.stopPropagation();
             openOrderInShipStation(row.customerOrderNumber);
-          }} className="p-2 rounded-full hover:bg-accent/20" title="Open in ShipStation" data-unique-id="f77575c4-246a-4123-ba8b-d984d82fe846" data-file-name="components/order-data-processor.tsx">
+          }} className="p-2 rounded-full hover:bg-accent/20" title="Open in ShipStation" data-unique-id="ce708d9d-2b9c-478f-9052-5f36a69cb062" data-file-name="components/order-data-processor.tsx">
                     <ExternalLink className="h-4 w-4 text-blue-500" />
                   </button>
                   <button onClick={e => {
             e.stopPropagation();
             copyOrderNumber(row.customerOrderNumber);
-          }} className="p-2 rounded-full hover:bg-accent/20" title="Copy order number" data-unique-id="61ac69ab-8938-4234-9d22-7165d158e983" data-file-name="components/order-data-processor.tsx">
+          }} className="p-2 rounded-full hover:bg-accent/20" title="Copy order number" data-unique-id="a0fa3a58-35e2-4640-89e5-01f5cf178885" data-file-name="components/order-data-processor.tsx">
                     <Copy className="h-4 w-4 text-gray-600" />
                   </button>
                   <button onClick={e => {
             e.stopPropagation();
             removeOrder(row);
-          }} className="p-2 rounded-full hover:bg-red-100 transition-colors" title="Remove order" data-unique-id="f22eda83-28ac-489b-88e6-10820a22838a" data-file-name="components/order-data-processor.tsx">
+          }} className="p-2 rounded-full hover:bg-red-100 transition-colors" title="Remove order" data-unique-id="02f41a2d-e963-467c-8d64-d14c71b6b32f" data-file-name="components/order-data-processor.tsx">
                     <Trash2 className="h-4 w-4 text-red-500" />
                   </button>
                 </div>} renderCell={(key, value, row) => {
           // Make tracking numbers clickable
           if (key === 'trackingNumbers' && Array.isArray(value)) {
-            return <div className="space-y-1" data-unique-id="ab120270-9bee-468c-acaf-0a7ebffc3963" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-                    {value.map((num, idx) => <a key={idx} href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${num}`} target="_blank" rel="noopener noreferrer" className="flex items-center text-primary hover:underline" data-unique-id="737e2726-49cc-434e-8031-087228522ff9" data-file-name="components/order-data-processor.tsx">
-                      <span className="mr-1" data-unique-id="49e98f06-35fb-4a05-81ba-960f4e12e20b" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{num.length > 15 ? `${num.slice(0, 15)}...` : num}</span>
-                      <ExternalLink className="h-3 w-3" data-unique-id="6d1d3000-af71-4174-82ed-735fc4bd5b3c" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
+            return <div className="space-y-1" data-unique-id="5ddca76c-89ad-4924-831b-d0581ab26e7b" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                    {value.map((num, idx) => <a key={idx} href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${num}`} target="_blank" rel="noopener noreferrer" className="flex items-center text-primary hover:underline" data-unique-id="79fe1c3f-5057-4a82-b554-25a3767e9073" data-file-name="components/order-data-processor.tsx">
+                      <span className="mr-1" data-unique-id="b73a7fb0-0885-4876-8bb3-3ca35993d35e" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{num.length > 15 ? `${num.slice(0, 15)}...` : num}</span>
+                      <ExternalLink className="h-3 w-3" data-unique-id="34a1e4e8-79ef-453a-80a6-e3b93aca0854" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
                     </a>)}
                   </div>;
           }
@@ -782,7 +985,7 @@ export default function OrderDataProcessor() {
           // Make order number clickable
           if (key === 'customerOrderNumber') {
             const orderLink = `https://ship.shipstation.com/orders/awaiting-shipment/order/${row.id || 'unknown'}/active/${value}`;
-            return <a href={orderLink} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline" onClick={e => e.stopPropagation()} data-unique-id="8902701d-0359-482b-b22b-5b495259a401" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+            return <a href={orderLink} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline" onClick={e => e.stopPropagation()} data-unique-id="d0c71d6c-069a-4bd5-95e8-717f87106b37" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
                       {value}
                     </a>;
           }
@@ -791,13 +994,13 @@ export default function OrderDataProcessor() {
           </div>
           
           {/* Warning about filtered data */}
-          {processingStats.filtered > 0 && <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md" data-unique-id="b0fed035-5a82-45dc-b900-74b9bb2b6590" data-file-name="components/order-data-processor.tsx">
-              <div className="flex items-center" data-unique-id="edc04a5c-847f-41ef-aa14-42f89b78d006" data-file-name="components/order-data-processor.tsx">
+          {processingStats.filtered > 0 && <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md" data-unique-id="1b6809d2-20c5-407b-8be4-e0c9fb00c867" data-file-name="components/order-data-processor.tsx">
+              <div className="flex items-center" data-unique-id="7ca8fd71-6c2b-4105-91ee-f252d462b82d" data-file-name="components/order-data-processor.tsx">
                 <AlertCircle className="h-5 w-5 text-yellow-600 mr-2" />
-                <p className="text-yellow-800 font-medium" data-unique-id="507fa294-9665-4f08-afc5-232ea6313a79" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="a2a248a5-bb57-4c4e-a85e-d2a6bac9f28a" data-file-name="components/order-data-processor.tsx">Some entries were filtered out</span></p>
+                <p className="text-yellow-800 font-medium" data-unique-id="aa347896-5f80-4af7-a938-d9c44e6f2be4" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="97050681-9a85-4859-87c9-a74eb4ebafa3" data-file-name="components/order-data-processor.tsx">Some entries were filtered out</span></p>
               </div>
-              <p className="text-sm text-yellow-700 mt-1" data-unique-id="61ebf184-615c-4d4d-909b-5a1ce46aff56" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-                {processingStats.filtered}<span className="editable-text" data-unique-id="9d5ca794-cb47-4031-9b49-a481a29350f8" data-file-name="components/order-data-processor.tsx"> entries were filtered out because they didn't meet the requirements
+              <p className="text-sm text-yellow-700 mt-1" data-unique-id="1852fea4-78db-42b9-b264-c8de57987568" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                {processingStats.filtered}<span className="editable-text" data-unique-id="c40509d6-3584-4f92-b133-a714d7d9c69a" data-file-name="components/order-data-processor.tsx"> entries were filtered out because they didn't meet the requirements
                 (non-"New" order status, non-"Shipped" shipping status, or missing required fields).
               </span></p>
             </div>}
@@ -811,7 +1014,7 @@ export default function OrderDataProcessor() {
         opacity: 1
       }} exit={{
         opacity: 0
-      }} className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={() => setSelectedOrder(null)} data-unique-id="60ff0d73-c248-4311-827b-a40fded24ac0" data-file-name="components/order-data-processor.tsx">
+      }} className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={() => setSelectedOrder(null)} data-unique-id="a4e2d132-5b7e-4c33-b06e-07864831a056" data-file-name="components/order-data-processor.tsx">
             <motion.div initial={{
           scale: 0.95,
           opacity: 0
@@ -825,159 +1028,159 @@ export default function OrderDataProcessor() {
           type: "spring",
           damping: 25,
           stiffness: 300
-        }} className="bg-card rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="f8c74a25-2f8a-48a2-943e-3832ff372faf" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+        }} className="bg-card rounded-xl shadow-2xl w-full max-w-3xl overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="380e3947-7228-4ac0-9e4f-711b11b63c71" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
               {/* Header */}
-              <div className="bg-primary text-white p-6" data-unique-id="81133fea-6301-44ed-8785-f6e887941a3c" data-file-name="components/order-data-processor.tsx">
-                <div className="flex justify-between items-start" data-unique-id="a3eb14ee-7831-4d46-9e47-faf6b613334c" data-file-name="components/order-data-processor.tsx">
-                  <div data-unique-id="1f44f4a1-43ad-4169-8a9e-f88b4852724e" data-file-name="components/order-data-processor.tsx">
-                    <div className="flex items-center" data-unique-id="3ea8b032-27cf-47c8-82bb-9490398e3bc5" data-file-name="components/order-data-processor.tsx">
-                      <h2 className="text-xl font-semibold" data-unique-id="53e559cb-a1db-45a8-b599-c42dd21183f2" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="da2fac07-c4fe-4638-a393-de4e77f70763" data-file-name="components/order-data-processor.tsx">Customer Order #</span>{selectedOrder.customerOrderNumber}</h2>
-                      <button onClick={() => copyOrderNumber(selectedOrder.customerOrderNumber)} className="ml-2 p-1 rounded-full hover:bg-white/20 transition-colors" title="Copy order number" data-unique-id="aea13f7a-9c9a-4aef-a437-50784ac29b17" data-file-name="components/order-data-processor.tsx">
+              <div className="bg-primary text-white p-6" data-unique-id="a11f73bc-d52b-49db-86c3-8f249cc0650b" data-file-name="components/order-data-processor.tsx">
+                <div className="flex justify-between items-start" data-unique-id="e2d60c62-172b-4b80-bb9a-c23e61b33e8e" data-file-name="components/order-data-processor.tsx">
+                  <div data-unique-id="0531c2a9-8139-40c2-b264-ab66456dac86" data-file-name="components/order-data-processor.tsx">
+                    <div className="flex items-center" data-unique-id="bab73c62-9cc7-4c9f-a46d-9ecccec2644c" data-file-name="components/order-data-processor.tsx">
+                      <h2 className="text-xl font-semibold" data-unique-id="d30263e0-c69e-423a-9375-148a8e7a2e08" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="aa9a747a-055b-4af4-833f-c49495b3e764" data-file-name="components/order-data-processor.tsx">Customer Order #</span>{selectedOrder.customerOrderNumber}</h2>
+                      <button onClick={() => copyOrderNumber(selectedOrder.customerOrderNumber)} className="ml-2 p-1 rounded-full hover:bg-white/20 transition-colors" title="Copy order number" data-unique-id="9aca6c56-851a-4a04-97d6-d618627b0520" data-file-name="components/order-data-processor.tsx">
                         <Copy className="h-4 w-4" />
                       </button>
                     </div>
-                    <p className="text-primary-foreground/80 mt-1" data-unique-id="d871a46c-d4b6-4aae-b5ed-aa9ef3bab051" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="834979da-2746-40b4-b5a6-0fab58c289a0" data-file-name="components/order-data-processor.tsx">Shipped on </span>{new Date(selectedOrder.actualShipDate).toLocaleDateString()}</p>
+                    <p className="text-primary-foreground/80 mt-1" data-unique-id="6e452f76-a89b-41e1-aba4-b840eb9c15e8" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="49853338-f9e4-4b6d-9287-76eeb473792d" data-file-name="components/order-data-processor.tsx">Shipped on </span>{new Date(selectedOrder.actualShipDate).toLocaleDateString()}</p>
                   </div>
-                  <button onClick={() => setSelectedOrder(null)} className="text-white hover:bg-white/10 rounded-full p-2 transition-colors" data-unique-id="e1383e72-2957-439f-86d5-1ca265e76057" data-file-name="components/order-data-processor.tsx">
+                  <button onClick={() => setSelectedOrder(null)} className="text-white hover:bg-white/10 rounded-full p-2 transition-colors" data-unique-id="3c7a6c15-7c4d-495c-ae31-dfa4eeae81d1" data-file-name="components/order-data-processor.tsx">
                     <X className="h-5 w-5" />
                   </button>
                 </div>
               </div>
 
               {/* Content */}
-              <div className="p-6 max-h-[70vh] overflow-y-auto" data-unique-id="06213b4c-aa70-4a4a-9215-03d4e1af7dd4" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-unique-id="d7bd3b8f-d042-4a71-aec1-82c145f08cac" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+              <div className="p-6 max-h-[70vh] overflow-y-auto" data-unique-id="21d62a79-7175-40bc-afe6-982bc674c2c8" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-unique-id="b524c654-63ca-4c25-8609-0a4547507c59" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
                   {/* Customer Information */}
-                  <div className="space-y-4" data-unique-id="2049244f-74fe-4111-860d-6192f0185d36" data-file-name="components/order-data-processor.tsx">
-                    <div className="flex items-start" data-unique-id="2045480a-653f-48eb-8be8-bd1d022692c4" data-file-name="components/order-data-processor.tsx">
-                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="c257998f-48aa-444b-a726-80c833581a51" data-file-name="components/order-data-processor.tsx">
+                  <div className="space-y-4" data-unique-id="5111723a-42a1-4ff7-8312-998f8f5f8513" data-file-name="components/order-data-processor.tsx">
+                    <div className="flex items-start" data-unique-id="997de87d-48c2-492a-846a-2fb1ff16ea65" data-file-name="components/order-data-processor.tsx">
+                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="3d48072e-2e69-40ab-8733-faebb0bfd5e5" data-file-name="components/order-data-processor.tsx">
                         <Package className="h-5 w-5 text-primary" />
                       </div>
-                      <div data-unique-id="0e0e4120-0cde-42a7-b1d5-9e3ad307c3f9" data-file-name="components/order-data-processor.tsx">
-                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="b5ad3834-2050-47d6-96b5-9ca9c35e73dc" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="a81edc6d-58d2-487f-8b3a-af74fe44e0d1" data-file-name="components/order-data-processor.tsx">Customer Name</span></h3>
-                        <p className="text-lg font-medium" data-unique-id="2b8a39c4-d918-473d-90d5-130c1097bab7" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToName}</p>
+                      <div data-unique-id="30a376d7-4a97-4356-b3eb-8da3b83aa931" data-file-name="components/order-data-processor.tsx">
+                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="0e173688-a262-4626-a237-cf68e572317a" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="6c84d192-4a7d-4100-9589-be82174773bf" data-file-name="components/order-data-processor.tsx">Customer Name</span></h3>
+                        <p className="text-lg font-medium" data-unique-id="f7ca5a52-7ed5-4d32-b357-d127e745d4b2" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToName}</p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start" data-unique-id="f6117d24-a5fd-4d8d-8d48-2f09ab69d7ac" data-file-name="components/order-data-processor.tsx">
-                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="da10de5c-5935-4d21-8992-10523de885a2" data-file-name="components/order-data-processor.tsx">
+                    <div className="flex items-start" data-unique-id="4dfa557a-d4af-4110-8a27-c2aced2a1055" data-file-name="components/order-data-processor.tsx">
+                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="6a5e2a2d-2d5d-454d-a064-ab9a2cfa8031" data-file-name="components/order-data-processor.tsx">
                         <Mail className="h-5 w-5 text-primary" />
                       </div>
-                      <div className="flex-1" data-unique-id="1bebf2b6-d2ab-4f7c-b77f-a54204baa54e" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="b172e2f3-0554-48c8-bc07-b74ad662e325" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="703c8805-b258-4904-b813-4cd6bcf458c8" data-file-name="components/order-data-processor.tsx">Email Address</span></h3>
-                        {isEditingEmail ? <div className="flex items-center mt-1" data-unique-id="946d0adb-e0ae-4fe6-9f45-320d07cfac23" data-file-name="components/order-data-processor.tsx">
-                            <input type="email" value={tempEmail} onChange={e => setTempEmail(e.target.value)} className="flex-1 border border-border rounded-md px-2 py-1 text-sm" placeholder="Enter customer email" data-unique-id="d75094f3-1d5e-4a7b-aac4-3246069c5519" data-file-name="components/order-data-processor.tsx" />
-                            <button onClick={saveCustomerEmail} className="ml-2 p-1 bg-primary text-white rounded-md" title="Save email" data-unique-id="213017ae-0969-431d-9999-864bf9e53bfd" data-file-name="components/order-data-processor.tsx">
+                      <div className="flex-1" data-unique-id="1fbc3cdf-c414-4015-aacb-df0e2ecedc92" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="4b4abb80-c826-4a1e-bd34-e8c4927782ac" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="a102d3e6-6ffb-4f22-968c-7a9960deaadb" data-file-name="components/order-data-processor.tsx">Email Address</span></h3>
+                        {isEditingEmail ? <div className="flex items-center mt-1" data-unique-id="4372a60a-73f2-4cfd-990b-1b6de98fd184" data-file-name="components/order-data-processor.tsx">
+                            <input type="email" value={tempEmail} onChange={e => setTempEmail(e.target.value)} className="flex-1 border border-border rounded-md px-2 py-1 text-sm" placeholder="Enter customer email" data-unique-id="92bd5421-5df3-4787-a6c4-b64a0659f67b" data-file-name="components/order-data-processor.tsx" />
+                            <button onClick={saveCustomerEmail} className="ml-2 p-1 bg-primary text-white rounded-md" title="Save email" data-unique-id="6cff1221-3ff2-46dc-b589-6019b1c9677a" data-file-name="components/order-data-processor.tsx">
                               <Save className="h-4 w-4" />
                             </button>
                             <button onClick={() => {
                         setIsEditingEmail(false);
                         setTempEmail(selectedOrder.shipToEmail || '');
-                      }} className="ml-1 p-1 bg-secondary text-secondary-foreground rounded-md" title="Cancel" data-unique-id="eb1d3ef4-6ba5-49a7-8042-79267a27999e" data-file-name="components/order-data-processor.tsx">
+                      }} className="ml-1 p-1 bg-secondary text-secondary-foreground rounded-md" title="Cancel" data-unique-id="3c8ba8f1-3d84-402e-a447-1c082c51c317" data-file-name="components/order-data-processor.tsx">
                               <X className="h-4 w-4" />
                             </button>
-                          </div> : <div className="flex items-center" data-unique-id="e91d9a46-e9e4-4d94-9126-928ab5e5e732" data-file-name="components/order-data-processor.tsx">
-                            <p className="text-lg" data-unique-id="3aa54e29-2754-40f9-879d-12d0afa98d9d" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToEmail || 'No email provided'}</p>
-                            <button onClick={() => setIsEditingEmail(true)} className="ml-2 p-1 hover:bg-accent/20 rounded-md" title="Edit email" data-unique-id="2a32cfaa-bee6-41a5-a08d-152886dee6b3" data-file-name="components/order-data-processor.tsx">
+                          </div> : <div className="flex items-center" data-unique-id="12de369e-4868-43b5-b53d-bc657cb57f91" data-file-name="components/order-data-processor.tsx">
+                            <p className="text-lg" data-unique-id="802a8415-bee2-4ef9-a1ba-9c9ec816577b" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToEmail || 'No email provided'}</p>
+                            <button onClick={() => setIsEditingEmail(true)} className="ml-2 p-1 hover:bg-accent/20 rounded-md" title="Edit email" data-unique-id="0b362191-fe66-4277-8d39-836470f326aa" data-file-name="components/order-data-processor.tsx">
                               <Edit className="h-4 w-4 text-primary" />
                             </button>
                           </div>}
                       </div>
                     </div>
                     
-                    <div className="flex items-start" data-unique-id="a625fdc5-b9ed-4f5a-bade-23cbcd82e7ec" data-file-name="components/order-data-processor.tsx">
-                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="4871a732-5dd3-4282-815d-670d426a5a4b" data-file-name="components/order-data-processor.tsx">
+                    <div className="flex items-start" data-unique-id="9b2a181a-d9f3-4100-b9e6-1f940740642c" data-file-name="components/order-data-processor.tsx">
+                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="be6b8afa-fe9c-45d9-b2ca-5e24c5e5e6f4" data-file-name="components/order-data-processor.tsx">
                         <Phone className="h-5 w-5 text-primary" />
                       </div>
-                      <div data-unique-id="11ab0ccd-bfc0-49be-8c6d-c493ebe7d197" data-file-name="components/order-data-processor.tsx">
-                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="19530a45-1af0-4dc7-83b4-5209240b7cbb" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="e43cae6e-2498-415c-8a52-a07f166655e9" data-file-name="components/order-data-processor.tsx">Phone Number</span></h3>
-                        <p className="text-lg" data-unique-id="fef7c7e8-74ea-46ef-a6dc-b574a234acb1" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToPhone || 'Not provided'}</p>
+                      <div data-unique-id="e4b7ae19-9885-493b-8296-f2be1fa3c890" data-file-name="components/order-data-processor.tsx">
+                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="6fbc5740-0f6a-4768-858f-c4558d425a33" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="4777f9ea-3330-4538-94f7-d3a2bf5197d3" data-file-name="components/order-data-processor.tsx">Phone Number</span></h3>
+                        <p className="text-lg" data-unique-id="5b232427-14cb-4bf5-b938-ffe505264cb9" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToPhone || 'Not provided'}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Order Information */}
-                  <div className="space-y-4" data-unique-id="bba43033-1aa2-4ea6-96bd-ea6a0582738d" data-file-name="components/order-data-processor.tsx">
-                    <div className="flex items-start" data-unique-id="48ef90f8-687f-4ef2-8c2d-8617af587881" data-file-name="components/order-data-processor.tsx">
-                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="07d6b9ec-ffcd-46ec-807c-edd47ce21eae" data-file-name="components/order-data-processor.tsx">
+                  <div className="space-y-4" data-unique-id="72656cb3-4793-41fc-b9e6-5e251bc34844" data-file-name="components/order-data-processor.tsx">
+                    <div className="flex items-start" data-unique-id="084b516f-77dd-4560-ac16-536fe9cae8fe" data-file-name="components/order-data-processor.tsx">
+                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="36d1de5d-9529-45cf-beee-534d23e4f918" data-file-name="components/order-data-processor.tsx">
                         <Home className="h-5 w-5 text-primary" />
                       </div>
-                      <div data-unique-id="126318d6-4522-4df1-9803-5afb82a84618" data-file-name="components/order-data-processor.tsx">
-                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="bedf2d7e-c364-4e6f-aaf3-4b81b75626b8" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="f408be5a-1db0-40fa-ae9a-e52d211c8772" data-file-name="components/order-data-processor.tsx">Shipping Address</span></h3>
-                        <p className="text-lg" data-unique-id="0ada08b5-a71c-4cce-9396-cc5fdadfa785" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToLine1}</p>
-                        <p className="text-lg" data-unique-id="7ce4bc54-5c40-415f-86cc-f8965e6c8103" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToCity}<span className="editable-text" data-unique-id="d7e1eba6-6464-42b7-87cb-5c26b2105f4f" data-file-name="components/order-data-processor.tsx">, </span>{selectedOrder.shipToStateProvince} {selectedOrder.shipToPostalCode}</p>
+                      <div data-unique-id="1cb4f130-1f0b-430d-af06-e8a114ba716e" data-file-name="components/order-data-processor.tsx">
+                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="ee9d9212-59b8-4e34-80fe-5307e133c032" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="a855ba05-cda1-4f9d-a6a6-ff3a9f0e97a6" data-file-name="components/order-data-processor.tsx">Shipping Address</span></h3>
+                        <p className="text-lg" data-unique-id="c36c99c7-f6a5-4cec-854a-5d3312902266" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToLine1}</p>
+                        <p className="text-lg" data-unique-id="a196cf31-76c9-4528-966d-02f12b644141" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.shipToCity}<span className="editable-text" data-unique-id="208579e5-0ed6-4716-9fd2-5c4327beb226" data-file-name="components/order-data-processor.tsx">, </span>{selectedOrder.shipToStateProvince} {selectedOrder.shipToPostalCode}</p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start" data-unique-id="13c96eb1-0b41-42d3-8617-b608f7f8af30" data-file-name="components/order-data-processor.tsx">
-                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="af739178-aeb1-4553-8cc4-6d199a683b11" data-file-name="components/order-data-processor.tsx">
+                    <div className="flex items-start" data-unique-id="b3894e6d-fac1-4b48-8894-c166ddae4759" data-file-name="components/order-data-processor.tsx">
+                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="9f29d551-d0e0-4020-96b7-a8c61a029648" data-file-name="components/order-data-processor.tsx">
                         <DollarSign className="h-5 w-5 text-primary" />
                       </div>
-                      <div data-unique-id="53a274c9-596e-4a67-b8d9-e024141ab32f" data-file-name="components/order-data-processor.tsx">
-                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="d14a1ba1-324b-4b0c-b74f-442e340dc82e" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="2eba4ea1-282e-4e91-9ba6-01b6c27ce26d" data-file-name="components/order-data-processor.tsx">Order Total</span></h3>
-                        <p className="text-lg font-medium" data-unique-id="3e35fc11-3ce6-4a52-985a-7428d55bb241" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="46fae381-9b72-410a-b371-277b48532aab" data-file-name="components/order-data-processor.tsx">$</span>{selectedOrder.orderTotal.toFixed(2)}</p>
+                      <div data-unique-id="a50c7c70-71d7-4ad8-87c8-b7f34b298583" data-file-name="components/order-data-processor.tsx">
+                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="e0b518b8-e557-489b-962a-5a5e40b11052" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="e33debaa-d2a4-4f91-ae16-a267a0b9ad74" data-file-name="components/order-data-processor.tsx">Order Total</span></h3>
+                        <p className="text-lg font-medium" data-unique-id="5ad0dbee-7021-4a5b-b1fb-e562b8884cb9" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="1462b03e-52f1-48f1-859d-d169c9ff9154" data-file-name="components/order-data-processor.tsx">$</span>{selectedOrder.orderTotal.toFixed(2)}</p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start" data-unique-id="ca3083b2-ae8c-4cd1-bd2d-91d54549ec45" data-file-name="components/order-data-processor.tsx">
-                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="235fbdb1-cb61-42e3-a2f7-41d3bffebac5" data-file-name="components/order-data-processor.tsx">
+                    <div className="flex items-start" data-unique-id="e8171c5c-cf02-4146-8a56-e7d336fc7750" data-file-name="components/order-data-processor.tsx">
+                      <div className="bg-primary/10 p-2 rounded-full mr-3" data-unique-id="23a90ec2-2816-4fc1-a73a-6ecd36bc6f66" data-file-name="components/order-data-processor.tsx">
                         <Info className="h-5 w-5 text-primary" />
                       </div>
-                      <div data-unique-id="c35bba2c-0663-419b-88ff-c299b6226755" data-file-name="components/order-data-processor.tsx">
-                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="f8b65c31-512c-4493-a353-f1c866c92ea7" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="a02c9284-7de0-4f74-a04e-d1afd361caf5" data-file-name="components/order-data-processor.tsx">Order Source</span></h3>
-                        <p className="text-lg" data-unique-id="60e30002-7347-44d9-b951-d34d551be92e" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.orderSource || 'Not specified'}</p>
+                      <div data-unique-id="da805d63-a984-4d73-ac7d-c96bb258850f" data-file-name="components/order-data-processor.tsx">
+                        <h3 className="text-sm font-medium text-muted-foreground" data-unique-id="2e331238-1bde-4b34-8497-4fc1aca988b3" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="92217bb0-4224-43a8-834e-94b4f40ada44" data-file-name="components/order-data-processor.tsx">Order Source</span></h3>
+                        <p className="text-lg" data-unique-id="d740a841-c536-414a-8085-481a63e20895" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.orderSource || 'Not specified'}</p>
                       </div>
                     </div>
                   </div>
                 </div>
 
                 {/* Tracking Information */}
-                <div className="mt-6 pt-6 border-t border-border" data-unique-id="1125c757-f328-4b8a-93b4-b68e55f3b562" data-file-name="components/order-data-processor.tsx">
-                  <h3 className="text-lg font-medium mb-4" data-unique-id="5eee64ab-877b-4da0-b813-a07bb19e02ac" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="6d12d16c-99d3-4f57-bb42-34e364d3c32a" data-file-name="components/order-data-processor.tsx">Tracking Information</span></h3>
-                  <div className="space-y-3" data-unique-id="96e4a230-600a-4d3a-a0af-10346b41aa37" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
-                    {selectedOrder.trackingNumbers.map((number, index) => <div key={index} className="flex items-center p-3 bg-accent/10 rounded-md" data-unique-id="bcf32a3a-9081-4adb-a3e7-303615a7a027" data-file-name="components/order-data-processor.tsx">
-                        <MapPin className="h-5 w-5 text-primary mr-3" data-unique-id="a63717ff-b628-4f70-8f10-cf7c2a984627" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
-                        <span className="font-medium mr-2" data-unique-id="5a7d6950-9bcf-4236-abd2-adb36052955a" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="fa12f71c-2c56-4a48-aedb-e1bd0dfd9dc2" data-file-name="components/order-data-processor.tsx">Tracking #</span>{index + 1}<span className="editable-text" data-unique-id="502b5b20-4ca9-4367-aa63-c8876853f828" data-file-name="components/order-data-processor.tsx">:</span></span>
-                        <div className="flex items-center flex-wrap" data-unique-id="47a9fbd0-1955-49a0-9edc-d12d990be2dc" data-file-name="components/order-data-processor.tsx">
-                          <a href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${number}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center" data-unique-id="3da67169-5dde-44f0-b70b-1b0fe5aedce4" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                <div className="mt-6 pt-6 border-t border-border" data-unique-id="e2d99d65-c857-4e20-ae0f-6788db8e629a" data-file-name="components/order-data-processor.tsx">
+                  <h3 className="text-lg font-medium mb-4" data-unique-id="e340d12b-9ecc-4ee4-98f9-40ec25397eb7" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="91d7d28d-28a2-4ed7-8753-da2d8e98f2b5" data-file-name="components/order-data-processor.tsx">Tracking Information</span></h3>
+                  <div className="space-y-3" data-unique-id="5cbe64ef-1d13-4bf5-a376-6b2cb90a74b1" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
+                    {selectedOrder.trackingNumbers.map((number, index) => <div key={index} className="flex items-center p-3 bg-accent/10 rounded-md" data-unique-id="2e85e875-d828-4451-a124-0575c27e1310" data-file-name="components/order-data-processor.tsx">
+                        <MapPin className="h-5 w-5 text-primary mr-3" data-unique-id="2f666d6a-833f-48fb-898f-d5c09a0540aa" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
+                        <span className="font-medium mr-2" data-unique-id="8fdedd06-52dc-4dc8-8a43-2948753c04f4" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="0114ccec-6dc5-451a-8258-7c278eb2f726" data-file-name="components/order-data-processor.tsx">Tracking #</span>{index + 1}<span className="editable-text" data-unique-id="3f0635e5-c642-42bb-93f0-af1e105843f6" data-file-name="components/order-data-processor.tsx">:</span></span>
+                        <div className="flex items-center flex-wrap" data-unique-id="32c7e2ca-9bfc-424e-8b1d-4a805220a9c6" data-file-name="components/order-data-processor.tsx">
+                          <a href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${number}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline flex items-center" data-unique-id="96536453-ff36-4046-bca1-4f65267c533e" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">
                             {number}
-                            <ExternalLink className="ml-1 h-4 w-4" data-unique-id="ed6b90dd-76e7-40a4-9e53-67492dc76a6f" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
+                            <ExternalLink className="ml-1 h-4 w-4" data-unique-id="f96583af-5615-4ecc-9f7f-9a95110ab3de" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
                           </a>
                           <button onClick={() => {
                       if (navigator.clipboard) {
                         navigator.clipboard.writeText(number).then(() => toast.success('Tracking number copied!')).catch(err => console.error('Failed to copy tracking number:', err));
                       }
-                    }} className="ml-2 p-1 rounded-full hover:bg-accent/20 transition-colors" title="Copy tracking number" data-unique-id="8da69528-b17a-4aa3-aae7-b331595d4816" data-file-name="components/order-data-processor.tsx">
-                            <Copy className="h-4 w-4 text-primary" data-unique-id="9eefa331-bf6b-4f3b-9fb9-b5ae2533302b" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
+                    }} className="ml-2 p-1 rounded-full hover:bg-accent/20 transition-colors" title="Copy tracking number" data-unique-id="2c78217d-8e6f-4dd2-a49c-50e875214570" data-file-name="components/order-data-processor.tsx">
+                            <Copy className="h-4 w-4 text-primary" data-unique-id="89153a26-0459-40af-aa40-1f1bbd2c2057" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
                           </button>
                           <button onClick={() => {
                       const trackingUrl = `https://www.fedex.com/apps/fedextrack/?tracknumbers=${number}`;
                       if (navigator.clipboard) {
                         navigator.clipboard.writeText(trackingUrl).then(() => toast.success('Tracking link copied!')).catch(err => console.error('Failed to copy tracking link:', err));
                       }
-                    }} className="ml-1 p-1 rounded-full hover:bg-accent/20 transition-colors" title="Copy FedEx link" data-unique-id="562eddf0-4067-4efb-b547-656a8bf6f6a3" data-file-name="components/order-data-processor.tsx">
-                            <svg className="h-4 w-4 text-[#4D148C]" viewBox="0 0 24 24" fill="currentColor" data-unique-id="e3b631c0-a2f6-4454-bcb0-f7cfd3ce9b4a" data-file-name="components/order-data-processor.tsx">
-                              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 5a3 3 0 11-3 3 3 3 0 013-3zm0 11.13c-2.03-.31-3.88-1.47-5.14-3.13h10.28c-1.26 1.66-3.11 2.82-5.14 3.13z" data-unique-id="7fbe712a-0b20-462c-9ffa-d5e048b5a5a2" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
+                    }} className="ml-1 p-1 rounded-full hover:bg-accent/20 transition-colors" title="Copy FedEx link" data-unique-id="ae177f4e-1625-4c67-947a-69e31cd3d3cb" data-file-name="components/order-data-processor.tsx">
+                            <svg className="h-4 w-4 text-[#4D148C]" viewBox="0 0 24 24" fill="currentColor" data-unique-id="608a37c5-f0f4-47fe-adcd-3442a47e979d" data-file-name="components/order-data-processor.tsx">
+                              <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 5a3 3 0 11-3 3 3 3 0 013-3zm0 11.13c-2.03-.31-3.88-1.47-5.14-3.13h10.28c-1.26 1.66-3.11 2.82-5.14 3.13z" data-unique-id="2b20701a-0737-46d7-a329-621e6931ad02" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true" />
                             </svg>
                           </button>
                         </div>
                       </div>)}
-                    {selectedOrder.trackingNumbers.length === 0 && <p className="text-muted-foreground italic" data-unique-id="91d1abf4-1163-4309-a58b-0c7a14df3d71" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="c66587ba-2c3f-4975-9c29-caf3633db773" data-file-name="components/order-data-processor.tsx">No tracking numbers available</span></p>}
+                    {selectedOrder.trackingNumbers.length === 0 && <p className="text-muted-foreground italic" data-unique-id="5933fea7-8ed2-4221-84d6-f3ed3fadb659" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="7da1aeba-41a7-4e88-a0a0-f5f9ed02899b" data-file-name="components/order-data-processor.tsx">No tracking numbers available</span></p>}
                   </div>
                 </div>
 
                 {/* Order Summary */}
-                {selectedOrder.orderSummary && <div className="mt-6 pt-6 border-t border-border" data-unique-id="0ba67a55-0150-46bb-af82-6afc409fa4fe" data-file-name="components/order-data-processor.tsx">
-                    <h3 className="text-lg font-medium mb-2" data-unique-id="a34d0f12-0f76-43e5-a1b0-cd1a1f8d0f9a" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="5844d360-6899-45ee-a292-6b6366140af9" data-file-name="components/order-data-processor.tsx">Order Summary</span></h3>
-                    <div className="p-4 bg-accent/10 rounded-md" data-unique-id="603434ea-c787-45f5-92f2-f698f4365be2" data-file-name="components/order-data-processor.tsx">
-                      <p data-unique-id="40513f48-ed03-4d98-945c-ba97250bf5ba" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.orderSummary}</p>
+                {selectedOrder.orderSummary && <div className="mt-6 pt-6 border-t border-border" data-unique-id="c3b80a3b-2ca5-4706-9313-59465897108f" data-file-name="components/order-data-processor.tsx">
+                    <h3 className="text-lg font-medium mb-2" data-unique-id="c53226e0-6c49-4555-957d-25c5460c7311" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="e2b015b2-ebd5-493c-9233-4c3594953ed7" data-file-name="components/order-data-processor.tsx">Order Summary</span></h3>
+                    <div className="p-4 bg-accent/10 rounded-md" data-unique-id="558e42e3-8a4d-4aea-b421-6e1381828e88" data-file-name="components/order-data-processor.tsx">
+                      <p data-unique-id="2873a37d-eaed-4531-9142-8e9a4f5578b4" data-file-name="components/order-data-processor.tsx" data-dynamic-text="true">{selectedOrder.orderSummary}</p>
                     </div>
                   </div>}
               </div>
 
               {/* Footer */}
-              <div className="p-4 border-t border-border bg-muted/30 flex justify-end" data-unique-id="b667ba6d-075e-477b-be0f-5a4562915a80" data-file-name="components/order-data-processor.tsx">
-                <button onClick={() => setSelectedOrder(null)} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="bfcce24f-4a67-4896-bd7e-1a619899b57b" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="9f52e62f-7d5b-4f8d-82fb-385b497889d4" data-file-name="components/order-data-processor.tsx">
+              <div className="p-4 border-t border-border bg-muted/30 flex justify-end" data-unique-id="14fd1de3-763d-4e07-b7bb-57beb6cbb32f" data-file-name="components/order-data-processor.tsx">
+                <button onClick={() => setSelectedOrder(null)} className="px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 transition-colors" data-unique-id="2c0a87f4-713a-4e19-8414-a09be74aff99" data-file-name="components/order-data-processor.tsx"><span className="editable-text" data-unique-id="678fa075-7581-4f2d-84db-8ff0101910c5" data-file-name="components/order-data-processor.tsx">
                   Close
                 </span></button>
               </div>
