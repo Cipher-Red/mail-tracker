@@ -61,8 +61,8 @@ export async function GET(req: NextRequest) {
       return new Date(a.date).getTime() - new Date(b.date).getTime();
     });
     
-    // Format dates consistently
-    dailySends = dailySends.map(item => ({
+    // Create response data with string dates (different from EmailAnalytic interface)
+    const responseData = dailySends.map(item => ({
       id: item.id || 0, // Ensure id is present
       date: new Date(item.date).toISOString().split('T')[0],
       sent: item.sent,
@@ -71,8 +71,8 @@ export async function GET(req: NextRequest) {
     }));
     
     // Calculate totals
-    const totalSent = dailySends.reduce((sum, day) => sum + day.sent, 0);
-    const totalFailed = dailySends.reduce((sum, day) => sum + day.failed, 0);
+    const totalSent = responseData.reduce((sum, day) => sum + day.sent, 0);
+    const totalFailed = responseData.reduce((sum, day) => sum + day.failed, 0);
     const deliveryRate = totalSent + totalFailed > 0 
       ? parseFloat(((totalSent / (totalSent + totalFailed)) * 100).toFixed(1))
       : 0;
@@ -91,7 +91,7 @@ export async function GET(req: NextRequest) {
         totalSent,
         totalFailed,
         deliveryRate,
-        dailySends,
+        dailySends: responseData,
         deliveryIssues
       }
     });

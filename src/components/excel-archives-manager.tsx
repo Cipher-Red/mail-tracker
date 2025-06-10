@@ -3,9 +3,12 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { ExcelArchiveItem, excelArchiveService } from '@/lib/excel-archive-service';
-import { FileSpreadsheet, Clock, Download, Trash2, ArrowUpDown, Search, Filter, X, Loader2 } from 'lucide-react';
+import { FileSpreadsheet, Clock, Download, Trash2, ArrowUpDown, Search, Filter, X, Loader2, Check } from 'lucide-react';
 import toast from 'react-hot-toast';
-import { formatFileSize } from '@/lib/utils';
+// Helper function to format file size
+const formatFileSize = (bytes: number): string => {
+  if (bytes < 1024) return bytes + ' bytes';else if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';else if (bytes < 1024 * 1024 * 1024) return (bytes / (1024 * 1024)).toFixed(1) + ' MB';else return (bytes / (1024 * 1024 * 1024)).toFixed(1) + ' GB';
+};
 interface ExcelArchivesManagerProps {
   onSelectArchive?: (archive: ExcelArchiveItem) => void;
   compact?: boolean;
@@ -162,24 +165,24 @@ export default function ExcelArchivesManager({
       opacity: 0
     }} animate={{
       opacity: 1
-    }} className="bg-card rounded-lg border border-border p-4" data-unique-id="9f37a0df-3f0a-4d07-874e-10afad7e649c" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-        <h3 className="text-lg font-medium mb-3 flex items-center" data-unique-id="ebbcd0d1-4162-4dc6-a9c9-25b43e6ffe2c" data-file-name="components/excel-archives-manager.tsx">
+    }} className="bg-card rounded-lg border border-border p-4" data-unique-id="93ceb3da-4585-414f-a77f-33d44bae34c5" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+        <h3 className="text-lg font-medium mb-3 flex items-center" data-unique-id="057f1df9-8f97-4f64-92c4-891787557965" data-file-name="components/excel-archives-manager.tsx">
           <FileSpreadsheet className="mr-2 h-5 w-5 text-primary" />
-          <span className="editable-text" data-unique-id="245cba1c-1a6b-4068-9126-ae49a04414cc" data-file-name="components/excel-archives-manager.tsx">Previous Uploads</span>
-          <span className="ml-2 text-sm text-muted-foreground" data-unique-id="0d13cd50-d47e-4621-b208-ba6fc05cd956" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="c22ca048-5a39-4c9f-8b56-c0a0644e577a" data-file-name="components/excel-archives-manager.tsx">(</span>{archives.length}<span className="editable-text" data-unique-id="9d3c8152-23ee-47bf-a206-e67e28ac7aed" data-file-name="components/excel-archives-manager.tsx">)</span></span>
+          <span className="editable-text" data-unique-id="7660037a-fdc5-4330-8da7-62132ecc0aef" data-file-name="components/excel-archives-manager.tsx">Previous Uploads</span>
+          <span className="ml-2 text-sm text-muted-foreground" data-unique-id="d6746dc5-1d8d-4745-9ed2-839b8c8cadf4" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="0797efbf-50d2-45c6-8a22-9d1f4e6283fc" data-file-name="components/excel-archives-manager.tsx">(</span>{archives.length}<span className="editable-text" data-unique-id="a455dbfc-1022-4561-8fa0-07bd9738bc6e" data-file-name="components/excel-archives-manager.tsx">)</span></span>
         </h3>
         
-        {isLoading ? <div className="flex justify-center items-center py-6" data-unique-id="90e90157-137a-4fd9-a9ca-786758919d09" data-file-name="components/excel-archives-manager.tsx">
+        {isLoading ? <div className="flex justify-center items-center py-6" data-unique-id="50eb4cc1-189e-4b45-9d9e-570a792f0555" data-file-name="components/excel-archives-manager.tsx">
             <Loader2 className="h-8 w-8 animate-spin text-primary" />
-          </div> : archives.length === 0 ? <div className="text-center py-6 text-muted-foreground" data-unique-id="dad7f2a7-25a6-4f98-8bd0-d9de2ee9421d" data-file-name="components/excel-archives-manager.tsx">
-            <span className="editable-text" data-unique-id="210d6302-a8c3-4494-a624-1e8b138ea708" data-file-name="components/excel-archives-manager.tsx">No archived Excel files found</span>
-          </div> : <div className="space-y-2 max-h-64 overflow-y-auto" data-unique-id="06fbca2f-62da-44ee-8cae-f9817eea6a53" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-            {filteredArchives.slice(0, 5).map(archive => <button key={archive.id} className="w-full text-left p-3 rounded-md hover:bg-accent/10 transition-colors border border-border flex justify-between items-center" onClick={() => onSelectArchive?.(archive)} data-unique-id="8077cd86-3c70-44e7-aa3e-60fe1cf17917" data-file-name="components/excel-archives-manager.tsx">
-                <div className="flex items-center" data-unique-id="4a9c8e9e-984a-4e40-8039-114717353098" data-file-name="components/excel-archives-manager.tsx">
+          </div> : archives.length === 0 ? <div className="text-center py-6 text-muted-foreground" data-unique-id="52dcf487-c137-40c9-8aa2-f5c6ea71ed7b" data-file-name="components/excel-archives-manager.tsx">
+            <span className="editable-text" data-unique-id="65993ee3-99d0-42cf-8b1e-c72c9a466917" data-file-name="components/excel-archives-manager.tsx">No archived Excel files found</span>
+          </div> : <div className="space-y-2 max-h-64 overflow-y-auto" data-unique-id="c8c02562-f334-4846-b4b9-3e7482a78786" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+            {filteredArchives.slice(0, 5).map(archive => <button key={archive.id} className="w-full text-left p-3 rounded-md hover:bg-accent/10 transition-colors border border-border flex justify-between items-center" onClick={() => onSelectArchive?.(archive)} data-unique-id="6e932b5e-8560-4ab1-9ece-f52330f6903b" data-file-name="components/excel-archives-manager.tsx">
+                <div className="flex items-center" data-unique-id="7e980b77-8f55-4967-81fa-312cbb013faa" data-file-name="components/excel-archives-manager.tsx">
                   <FileSpreadsheet className="mr-2 h-4 w-4 text-primary" />
-                  <div data-unique-id="e5ca3f25-28c5-4525-aa3f-13905691cb59" data-file-name="components/excel-archives-manager.tsx">
-                    <div className="font-medium truncate max-w-[200px]" data-unique-id="990c246f-57fc-4704-9abd-368da9d350a1" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">{archive.fileName}</div>
-                    <div className="text-xs text-muted-foreground flex items-center" data-unique-id="223361b0-4c8d-4fa7-9dcc-74f62914ded8" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+                  <div data-unique-id="00a79b73-d7d5-407f-ab6b-a96ce233ed7d" data-file-name="components/excel-archives-manager.tsx">
+                    <div className="font-medium truncate max-w-[200px]" data-unique-id="d1777a2a-2ad7-436f-8090-0dd08ae2f613" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">{archive.fileName}</div>
+                    <div className="text-xs text-muted-foreground flex items-center" data-unique-id="fabb63e4-adf1-415d-bb06-ea0995cc7be7" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
                       <Clock className="mr-1 h-3 w-3" />
                       {new Date(archive.uploadDate).toLocaleString()}
                     </div>
@@ -191,8 +194,8 @@ export default function ExcelArchivesManager({
           }} />
               </button>)}
             
-            {filteredArchives.length > 5 && <button className="w-full text-center py-2 text-sm text-primary hover:underline" onClick={() => setSelectedArchive(null)} data-unique-id="f2d2b4df-37c6-41eb-8afc-72d7d4579a0e" data-file-name="components/excel-archives-manager.tsx">
-                <span className="editable-text" data-unique-id="b1001e82-84c2-4095-b84c-bb01511bd3c1" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">Show all {filteredArchives.length} archives</span>
+            {filteredArchives.length > 5 && <button className="w-full text-center py-2 text-sm text-primary hover:underline" onClick={() => setSelectedArchive(null)} data-unique-id="b5d4b63f-5d1e-48c9-8dcd-a4d86a33f14b" data-file-name="components/excel-archives-manager.tsx">
+                <span className="editable-text" data-unique-id="8d81409d-d02e-4aac-af5d-9d7e8f775f9f" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">Show all {filteredArchives.length} archives</span>
               </button>}
           </div>}
       </motion.div>;
@@ -203,29 +206,29 @@ export default function ExcelArchivesManager({
     opacity: 0
   }} animate={{
     opacity: 1
-  }} className="bg-card rounded-lg shadow-lg p-6" data-unique-id="7dbc382e-e1e3-4daf-8358-8a768a0870cf" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-      <div className="flex justify-between items-center mb-6" data-unique-id="354e6cc5-f74d-4fe8-90dd-3ebb6fcac397" data-file-name="components/excel-archives-manager.tsx">
-        <h2 className="text-xl font-medium flex items-center" data-unique-id="9986499d-e0e3-4852-9d05-fd17f4b319e3" data-file-name="components/excel-archives-manager.tsx">
+  }} className="bg-card rounded-lg shadow-lg p-6" data-unique-id="7aaf5d0d-2834-4bbb-935c-1cb9e70e3779" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+      <div className="flex justify-between items-center mb-6" data-unique-id="5047aef6-c5ac-4b00-8529-8f150c688d03" data-file-name="components/excel-archives-manager.tsx">
+        <h2 className="text-xl font-medium flex items-center" data-unique-id="dcbba9ce-ee93-44c5-8db7-6fc510c37441" data-file-name="components/excel-archives-manager.tsx">
           <FileSpreadsheet className="mr-2 h-5 w-5" />
-          <span className="editable-text" data-unique-id="fbc62f19-a2d7-4cad-9d4f-b2cd88dc415a" data-file-name="components/excel-archives-manager.tsx">Excel Archives</span>
-          <span className="ml-2 text-sm text-muted-foreground" data-unique-id="5e705d22-6feb-4efd-9e3b-6c1b125a2211" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="058f0493-5234-46a0-a55c-c91f50cd629b" data-file-name="components/excel-archives-manager.tsx">(</span>{archives.length}<span className="editable-text" data-unique-id="19a4f95c-587d-41ba-855e-f0cf6c7e8b71" data-file-name="components/excel-archives-manager.tsx">)</span></span>
+          <span className="editable-text" data-unique-id="3302089b-399f-4080-8766-8984aca5eb0e" data-file-name="components/excel-archives-manager.tsx">Excel Archives</span>
+          <span className="ml-2 text-sm text-muted-foreground" data-unique-id="c44b847c-aeee-4fc7-9e0b-13b387a7d9a7" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="adcb8719-d7ab-4977-be40-08130027b240" data-file-name="components/excel-archives-manager.tsx">(</span>{archives.length}<span className="editable-text" data-unique-id="4940001a-a289-46e0-aac0-02ac29abf92e" data-file-name="components/excel-archives-manager.tsx">)</span></span>
         </h2>
       </div>
       
       {/* Search and filter bar */}
-      <div className="mb-4 space-y-3" data-unique-id="da0b6dd0-a821-4e77-9e37-8222c5234218" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-        <div className="flex items-center gap-2" data-unique-id="ab6290e7-a1f9-4d19-a1c4-9fa6a00576b3" data-file-name="components/excel-archives-manager.tsx">
-          <div className="relative flex-grow" data-unique-id="9ffb0f0e-1676-4cf6-885b-7d2131a30678" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+      <div className="mb-4 space-y-3" data-unique-id="08630fd5-71da-4efb-bc88-a79990d2ffb9" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+        <div className="flex items-center gap-2" data-unique-id="d36d50b8-9481-42c1-a136-cb3399e58b73" data-file-name="components/excel-archives-manager.tsx">
+          <div className="relative flex-grow" data-unique-id="13ecdf10-e12a-4423-8ca9-05b1760f38c2" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <input type="text" placeholder="Search by file name..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" data-unique-id="6fe3e725-634e-4251-971b-feb5f1c45ddb" data-file-name="components/excel-archives-manager.tsx" />
-            {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground" data-unique-id="0950c2be-dce4-44ca-8a4b-5c0e30666aec" data-file-name="components/excel-archives-manager.tsx">
+            <input type="text" placeholder="Search by file name..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary" data-unique-id="8f86713c-eec4-4411-976e-97886954b573" data-file-name="components/excel-archives-manager.tsx" />
+            {searchQuery && <button onClick={() => setSearchQuery('')} className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground" data-unique-id="82ed78b6-65df-4e76-9d9b-3f6e0f340702" data-file-name="components/excel-archives-manager.tsx">
                 <X className="h-4 w-4" />
               </button>}
           </div>
           
-          <button onClick={() => setShowFilters(!showFilters)} className={`p-2 rounded-md border ${showFilters ? 'border-primary bg-primary/5' : 'border-border'} flex items-center`} data-unique-id="dc1223e4-0ae0-4ea6-a85c-154bfcf82f5a" data-file-name="components/excel-archives-manager.tsx">
+          <button onClick={() => setShowFilters(!showFilters)} className={`p-2 rounded-md border ${showFilters ? 'border-primary bg-primary/5' : 'border-border'} flex items-center`} data-unique-id="edff3676-c49b-4ca5-b37b-d4c558274d40" data-file-name="components/excel-archives-manager.tsx">
             <Filter className="h-4 w-4 mr-1" />
-            <span className="editable-text" data-unique-id="126d9e47-ef4d-4135-8034-97ce07e21543" data-file-name="components/excel-archives-manager.tsx">Filters</span>
+            <span className="editable-text" data-unique-id="780e3638-f881-4149-a462-8c107e515c4f" data-file-name="components/excel-archives-manager.tsx">Filters</span>
           </button>
         </div>
         
@@ -240,90 +243,90 @@ export default function ExcelArchivesManager({
         opacity: 0
       }} transition={{
         duration: 0.2
-      }} className="p-3 border border-border rounded-md bg-accent/5" data-unique-id="4735562a-1064-4b1e-a9b5-61480bf0d136" data-file-name="components/excel-archives-manager.tsx">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-unique-id="6d5b9125-20d7-490d-8ef9-7456c144e474" data-file-name="components/excel-archives-manager.tsx">
-              <div data-unique-id="115e2055-c7df-4f13-94da-f192bcef4ca4" data-file-name="components/excel-archives-manager.tsx">
-                <label className="block text-sm font-medium mb-1" data-unique-id="98fd6209-8964-4204-91e6-812cd5844bd4" data-file-name="components/excel-archives-manager.tsx">
-                  <span className="editable-text" data-unique-id="e8c9baa1-e6be-494a-999d-147e1b0bb8bb" data-file-name="components/excel-archives-manager.tsx">Upload Date</span>
+      }} className="p-3 border border-border rounded-md bg-accent/5" data-unique-id="f20d5227-4bcf-4230-b220-8d7d7f8926bf" data-file-name="components/excel-archives-manager.tsx">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-unique-id="adb225eb-b910-4ddf-975c-61d89e5e6dda" data-file-name="components/excel-archives-manager.tsx">
+              <div data-unique-id="c26f1eea-6c2d-45af-9032-60928a3c0b4b" data-file-name="components/excel-archives-manager.tsx">
+                <label className="block text-sm font-medium mb-1" data-unique-id="5085f566-18f5-48cf-a213-8ca7cc2a9791" data-file-name="components/excel-archives-manager.tsx">
+                  <span className="editable-text" data-unique-id="4016c3d7-e325-4df0-8090-ff877b46a7b3" data-file-name="components/excel-archives-manager.tsx">Upload Date</span>
                 </label>
-                <input type="date" value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="w-full p-2 border border-border rounded-md" data-unique-id="75ab604e-433c-420d-ab8c-55174b585560" data-file-name="components/excel-archives-manager.tsx" />
+                <input type="date" value={dateFilter} onChange={e => setDateFilter(e.target.value)} className="w-full p-2 border border-border rounded-md" data-unique-id="cb969415-d367-4de3-9878-5aadc675996b" data-file-name="components/excel-archives-manager.tsx" />
               </div>
             </div>
             
-            <div className="mt-3 flex justify-end" data-unique-id="db98a411-8781-41a1-924e-a53c06ef3c09" data-file-name="components/excel-archives-manager.tsx">
+            <div className="mt-3 flex justify-end" data-unique-id="b401f3c1-a5f5-4751-926d-c6bd08304765" data-file-name="components/excel-archives-manager.tsx">
               <button onClick={() => {
             setDateFilter('');
             setSearchQuery('');
-          }} className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground" data-unique-id="2768b8ab-4741-47ea-b0df-0472bd383c12" data-file-name="components/excel-archives-manager.tsx">
-                <span className="editable-text" data-unique-id="1671fdf3-e30c-48fe-937f-13a5a31fcce8" data-file-name="components/excel-archives-manager.tsx">Reset Filters</span>
+          }} className="px-3 py-1.5 text-sm text-muted-foreground hover:text-foreground" data-unique-id="048e1a30-1b81-49d6-9fd5-261690edc7aa" data-file-name="components/excel-archives-manager.tsx">
+                <span className="editable-text" data-unique-id="ec97ca57-9fe6-4e57-a9e3-f542f9339135" data-file-name="components/excel-archives-manager.tsx">Reset Filters</span>
               </button>
             </div>
           </motion.div>}
       </div>
       
       {/* Archives list */}
-      {archives.length === 0 ? <div className="text-center py-12 text-muted-foreground" data-unique-id="4c6a7426-e6dd-4f30-aec0-d17cdcc96e8a" data-file-name="components/excel-archives-manager.tsx">
+      {archives.length === 0 ? <div className="text-center py-12 text-muted-foreground" data-unique-id="372de266-53ed-4c71-b214-4452e2e6fbb2" data-file-name="components/excel-archives-manager.tsx">
           <FileSpreadsheet className="h-12 w-12 mx-auto mb-4 text-muted-foreground" />
-          <p className="mb-2" data-unique-id="43b4058b-ef7f-4ff3-8865-6953e966d432" data-file-name="components/excel-archives-manager.tsx"><span className="editable-text" data-unique-id="b329d582-b95b-46b3-adbe-32d4d52fab23" data-file-name="components/excel-archives-manager.tsx">No archived Excel files found</span></p>
-          <p className="text-sm" data-unique-id="0f601699-c6a0-4b21-b066-f9eba4b4695c" data-file-name="components/excel-archives-manager.tsx"><span className="editable-text" data-unique-id="01108bc0-3be3-4d37-9158-1aca1edaca32" data-file-name="components/excel-archives-manager.tsx">Upload an Excel file to get started</span></p>
+          <p className="mb-2" data-unique-id="2710b6b3-27df-4b08-a6ae-a2c16408910e" data-file-name="components/excel-archives-manager.tsx"><span className="editable-text" data-unique-id="328acbe6-e69b-4916-aaec-c2487d0315c2" data-file-name="components/excel-archives-manager.tsx">No archived Excel files found</span></p>
+          <p className="text-sm" data-unique-id="b879fc8c-81d6-4e37-b8eb-eb6d8cc2fcd3" data-file-name="components/excel-archives-manager.tsx"><span className="editable-text" data-unique-id="30c2c97a-393a-4793-94a2-14f6b4b7870a" data-file-name="components/excel-archives-manager.tsx">Upload an Excel file to get started</span></p>
         </div> : <>
           {/* Archives table */}
-          <div className="border border-border rounded-md overflow-hidden" data-unique-id="492d2edb-fcc0-4f59-a1de-41a28ca5a967" data-file-name="components/excel-archives-manager.tsx">
-            <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="5d13bacc-85f2-405c-8bac-2eec41ca5bf2" data-file-name="components/excel-archives-manager.tsx">
-              <div className="col-span-5 flex items-center cursor-pointer" onClick={() => handleSort('fileName')} data-unique-id="dfbe2b8f-988f-4254-be95-2b5545943cb7" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-                <span className="editable-text" data-unique-id="c09b9c22-28ed-41f7-a949-fb12d03ead7e" data-file-name="components/excel-archives-manager.tsx">File Name</span>
+          <div className="border border-border rounded-md overflow-hidden" data-unique-id="697f371b-cbe6-473d-9aa6-8313e49812fc" data-file-name="components/excel-archives-manager.tsx">
+            <div className="grid grid-cols-12 gap-2 p-3 bg-muted text-xs font-medium" data-unique-id="6781b095-e1f5-4204-9319-96a7d9c6cd27" data-file-name="components/excel-archives-manager.tsx">
+              <div className="col-span-5 flex items-center cursor-pointer" onClick={() => handleSort('fileName')} data-unique-id="08dc341d-e449-4f8d-b04f-8616e8358475" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+                <span className="editable-text" data-unique-id="4c969347-d05f-47bd-ba1a-b50f9bb75229" data-file-name="components/excel-archives-manager.tsx">File Name</span>
                 {sortField === 'fileName' && (sortDirection === 'asc' ? <ArrowUpDown className="h-3 w-3 ml-1" /> : <ArrowUpDown className="h-3 w-3 ml-1" />)}
               </div>
-              <div className="col-span-3 flex items-center cursor-pointer" onClick={() => handleSort('uploadDate')} data-unique-id="bdb5dc8e-e949-45e1-9855-d51991133ec2" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-                <span className="editable-text" data-unique-id="c7f7fec4-23e7-4184-8af0-989ce7372a63" data-file-name="components/excel-archives-manager.tsx">Upload Date</span>
+              <div className="col-span-3 flex items-center cursor-pointer" onClick={() => handleSort('uploadDate')} data-unique-id="565bdc38-cbca-444c-a9e1-d23ca843dda3" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+                <span className="editable-text" data-unique-id="f1ff4f35-8816-4cb3-bc7c-5e5ac52d99b6" data-file-name="components/excel-archives-manager.tsx">Upload Date</span>
                 {sortField === 'uploadDate' && (sortDirection === 'asc' ? <ArrowUpDown className="h-3 w-3 ml-1" /> : <ArrowUpDown className="h-3 w-3 ml-1" />)}
               </div>
-              <div className="col-span-2 flex items-center cursor-pointer" onClick={() => handleSort('fileSize')} data-unique-id="0e7ba4a4-5199-4326-9545-96d6a5f730ec" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-                <span className="editable-text" data-unique-id="73a7fe0a-128d-44d8-9bb4-ba378a7244ff" data-file-name="components/excel-archives-manager.tsx">Size</span>
+              <div className="col-span-2 flex items-center cursor-pointer" onClick={() => handleSort('fileSize')} data-unique-id="1f8982eb-db1d-4e23-a56e-2685185aa7eb" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+                <span className="editable-text" data-unique-id="390956a0-0050-4fa8-a849-c0d998660c58" data-file-name="components/excel-archives-manager.tsx">Size</span>
                 {sortField === 'fileSize' && (sortDirection === 'asc' ? <ArrowUpDown className="h-3 w-3 ml-1" /> : <ArrowUpDown className="h-3 w-3 ml-1" />)}
               </div>
-              <div className="col-span-2 text-right" data-unique-id="ea42c127-c0a9-4658-b5b5-886b42e856aa" data-file-name="components/excel-archives-manager.tsx">
-                <span className="editable-text" data-unique-id="01116017-8a79-4a86-9acf-d01de0c6906c" data-file-name="components/excel-archives-manager.tsx">Actions</span>
+              <div className="col-span-2 text-right" data-unique-id="da71223a-8b65-496f-854b-c23cc887a887" data-file-name="components/excel-archives-manager.tsx">
+                <span className="editable-text" data-unique-id="9f57ea41-b7f4-4d59-adc7-5dd4ba040a87" data-file-name="components/excel-archives-manager.tsx">Actions</span>
               </div>
             </div>
             
-            <div className="max-h-[400px] overflow-y-auto" data-unique-id="70bb1cbf-c709-4ae5-a50e-c77a347d93eb" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-              {filteredArchives.length === 0 ? <div className="text-center py-8 text-muted-foreground" data-unique-id="672230c9-4097-4f6f-a939-4947ef1e17c0" data-file-name="components/excel-archives-manager.tsx">
-                  <span className="editable-text" data-unique-id="a6fbcbef-eaa3-414f-94d9-1e98422fead1" data-file-name="components/excel-archives-manager.tsx">No matching archives found</span>
+            <div className="max-h-[400px] overflow-y-auto" data-unique-id="727d8b82-4ca1-4319-a6bc-ddd6cfff3227" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+              {filteredArchives.length === 0 ? <div className="text-center py-8 text-muted-foreground" data-unique-id="6c0871da-cf0b-4a2c-aacc-47e315534e64" data-file-name="components/excel-archives-manager.tsx">
+                  <span className="editable-text" data-unique-id="36a74c13-f7ea-46c7-bc09-0444cc1ce347" data-file-name="components/excel-archives-manager.tsx">No matching archives found</span>
                 </div> : filteredArchives.map(archive => <div key={archive.id} className="grid grid-cols-12 gap-2 p-3 border-t border-border items-center hover:bg-accent/5 cursor-pointer" onClick={() => {
             setSelectedArchive(archive);
             onSelectArchive?.(archive);
-          }} data-unique-id="445b5ed6-f046-4fcd-bad3-63ff60f20c33" data-file-name="components/excel-archives-manager.tsx">
-                    <div className="col-span-5 font-medium flex items-center" data-unique-id="31f5eb1b-3828-498c-b182-a7fb8d2fafcc" data-file-name="components/excel-archives-manager.tsx">
+          }} data-unique-id="75f09817-42eb-4bf3-8246-cf5e02ba15be" data-file-name="components/excel-archives-manager.tsx">
+                    <div className="col-span-5 font-medium flex items-center" data-unique-id="5aec90b7-9253-42fd-948d-32ee1df9abc0" data-file-name="components/excel-archives-manager.tsx">
                       <FileSpreadsheet className="h-4 w-4 text-primary mr-2" />
-                      <span className="truncate" title={archive.fileName} data-unique-id="6ae9aa5a-434d-486a-a55a-1d7aec75432f" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">{archive.fileName}</span>
+                      <span className="truncate" title={archive.fileName} data-unique-id="3c6ecd05-57b5-4edc-9941-0ec36cef398e" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">{archive.fileName}</span>
                     </div>
-                    <div className="col-span-3 text-muted-foreground flex items-center" data-unique-id="43e906d3-1b82-4ce3-a389-43575ee901ba" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+                    <div className="col-span-3 text-muted-foreground flex items-center" data-unique-id="0feef0cc-7e2e-4904-a74f-6ba31bd9fad4" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
                       <Clock className="h-4 w-4 mr-1 text-muted-foreground" />
                       {new Date(archive.uploadDate).toLocaleString()}
                     </div>
-                    <div className="col-span-2 text-muted-foreground" data-unique-id="4a52b3ae-2198-41c4-8a34-d18ccf24d28c" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+                    <div className="col-span-2 text-muted-foreground" data-unique-id="96f5edd8-fac7-4e90-82e0-e252e23839a0" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
                       {formatFileSize(archive.fileSize)}
                     </div>
-                    <div className="col-span-2 flex justify-end space-x-1" data-unique-id="26761444-e836-4711-becd-1bd2af3808ca" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+                    <div className="col-span-2 flex justify-end space-x-1" data-unique-id="98dae2cc-0e39-4b84-9703-e5f9397c9537" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
                       <button className="p-1.5 rounded-md hover:bg-accent/20 transition-colors" title="Download file" onClick={e => {
                 e.stopPropagation();
                 downloadArchive(archive);
-              }} data-unique-id="3e8d0732-c465-419b-abb7-6d5bb8966d23" data-file-name="components/excel-archives-manager.tsx">
+              }} data-unique-id="5daacc6b-6783-4460-a1fc-e62f65de10fa" data-file-name="components/excel-archives-manager.tsx">
                         <Download className="h-4 w-4 text-primary" />
                       </button>
                       
-                      {confirmDelete === archive.id ? <div className="flex space-x-1" data-unique-id="dacd4383-a3c4-4370-bda0-2d360abd1976" data-file-name="components/excel-archives-manager.tsx">
+                      {confirmDelete === archive.id ? <div className="flex space-x-1" data-unique-id="0f43a162-3b6d-42ed-a48f-aedb6291a0c1" data-file-name="components/excel-archives-manager.tsx">
                           <button className="p-1.5 bg-red-100 text-red-600 rounded-md hover:bg-red-200" onClick={e => {
                   e.stopPropagation();
                   deleteArchive(archive.id);
-                }} data-unique-id="8620cb66-f3f5-4abe-b852-050bf5b5063d" data-file-name="components/excel-archives-manager.tsx">
+                }} data-unique-id="638f6571-f43b-4545-b447-7eaef51130d6" data-file-name="components/excel-archives-manager.tsx">
                             <Check className="h-4 w-4" />
                           </button>
                           <button className="p-1.5 bg-gray-100 rounded-md hover:bg-gray-200" onClick={e => {
                   e.stopPropagation();
                   setConfirmDelete(null);
-                }} data-unique-id="714f20a6-28e4-4d1a-9a7a-bab6d3aca1d7" data-file-name="components/excel-archives-manager.tsx">
+                }} data-unique-id="2a155aaf-9aa3-46ae-9076-0f55ee75c9e0" data-file-name="components/excel-archives-manager.tsx">
                             <X className="h-4 w-4" />
                           </button>
                         </div> : <button className="p-1.5 rounded-md hover:bg-red-50 text-red-500 hover:text-red-600 transition-colors" title="Delete archive" onClick={e => {
@@ -333,7 +336,7 @@ export default function ExcelArchivesManager({
                 setTimeout(() => {
                   setConfirmDelete(current => current === archive.id ? null : current);
                 }, 5000);
-              }} data-unique-id="40f2d0b3-b321-4a06-ab91-b8da40ad3ab9" data-file-name="components/excel-archives-manager.tsx">
+              }} data-unique-id="79a73075-83e5-4edb-8e9f-6d2c0d1fc023" data-file-name="components/excel-archives-manager.tsx">
                           <Trash2 className="h-4 w-4" />
                         </button>}
                     </div>
@@ -342,13 +345,13 @@ export default function ExcelArchivesManager({
           </div>
           
           {/* Archive stats */}
-          <div className="mt-4 text-sm text-muted-foreground flex justify-between" data-unique-id="b9db96d9-cdb8-4498-a64b-cc582621ee20" data-file-name="components/excel-archives-manager.tsx">
-            <div data-unique-id="359a2c42-4669-4386-8ab1-6d71659ebd54" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
-              <span className="editable-text" data-unique-id="3fc94a33-7927-44ea-b08d-f723e8d75dae" data-file-name="components/excel-archives-manager.tsx">Showing </span>
+          <div className="mt-4 text-sm text-muted-foreground flex justify-between" data-unique-id="fb6ca888-54dc-4cbe-85c6-ca065f147860" data-file-name="components/excel-archives-manager.tsx">
+            <div data-unique-id="9782c048-5039-4da5-90cf-3a867122da95" data-file-name="components/excel-archives-manager.tsx" data-dynamic-text="true">
+              <span className="editable-text" data-unique-id="58378ca5-56ec-47fa-a59d-db8915854ebd" data-file-name="components/excel-archives-manager.tsx">Showing </span>
               {filteredArchives.length}
-              <span className="editable-text" data-unique-id="e2c07ae5-b7bd-43d7-bcf3-1ef6f924c850" data-file-name="components/excel-archives-manager.tsx"> of </span>
+              <span className="editable-text" data-unique-id="dfdbf362-5334-4064-969e-fd88b85d6ae4" data-file-name="components/excel-archives-manager.tsx"> of </span>
               {archives.length}
-              <span className="editable-text" data-unique-id="383cd7c8-73f6-4366-ba98-4e8cbec241a8" data-file-name="components/excel-archives-manager.tsx"> archives</span>
+              <span className="editable-text" data-unique-id="d061de6f-33a0-40dc-a566-df36f65b3e32" data-file-name="components/excel-archives-manager.tsx"> archives</span>
             </div>
           </div>
         </>}

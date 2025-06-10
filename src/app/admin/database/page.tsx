@@ -256,38 +256,38 @@ export default function DatabasePage() {
         return null;
     }
   };
-  return <div className="space-y-6" data-unique-id="4caeacb9-a5b9-4e6e-aa55-43cf01f6383c" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
-      <div className="flex justify-between items-center" data-unique-id="3e4805e4-8d78-4ecc-aae1-f2e278fb9d76" data-file-name="app/admin/database/page.tsx">
-        <h1 className="text-3xl font-bold text-white flex items-center gap-3" data-unique-id="3c550153-3e99-48ab-9239-e1c5b1e792bc" data-file-name="app/admin/database/page.tsx">
-          <Database className="h-8 w-8 text-indigo-400" /><span className="editable-text" data-unique-id="6103b3ef-3e01-47b2-8c28-14367d82eb8b" data-file-name="app/admin/database/page.tsx">
+  return <div className="space-y-6" data-unique-id="65c60bd4-20a8-42d7-af85-f7cb6923dc99" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
+      <div className="flex justify-between items-center" data-unique-id="4f543525-49bf-4a4c-8297-b4e9278ba142" data-file-name="app/admin/database/page.tsx">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-3" data-unique-id="ba572f37-19be-4d0b-a006-6aefd87b3f3b" data-file-name="app/admin/database/page.tsx">
+          <Database className="h-8 w-8 text-indigo-400" /><span className="editable-text" data-unique-id="cbcd916b-69e0-467e-8e62-2b9b51ea1a63" data-file-name="app/admin/database/page.tsx">
           Database Management
         </span></h1>
       </div>
       
       {/* Supabase Connection Status */}
-      <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="4cbc6970-d4f9-4c0f-a371-09b9ffeb272b" data-file-name="app/admin/database/page.tsx">
-        <h2 className="text-xl font-semibold text-white mb-4 flex items-center" data-unique-id="1870cefb-e9fd-4bc6-ace4-a06634dd3477" data-file-name="app/admin/database/page.tsx">
-          <Database className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="7a04899f-3090-4232-96c9-968b5d34f16e" data-file-name="app/admin/database/page.tsx">
+      <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="c43fd9b0-ef25-4ced-a2c6-d0edce15e727" data-file-name="app/admin/database/page.tsx">
+        <h2 className="text-xl font-semibold text-white mb-4 flex items-center" data-unique-id="51132fd1-0886-437e-8ab3-e60197d94a26" data-file-name="app/admin/database/page.tsx">
+          <Database className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="23590227-42d5-4747-a26b-bd7151c60bf4" data-file-name="app/admin/database/page.tsx">
           Supabase Connection Status
         </span></h2>
         
-        <div className="p-4 rounded-lg border border-gray-700 bg-gray-700/30" data-unique-id="3b61d9cb-7399-4505-b394-cd1692672bc9" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
-          {isCheckingConnection ? <div className="flex items-center justify-center py-4" data-unique-id="c1b3277f-d0e1-41fa-b7eb-6e86653bfc99" data-file-name="app/admin/database/page.tsx">
+        <div className="p-4 rounded-lg border border-gray-700 bg-gray-700/30" data-unique-id="4b1e16fd-e1a6-4798-b2f2-b62ca40c999e" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
+          {isCheckingConnection ? <div className="flex items-center justify-center py-4" data-unique-id="248709af-9912-4495-9821-d7e756a42b9d" data-file-name="app/admin/database/page.tsx">
               <Loader2 className="h-6 w-6 animate-spin text-indigo-400 mr-3" />
-              <span className="text-gray-300" data-unique-id="13ef10e8-d753-4c78-97f6-3604e65c02f3" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="fb7e86bf-711f-4604-be67-bcc465490143" data-file-name="app/admin/database/page.tsx">Checking connection...</span></span>
-            </div> : isSupabaseAvailable ? <div className="flex items-center text-green-400" data-unique-id="4238d062-655e-4216-87ea-2894fb0ff4a8" data-file-name="app/admin/database/page.tsx">
+              <span className="text-gray-300" data-unique-id="eda2ac05-24b7-484a-9580-3e3acad1e080" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="00136f3f-355c-47ab-b7d6-eaf9eb2ef4b0" data-file-name="app/admin/database/page.tsx">Checking connection...</span></span>
+            </div> : isSupabaseAvailable ? <div className="flex items-center text-green-400" data-unique-id="611e96a5-ddf1-4148-860e-748b66887228" data-file-name="app/admin/database/page.tsx">
               <Check className="h-6 w-6 mr-2" />
-              <div data-unique-id="086da297-3952-4069-9e51-1861e31137dd" data-file-name="app/admin/database/page.tsx">
-                <p className="font-medium" data-unique-id="6dd86b56-6e4b-4163-a37a-4b19d10d3bac" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="f767a84f-6a7b-46f7-a1c8-4e81dd9faf46" data-file-name="app/admin/database/page.tsx">Connected to Supabase</span></p>
-                <p className="text-sm text-gray-300 mt-1" data-unique-id="9280ade9-4429-4a44-992c-4001a9cc206c" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="553f302d-5a01-4ed4-8f48-c3cc5b6b4072" data-file-name="app/admin/database/page.tsx">
+              <div data-unique-id="721bd88a-c1f0-41e2-8cae-4a9e4ab6166b" data-file-name="app/admin/database/page.tsx">
+                <p className="font-medium" data-unique-id="da87f234-7a5b-4d56-9cb7-c112f29028e0" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="172d53cd-17c0-4e0e-bc76-ba9c95779ff3" data-file-name="app/admin/database/page.tsx">Connected to Supabase</span></p>
+                <p className="text-sm text-gray-300 mt-1" data-unique-id="03156e16-f6b9-4d97-83b3-189161f16a3d" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="84de4171-9d8e-4756-b3e9-7299a98159d0" data-file-name="app/admin/database/page.tsx">
                   Database synchronization is available
                 </span></p>
               </div>
-            </div> : <div className="flex items-center text-red-400" data-unique-id="c1ed8753-4f25-4e8f-8d83-ff0d66699821" data-file-name="app/admin/database/page.tsx">
+            </div> : <div className="flex items-center text-red-400" data-unique-id="7325654f-8483-4d7d-b09f-b4a537bc6d92" data-file-name="app/admin/database/page.tsx">
               <X className="h-6 w-6 mr-2" />
-              <div data-unique-id="31b8ebac-73f8-4d11-97eb-98cca5aca777" data-file-name="app/admin/database/page.tsx">
-                <p className="font-medium" data-unique-id="57e9aa4f-8265-49c4-89d8-b9c7931b5259" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="7d41af87-a0c4-4c33-9d49-8cb19f65201a" data-file-name="app/admin/database/page.tsx">Not Connected to Supabase</span></p>
-                <p className="text-sm text-gray-300 mt-1" data-unique-id="82a46b83-a6ce-449c-814f-e6fba74477d4" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="acd3ccc2-4f11-4304-af65-c27e71a33dac" data-file-name="app/admin/database/page.tsx">
+              <div data-unique-id="7af3f643-ff4a-43d8-ad31-df5e03dd0826" data-file-name="app/admin/database/page.tsx">
+                <p className="font-medium" data-unique-id="ed7dd1f2-fa26-4e30-a080-51c9baa8f04b" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="608c12da-0261-4e54-9588-5c51f30e6a52" data-file-name="app/admin/database/page.tsx">Not Connected to Supabase</span></p>
+                <p className="text-sm text-gray-300 mt-1" data-unique-id="72d0d386-3f62-4131-9c51-513370796808" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="071909ff-a8bb-4644-b4e0-e15e7ffc7e4c" data-file-name="app/admin/database/page.tsx">
                   Ensure you've configured the NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY
                   environment variables.
                 </span></p>
@@ -297,20 +297,20 @@ export default function DatabasePage() {
       </div>
       
       {/* Data Sync Controls */}
-      <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="f9130f08-0b70-4ffa-b7b3-e6e08d58c1ca" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
-        <div className="flex justify-between items-center mb-6" data-unique-id="884c297f-a882-4094-a432-8cb56c92b7ad" data-file-name="app/admin/database/page.tsx">
-          <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="e498c453-ba0a-4943-b662-8956104b82cd" data-file-name="app/admin/database/page.tsx">
-            <Upload className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="01cf85df-ac3c-4a45-8ed2-b7d047fdc543" data-file-name="app/admin/database/page.tsx">
+      <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="3be9ade3-e99c-4385-914f-170ef998ad75" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
+        <div className="flex justify-between items-center mb-6" data-unique-id="bb72f9e3-6f4c-4feb-ad99-5ab44b969ac8" data-file-name="app/admin/database/page.tsx">
+          <h2 className="text-xl font-semibold text-white flex items-center" data-unique-id="56ec5ade-088e-4195-9e3f-4b922eb060c8" data-file-name="app/admin/database/page.tsx">
+            <Upload className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="be3060a4-7264-4fc2-83ea-c3f142528b85" data-file-name="app/admin/database/page.tsx">
             Data Synchronization
           </span></h2>
           
-          <button disabled={!isSupabaseAvailable || Object.values(syncState).some(s => s.status === 'syncing')} onClick={syncAll} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md flex items-center disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="abe0e0f4-267d-44c2-82d3-838a5be3cf9c" data-file-name="app/admin/database/page.tsx">
-            <RefreshCw className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="e18fc26c-59b4-4461-8837-2fda397b59a6" data-file-name="app/admin/database/page.tsx">
+          <button disabled={!isSupabaseAvailable || Object.values(syncState).some(s => s.status === 'syncing')} onClick={syncAll} className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md flex items-center disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="52f44e74-2272-45a6-9c5b-4181c05a5f8e" data-file-name="app/admin/database/page.tsx">
+            <RefreshCw className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="996d1e31-a619-4ec0-936d-0619b8852464" data-file-name="app/admin/database/page.tsx">
             Sync All Data
           </span></button>
         </div>
         
-        <div className="space-y-4" data-unique-id="a7ad1357-aba3-4af2-9945-5c632510d0b9" data-file-name="app/admin/database/page.tsx">
+        <div className="space-y-4" data-unique-id="2eb42761-dc36-4aa9-b37c-0b63b9f642b9" data-file-name="app/admin/database/page.tsx">
           <DataSyncItem title="Customer Data" description="User profiles and contact information" status={syncState.customers.status} message={syncState.customers.message} lastSynced={syncState.customers.lastSynced} count={syncState.customers.count} onSync={() => syncToSupabase('customers')} isDisabled={!isSupabaseAvailable || syncState.customers.status === 'syncing'} />
           
           <DataSyncItem title="Email Templates" description="Saved email templates and designs" status={syncState.templates.status} message={syncState.templates.message} lastSynced={syncState.templates.lastSynced} count={syncState.templates.count} onSync={() => syncToSupabase('templates')} isDisabled={!isSupabaseAvailable || syncState.templates.status === 'syncing'} />
@@ -320,18 +320,18 @@ export default function DatabasePage() {
           <DataSyncItem title="Activity Logs" description="User interaction and system event logs" status={syncState.activity_logs.status} message={syncState.activity_logs.message} lastSynced={syncState.activity_logs.lastSynced} count={syncState.activity_logs.count} onSync={() => syncToSupabase('activity_logs')} isDisabled={!isSupabaseAvailable || syncState.activity_logs.status === 'syncing'} />
         </div>
         
-        {!isSupabaseAvailable && <div className="mt-6 p-4 bg-amber-900/20 border border-amber-700/30 rounded-lg" data-unique-id="4251a186-5a48-4ba0-87ef-80c3b2726405" data-file-name="app/admin/database/page.tsx">
-            <div className="flex items-start" data-unique-id="3f83f507-89a8-4ce4-9c03-86825e105900" data-file-name="app/admin/database/page.tsx">
+        {!isSupabaseAvailable && <div className="mt-6 p-4 bg-amber-900/20 border border-amber-700/30 rounded-lg" data-unique-id="e6425c2d-65aa-4ebf-8fc5-86c782e230d4" data-file-name="app/admin/database/page.tsx">
+            <div className="flex items-start" data-unique-id="e2e0fe4c-5099-4308-8bfa-95d6cb988fa9" data-file-name="app/admin/database/page.tsx">
               <AlertTriangle className="h-5 w-5 text-amber-500 mt-0.5 mr-3 flex-shrink-0" />
-              <div data-unique-id="2a3d6309-d14e-45fe-bb89-c95084e1a94e" data-file-name="app/admin/database/page.tsx">
-                <p className="text-amber-400 font-medium" data-unique-id="45af5035-907f-4aa2-b2e1-8924b2d3031c" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="a2307771-2b68-4e47-8dbf-993f4bcd7371" data-file-name="app/admin/database/page.tsx">Supabase Connection Required</span></p>
-                <p className="text-sm text-amber-300/80 mt-1" data-unique-id="adf97229-75bc-4163-87bd-d299bebf7cae" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="099ccb36-df4f-4111-965a-b8b68c4974b1" data-file-name="app/admin/database/page.tsx">
+              <div data-unique-id="da04951d-eb6e-4fee-9820-96f6cca1e605" data-file-name="app/admin/database/page.tsx">
+                <p className="text-amber-400 font-medium" data-unique-id="191be232-7f8b-4165-b3c2-ace703fa5b8b" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="6932ab46-1c07-45c6-a8b0-d584481fcdf1" data-file-name="app/admin/database/page.tsx">Supabase Connection Required</span></p>
+                <p className="text-sm text-amber-300/80 mt-1" data-unique-id="6ed95661-588d-471e-a25e-4e88281f9825" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="03c4ad42-5d3c-4d09-aece-bfd07ea31d5a" data-file-name="app/admin/database/page.tsx">
                   To enable data synchronization, you need to configure your Supabase connection.
                   Add the following environment variables to your project:
                 </span></p>
-                <div className="mt-3 p-3 bg-gray-900/50 rounded font-mono text-xs text-amber-300/90" data-unique-id="af0fe0bc-f438-479a-be8e-a79756fbca33" data-file-name="app/admin/database/page.tsx">
-                  <p data-unique-id="784ff3b3-0791-4c7d-8df7-87a3461c3eb2" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="76236771-cef5-4b56-85da-4414da9225e9" data-file-name="app/admin/database/page.tsx">NEXT_PUBLIC_SUPABASE_URL=your-project-url</span></p>
-                  <p data-unique-id="a34a337b-7134-4f5e-abe3-268be1a5f5cf" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="0ce1b9ac-449e-4e70-8639-209afdc05411" data-file-name="app/admin/database/page.tsx">NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key</span></p>
+                <div className="mt-3 p-3 bg-gray-900/50 rounded font-mono text-xs text-amber-300/90" data-unique-id="3b716c09-6c04-4853-b360-17489f1bd680" data-file-name="app/admin/database/page.tsx">
+                  <p data-unique-id="9c675c44-230c-4e5c-a7f2-a74271631fc3" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="4461e5c6-e243-4361-aa79-1b31bb560459" data-file-name="app/admin/database/page.tsx">NEXT_PUBLIC_SUPABASE_URL=your-project-url</span></p>
+                  <p data-unique-id="13334d1c-279b-4cf2-9c4d-67c27559c5df" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="7ad99cf4-d655-4944-a2c9-ca9f501ce000" data-file-name="app/admin/database/page.tsx">NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key</span></p>
                 </div>
               </div>
             </div>
@@ -339,36 +339,36 @@ export default function DatabasePage() {
       </div>
       
       {/* Database Management */}
-      {isSupabaseAvailable && <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="ac71ddaa-5df0-428a-828a-34e10940bf2e" data-file-name="app/admin/database/page.tsx">
-          <h2 className="text-xl font-semibold text-white mb-6 flex items-center" data-unique-id="03c957ee-8e8e-48b9-9af2-a83dc8482c10" data-file-name="app/admin/database/page.tsx">
-            <Database className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="fba67775-116a-4489-916e-108d4dcf70b1" data-file-name="app/admin/database/page.tsx">
+      {isSupabaseAvailable && <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="3e0ddfbb-0815-4e24-be1d-7918f060c388" data-file-name="app/admin/database/page.tsx">
+          <h2 className="text-xl font-semibold text-white mb-6 flex items-center" data-unique-id="681bca18-2cd4-416d-a900-9919485b8215" data-file-name="app/admin/database/page.tsx">
+            <Database className="h-5 w-5 mr-2 text-indigo-400" /><span className="editable-text" data-unique-id="426ea4bc-46ba-4781-9938-fd2db38c85ba" data-file-name="app/admin/database/page.tsx">
             Database Management
           </span></h2>
           
-          <div className="space-y-4" data-unique-id="801d2b56-46c1-439c-a5ea-81f1f9c0c7fb" data-file-name="app/admin/database/page.tsx">
-            <div className="p-4 border border-gray-700 rounded-lg" data-unique-id="e1caeaad-5b94-40e6-8cb2-770fd48703c2" data-file-name="app/admin/database/page.tsx">
-              <h3 className="text-lg font-medium text-white mb-2" data-unique-id="dc059a5e-84ce-4578-a425-ec161512dcec" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="b0e9acb0-f264-4538-86f9-c7802495704e" data-file-name="app/admin/database/page.tsx">Export Database</span></h3>
-              <p className="text-sm text-gray-400 mb-4" data-unique-id="4099d54a-850a-4db4-ab71-bf7251c3081d" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="d1195d1a-96af-4411-bbca-1047d1e475bc" data-file-name="app/admin/database/page.tsx">
+          <div className="space-y-4" data-unique-id="0ee7c589-bcf2-46cd-a5c3-4b04cfd6cf0f" data-file-name="app/admin/database/page.tsx">
+            <div className="p-4 border border-gray-700 rounded-lg" data-unique-id="dbb4ffa3-8da0-4d2f-891c-4c519d999d8e" data-file-name="app/admin/database/page.tsx">
+              <h3 className="text-lg font-medium text-white mb-2" data-unique-id="78065e97-a559-4d42-8f88-e654208d0dc3" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="d4ec6fe5-1d00-481e-a43b-2b5a8b94ccff" data-file-name="app/admin/database/page.tsx">Export Database</span></h3>
+              <p className="text-sm text-gray-400 mb-4" data-unique-id="114e8117-a58b-4731-9ae9-8b45b44ca934" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="3906b95e-cdb5-472f-a5bd-0b65c5a5b97b" data-file-name="app/admin/database/page.tsx">
                 Download a backup of all your data from Supabase. This includes all tables and records.
               </span></p>
-              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md flex items-center" onClick={() => alert('This feature would export a full Supabase database backup')} data-unique-id="291ea88b-48d0-4df9-9ae2-a2c4ef1a6e43" data-file-name="app/admin/database/page.tsx">
-                <Download className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="f8547edc-6b45-4569-95ec-d5a8298d439f" data-file-name="app/admin/database/page.tsx">
+              <button className="px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md flex items-center" onClick={() => alert('This feature would export a full Supabase database backup')} data-unique-id="67ee1983-9196-4a9d-b2c0-a08e6f9f7ba3" data-file-name="app/admin/database/page.tsx">
+                <Download className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="b6dd7bd5-3829-42e7-b7a1-62182a38f96d" data-file-name="app/admin/database/page.tsx">
                 Export Database
               </span></button>
             </div>
             
-            <div className="p-4 border border-gray-700 rounded-lg bg-red-900/10" data-unique-id="6c348385-8b59-45d6-8fec-c3b126b74421" data-file-name="app/admin/database/page.tsx">
-              <h3 className="text-lg font-medium text-white mb-2" data-unique-id="a626bf88-4b55-47ed-91cb-aa1490c54462" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="7b33753b-b14a-485c-be3e-467e54ac3f3c" data-file-name="app/admin/database/page.tsx">Danger Zone</span></h3>
-              <p className="text-sm text-gray-400 mb-4" data-unique-id="db227975-7752-4024-9e6f-e73ec0911764" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="4d4e6cf6-4f28-4d1a-9d8c-83643c38c668" data-file-name="app/admin/database/page.tsx">
+            <div className="p-4 border border-gray-700 rounded-lg bg-red-900/10" data-unique-id="a24e12c5-3ea0-4184-9bc1-e201fb2abaae" data-file-name="app/admin/database/page.tsx">
+              <h3 className="text-lg font-medium text-white mb-2" data-unique-id="1d04b317-5acb-41f0-8d6d-ad1b9fc523a4" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="56c7c2e0-3199-4c92-9077-a88276b53f90" data-file-name="app/admin/database/page.tsx">Danger Zone</span></h3>
+              <p className="text-sm text-gray-400 mb-4" data-unique-id="998c4c14-064a-4bf3-8d2e-1336f5cd6bc1" data-file-name="app/admin/database/page.tsx"><span className="editable-text" data-unique-id="664396d1-2dce-422c-874d-e47868c2f7bf" data-file-name="app/admin/database/page.tsx">
                 These actions cannot be undone. Be careful when performing these operations.
               </span></p>
-              <div className="flex space-x-4" data-unique-id="66b7bd19-5593-40a9-94e5-182401cd44c7" data-file-name="app/admin/database/page.tsx">
+              <div className="flex space-x-4" data-unique-id="5d3bbfed-a586-444b-b0af-aadc9ae135e3" data-file-name="app/admin/database/page.tsx">
                 <button className="px-4 py-2 bg-red-700 hover:bg-red-800 text-white rounded-md flex items-center" onClick={() => {
               if (window.confirm('Are you sure you want to clear all Supabase data? This action cannot be undone.')) {
                 alert('This would clear all Supabase data in a real implementation');
               }
-            }} data-unique-id="2e632a95-dfae-43d3-a4a8-aede25495cb8" data-file-name="app/admin/database/page.tsx">
-                  <Trash2 className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="1b5e1bd4-18b4-444c-9659-e3bcd193e936" data-file-name="app/admin/database/page.tsx">
+            }} data-unique-id="fa7b9780-4f50-49b9-86ef-9d131a33f77b" data-file-name="app/admin/database/page.tsx">
+                  <Trash2 className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="aba19c7f-1caf-49fa-8b00-1ce0b616f671" data-file-name="app/admin/database/page.tsx">
                   Clear All Data
                 </span></button>
               </div>
@@ -418,33 +418,33 @@ function DataSyncItem({
   }} animate={{
     opacity: 1,
     y: 0
-  }} className="p-5 bg-gray-700/30 border border-gray-700 rounded-lg" data-unique-id="34b3be1e-d263-482a-a55a-21f5c0892d1f" data-file-name="app/admin/database/page.tsx">
-      <div className="flex justify-between" data-unique-id="884446d4-9798-4abc-88c2-4041fde1e47f" data-file-name="app/admin/database/page.tsx">
-        <div data-unique-id="d34f2e2d-dad5-4d8b-9df3-c312880009bb" data-file-name="app/admin/database/page.tsx">
-          <h3 className="text-lg font-medium text-white" data-unique-id="f4e3adb1-a8a0-4fa5-af56-fe1bd866da22" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{title}</h3>
-          <p className="text-sm text-gray-400 mt-1" data-unique-id="3e898301-dda3-4e3b-9881-6c4b177602bd" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{description}</p>
+  }} className="p-5 bg-gray-700/30 border border-gray-700 rounded-lg" data-unique-id="18fed711-4ea6-495f-a277-7079fc226f89" data-file-name="app/admin/database/page.tsx">
+      <div className="flex justify-between" data-unique-id="9de2309c-5be4-429a-8184-7869c3f0c901" data-file-name="app/admin/database/page.tsx">
+        <div data-unique-id="c99a4883-8097-4243-9b10-dab25847d0b1" data-file-name="app/admin/database/page.tsx">
+          <h3 className="text-lg font-medium text-white" data-unique-id="afb33fc6-5aaa-44e1-97a2-cad52a0dcb35" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{title}</h3>
+          <p className="text-sm text-gray-400 mt-1" data-unique-id="b92533c6-92cf-4f2e-bd2c-2788c4b534d5" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{description}</p>
           
-          <div className="mt-3 flex items-center space-x-4" data-unique-id="ef7fcd91-dc0d-43e5-aa63-6b40bf6074df" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
-            <div className={`flex items-center ${getStatusColor()}`} data-unique-id="31555eb8-0b2b-4ace-bbe8-2e052d9792b2" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
-              {status === 'syncing' ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <div className="h-2 w-2 rounded-full bg-current mr-2" data-unique-id="5d1f1849-6a33-42a0-aa3b-94777dc840e0" data-file-name="app/admin/database/page.tsx"></div>}
-              <span className="text-sm capitalize" data-unique-id="b1b213bc-81bc-483f-9f86-da375fbf2c03" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{status}</span>
+          <div className="mt-3 flex items-center space-x-4" data-unique-id="14a8791c-a9b9-4449-b2d6-6d197b304b66" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
+            <div className={`flex items-center ${getStatusColor()}`} data-unique-id="e34de97e-28ee-4e04-a9ac-8b9891ddb805" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
+              {status === 'syncing' ? <Loader2 className="h-4 w-4 mr-1 animate-spin" /> : <div className="h-2 w-2 rounded-full bg-current mr-2" data-unique-id="6fc91425-8457-45bf-a730-0b0c34430dd3" data-file-name="app/admin/database/page.tsx"></div>}
+              <span className="text-sm capitalize" data-unique-id="ed98bbd7-264c-4e06-910c-b6b16f20e3b0" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{status}</span>
             </div>
             
-            {message && <span className="text-sm text-gray-400" data-unique-id="ab7582b7-3a51-4c1f-bb96-1877d1b61551" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{message}</span>}
+            {message && <span className="text-sm text-gray-400" data-unique-id="cc84e4ce-76a4-4eb5-b390-162381e10973" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">{message}</span>}
           </div>
         </div>
         
-        <div className="flex flex-col items-end" data-unique-id="792c0c83-dc5c-4567-85c8-2a0d5cf05629" data-file-name="app/admin/database/page.tsx">
-          <button onClick={onSync} disabled={isDisabled} className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm flex items-center disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="309f9dbd-441f-4b62-bf25-1475f19dc326" data-file-name="app/admin/database/page.tsx">
-            <Upload className="h-3.5 w-3.5 mr-1.5" /><span className="editable-text" data-unique-id="2c6f8331-dc12-4553-91e7-6e6d8b293f79" data-file-name="app/admin/database/page.tsx">
+        <div className="flex flex-col items-end" data-unique-id="09586c13-1252-4342-bb35-cdf2ebba61c9" data-file-name="app/admin/database/page.tsx">
+          <button onClick={onSync} disabled={isDisabled} className="px-3 py-1.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md text-sm flex items-center disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="68f23e60-995d-4f85-8bc0-1716739e7e87" data-file-name="app/admin/database/page.tsx">
+            <Upload className="h-3.5 w-3.5 mr-1.5" /><span className="editable-text" data-unique-id="84c4470d-121f-49a7-b1cd-124cce576a23" data-file-name="app/admin/database/page.tsx">
             Sync
           </span></button>
           
-          <div className="mt-3 text-right" data-unique-id="376ac605-5cde-46d5-abe0-8f7356277db7" data-file-name="app/admin/database/page.tsx">
-            <div className="text-sm text-gray-400" data-unique-id="42bc7e40-2c9f-4dab-896d-6a0531aed29a" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
-              {count}<span className="editable-text" data-unique-id="8be1a162-96d3-4a91-8d78-0b2f6cd6e4d0" data-file-name="app/admin/database/page.tsx"> records
+          <div className="mt-3 text-right" data-unique-id="50a9500d-f75b-4a34-b7ab-b28a2849e459" data-file-name="app/admin/database/page.tsx">
+            <div className="text-sm text-gray-400" data-unique-id="d4a513f9-0299-4dce-be25-5c09803ce862" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true">
+              {count}<span className="editable-text" data-unique-id="e6097714-92a7-487a-8b06-38fbc79f55a9" data-file-name="app/admin/database/page.tsx"> records
             </span></div>
-            <div className="text-xs text-gray-500 mt-1" data-unique-id="9d9b9bd5-01fe-43a7-b661-a02483e45e70" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="0bd98e0a-a4fa-4710-9bbe-abdd52274e13" data-file-name="app/admin/database/page.tsx">
+            <div className="text-xs text-gray-500 mt-1" data-unique-id="fcaf3ff9-7c69-4baa-9088-56b5e2782c5e" data-file-name="app/admin/database/page.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="301f9820-4c2b-441d-b16a-fa0321244b6f" data-file-name="app/admin/database/page.tsx">
               Last synced: </span>{formattedLastSynced}
             </div>
           </div>

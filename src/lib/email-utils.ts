@@ -141,18 +141,33 @@ export const generateHtmlEmail = (
     content = content.replace(regex, safeValue);
   });
   
+  // Enhanced tracking number pattern with common shipping formats
+  const trackingNumberPattern = /\b([A-Z0-9]{8,30})\b/g;
+  const trackingLabelPattern = /\b(tracking|tracking number|tracking #|track|fedex)[\s#:\-]*([\w\d]{8,30})\b/gi;
+  
   // Process line breaks and make tracking numbers clickable
   const htmlContent = content.split("\n").map(line => {
     if (line.trim() === "") return "<br />";
     
-    // Look for tracking numbers in the line
-    const trackingNumberPattern = /\b([A-Z0-9]{8,30})\b/g;
     let processedLine = line;
     
-    // Replace tracking numbers with copyable FedEx links
+    // First, handle explicit tracking labels
+    processedLine = processedLine.replace(trackingLabelPattern, (match, label, trackingNum) => {
+      const trackingUrl = `https://www.fedex.com/apps/fedextrack/?tracknumbers=${trackingNum}`;
+      return `${label}: <span class="tracking-wrapper" style="display:inline;">
+        <a href="${trackingUrl}" target="_blank" style="color: #0063A5; text-decoration: underline; font-weight: 500;" data-tracking="${trackingNum}" class="tracking-link">${trackingNum}</a>
+        <span style="font-size:0;position:absolute;height:1px;width:1px;overflow:hidden;">(${trackingUrl})</span>
+      </span>`;
+    });
+    
+    // Then handle standalone tracking numbers
     processedLine = processedLine.replace(trackingNumberPattern, (match) => {
+      // Skip if already wrapped in a tracking link
+      if (processedLine.includes(`data-tracking="${match}"`)) {
+        return match;
+      }
+      
       const trackingUrl = `https://www.fedex.com/apps/fedextrack/?tracknumbers=${match}`;
-      // Enhanced link with better copy-paste attributes and a special wrapper span
       return `<span class="tracking-wrapper" style="display:inline;">
         <a href="${trackingUrl}" target="_blank" style="color: #0063A5; text-decoration: underline; font-weight: 500;" data-tracking="${match}" class="tracking-link">${match}</a>
         <span style="font-size:0;position:absolute;height:1px;width:1px;overflow:hidden;">(${trackingUrl})</span>

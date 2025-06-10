@@ -1,9 +1,13 @@
 'use client';
 
 import * as XLSX from 'xlsx';
-import { v4 as uuidv4 } from "uuid";
 import { getLocalStorage, setLocalStorage } from '@/lib/utils';
 import type { Customer } from '@/components/customer-management';
+
+// Generate a unique ID for new customers
+function generateId(): number {
+  return Date.now() + Math.floor(Math.random() * 1000);
+}
 
 export interface CustomerExcelData {
   name?: string;
@@ -109,15 +113,15 @@ export async function processCustomerExcel(file: File): Promise<{
             }
             
             const newCustomer: Customer = {
-              id: uuidv4(),
+              id: generateId(),
               name: row.name.trim(),
               email: email,
               company: row.company?.trim() || '',
               phone: row.phone?.trim() || '',
               address: address,
               tags: tags,
-              addedAt: new Date().toISOString(),
-              lastContact: '',
+              addedAt: new Date(),
+              lastContact: null,
               notes: row.notes?.trim() || ''
             };
             

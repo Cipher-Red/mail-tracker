@@ -57,21 +57,21 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="34d2b8b7-95c9-4246-a167-00931da19a21" data-file-name="app/layout.tsx">
-      <body className="min-h-screen flex flex-col" data-unique-id="bf0fa4e3-5892-408e-b487-cc074c8078dd" data-file-name="app/layout.tsx">
+  return <html lang="en" className={`${GeistSans.variable}`} suppressHydrationWarning data-unique-id="cd7c434e-29f2-4176-a964-7617e37bbec8" data-file-name="app/layout.tsx">
+      <body className="min-h-screen flex flex-col" data-unique-id="6319240e-4799-43f6-b70d-4a9e6f67bf0f" data-file-name="app/layout.tsx">
         <ThemeProviderWrapper defaultTheme="system">
-          <div className="flex-1" data-unique-id="438f6a74-65b9-49f3-bed6-a282cad35c46" data-file-name="app/layout.tsx" data-dynamic-text="true">
+          <div className="flex-1" data-unique-id="65af2be8-9c1f-49fa-ae94-5266db77dcbb" data-file-name="app/layout.tsx" data-dynamic-text="true">
             {children}
           </div>
-          <footer className="py-4 border-t border-border bg-accent/10" data-unique-id="0d3475dc-8077-4449-9e18-4425dc6696b4" data-file-name="app/layout.tsx">
-            <div className="container mx-auto text-center text-sm text-muted-foreground" data-unique-id="f143aba9-f71a-40de-bf7b-16512906e3e9" data-file-name="app/layout.tsx">
-              <p data-unique-id="321fcff2-4d20-4c75-a625-db73128147b4" data-file-name="app/layout.tsx">
-                <span className="editable-text" data-unique-id="ffed01aa-5abb-4898-a421-f38b9d23c59b" data-file-name="app/layout.tsx">Developed by </span>
-                <a href="https://ctrl-department.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline transition-colors" data-unique-id="ad1d4217-bf38-4eb9-8fbc-744c58ffbbe7" data-file-name="app/layout.tsx">
-                  <span className="editable-text" data-unique-id="d2637601-8357-46a4-a32c-4b345b92016a" data-file-name="app/layout.tsx">Ctrl-Department</span>
+          <footer className="py-4 border-t border-border bg-accent/10" data-unique-id="df2c8f25-df2f-4a80-8e36-150ac67b0004" data-file-name="app/layout.tsx">
+            <div className="container mx-auto text-center text-sm text-muted-foreground" data-unique-id="878d8725-e99c-4f56-be4c-ec8d7cecd5bf" data-file-name="app/layout.tsx">
+              <p data-unique-id="8258ea60-257e-4203-b8a6-e84a9fc009c5" data-file-name="app/layout.tsx">
+                <span className="editable-text" data-unique-id="1e934c78-37d5-4406-a6f5-385e82de5dbf" data-file-name="app/layout.tsx">Developed by </span>
+                <a href="https://ctrl-department.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline transition-colors" data-unique-id="09bdb2f0-113d-4464-bd31-b83b06c0b38a" data-file-name="app/layout.tsx">
+                  <span className="editable-text" data-unique-id="b48d19e5-8859-4e4f-ab8a-33a30b4ef806" data-file-name="app/layout.tsx">Ctrl-Department</span>
                 </a>
-                <a href="/admin" className="ml-4 px-3 py-1 bg-primary text-white rounded-md text-xs hover:bg-primary/90 transition-colors" data-unique-id="078dc1af-ee10-4785-8018-d910bcc096a9" data-file-name="app/layout.tsx">
-                  <span className="editable-text" data-unique-id="063cf8c9-49d7-4353-94df-f1df13378a20" data-file-name="app/layout.tsx">Admin Panel</span>
+                <a href="/admin" className="ml-4 px-3 py-1 bg-primary text-white rounded-md text-xs hover:bg-primary/90 transition-colors" data-unique-id="a078395b-30ea-4d1d-befd-75dbe3b1546c" data-file-name="app/layout.tsx">
+                  <span className="editable-text" data-unique-id="bf184afd-4dfc-405e-b538-4a807b59dccb" data-file-name="app/layout.tsx">Admin Panel</span>
                 </a>
               </p>
             </div>

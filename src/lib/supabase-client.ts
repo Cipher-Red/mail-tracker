@@ -131,6 +131,75 @@ export const subscribeToChanges = (
   };
 };
 
+// Customer service for managing customer data
+export const customerService = {
+  async getAll() {
+    try {
+      const response = await fetch('/api/customers');
+      if (!response.ok) {
+        throw new Error('Failed to fetch customers');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching customers:', error);
+      throw error;
+    }
+  },
+
+  async create(customerData: any) {
+    try {
+      const response = await fetch('/api/customers', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(customerData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to create customer');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error creating customer:', error);
+      throw error;
+    }
+  },
+
+  async update(id: number, customerData: any) {
+    try {
+      const response = await fetch(`/api/customers/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(customerData),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to update customer');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error updating customer:', error);
+      throw error;
+    }
+  },
+
+  async delete(id: number) {
+    try {
+      const response = await fetch(`/api/customers/${id}`, {
+        method: 'DELETE',
+      });
+      if (!response.ok) {
+        throw new Error('Failed to delete customer');
+      }
+      return await response.json();
+    } catch (error) {
+      console.error('Error deleting customer:', error);
+      throw error;
+    }
+  },
+};
+
 // Log user activity to localStorage
 export const logActivity = async (action: string, details: Record<string, any> = {}) => {
   try {

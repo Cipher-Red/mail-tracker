@@ -85,7 +85,7 @@ export function WelcomeModal() {
       opacity: 1
     }} exit={{
       opacity: 0
-    }} data-unique-id="cdfc082e-367a-474a-b944-d12bf363a1a0" data-file-name="components/welcome-modal.tsx">
+    }} data-unique-id="ae777dcd-bbb1-42ae-b6a9-1f29e9a2c77d" data-file-name="components/welcome-modal.tsx">
           <motion.div className="bg-card rounded-lg shadow-xl max-w-md w-full mx-4" initial={{
         scale: 0.9,
         opacity: 0
@@ -99,38 +99,38 @@ export function WelcomeModal() {
         type: "spring",
         damping: 25,
         stiffness: 300
-      }} data-unique-id="8db6d2b7-baf9-4c63-adcb-d8bdbf9e85ec" data-file-name="components/welcome-modal.tsx">
-            <div className="flex justify-between items-center px-6 py-4 border-b border-border" data-unique-id="e2116fb7-1f69-42fe-854c-0e9500466b30" data-file-name="components/welcome-modal.tsx">
-              <h2 className="text-xl font-semibold text-foreground" data-unique-id="41b78d8f-9feb-476d-bb6d-be48cae79b10" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="384a19f2-086b-4183-8ab9-18f0dbef286e" data-file-name="components/welcome-modal.tsx">Getting Started</span></h2>
+      }} data-unique-id="44eb02dc-39a7-43a8-8763-7f7f602292c4" data-file-name="components/welcome-modal.tsx">
+            <div className="flex justify-between items-center px-6 py-4 border-b border-border" data-unique-id="fd07acd7-dd81-41dd-961f-2399bee0a67c" data-file-name="components/welcome-modal.tsx">
+              <h2 className="text-xl font-semibold text-foreground" data-unique-id="80e2f7d1-ec7b-4772-b6b1-6b6d9fea36cc" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="9969bebb-1e2a-4e3a-a174-5f7974d0310c" data-file-name="components/welcome-modal.tsx">Getting Started</span></h2>
               <button onClick={e => {
             e.stopPropagation();
             closeModal();
-          }} className="text-muted-foreground hover:text-foreground p-2 rounded-full hover:bg-accent/20 transition-colors" aria-label="Close welcome modal" data-unique-id="15596248-332c-4170-a2f7-c5939209a312" data-file-name="components/welcome-modal.tsx">
+          }} className="text-muted-foreground hover:text-foreground p-2 rounded-full hover:bg-accent/20 transition-colors" aria-label="Close welcome modal" data-unique-id="624e243d-fc23-4751-a4c6-d8ad8e88c207" data-file-name="components/welcome-modal.tsx">
                 <X size={20} />
               </button>
             </div>
             
-            <div className="px-6 py-8" data-unique-id="5cda80f3-1b37-4fe0-a5ad-1de59f202045" data-file-name="components/welcome-modal.tsx">
-              <div className="flex flex-col items-center text-center" data-unique-id="342bb8f7-302e-4da5-8ff3-082cdc0168e8" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+            <div className="px-6 py-8" data-unique-id="1719cff6-f3e2-486c-82cf-5639209969f1" data-file-name="components/welcome-modal.tsx">
+              <div className="flex flex-col items-center text-center" data-unique-id="fb28c4a2-205f-4285-a3c5-4cbded660978" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                 {steps[currentStep].icon}
-                <h3 className="mt-4 text-lg font-medium text-foreground" data-unique-id="89464ad6-184c-4c5e-b300-6c01f5112048" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+                <h3 className="mt-4 text-lg font-medium text-foreground" data-unique-id="e88ceaf2-ca2e-4717-810f-264b4617d048" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                   {steps[currentStep].title}
                 </h3>
-                <p className="mt-2 text-muted-foreground" data-unique-id="db323ad3-01e9-439d-8cba-88d7e33c39af" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+                <p className="mt-2 text-muted-foreground" data-unique-id="b944c34f-313a-4f6d-ac70-4f4a46ba5782" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                   {steps[currentStep].description}
                 </p>
               </div>
               
-              <div className="flex justify-center mt-6" data-unique-id="9c9e964b-fcc8-4416-8ebd-5d2d5cc477af" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
-                {steps.map((_, i) => <div key={i} className={`w-2 h-2 mx-1 rounded-full ${i === currentStep ? 'bg-primary' : 'bg-border'}`} data-unique-id="15ff87e4-8c6f-423c-b75a-444bb6b197de" data-file-name="components/welcome-modal.tsx" />)}
+              <div className="flex justify-center mt-6" data-unique-id="1fb08486-a43b-4187-a622-c94e68e51463" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+                {steps.map((_, i) => <div key={i} className={`w-2 h-2 mx-1 rounded-full ${i === currentStep ? 'bg-primary' : 'bg-border'}`} data-unique-id="647de97a-2033-427b-963e-c216515b8c97" data-file-name="components/welcome-modal.tsx" />)}
               </div>
             </div>
             
-            <div className="flex justify-between items-center px-6 py-4 border-t border-border" data-unique-id="aa491201-ea96-4dfc-b555-daa9ae78f0c0" data-file-name="components/welcome-modal.tsx">
-              <button onClick={closeModal} className="text-sm text-muted-foreground hover:text-foreground" data-unique-id="ad080243-725e-4eda-80b1-65e6393660f7" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="437a618b-90cd-4af0-8b83-826c46810987" data-file-name="components/welcome-modal.tsx">
+            <div className="flex justify-between items-center px-6 py-4 border-t border-border" data-unique-id="ba2616f9-dea2-4bfe-bf9d-742f2371354a" data-file-name="components/welcome-modal.tsx">
+              <button onClick={closeModal} className="text-sm text-muted-foreground hover:text-foreground" data-unique-id="00347782-d296-4aab-b4ed-fd74e13e2792" data-file-name="components/welcome-modal.tsx"><span className="editable-text" data-unique-id="abc894a0-b156-4a0d-8142-6163d60f4088" data-file-name="components/welcome-modal.tsx">
                 Skip
               </span></button>
-              <button onClick={nextStep} className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/90 transition-colors" data-unique-id="e562d755-617e-4372-a4fe-aeea16a2e881" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
+              <button onClick={nextStep} className="px-4 py-2 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/90 transition-colors" data-unique-id="296da965-ca9e-4628-90be-686a6316dc6f" data-file-name="components/welcome-modal.tsx" data-dynamic-text="true">
                 {currentStep < steps.length - 1 ? 'Next' : 'Get Started'}
               </button>
             </div>

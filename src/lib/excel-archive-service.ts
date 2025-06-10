@@ -55,7 +55,9 @@ export const excelArchiveService = {
       // Try to upload to Supabase storage
       let supabaseUploadSuccess = false;
       try {
-        if (supabase) {
+        if (typeof window !== 'undefined' && supabase) {
+          console.log('Attempting to upload to Supabase storage:', filePath);
+          
           // Convert base64 to blob for upload
           const binaryString = atob(fileData.split(',')[1]);
           const bytes = new Uint8Array(binaryString.length);
@@ -64,14 +66,56 @@ export const excelArchiveService = {
           }
           const blob = new Blob([bytes], { type: file.type });
           
-          // Upload to Supabase
-          const { data, error } = await supabase.storage
-            .from(STORAGE_BUCKET)
-            .upload(filePath, blob);
+          // Ensure bucket exists before uploading
+          const { data: bucketData, error: bucketError } = await supabase.storage
+            .getBucket(STORAGE_BUCKET)
+            .catch(async (err) => {
+              console.log('Bucket might not exist, attempting to create:', STORAGE_BUCKET);
+              // Try to create the bucket if it doesn't exist
+              return await supabase.storage.createBucket(STORAGE_BUCKET, { public: true });
+            });
             
-          if (error) {
-            console.error('Supabase storage upload error:', error);
-            throw error;
+          if (bucketError) {
+            console.error('Error with storage bucket:', bucketError);
+          }
+          
+          // Upload to Supabase with retries
+          let uploadAttempts = 0;
+          let uploadSuccess = false;
+          let uploadError = null;
+          
+          while (uploadAttempts < 3 && !uploadSuccess) {
+            try {
+              uploadAttempts++;
+              console.log(`Upload attempt ${uploadAttempts} for ${filePath}`);
+              
+              const { data, error } = await supabase.storage
+                .from(STORAGE_BUCKET)
+                .upload(filePath, blob, {
+                  cacheControl: '3600',
+                  upsert: true
+                });
+                
+              if (error) {
+                console.error(`Upload attempt ${uploadAttempts} failed:`, error);
+                uploadError = error;
+              } else {
+                uploadSuccess = true;
+                console.log('Upload successful:', data);
+              }
+            } catch (err) {
+              console.error(`Upload attempt ${uploadAttempts} exception:`, err);
+              uploadError = err;
+            }
+            
+            if (!uploadSuccess && uploadAttempts < 3) {
+              // Wait before retrying
+              await new Promise(resolve => setTimeout(resolve, 1000));
+            }
+          }
+          
+          if (!uploadSuccess) {
+            throw uploadError || new Error('Failed to upload after multiple attempts');
           }
           
           // Get public URL for the file
@@ -82,21 +126,51 @@ export const excelArchiveService = {
           if (urlData) {
             archiveItem.data = urlData.publicUrl; // Store the public URL instead of base64 data
             supabaseUploadSuccess = true;
+            console.log('File archived successfully in Supabase:', urlData.publicUrl);
           }
         }
       } catch (supabaseError) {
-        console.warn('Failed to upload to Supabase, falling back to localStorage:', supabaseError);
+        console.error('Failed to upload to Supabase, falling back to localStorage:', supabaseError);
         // Continue with localStorage fallback
       }
       
-      // Fallback to localStorage or store metadata if Supabase succeeded
-      const archives = await this.getArchivedExcelFiles();
+      // Always store metadata in localStorage, but also store data if Supabase upload failed
+      const archives = await excelArchiveService.getArchivedExcelFiles();
       
       // Add new archive at the beginning
       archives.unshift(archiveItem);
       
       // Store back to localStorage (either full data or just metadata if in Supabase)
       setLocalStorage(LOCAL_STORAGE_KEY, archives);
+      
+      // Also, save the archive data to the database via API
+      try {
+        console.log('Saving archive metadata to database');
+        const response = await fetch('/api/archives', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            id: archiveItem.id,
+            fileName: archiveItem.fileName,
+            uploadDate: archiveItem.uploadDate,
+            fileSize: archiveItem.fileSize,
+            contentType: archiveItem.contentType,
+            supabasePath: archiveItem.supabasePath,
+            metadata: archiveItem.metadata
+          }),
+        });
+        
+        if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Failed to save archive metadata to database:', errorData);
+        } else {
+          console.log('Archive metadata saved to database successfully');
+        }
+      } catch (dbError) {
+        console.error('Error saving archive to database:', dbError);
+      }
       
       // Track successful archiving
       import('@/lib/utils').then(({ trackActivity }) => {
@@ -211,6 +285,80 @@ export const excelArchiveService = {
     }
     
     return undefined;
+  },
+
+  /**
+   * Extract order data from an archived Excel file
+   */
+  extractOrdersFromArchive: async (archive: ExcelArchiveItem): Promise<any[]> => {
+    try {
+      if (typeof window === 'undefined') return [];
+      
+      // Import XLSX dynamically to avoid SSR issues
+      const XLSX = (await import('xlsx')).default;
+      
+      // Handle data based on format (URL or base64)
+      let bytes: Uint8Array;
+      
+      try {
+        if (archive.data.startsWith('http')) {
+          // It's a URL, fetch the data
+          const response = await fetch(archive.data);
+          if (!response.ok) {
+            throw new Error(`Failed to fetch archive from URL (status: ${response.status})`);
+          }
+          const arrayBuffer = await response.arrayBuffer();
+          bytes = new Uint8Array(arrayBuffer);
+        } else {
+          // It's base64 data
+          const base64Data = archive.data;
+          const base64Content = base64Data.split(',')[1];
+          const binaryString = atob(base64Content);
+          bytes = new Uint8Array(binaryString.length);
+          for (let i = 0; i < binaryString.length; i++) {
+            bytes[i] = binaryString.charCodeAt(i);
+          }
+        }
+        
+        // Parse the Excel data
+        const workbook = XLSX.read(bytes, { type: 'array' });
+        const wsname = workbook.SheetNames[0];
+        const ws = workbook.Sheets[wsname];
+        
+        // Convert to JSON
+        const rawData = XLSX.utils.sheet_to_json(ws);
+        if (!rawData || rawData.length === 0) {
+          throw new Error('No data found in Excel file');
+        }
+        
+        // Process the data through our cleaning/validation function
+        const { cleanAndValidateData } = await import('@/lib/data-processor');
+        const { cleanedData } = cleanAndValidateData(rawData);
+        
+        // Store extracted data in localStorage as a cache
+        if (cleanedData.length > 0) {
+          try {
+            localStorage.setItem(`archive_orders_${archive.id}`, JSON.stringify(cleanedData));
+          } catch (err) {
+            console.warn('Could not save extracted orders to localStorage:', err);
+          }
+        }
+        
+        return cleanedData;
+      } catch (fetchError) {
+        console.error('Error processing archive data:', fetchError);
+        
+        // Try to retrieve from cache if available
+        const cachedData = localStorage.getItem(`archive_orders_${archive.id}`);
+        if (cachedData) {
+          return JSON.parse(cachedData);
+        }
+        throw fetchError;
+      }
+    } catch (error) {
+      console.error('Error extracting orders from archive:', error);
+      return [];
+    }
   },
 
   /**
