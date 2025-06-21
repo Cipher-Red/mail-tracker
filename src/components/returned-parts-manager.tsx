@@ -8,7 +8,7 @@ import { useNotificationStore } from '@/lib/notification-store';
 import { supabase } from '@/lib/supabase-client';
 import ReturnedPartCard from './returned-part-card';
 import AddReturnedPartModal from './add-returned-part-modal';
-import ExcelReturnedPartsProcessor from './excel-returned-parts-processor';
+import SmartExcelProcessor from './smart-excel-processor';
 import EditReturnedPartModal from './edit-returned-part-modal';
 import NotificationCenter from './notification-center';
 import RealTimeNotifications from './real-time-notifications';
@@ -42,7 +42,7 @@ export default function ReturnedPartsManager() {
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const [showAddModal, setShowAddModal] = useState(false);
-  const [showExcelProcessor, setShowExcelProcessor] = useState(false);
+  const [showSmartProcessor, setShowSmartProcessor] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [editingPart, setEditingPart] = useState<ReturnedPart | null>(null);
   const [notifications, setNotifications] = useState<any[]>([]);
@@ -231,7 +231,7 @@ export default function ReturnedPartsManager() {
     const updatedParts = [...returnedParts, ...parts];
     console.log('Updated parts list:', updatedParts);
     setReturnedParts(updatedParts);
-    setShowExcelProcessor(false);
+    setShowSmartProcessor(false);
 
     // Add success notification
     addNotification({
@@ -525,20 +525,20 @@ export default function ReturnedPartsManager() {
     acc[part.status] = (acc[part.status] || 0) + 1;
     return acc;
   }, {} as Record<string, number>);
-  return <div className="container mx-auto max-w-7xl" data-unique-id="215f0605-444c-41c2-b2a5-caa5bc2aaea0" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
+  return <div className="container mx-auto max-w-7xl" data-unique-id="fc4338d2-6a3e-4f7d-b339-386c869e4847" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
       {/* Header */}
-      <div className="flex items-center justify-between mb-8" data-unique-id="fd3fe5d6-34c0-4e2c-b6f9-8e0be403bac2" data-file-name="components/returned-parts-manager.tsx">
-        <div className="flex items-center gap-3" data-unique-id="45fb25cc-0e41-48c9-8779-04c77a6e06ce" data-file-name="components/returned-parts-manager.tsx">
-          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center" data-unique-id="996ef62c-5404-44f0-ac6f-f07f25e5d321" data-file-name="components/returned-parts-manager.tsx">
+      <div className="flex items-center justify-between mb-8" data-unique-id="62c5e086-5dd5-46f7-b4e2-5c4ef6752eea" data-file-name="components/returned-parts-manager.tsx">
+        <div className="flex items-center gap-3" data-unique-id="2ff1b2f2-0c7c-4397-9573-88365b775a58" data-file-name="components/returned-parts-manager.tsx">
+          <div className="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center" data-unique-id="89637d3e-4b1b-4c7c-9def-459e7b9e87c1" data-file-name="components/returned-parts-manager.tsx">
             <Package2 className="h-6 w-6 text-white" />
           </div>
-          <div data-unique-id="28fba870-9e5b-43b3-90b5-60d87e3970dc" data-file-name="components/returned-parts-manager.tsx">
-            <h1 className="text-3xl font-bold text-gray-800" data-unique-id="f9c70108-ac99-4bc2-b320-46caa1fff03f" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="d8185a31-71de-4292-916a-0b0ffc6be731" data-file-name="components/returned-parts-manager.tsx">Returned Parts & Tracking</span></h1>
-            <p className="text-gray-600" data-unique-id="8f5793ab-2425-4a28-90c7-95638c61cac3" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="d9e4f557-7293-41b4-9ce9-a9ba3c7c763a" data-file-name="components/returned-parts-manager.tsx">Track returned parts, arrivals, and inspection status</span></p>
+          <div data-unique-id="ea40b7d4-6669-4f04-a4f8-f9090fa4bc37" data-file-name="components/returned-parts-manager.tsx">
+            <h1 className="text-3xl font-bold text-gray-800" data-unique-id="097b8795-5146-4b04-88ef-3df495051b6e" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="b2ae282f-2eb6-4d14-b1cc-97efc5b79fbf" data-file-name="components/returned-parts-manager.tsx">Returned Parts & Tracking</span></h1>
+            <p className="text-gray-600" data-unique-id="896fd72b-820a-4fd7-977e-93c8ec0a4a98" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="22b52ac6-3869-4cb3-8c42-b5fa6a5bad05" data-file-name="components/returned-parts-manager.tsx">Track returned parts, arrivals, and inspection status</span></p>
           </div>
         </div>
         
-        <div className="flex items-center gap-4" data-unique-id="db0f55a7-915b-44d3-8495-e155d1cfdc1c" data-file-name="components/returned-parts-manager.tsx">
+        <div className="flex items-center gap-4" data-unique-id="b7ab6f77-af68-4a0e-9e34-e6c448ce2e8e" data-file-name="components/returned-parts-manager.tsx">
           <RealTimeNotifications onNotificationClick={notification => {
           // Handle notification click - could navigate to specific part
           if (notification.partId) {
@@ -549,70 +549,70 @@ export default function ReturnedPartsManager() {
           }
         }} />
           <NotificationCenter notifications={notifications} />
-          <button onClick={() => setShowAddModal(true)} className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors" data-unique-id="e80256c2-b53b-4868-a255-25ef0d564138" data-file-name="components/returned-parts-manager.tsx">
-            <Plus className="h-4 w-4" /><span className="editable-text" data-unique-id="72aa0581-58ec-4ea5-b294-62a961c8c1d3" data-file-name="components/returned-parts-manager.tsx">
+          <button onClick={() => setShowAddModal(true)} className="flex items-center gap-2 px-4 py-2 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition-colors" data-unique-id="2da8882b-fdfe-4ea1-8f42-d885b507f3c4" data-file-name="components/returned-parts-manager.tsx">
+            <Plus className="h-4 w-4" /><span className="editable-text" data-unique-id="d745e76a-54b1-427f-a0e7-3da6a4f1490e" data-file-name="components/returned-parts-manager.tsx">
             Add Returned Part
           </span></button>
-          <button onClick={() => setShowExcelProcessor(true)} className="flex items-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition-colors" data-unique-id="9920598a-e5d8-4068-baf6-1793ae44d949" data-file-name="components/returned-parts-manager.tsx">
-            <FileSpreadsheet className="h-4 w-4" /><span className="editable-text" data-unique-id="28a0d691-95a1-4201-a317-a014d06a1e88" data-file-name="components/returned-parts-manager.tsx">
-            Import from Excel
+          <button onClick={() => setShowSmartProcessor(true)} className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-200 shadow-lg hover:shadow-xl" data-unique-id="13bb23ae-0222-4114-8946-70dfcc0b8d57" data-file-name="components/returned-parts-manager.tsx">
+            <FileSpreadsheet className="h-4 w-4" /><span className="editable-text" data-unique-id="475f8897-b5b4-477a-9cd4-75c0c4766873" data-file-name="components/returned-parts-manager.tsx">
+            Smart Import
           </span></button>
-          <button onClick={exportReturnedPartsAsOrders} className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors" data-unique-id="4e2be600-4b2c-496c-bde2-d9c53f0891db" data-file-name="components/returned-parts-manager.tsx">
-            <Download className="h-4 w-4" /><span className="editable-text" data-unique-id="4bd47e37-e39c-4e1f-94a0-b385ce9c1115" data-file-name="components/returned-parts-manager.tsx">
+          <button onClick={exportReturnedPartsAsOrders} className="flex items-center gap-2 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition-colors" data-unique-id="c7e59a8c-a06a-465e-99fb-74ad202498e1" data-file-name="components/returned-parts-manager.tsx">
+            <Download className="h-4 w-4" /><span className="editable-text" data-unique-id="da686666-10cd-4402-a32c-35617ae014d8" data-file-name="components/returned-parts-manager.tsx">
             Export as Orders
           </span></button>
-          <button onClick={clearAllData} className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors" data-unique-id="1c152bd8-e7e8-4e3a-8ff3-10ee451e2dfe" data-file-name="components/returned-parts-manager.tsx">
-            <Trash2 className="h-4 w-4" /><span className="editable-text" data-unique-id="0cda399d-63f9-4722-b960-3ccc2e3df180" data-file-name="components/returned-parts-manager.tsx">
+          <button onClick={clearAllData} className="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors" data-unique-id="dac6b270-9498-4087-8adb-23e44dde8ad0" data-file-name="components/returned-parts-manager.tsx">
+            <Trash2 className="h-4 w-4" /><span className="editable-text" data-unique-id="90f4a612-9ae1-463b-a34f-bff1990ee562" data-file-name="components/returned-parts-manager.tsx">
             Clear All Data
           </span></button>
         </div>
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" data-unique-id="b1931e51-db6b-4fd0-8d7f-2b002335c3c7" data-file-name="components/returned-parts-manager.tsx">
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="fc3ab748-f7e3-44cd-9847-d1d275d74a32" data-file-name="components/returned-parts-manager.tsx">
-          <div className="flex items-center justify-between" data-unique-id="1a636f0a-07cc-44cc-9388-e01e9730f5dc" data-file-name="components/returned-parts-manager.tsx">
-            <div data-unique-id="fa71917d-5f3f-496c-b05b-6a41dc115472" data-file-name="components/returned-parts-manager.tsx">
-              <p className="text-sm text-gray-600" data-unique-id="93729e8c-3f9f-406f-96e0-c79a7757d45b" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="c9d5bfcc-b9f9-421a-8e19-974ce67462d1" data-file-name="components/returned-parts-manager.tsx">Total Returns</span></p>
-              <p className="text-2xl font-bold text-gray-800" data-unique-id="c61f6386-8019-45cd-8a47-ed702c0fa265" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{returnedParts.length}</p>
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8" data-unique-id="00ee8c3a-e06a-43c9-a319-e7ff5f65e3c3" data-file-name="components/returned-parts-manager.tsx">
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="fcacc42f-bf5a-477b-8503-660331b52b64" data-file-name="components/returned-parts-manager.tsx">
+          <div className="flex items-center justify-between" data-unique-id="751e2f22-ab99-46fb-b69d-3436df569aba" data-file-name="components/returned-parts-manager.tsx">
+            <div data-unique-id="ed682b26-eb83-4fa2-853d-90ad19a4caca" data-file-name="components/returned-parts-manager.tsx">
+              <p className="text-sm text-gray-600" data-unique-id="a6a70f99-9d69-4586-92b1-fbdda3a8597e" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="38f73d16-96c3-413e-aeba-bd908d36c916" data-file-name="components/returned-parts-manager.tsx">Total Returns</span></p>
+              <p className="text-2xl font-bold text-gray-800" data-unique-id="d3249687-e9b7-423e-ad83-151ea84dbf5f" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{returnedParts.length}</p>
             </div>
-            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center" data-unique-id="12ff03f0-f84e-43cc-afe9-b562e446830c" data-file-name="components/returned-parts-manager.tsx">
+            <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center" data-unique-id="d449263f-0c9c-4548-aafb-69c190860a62" data-file-name="components/returned-parts-manager.tsx">
               <Package2 className="h-6 w-6 text-blue-600" />
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="10db77a0-2c50-4f66-be92-a703029327cb" data-file-name="components/returned-parts-manager.tsx">
-          <div className="flex items-center justify-between" data-unique-id="b84aab15-6ef8-413e-a6d6-e3471c3a8294" data-file-name="components/returned-parts-manager.tsx">
-            <div data-unique-id="587fccc3-6cf9-4b13-8904-716b08483119" data-file-name="components/returned-parts-manager.tsx">
-              <p className="text-sm text-gray-600" data-unique-id="7d1ccdc9-a15f-4534-8f93-8a53d8a6f749" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="b06ce903-e4a8-4366-b647-51a0311eedb0" data-file-name="components/returned-parts-manager.tsx">In Transit</span></p>
-              <p className="text-2xl font-bold text-amber-600" data-unique-id="5a3588bf-01ee-45e9-9e0f-dc5b37d688c0" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{statusCounts.in_transit || 0}</p>
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="df6201b0-62fd-4517-a04f-79b0b5ad6e7b" data-file-name="components/returned-parts-manager.tsx">
+          <div className="flex items-center justify-between" data-unique-id="10f2eca9-b3c7-4ae2-bbfe-0681f242114e" data-file-name="components/returned-parts-manager.tsx">
+            <div data-unique-id="31a9bc6a-8a03-44fb-8ba2-001e90f6e822" data-file-name="components/returned-parts-manager.tsx">
+              <p className="text-sm text-gray-600" data-unique-id="4e1509ec-5e39-4977-a914-de5fd3e8b2a2" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="22a3bd9a-a5fe-4cf8-9019-40d3041e4bd3" data-file-name="components/returned-parts-manager.tsx">In Transit</span></p>
+              <p className="text-2xl font-bold text-amber-600" data-unique-id="386321c7-bba5-4aa3-a25f-ec8de39930ba" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{statusCounts.in_transit || 0}</p>
             </div>
-            <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center" data-unique-id="9a37749e-43a6-4ab3-bc9b-5762ec152e66" data-file-name="components/returned-parts-manager.tsx">
+            <div className="w-12 h-12 bg-amber-100 rounded-lg flex items-center justify-center" data-unique-id="94e50b51-0c9e-46ff-a306-e7e8dbf48103" data-file-name="components/returned-parts-manager.tsx">
               <Truck className="h-6 w-6 text-amber-600" />
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="e6ee92da-d841-4965-8f23-d148cb154812" data-file-name="components/returned-parts-manager.tsx">
-          <div className="flex items-center justify-between" data-unique-id="cf75fdf0-406c-4b6c-8ab0-0672daa3acf8" data-file-name="components/returned-parts-manager.tsx">
-            <div data-unique-id="21e0090e-404c-4b02-b929-df53f2bec604" data-file-name="components/returned-parts-manager.tsx">
-              <p className="text-sm text-gray-600" data-unique-id="88faff48-195d-4cef-8eb1-5a3408c3efd7" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="117064ec-a118-4e4b-966b-debffc9ade1a" data-file-name="components/returned-parts-manager.tsx">Arrived</span></p>
-              <p className="text-2xl font-bold text-green-600" data-unique-id="f1b41406-b05d-43ef-9570-de1eb07d2044" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{statusCounts.arrived || 0}</p>
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="8da4af0a-7791-4826-b64f-4a82ea74c0d9" data-file-name="components/returned-parts-manager.tsx">
+          <div className="flex items-center justify-between" data-unique-id="36832352-5029-4796-bfe7-0c1ca2e99d42" data-file-name="components/returned-parts-manager.tsx">
+            <div data-unique-id="9f1e8e17-2d87-4f7c-abaa-fd0a0da35118" data-file-name="components/returned-parts-manager.tsx">
+              <p className="text-sm text-gray-600" data-unique-id="23760a2d-aa64-492d-8d81-eb2a150c7ca7" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="76bd34d9-d9c5-4b3a-9f6b-764ba3b5546c" data-file-name="components/returned-parts-manager.tsx">Arrived</span></p>
+              <p className="text-2xl font-bold text-green-600" data-unique-id="ad0a4de6-2ccc-4622-b730-4899d2f1f67d" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{statusCounts.arrived || 0}</p>
             </div>
-            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center" data-unique-id="c054c11a-2fdc-46a0-9e6a-8e7917a1a277" data-file-name="components/returned-parts-manager.tsx">
+            <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center" data-unique-id="11c4d01a-81ac-44ba-9865-a38e033d56b9" data-file-name="components/returned-parts-manager.tsx">
               <CheckCircle className="h-6 w-6 text-green-600" />
             </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="ded4803e-354d-4f52-acf9-ac17c7b53c09" data-file-name="components/returned-parts-manager.tsx">
-          <div className="flex items-center justify-between" data-unique-id="214fc3a8-ebe8-4bb6-940b-2b69af62c80b" data-file-name="components/returned-parts-manager.tsx">
-            <div data-unique-id="7284a4b9-9192-4665-b807-9a308d56b51b" data-file-name="components/returned-parts-manager.tsx">
-              <p className="text-sm text-gray-600" data-unique-id="f847cb23-d366-44b9-99a7-8d6b5d293be3" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="26805489-c08c-4bf2-a9de-129d01b0091d" data-file-name="components/returned-parts-manager.tsx">Inspected</span></p>
-              <p className="text-2xl font-bold text-purple-600" data-unique-id="85cfb04f-51e5-4134-9035-dbbbfd4bac40" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{statusCounts.inspected || 0}</p>
+        <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200" data-unique-id="5e365d78-b2b9-4328-8679-6e4aeecb25b4" data-file-name="components/returned-parts-manager.tsx">
+          <div className="flex items-center justify-between" data-unique-id="dd66fbc3-9e49-40a3-aad4-d627d4c1b176" data-file-name="components/returned-parts-manager.tsx">
+            <div data-unique-id="0c700574-d5ea-47ae-b634-61a04a0b9c6d" data-file-name="components/returned-parts-manager.tsx">
+              <p className="text-sm text-gray-600" data-unique-id="2ed7dcff-d629-47f7-96d8-bc54692c7f5e" data-file-name="components/returned-parts-manager.tsx"><span className="editable-text" data-unique-id="17511d50-49d4-4854-b8a3-ef226a40168e" data-file-name="components/returned-parts-manager.tsx">Inspected</span></p>
+              <p className="text-2xl font-bold text-purple-600" data-unique-id="0ccec528-8ed4-4b08-94ee-8d9ab5f825fb" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">{statusCounts.inspected || 0}</p>
             </div>
-            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center" data-unique-id="171e93ea-d547-45e2-b583-68ac57bdd287" data-file-name="components/returned-parts-manager.tsx">
+            <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center" data-unique-id="c6b7507e-e3c6-4bbf-8878-1d4e65d2b1b5" data-file-name="components/returned-parts-manager.tsx">
               <Eye className="h-6 w-6 text-purple-600" />
             </div>
           </div>
@@ -620,14 +620,14 @@ export default function ReturnedPartsManager() {
       </div>
 
       {/* Search and Filters */}
-      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6" data-unique-id="0f17c352-6009-4a22-adf8-0338eaae8e3e" data-file-name="components/returned-parts-manager.tsx">
-        <div className="flex flex-col md:flex-row gap-4" data-unique-id="95bc02de-13f7-42ea-9b0c-66fc4706c48c" data-file-name="components/returned-parts-manager.tsx">
-          <div className="flex-1 relative" data-unique-id="888d073d-b5f2-4a59-9f32-0a463de61c28" data-file-name="components/returned-parts-manager.tsx">
+      <div className="bg-white rounded-xl p-6 shadow-sm border border-gray-200 mb-6" data-unique-id="f047552b-bb0e-4049-b3c6-28f35b482f06" data-file-name="components/returned-parts-manager.tsx">
+        <div className="flex flex-col md:flex-row gap-4" data-unique-id="c41766d0-1454-4005-8fc4-ab1bdfc4d42d" data-file-name="components/returned-parts-manager.tsx">
+          <div className="flex-1 relative" data-unique-id="3c471411-5b79-4d69-a63d-c0b4f422cb97" data-file-name="components/returned-parts-manager.tsx">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-gray-400" />
-            <input type="text" placeholder="Search by part name, number, customer, or order..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" data-unique-id="28a8709f-272a-4cba-93b3-bcb7021e3b88" data-file-name="components/returned-parts-manager.tsx" />
+            <input type="text" placeholder="Search by part name, number, customer, or order..." value={searchQuery} onChange={e => setSearchQuery(e.target.value)} className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500" data-unique-id="aa2c90ec-7f54-453b-b0b2-1626658e4806" data-file-name="components/returned-parts-manager.tsx" />
           </div>
           
-          <div className="flex gap-2" data-unique-id="103e2bf1-9280-441a-bcc3-69fac976a741" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
+          <div className="flex gap-2" data-unique-id="4a67860f-7558-45ed-b5ef-89bacbf98561" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
             {[{
             key: 'all',
             label: 'All',
@@ -652,21 +652,21 @@ export default function ReturnedPartsManager() {
             key: 'inspected',
             label: 'Inspected',
             count: statusCounts.inspected || 0
-          }].map(filter => <button key={filter.key} onClick={() => setStatusFilter(filter.key)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === filter.key ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`} data-unique-id="699d0644-0fea-4975-9737-0054b9490235" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
-                {filter.label}<span className="editable-text" data-unique-id="cd000a3e-968d-416b-b078-96cfa47cadf4" data-file-name="components/returned-parts-manager.tsx"> (</span>{filter.count}<span className="editable-text" data-unique-id="443bfd1e-de65-4e09-9c8e-203636dc56f6" data-file-name="components/returned-parts-manager.tsx">)
+          }].map(filter => <button key={filter.key} onClick={() => setStatusFilter(filter.key)} className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === filter.key ? 'bg-orange-500 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`} data-unique-id="7a0ec4bf-9409-418b-899d-f0991035f958" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
+                {filter.label}<span className="editable-text" data-unique-id="dd5925d5-5817-4ee8-9ac5-f0f4b6de0e0d" data-file-name="components/returned-parts-manager.tsx"> (</span>{filter.count}<span className="editable-text" data-unique-id="b977b7bf-a94d-4f6a-95f3-a0b5a437bbb4" data-file-name="components/returned-parts-manager.tsx">)
               </span></button>)}
           </div>
         </div>
       </div>
 
       {/* Parts List */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" data-unique-id="801adc3d-7134-40e1-a6b9-121b0b4c6c78" data-file-name="components/returned-parts-manager.tsx">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" data-unique-id="82d959e4-d245-4db5-a27c-e723cc2a0801" data-file-name="components/returned-parts-manager.tsx">
         <AnimatePresence>
-          {filteredParts.map(part => <div key={part.id} className="relative" data-unique-id="c1d88f44-9563-43bd-b6ce-cdc9d1c61b0a" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
+          {filteredParts.map(part => <div key={part.id} className="relative" data-unique-id="3a796669-d4fc-4269-a77d-7d9ad3d2c1f2" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
               <ReturnedPartCard part={part} onMarkArrived={markAsArrived} onMarkInspected={markInspectionComplete} onUpdate={updatePartStatus} />
               {/* Edit button overlay */}
-              <div className="absolute top-2 right-2 flex space-x-1" data-unique-id="6e68b3f0-807b-46f0-a39a-7fe96ad3605b" data-file-name="components/returned-parts-manager.tsx">
-                <button onClick={() => handleEditPart(part)} className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors" title="Edit Part" data-unique-id="424a082f-a2ba-46ca-8cb1-a65f3555d411" data-file-name="components/returned-parts-manager.tsx">
+              <div className="absolute top-2 right-2 flex space-x-1" data-unique-id="74c92dda-6ca2-4c25-8306-7833a5646ced" data-file-name="components/returned-parts-manager.tsx">
+                <button onClick={() => handleEditPart(part)} className="p-2 bg-white rounded-full shadow-md hover:bg-gray-50 transition-colors" title="Edit Part" data-unique-id="45d3c2c9-771d-4132-a690-b67bb1ab2eb0" data-file-name="components/returned-parts-manager.tsx">
                   <Edit className="h-4 w-4 text-blue-600" />
                 </button>
               </div>
@@ -674,12 +674,12 @@ export default function ReturnedPartsManager() {
         </AnimatePresence>
       </div>
 
-      {filteredParts.length === 0 && <div className="text-center py-12" data-unique-id="ff4976bb-e33f-4279-899d-f4abf341e450" data-file-name="components/returned-parts-manager.tsx">
+      {filteredParts.length === 0 && <div className="text-center py-12" data-unique-id="b7ff6e1f-7818-4a89-8cab-aaf4599f38a1" data-file-name="components/returned-parts-manager.tsx">
           <Package2 className="h-16 w-16 text-gray-400 mx-auto mb-4" />
-          <h3 className="text-xl font-medium text-gray-600 mb-2" data-unique-id="ac3a5de8-49c9-4d73-840c-804b14831fa7" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
+          <h3 className="text-xl font-medium text-gray-600 mb-2" data-unique-id="fa296380-72c7-438d-b823-650d49d6b36c" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
             {searchQuery || statusFilter !== 'all' ? 'No matching returned parts found' : 'No returned parts yet'}
           </h3>
-          <p className="text-gray-500" data-unique-id="39eb5a79-acf1-4269-8fc4-7ea0aaac098d" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
+          <p className="text-gray-500" data-unique-id="673528c3-b94d-4cb7-869d-a6a3d374cbbb" data-file-name="components/returned-parts-manager.tsx" data-dynamic-text="true">
             {searchQuery || statusFilter !== 'all' ? 'Try adjusting your search or filters' : 'Add your first returned part to start tracking'}
           </p>
         </div>}
@@ -687,8 +687,8 @@ export default function ReturnedPartsManager() {
       {/* Add Part Modal */}
       <AddReturnedPartModal isOpen={showAddModal} onClose={() => setShowAddModal(false)} onAdd={addReturnedPart} />
       
-      {/* Excel Import Processor */}
-      <ExcelReturnedPartsProcessor isOpen={showExcelProcessor} onClose={() => setShowExcelProcessor(false)} onPartsProcessed={processReturnedParts} />
+      {/* Smart Excel Processor */}
+      <SmartExcelProcessor isOpen={showSmartProcessor} onClose={() => setShowSmartProcessor(false)} onPartsProcessed={processReturnedParts} />
       
       {/* Edit Part Modal */}
       <EditReturnedPartModal part={editingPart} isOpen={showEditModal} onClose={() => {

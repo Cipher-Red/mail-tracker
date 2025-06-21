@@ -20,33 +20,16 @@ export type TextGenerationResult = {
   finishReason?: 'stop' | 'length' | 'content_filter';
 };
 
-// Vision-enabled Text Types
-export type ContentItem = 
-  | { type: 'text'; text: string }
-  | { type: 'image_url'; image_url: { url: string } };
-
-export type Message = {
-  role: 'user' | 'assistant' | 'system';
-  content: ContentItem[];
-};
-
-// We reuse TextGenerationResult since the output format is the same
-
-
 const CONFIG: {
     webId: string;
     availableProviders: {
       text: string[];
-    visionEnabled: string[];
     };
   } = {
     webId: "682f87cc6a0b3a0013b3deb2",
     availableProviders: {
   "text": [
-    "claude-bedrock"
-  ],
-  "visionEnabled": [
-    "claude-bedrock"
+    "deepseek-r1"
   ]
 }
   };
@@ -576,19 +559,13 @@ async function proxyGenerateWithImagesStream(prompt: string, imageUrls: string[]
 // Text provider implementations
 const textProviderImplementations: Record<string, TextProviderImplementation | VisionTextProviderImplementation> = {};
 
-// Vision-enabled text provider: claude-bedrock
-textProviderImplementations["claude-bedrock"] = {
+// Regular text provider: deepseek-r1
+textProviderImplementations["deepseek-r1"] = {
   async generate(prompt: string): Promise<TextGenerationResult> {
-    return proxyGenerate(prompt, "67d3d8513660678db5fe05bc", "claude-bedrock");
+    return proxyGenerate(prompt, "67e625108e1618ee9ba41181", "deepseek-r1");
   },
   async generateStream(prompt: string, onChunk: (text: string) => void): Promise<TextGenerationResult> {
-    return proxyGenerateStream(prompt, onChunk, "67d3d8513660678db5fe05bc", "claude-bedrock");
-  },
-  async generateWithImages(prompt: string, imageUrls: string[]): Promise<TextGenerationResult> {
-    return proxyGenerateWithImages(prompt, imageUrls, "67d3d8513660678db5fe05bc", "claude-bedrock");
-  },
-  async generateWithImagesStream(prompt: string, imageUrls: string[], onChunk: (text: string) => void): Promise<TextGenerationResult> {
-    return proxyGenerateWithImagesStream(prompt, imageUrls, onChunk, "67d3d8513660678db5fe05bc", "claude-bedrock");
+    return proxyGenerateStream(prompt, onChunk, "67e625108e1618ee9ba41181", "deepseek-r1");
   }
 };
 

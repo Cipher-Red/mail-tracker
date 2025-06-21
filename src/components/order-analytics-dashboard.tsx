@@ -62,20 +62,20 @@ export default function OrderAnalyticsDashboard({
     date,
     revenue
   })).sort((a, b) => a.date.localeCompare(b.date)).slice(-30);
-  return <div className="space-y-6" data-unique-id="b99b15a0-5355-4d6a-af51-f94fc13b168c" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">
+  return <div className="space-y-6" data-unique-id="dc5e9190-f4d0-4301-8025-49df7e03bfda" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">
       {/* Summary Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6" data-unique-id="80b83091-a4a9-48df-a004-bcea724bd575" data-file-name="components/order-analytics-dashboard.tsx">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-6" data-unique-id="a991ae05-4917-465c-a959-f2fe021d9157" data-file-name="components/order-analytics-dashboard.tsx">
         <motion.div initial={{
         opacity: 0,
         y: 20
       }} animate={{
         opacity: 1,
         y: 0
-      }} className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white" data-unique-id="9334cb7b-1b7d-439a-97a6-d3c171b3fe86" data-file-name="components/order-analytics-dashboard.tsx">
-          <div className="flex items-center justify-between" data-unique-id="058b4e36-8a83-4eb6-b27e-6194ebe11922" data-file-name="components/order-analytics-dashboard.tsx">
-            <div data-unique-id="3b2f6dea-aa25-4233-8680-159fb654196e" data-file-name="components/order-analytics-dashboard.tsx">
-              <p className="text-blue-100 text-sm" data-unique-id="7833a3b5-4ac4-4469-91e8-8f689c23874e" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="b0cd531d-82d4-4787-9f6b-b80172161bec" data-file-name="components/order-analytics-dashboard.tsx">Total Orders</span></p>
-              <p className="text-3xl font-bold" data-unique-id="a6ebd955-6ef6-4894-a6a9-858f82d2b437" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">{totalOrders.toLocaleString()}</p>
+      }} className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-6 text-white" data-unique-id="ed77673a-a4b2-41b2-9c4d-b54ecfb33e95" data-file-name="components/order-analytics-dashboard.tsx">
+          <div className="flex items-center justify-between" data-unique-id="8f3cfb01-3cab-4c27-aa0d-7c1eee534301" data-file-name="components/order-analytics-dashboard.tsx">
+            <div data-unique-id="79746b76-72e9-4361-9b12-1b1ed2e130a0" data-file-name="components/order-analytics-dashboard.tsx">
+              <p className="text-blue-100 text-sm" data-unique-id="5ef272f9-1010-4902-a410-b225af7636a1" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="2006f374-ee9b-43f8-a5a5-159c2dc613fb" data-file-name="components/order-analytics-dashboard.tsx">Total Orders</span></p>
+              <p className="text-3xl font-bold" data-unique-id="48abc430-9865-409f-8443-b8210c42ab79" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">{totalOrders.toLocaleString()}</p>
             </div>
             <Package className="h-12 w-12 text-blue-200" />
           </div>
@@ -89,11 +89,11 @@ export default function OrderAnalyticsDashboard({
         y: 0
       }} transition={{
         delay: 0.1
-      }} className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white" data-unique-id="a9c4fda6-0ad7-4707-adf5-16413a4630d7" data-file-name="components/order-analytics-dashboard.tsx">
-          <div className="flex items-center justify-between" data-unique-id="89625007-7871-4f8f-83ae-4f7178eff1c9" data-file-name="components/order-analytics-dashboard.tsx">
-            <div data-unique-id="93384ec2-80da-4e69-a582-0b33c6ca8830" data-file-name="components/order-analytics-dashboard.tsx">
-              <p className="text-green-100 text-sm" data-unique-id="ddaaa788-343d-43bd-a786-debc53e2957c" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="9f1cbf4f-3218-4f2f-ac23-51663932147e" data-file-name="components/order-analytics-dashboard.tsx">Total Revenue</span></p>
-              <p className="text-3xl font-bold" data-unique-id="ba57bc2a-47b3-47d4-b27f-e585a2f0458f" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="701b1101-eef2-4784-a5ab-c0f134d199e7" data-file-name="components/order-analytics-dashboard.tsx">$</span>{totalRevenue.toLocaleString()}</p>
+      }} className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl p-6 text-white" data-unique-id="8142c836-8532-4335-8db4-b712d32fa107" data-file-name="components/order-analytics-dashboard.tsx">
+          <div className="flex items-center justify-between" data-unique-id="e304c4c5-fdae-4b24-8f5a-2f6165e71855" data-file-name="components/order-analytics-dashboard.tsx">
+            <div data-unique-id="7d1c059a-f342-4bab-be4d-9377ff2978eb" data-file-name="components/order-analytics-dashboard.tsx">
+              <p className="text-green-100 text-sm" data-unique-id="aac5b522-f8e5-47dd-a28a-c9a3a06ea2ac" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="49a4868c-2c08-4f9e-b281-85ed793c0e78" data-file-name="components/order-analytics-dashboard.tsx">Total Revenue</span></p>
+              <p className="text-3xl font-bold" data-unique-id="5317b330-25d9-44a7-8daa-7f76c9eb057f" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="ed4937bd-23c6-4f79-908d-4d3c55acadb6" data-file-name="components/order-analytics-dashboard.tsx">$</span>{totalRevenue.toLocaleString()}</p>
             </div>
             <DollarSign className="h-12 w-12 text-green-200" />
           </div>
@@ -107,11 +107,11 @@ export default function OrderAnalyticsDashboard({
         y: 0
       }} transition={{
         delay: 0.2
-      }} className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white" data-unique-id="e55c46ff-f9c9-437c-a5eb-41ca7a196d54" data-file-name="components/order-analytics-dashboard.tsx">
-          <div className="flex items-center justify-between" data-unique-id="5385c882-5add-4852-909a-c165b992c8ff" data-file-name="components/order-analytics-dashboard.tsx">
-            <div data-unique-id="3e0bd665-1f73-40f7-a7dc-5434ded4a9cd" data-file-name="components/order-analytics-dashboard.tsx">
-              <p className="text-purple-100 text-sm" data-unique-id="147cc5b6-3ac1-47f6-9aca-bd5f0091eb29" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="ce603fad-f349-4c78-9898-4ae9c94d8029" data-file-name="components/order-analytics-dashboard.tsx">Avg Order Value</span></p>
-              <p className="text-3xl font-bold" data-unique-id="3dc0f9ff-2654-459f-9e89-6e9e64082ad7" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="be49d6fb-98b1-438b-aab2-69def944d246" data-file-name="components/order-analytics-dashboard.tsx">$</span>{averageOrderValue.toFixed(0)}</p>
+      }} className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl p-6 text-white" data-unique-id="a4b5c90d-1815-4d51-908c-53510d03941c" data-file-name="components/order-analytics-dashboard.tsx">
+          <div className="flex items-center justify-between" data-unique-id="22168661-7bf8-465b-a79c-f3954db6be6a" data-file-name="components/order-analytics-dashboard.tsx">
+            <div data-unique-id="990ddca2-1cf4-4a7c-b78c-34d786883238" data-file-name="components/order-analytics-dashboard.tsx">
+              <p className="text-purple-100 text-sm" data-unique-id="0e7ee81c-5d97-4022-8270-f3040c9e7dbb" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="148f3a01-6d67-4e38-a927-041f2b7c3831" data-file-name="components/order-analytics-dashboard.tsx">Avg Order Value</span></p>
+              <p className="text-3xl font-bold" data-unique-id="9b9ab90a-4526-487e-980e-141eb7abe9b1" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="a5affd7a-4a02-4d78-b616-cb9e94dfbef5" data-file-name="components/order-analytics-dashboard.tsx">$</span>{averageOrderValue.toFixed(0)}</p>
             </div>
             <TrendingUp className="h-12 w-12 text-purple-200" />
           </div>
@@ -125,11 +125,11 @@ export default function OrderAnalyticsDashboard({
         y: 0
       }} transition={{
         delay: 0.3
-      }} className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white" data-unique-id="e09e4a41-c769-4d09-9f83-928f440ceb06" data-file-name="components/order-analytics-dashboard.tsx">
-          <div className="flex items-center justify-between" data-unique-id="934970ff-bb21-49f4-a81e-ce75013976b9" data-file-name="components/order-analytics-dashboard.tsx">
-            <div data-unique-id="80fe5f74-47ca-476d-8cb5-00a1a20421fb" data-file-name="components/order-analytics-dashboard.tsx">
-              <p className="text-orange-100 text-sm" data-unique-id="2b5f7cd8-91bc-4ed3-8ef8-12134f4eaac8" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="fefaf414-60bd-4547-8953-ca60158ef863" data-file-name="components/order-analytics-dashboard.tsx">Unique States</span></p>
-              <p className="text-3xl font-bold" data-unique-id="62aec474-d3d0-40ae-ae5c-30d71d194dc6" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">{Object.keys(ordersByState).length}</p>
+      }} className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-6 text-white" data-unique-id="dab579da-c59f-4018-a992-5bd70a0576d4" data-file-name="components/order-analytics-dashboard.tsx">
+          <div className="flex items-center justify-between" data-unique-id="195ce4a8-6b88-41f5-bff9-ce92cc7e1ae7" data-file-name="components/order-analytics-dashboard.tsx">
+            <div data-unique-id="c7ff90d7-a923-409f-b63f-ada4721ed983" data-file-name="components/order-analytics-dashboard.tsx">
+              <p className="text-orange-100 text-sm" data-unique-id="ea7a3ab7-8aad-4650-b70f-b86c3e5cdb19" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="78d60f57-2698-4908-8fc0-92c0665f50c4" data-file-name="components/order-analytics-dashboard.tsx">Unique States</span></p>
+              <p className="text-3xl font-bold" data-unique-id="a06dac88-eb74-41fd-8eb6-504105c42786" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">{Object.keys(ordersByState).length}</p>
             </div>
             <MapPin className="h-12 w-12 text-orange-200" />
           </div>
@@ -137,7 +137,7 @@ export default function OrderAnalyticsDashboard({
       </div>
 
       {/* Charts Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-unique-id="20e4f4fd-cce6-447b-9d5f-c7701e2c1809" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6" data-unique-id="48eb010d-26f5-45ba-915b-1bff7f9bf6fa" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true">
         {/* Daily Orders Chart */}
         <motion.div initial={{
         opacity: 0,
@@ -147,8 +147,8 @@ export default function OrderAnalyticsDashboard({
         y: 0
       }} transition={{
         delay: 0.4
-      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="c6d24aa6-56e2-4cf3-a9ed-d40239cfd0cf" data-file-name="components/order-analytics-dashboard.tsx">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="fbd2a4ba-22df-436b-bdcd-524ecafddec4" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="08c13b64-37c5-4ae1-b7fd-5d7af70f6814" data-file-name="components/order-analytics-dashboard.tsx">Daily Orders (Last 30 Days)</span></h3>
+      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="95ae079b-fa03-4728-93b5-d7b88f20b4c6" data-file-name="components/order-analytics-dashboard.tsx">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="56f79b39-34ec-4b00-a008-0a2a888e1775" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="22f313b6-0dc9-4515-93ab-689bedeffa3f" data-file-name="components/order-analytics-dashboard.tsx">Daily Orders (Last 30 Days)</span></h3>
           <ResponsiveContainer width="100%" height={300}>
             <LineChart data={dailyData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -176,8 +176,8 @@ export default function OrderAnalyticsDashboard({
         y: 0
       }} transition={{
         delay: 0.5
-      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="e4d5614c-b19c-47b3-a479-945acb771826" data-file-name="components/order-analytics-dashboard.tsx">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="37a20a53-f542-4f79-bbbe-8df1f197c873" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="d1efb4cb-7a06-4b22-8aa1-d7b267b83209" data-file-name="components/order-analytics-dashboard.tsx">Daily Revenue (Last 30 Days)</span></h3>
+      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="66e1b407-cd15-4bdb-88cc-73d2aaabcfaf" data-file-name="components/order-analytics-dashboard.tsx">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="5f146234-448a-425e-9b1f-646888e63b38" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="eccbdcbf-488d-4496-b856-b15dd5452dad" data-file-name="components/order-analytics-dashboard.tsx">Daily Revenue (Last 30 Days)</span></h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={revenueData}>
               <CartesianGrid strokeDasharray="3 3" />
@@ -203,8 +203,8 @@ export default function OrderAnalyticsDashboard({
         y: 0
       }} transition={{
         delay: 0.6
-      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="f089cce0-5d0a-4a04-aa5c-ae39cc1ae1cd" data-file-name="components/order-analytics-dashboard.tsx">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="0345efcf-9295-4e4b-ac3a-d6cdc25a1b46" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="6b096d9d-afb4-403f-af36-1a8730a6f4af" data-file-name="components/order-analytics-dashboard.tsx">Top States by Orders</span></h3>
+      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="7acd8d37-a9e9-434c-8752-00e1ecf57249" data-file-name="components/order-analytics-dashboard.tsx">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="1def50ed-5878-47cd-98a6-3941be065d28" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="242368e9-4b30-40ec-a21d-270ea4cafe6f" data-file-name="components/order-analytics-dashboard.tsx">Top States by Orders</span></h3>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={stateData} layout="horizontal">
               <CartesianGrid strokeDasharray="3 3" />
@@ -225,15 +225,15 @@ export default function OrderAnalyticsDashboard({
         y: 0
       }} transition={{
         delay: 0.7
-      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="7b65093f-f6be-4a32-848a-b61a749d3717" data-file-name="components/order-analytics-dashboard.tsx">
-          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="f60c71c1-196f-454c-9b93-6110083bb9ee" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="cd14a84c-8a35-4bc4-a326-815284b97293" data-file-name="components/order-analytics-dashboard.tsx">Orders by Source</span></h3>
+      }} className="bg-white rounded-xl p-6 shadow-lg border border-gray-200" data-unique-id="9d1b34d5-353e-4d81-a99e-b79903a722f0" data-file-name="components/order-analytics-dashboard.tsx">
+          <h3 className="text-lg font-semibold text-gray-800 mb-4" data-unique-id="9f9c408a-e740-4d95-a163-9363b40896c6" data-file-name="components/order-analytics-dashboard.tsx"><span className="editable-text" data-unique-id="b09cc8cc-73c3-49ec-96f4-e48ee1549c4b" data-file-name="components/order-analytics-dashboard.tsx">Orders by Source</span></h3>
           <ResponsiveContainer width="100%" height={300}>
             <PieChart>
               <Pie data={sourceData} cx="50%" cy="50%" labelLine={false} label={({
               source,
               percent
             }) => `${source} (${(percent * 100).toFixed(0)}%)`} outerRadius={80} fill="#8884d8" dataKey="count">
-                {sourceData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} data-unique-id="31a1b6c7-8c8b-4806-943e-c3c6c3999cf9" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true" />)}
+                {sourceData.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} data-unique-id="39201fa2-c780-44f2-b66d-4f73276fa7c7" data-file-name="components/order-analytics-dashboard.tsx" data-dynamic-text="true" />)}
               </Pie>
               <Tooltip formatter={value => [value, 'Orders']} />
             </PieChart>

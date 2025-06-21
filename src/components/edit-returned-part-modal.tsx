@@ -73,7 +73,7 @@ export default function EditReturnedPartModal({
       opacity: 1
     }} exit={{
       opacity: 0
-    }} className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={onClose} data-unique-id="3b6ef30b-79c4-4076-9f2f-9d769abb9524" data-file-name="components/edit-returned-part-modal.tsx">
+    }} className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4" onClick={onClose} data-unique-id="98a8db5d-3418-4f59-aecc-2e5b30b6f97d" data-file-name="components/edit-returned-part-modal.tsx">
         <motion.div initial={{
         scale: 0.95,
         opacity: 0
@@ -83,66 +83,54 @@ export default function EditReturnedPartModal({
       }} exit={{
         scale: 0.95,
         opacity: 0
-      }} className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="eebc8112-506a-434b-a45e-6e37b17c8753" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
+      }} className="bg-white rounded-xl shadow-2xl w-full max-w-2xl max-h-[90vh] overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="b82d32ed-0111-4ad4-b2c5-346f9b3f5e75" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
           {/* Header */}
-          <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50" data-unique-id="24c0d07f-f932-4810-a609-5a07ecc7879e" data-file-name="components/edit-returned-part-modal.tsx">
-            <div data-unique-id="6daf542b-b125-4cb1-a01b-2b9c2c19e4ba" data-file-name="components/edit-returned-part-modal.tsx">
-              <h2 className="text-xl font-semibold text-gray-800 flex items-center" data-unique-id="5f2cdf17-2928-45c5-ae9c-50a1bba4782b" data-file-name="components/edit-returned-part-modal.tsx">
+          <div className="flex justify-between items-center p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-indigo-50" data-unique-id="b52f8848-1719-4d4c-afde-c67f73305b20" data-file-name="components/edit-returned-part-modal.tsx">
+            <div data-unique-id="5aac9b5e-198a-4cd4-87f6-f9770e4aef09" data-file-name="components/edit-returned-part-modal.tsx">
+              <h2 className="text-xl font-semibold text-gray-800 flex items-center" data-unique-id="1cb440ab-4382-4be4-be31-c26bd3204336" data-file-name="components/edit-returned-part-modal.tsx">
                 <Package className="mr-3 h-6 w-6 text-blue-600" />
-                <span className="editable-text" data-unique-id="98564155-5fac-4d38-8eb8-804fd0fcb4a3" data-file-name="components/edit-returned-part-modal.tsx">Edit Returned Part</span>
+                <span className="editable-text" data-unique-id="978d0e4b-546f-422c-90de-89f72adcf85a" data-file-name="components/edit-returned-part-modal.tsx">Edit Returned Part</span>
               </h2>
-              <p className="text-sm text-gray-600 mt-1" data-unique-id="559a55e3-f1a8-4d0a-8bfe-644eb501207f" data-file-name="components/edit-returned-part-modal.tsx">
-                <span className="editable-text" data-unique-id="dd913bc6-a6a2-47c3-9670-960ff2e0da87" data-file-name="components/edit-returned-part-modal.tsx">Modify the returned part information</span>
+              <p className="text-sm text-gray-600 mt-1" data-unique-id="9ad34d0d-771b-4aa8-97b1-22797e479f43" data-file-name="components/edit-returned-part-modal.tsx">
+                <span className="editable-text" data-unique-id="8c9bc1bd-bf53-42f5-9995-6cd173d775ea" data-file-name="components/edit-returned-part-modal.tsx">Modify the returned part information</span>
               </p>
             </div>
-            <button onClick={onClose} className="p-2 rounded-full hover:bg-white/50 transition-colors" data-unique-id="f86f6d2a-d7a1-4f50-8df6-bd4108df69b6" data-file-name="components/edit-returned-part-modal.tsx">
+            <button onClick={onClose} className="p-2 rounded-full hover:bg-white/50 transition-colors" data-unique-id="c2e3ecd6-3cae-4426-bc9a-166091abaeaa" data-file-name="components/edit-returned-part-modal.tsx">
               <X className="h-5 w-5 text-gray-600" />
             </button>
           </div>
 
           {/* Content */}
-          <div className="p-6 max-h-[70vh] overflow-y-auto" data-unique-id="7f48b15f-7fda-4943-8731-f0cfa5cded4e" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-unique-id="19322c30-61f9-4a16-99db-28b70335a10f" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
-              {/* Part Information */}
-              <div className="space-y-4" data-unique-id="22471a18-9906-4735-b2f4-3cd6f2c4710e" data-file-name="components/edit-returned-part-modal.tsx">
-                <div data-unique-id="8077ecc8-3de0-42ad-98d4-037d04be4ad8" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="20bef4a7-94ba-4764-8a28-c6ac3450c671" data-file-name="components/edit-returned-part-modal.tsx">
-                    <Package className="inline h-4 w-4 mr-1" />
-                    <span className="editable-text" data-unique-id="3b735972-a82e-4a8f-b54f-ad8f1257b41f" data-file-name="components/edit-returned-part-modal.tsx">Part Name</span>
-                  </label>
-                  <input type="text" value={formData.partName} onChange={e => handleInputChange('partName', e.target.value)} className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.partName ? 'border-red-300 bg-red-50' : 'border-gray-300'}`} placeholder="Enter part name" data-unique-id="ca840101-6f64-4de5-ac3d-0caf6709b2d8" data-file-name="components/edit-returned-part-modal.tsx" />
-                  {errors.partName && <p className="mt-1 text-sm text-red-600 flex items-center" data-unique-id="e1a5bc67-ab33-4084-95a4-0e4dad045676" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
-                      <AlertCircle className="h-4 w-4 mr-1" />
-                      {errors.partName}
-                    </p>}
-                </div>
-
-                <div data-unique-id="d036af96-225c-4247-bc92-80d2cc76fa5c" data-file-name="components/edit-returned-part-modal.tsx">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="731a31eb-b0d4-4f7a-85c5-202ce3ac8766" data-file-name="components/edit-returned-part-modal.tsx">
-                    <span className="editable-text" data-unique-id="248b103f-8d79-404b-8188-3ad6ce944c9a" data-file-name="components/edit-returned-part-modal.tsx">Part Number</span>
-                  </label>
-                  <input type="text" value={formData.partNumber} onChange={e => handleInputChange('partNumber', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter part number" data-unique-id="ac76de17-0586-4b5d-89d3-73f798fc6483" data-file-name="components/edit-returned-part-modal.tsx" />
-                </div>
-
-                <div data-unique-id="4ac27a4f-e674-42dc-b7f0-597abe1bf8b8" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="4ac9eb50-c0d9-4e15-958f-dd0f24adeb9e" data-file-name="components/edit-returned-part-modal.tsx">
+          <div className="p-6 max-h-[70vh] overflow-y-auto" data-unique-id="9529593d-b317-4563-bede-7b49b065999c" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-unique-id="caef1675-1849-4045-bbbe-a4bc4e30e219" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
+              {/* Customer & Order Information */}
+              <div className="space-y-4" data-unique-id="a37b5275-a0f0-4ad1-9142-96c4a6381120" data-file-name="components/edit-returned-part-modal.tsx">
+                <div data-unique-id="4c34c472-a7ae-4f97-bd91-76b33452a20e" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="80190ccc-4dbb-4b91-afbf-36c7f55c7c72" data-file-name="components/edit-returned-part-modal.tsx">
                     <User className="inline h-4 w-4 mr-1" />
-                    <span className="editable-text" data-unique-id="9b9c15a6-f98f-4a0e-96ae-1386a492b4fb" data-file-name="components/edit-returned-part-modal.tsx">Customer Name</span>
+                    <span className="editable-text" data-unique-id="2fc3b4df-89ee-415b-91b0-f199b1c7261b" data-file-name="components/edit-returned-part-modal.tsx">Customer Name</span>
                   </label>
-                  <input type="text" value={formData.customerName} onChange={e => handleInputChange('customerName', e.target.value)} className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.customerName ? 'border-red-300 bg-red-50' : 'border-gray-300'}`} placeholder="Enter customer name" data-unique-id="dec93732-daac-424d-9eb4-a0848e3092cc" data-file-name="components/edit-returned-part-modal.tsx" />
-                  {errors.customerName && <p className="mt-1 text-sm text-red-600 flex items-center" data-unique-id="c05557a3-0546-4ef9-a0bf-d02a6b2d9e21" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
+                  <input type="text" value={formData.customerName} onChange={e => handleInputChange('customerName', e.target.value)} className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.customerName ? 'border-red-300 bg-red-50' : 'border-gray-300'}`} placeholder="Enter customer name" data-unique-id="ce645ba3-6a8f-496b-a61b-9431367008be" data-file-name="components/edit-returned-part-modal.tsx" />
+                  {errors.customerName && <p className="mt-1 text-sm text-red-600 flex items-center" data-unique-id="2df89cdc-54cb-44b7-82e0-ea8192640681" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
                       <AlertCircle className="h-4 w-4 mr-1" />
                       {errors.customerName}
                     </p>}
                 </div>
 
-                <div data-unique-id="5261b117-0f73-4c99-a863-b1a1ef3fb5e0" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="bd724864-1e60-44e5-9632-a77acabe95f7" data-file-name="components/edit-returned-part-modal.tsx">
-                    <FileText className="inline h-4 w-4 mr-1" />
-                    <span className="editable-text" data-unique-id="a424a647-a9ed-4ce5-8958-7385c15451c5" data-file-name="components/edit-returned-part-modal.tsx">Order Number</span>
+                <div data-unique-id="cacba51e-7fd7-4410-96b5-be13d3882f8e" data-file-name="components/edit-returned-part-modal.tsx">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="03b33097-a823-4f6c-aef9-f42b84b45b6c" data-file-name="components/edit-returned-part-modal.tsx">
+                    <span className="editable-text" data-unique-id="eae778d5-b353-4b78-a7b9-09d61f790abc" data-file-name="components/edit-returned-part-modal.tsx">Customer Email</span>
                   </label>
-                  <input type="text" value={formData.orderNumber} onChange={e => handleInputChange('orderNumber', e.target.value)} className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.orderNumber ? 'border-red-300 bg-red-50' : 'border-gray-300'}`} placeholder="Enter order number" data-unique-id="6b08d2b6-3db1-4932-93fd-0ad356525977" data-file-name="components/edit-returned-part-modal.tsx" />
-                  {errors.orderNumber && <p className="mt-1 text-sm text-red-600 flex items-center" data-unique-id="237dcd0a-fad2-4fa7-bb29-3ba4db74fa3e" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
+                  <input type="email" value={formData.customerEmail} onChange={e => handleInputChange('customerEmail', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter customer email" data-unique-id="12e83ba3-fecb-4d7a-8f27-52e5ab8dbd18" data-file-name="components/edit-returned-part-modal.tsx" />
+                </div>
+
+                <div data-unique-id="badd56e7-86cd-482f-8420-958e15af4cdc" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="7317f330-61e4-41d4-b5fe-e381a0f4683c" data-file-name="components/edit-returned-part-modal.tsx">
+                    <FileText className="inline h-4 w-4 mr-1" />
+                    <span className="editable-text" data-unique-id="4bdd2f5f-83fb-439d-833e-898f15da850a" data-file-name="components/edit-returned-part-modal.tsx">Order Number</span>
+                  </label>
+                  <input type="text" value={formData.orderNumber} onChange={e => handleInputChange('orderNumber', e.target.value)} className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent ${errors.orderNumber ? 'border-red-300 bg-red-50' : 'border-gray-300'}`} placeholder="Enter order number" data-unique-id="95997fcf-c9a5-4234-98d7-a891342f66c1" data-file-name="components/edit-returned-part-modal.tsx" />
+                  {errors.orderNumber && <p className="mt-1 text-sm text-red-600 flex items-center" data-unique-id="3fa47409-04df-4b39-b8cb-fa429f0b59e8" data-file-name="components/edit-returned-part-modal.tsx" data-dynamic-text="true">
                       <AlertCircle className="h-4 w-4 mr-1" />
                       {errors.orderNumber}
                     </p>}
@@ -150,79 +138,79 @@ export default function EditReturnedPartModal({
               </div>
 
               {/* Shipping & Status Information */}
-              <div className="space-y-4" data-unique-id="1043661f-8338-47e9-bce9-1cd75629a50c" data-file-name="components/edit-returned-part-modal.tsx">
-                <div data-unique-id="d6b3fb92-3ac8-4dcf-bd38-28ab269b102b" data-file-name="components/edit-returned-part-modal.tsx">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="13b10698-2e23-4ece-9a5d-fde28114c4e1" data-file-name="components/edit-returned-part-modal.tsx">
-                    <span className="editable-text" data-unique-id="5f2ed8d4-4355-40cf-ab08-9d32307afe69" data-file-name="components/edit-returned-part-modal.tsx">Return Reason</span>
+              <div className="space-y-4" data-unique-id="81012e13-9edb-46d6-a694-453a1f25adae" data-file-name="components/edit-returned-part-modal.tsx">
+                <div data-unique-id="b62742b6-014c-4d74-a2c3-27b70418f3bf" data-file-name="components/edit-returned-part-modal.tsx">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="8db46998-d21a-45c4-8c81-3814080045f6" data-file-name="components/edit-returned-part-modal.tsx">
+                    <span className="editable-text" data-unique-id="f74fe33b-7742-4ba5-9fa9-2498bbee8f11" data-file-name="components/edit-returned-part-modal.tsx">Return Reason</span>
                   </label>
-                  <select value={formData.returnReason} onChange={e => handleInputChange('returnReason', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="26a9c8ef-9e8b-4c9f-8e7d-85ea0c9b8adb" data-file-name="components/edit-returned-part-modal.tsx">
-                    <option value="Defective" data-unique-id="13f11abc-8afe-40b2-bc52-5f3c67bf945d" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="62761d2a-2432-4308-846b-498ae9f425fa" data-file-name="components/edit-returned-part-modal.tsx">Defective</span></option>
-                    <option value="Wrong Part" data-unique-id="6b4008dd-c721-484a-9d28-708a93a943d1" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="e2b1d812-c6a7-4e7c-a59a-d9b94ec58800" data-file-name="components/edit-returned-part-modal.tsx">Wrong Part</span></option>
-                    <option value="Not Needed" data-unique-id="f5bba011-2ab1-4dd3-a908-422325aa301b" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="0b8a616a-678b-4030-8ed6-c058d5f8cccc" data-file-name="components/edit-returned-part-modal.tsx">Not Needed</span></option>
-                    <option value="Warranty" data-unique-id="b8712c55-834a-4a1a-b92f-c1247616c5c7" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="7863c8e9-013c-45fb-8a57-456c1a9baf9c" data-file-name="components/edit-returned-part-modal.tsx">Warranty</span></option>
-                    <option value="Customer Changed Mind" data-unique-id="120e6382-29d4-4cb5-9f01-cb9ecc9a36fd" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="a0d3e522-67e5-49e0-82d9-a88c081bbbce" data-file-name="components/edit-returned-part-modal.tsx">Customer Changed Mind</span></option>
-                    <option value="Damaged in Shipping" data-unique-id="1dd42442-a11a-4082-b37d-43ec291be2ce" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="80b63946-b995-4bc5-9170-6c2d66caa811" data-file-name="components/edit-returned-part-modal.tsx">Damaged in Shipping</span></option>
-                    <option value="Other" data-unique-id="b2de0ca3-8fa1-44dc-b65d-632bf129c7b0" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="6608cfed-ae89-4427-a0d4-49d75d0afdd0" data-file-name="components/edit-returned-part-modal.tsx">Other</span></option>
+                  <select value={formData.returnReason} onChange={e => handleInputChange('returnReason', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="843e1e85-5fe1-465c-a319-8b22e59ded6c" data-file-name="components/edit-returned-part-modal.tsx">
+                    <option value="Defective" data-unique-id="4b2e8cc4-da39-4d7d-9d67-d546fc1c4c84" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="e091f28d-5c4f-456b-984a-28005b1ae285" data-file-name="components/edit-returned-part-modal.tsx">Defective</span></option>
+                    <option value="Wrong Part" data-unique-id="f3bc2096-76ec-4f3b-b56e-d9d541eff4fd" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="eb0a1da3-f335-4ede-8a19-8b487b421220" data-file-name="components/edit-returned-part-modal.tsx">Wrong Part</span></option>
+                    <option value="Not Needed" data-unique-id="170e913d-b9f2-431e-bff4-4ff9b83c15b2" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="4bd66f56-9617-47c4-8529-a98748d36b64" data-file-name="components/edit-returned-part-modal.tsx">Not Needed</span></option>
+                    <option value="Warranty" data-unique-id="66451388-7fec-4f7a-9fb9-4a65ccc88c49" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="300c924f-fd8d-4dba-b4b8-f9bba309671c" data-file-name="components/edit-returned-part-modal.tsx">Warranty</span></option>
+                    <option value="Customer Changed Mind" data-unique-id="4e4c1deb-2646-4b43-94b3-a8cde928bd79" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="810eded0-9c2f-41f3-9114-0bbf4e9d53c6" data-file-name="components/edit-returned-part-modal.tsx">Customer Changed Mind</span></option>
+                    <option value="Damaged in Shipping" data-unique-id="6b94c231-eb77-4454-8750-9e4a65525718" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="cdfb0766-9604-4b2b-af7b-93272f2a2e68" data-file-name="components/edit-returned-part-modal.tsx">Damaged in Shipping</span></option>
+                    <option value="Other" data-unique-id="8dda80a1-6b4b-4e81-86fc-2efae18c4909" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="e4d822d3-99b6-4740-9961-c75d6753a7db" data-file-name="components/edit-returned-part-modal.tsx">Other</span></option>
                   </select>
                 </div>
 
-                <div data-unique-id="94ec98c1-c71d-44d4-b0c0-07f270a5b319" data-file-name="components/edit-returned-part-modal.tsx">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="aa445e46-4bbe-47b8-98c2-729f1625f731" data-file-name="components/edit-returned-part-modal.tsx">
+                <div data-unique-id="7c2782ef-5a77-46e6-893a-ee72f3406ccd" data-file-name="components/edit-returned-part-modal.tsx">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="41286f4c-0190-438e-984a-b69d3214e014" data-file-name="components/edit-returned-part-modal.tsx">
                     <Truck className="inline h-4 w-4 mr-1" />
-                    <span className="editable-text" data-unique-id="f1cda5ce-a7b5-4981-9824-e60f757af666" data-file-name="components/edit-returned-part-modal.tsx">Tracking Number</span>
+                    <span className="editable-text" data-unique-id="2bafb1d3-8aff-4892-9fff-498ea2c2843d" data-file-name="components/edit-returned-part-modal.tsx">Tracking Number</span>
                   </label>
-                  <input type="text" value={formData.trackingNumber} onChange={e => handleInputChange('trackingNumber', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter tracking number" data-unique-id="46cca9c6-0f6c-42c2-ab17-8e70fb67040c" data-file-name="components/edit-returned-part-modal.tsx" />
+                  <input type="text" value={formData.trackingNumber} onChange={e => handleInputChange('trackingNumber', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Enter tracking number" data-unique-id="7f0587e9-0af5-4369-92e3-29a3faea3914" data-file-name="components/edit-returned-part-modal.tsx" />
                 </div>
 
-                <div data-unique-id="be6a5461-a200-4599-b4a9-7d940b633f67" data-file-name="components/edit-returned-part-modal.tsx">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="f5fd6fbf-ab74-4f82-ac44-b25fd6f6dc4b" data-file-name="components/edit-returned-part-modal.tsx">
-                    <Calendar className="inline h-4 w-4 mr-1" data-unique-id="2b42aca8-e8ba-4eb4-8bbf-821bcbf69539" data-file-name="components/edit-returned-part-modal.tsx" />
-                    <span className="editable-text" data-unique-id="bb856c70-6add-4b78-8821-639bc340d501" data-file-name="components/edit-returned-part-modal.tsx">Shipped Date</span>
+                <div data-unique-id="2e5419b7-2443-4c30-a58c-3d015f019d4a" data-file-name="components/edit-returned-part-modal.tsx">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="64558ed9-2325-430e-a6d7-ee4635dc0c85" data-file-name="components/edit-returned-part-modal.tsx">
+                    <Calendar className="inline h-4 w-4 mr-1" data-unique-id="d7d92cba-4530-4238-b69d-03987908c5e9" data-file-name="components/edit-returned-part-modal.tsx" />
+                    <span className="editable-text" data-unique-id="5288734c-4bd6-4dc1-b394-a4bfc6c53713" data-file-name="components/edit-returned-part-modal.tsx">Shipped Date</span>
                   </label>
-                  <input type="date" value={formData.shippedDate} onChange={e => handleInputChange('shippedDate', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="e3f93dbb-9bfe-4a78-aa9a-b4a2d4a19948" data-file-name="components/edit-returned-part-modal.tsx" />
+                  <input type="date" value={formData.shippedDate} onChange={e => handleInputChange('shippedDate', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="25c140dd-5ec6-4e38-9e29-6be121424a54" data-file-name="components/edit-returned-part-modal.tsx" />
                 </div>
 
-                <div data-unique-id="0aa65607-559b-4b56-8c32-acbb3b389943" data-file-name="components/edit-returned-part-modal.tsx">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="d693c433-83e0-4314-bab1-0a4c239446d4" data-file-name="components/edit-returned-part-modal.tsx">
-                    <span className="editable-text" data-unique-id="8575dc9a-a866-4e9c-bede-4756f19362e0" data-file-name="components/edit-returned-part-modal.tsx">Expected Arrival</span>
+                <div data-unique-id="f3a14f37-bd5f-4ffa-9e8d-6b1ccb01343c" data-file-name="components/edit-returned-part-modal.tsx">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="47a6d5ed-b70e-4e1a-9d85-0c879fede3f3" data-file-name="components/edit-returned-part-modal.tsx">
+                    <span className="editable-text" data-unique-id="589e593c-7043-4558-b8b1-db8f679aaece" data-file-name="components/edit-returned-part-modal.tsx">Expected Arrival</span>
                   </label>
-                  <input type="date" value={formData.expectedArrival} onChange={e => handleInputChange('expectedArrival', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="61a9dcf4-92e2-4ede-9aa8-c2de5c069fc0" data-file-name="components/edit-returned-part-modal.tsx" />
+                  <input type="date" value={formData.expectedArrival} onChange={e => handleInputChange('expectedArrival', e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="dff452b1-5872-47f3-98f3-cde9aba8c7c2" data-file-name="components/edit-returned-part-modal.tsx" />
                 </div>
 
-                <div data-unique-id="dc6e7a55-7502-4206-b719-ef5d20a731de" data-file-name="components/edit-returned-part-modal.tsx">
-                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="96025ed5-e7c8-43f7-bb00-da5eb6506fd7" data-file-name="components/edit-returned-part-modal.tsx">
-                    <span className="editable-text" data-unique-id="a6084582-2fb2-47e7-941c-6c1a51478187" data-file-name="components/edit-returned-part-modal.tsx">Status</span>
+                <div data-unique-id="aace7dfe-45bd-41cd-a078-f98a18af917f" data-file-name="components/edit-returned-part-modal.tsx">
+                  <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="a8a1f4ba-633e-4f4f-b710-caeb70b5792e" data-file-name="components/edit-returned-part-modal.tsx">
+                    <span className="editable-text" data-unique-id="585f1319-76b3-4341-84b3-af71e46dc9c1" data-file-name="components/edit-returned-part-modal.tsx">Status</span>
                   </label>
-                  <select value={formData.status} onChange={e => handleInputChange('status', e.target.value as ReturnedPart['status'])} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="5872fcd9-8405-4cce-9520-5677a520e59f" data-file-name="components/edit-returned-part-modal.tsx">
-                    <option value="shipped" data-unique-id="a3acd262-7113-48b2-b6e1-4da2fa63e0da" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="2063dbd6-6539-42eb-b50a-bda4f8c41ae8" data-file-name="components/edit-returned-part-modal.tsx">Shipped</span></option>
-                    <option value="in_transit" data-unique-id="2d0ff9af-4c0f-4ef2-bae9-5c0d3f756e13" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="e76bffca-c20c-43d7-897b-e19711b8c0f0" data-file-name="components/edit-returned-part-modal.tsx">In Transit</span></option>
-                    <option value="arrived" data-unique-id="4a64c71e-ecec-44e1-aee4-9c466e2201ce" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="43aac56a-ba6f-4b4a-984f-e01e74163ba4" data-file-name="components/edit-returned-part-modal.tsx">Arrived</span></option>
-                    <option value="inspecting" data-unique-id="f94633a1-525c-473d-a5eb-c7fa1e586780" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="be156ea1-abcb-455a-9bca-0adccdd30ad7" data-file-name="components/edit-returned-part-modal.tsx">Inspecting</span></option>
-                    <option value="inspected" data-unique-id="8fc0a7ab-c6a3-4420-9688-f024722746e1" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="067ec2ee-4c72-48d8-b8e2-9b84f45458ca" data-file-name="components/edit-returned-part-modal.tsx">Inspected</span></option>
-                    <option value="processed" data-unique-id="6d8ef3fb-abe4-4811-bc85-c01bdc49ae06" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="48132651-e769-4a81-99f3-b22393dc9e7e" data-file-name="components/edit-returned-part-modal.tsx">Processed</span></option>
+                  <select value={formData.status} onChange={e => handleInputChange('status', e.target.value as ReturnedPart['status'])} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" data-unique-id="6a0f3d3a-2a1c-427c-86b5-7e1e61490ffb" data-file-name="components/edit-returned-part-modal.tsx">
+                    <option value="shipped" data-unique-id="71d4dd0e-2ca9-4aab-8491-08a64c6f90f9" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="c0caabee-57a8-4b18-bc08-6c12da746c95" data-file-name="components/edit-returned-part-modal.tsx">Shipped</span></option>
+                    <option value="in_transit" data-unique-id="304ad9df-f025-462c-aa61-dffe7cd53522" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="53a22569-9c4a-4d87-9c84-36061a0506ae" data-file-name="components/edit-returned-part-modal.tsx">In Transit</span></option>
+                    <option value="arrived" data-unique-id="057931dc-178d-4c6f-9ce3-0d6f9f629265" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="13511b66-02b1-41de-96c0-89aab71ff346" data-file-name="components/edit-returned-part-modal.tsx">Arrived</span></option>
+                    <option value="inspecting" data-unique-id="dfd2f284-4948-47ef-b932-58889522e414" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="95e8b431-00ac-4735-abaf-b69cd5170e59" data-file-name="components/edit-returned-part-modal.tsx">Inspecting</span></option>
+                    <option value="inspected" data-unique-id="ea45ccdb-8b6a-4c6f-8cfc-e755481b31b3" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="d19ba597-372d-4504-9084-eb4dda1d97f8" data-file-name="components/edit-returned-part-modal.tsx">Inspected</span></option>
+                    <option value="processed" data-unique-id="db48fb33-da8f-4332-9955-4e01b288d55e" data-file-name="components/edit-returned-part-modal.tsx"><span className="editable-text" data-unique-id="8b91a9f8-a6eb-4388-805d-4125ba7ecf47" data-file-name="components/edit-returned-part-modal.tsx">Processed</span></option>
                   </select>
                 </div>
               </div>
             </div>
 
             {/* Notes Section */}
-            <div className="mt-6" data-unique-id="1a428168-8a69-4173-9a81-0c91a8897567" data-file-name="components/edit-returned-part-modal.tsx">
-              <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="fe4fc323-9ea4-430d-b216-6a2de17d6853" data-file-name="components/edit-returned-part-modal.tsx">
+            <div className="mt-6" data-unique-id="67935f3a-f17e-4401-9924-f669409342b0" data-file-name="components/edit-returned-part-modal.tsx">
+              <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="eb67fb06-eb1f-44c7-a6ab-01bfbfac2fd6" data-file-name="components/edit-returned-part-modal.tsx">
                 <FileText className="inline h-4 w-4 mr-1" />
-                <span className="editable-text" data-unique-id="4df383ad-c084-4e92-9b22-9b29a9d0b405" data-file-name="components/edit-returned-part-modal.tsx">Notes</span>
+                <span className="editable-text" data-unique-id="a6047832-e347-4880-8f57-07058f08819d" data-file-name="components/edit-returned-part-modal.tsx">Notes</span>
               </label>
-              <textarea value={formData.notes || ''} onChange={e => handleInputChange('notes', e.target.value)} rows={3} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" placeholder="Add any additional notes..." data-unique-id="9e702082-8d96-4f24-920d-ad377ff35494" data-file-name="components/edit-returned-part-modal.tsx" />
+              <textarea value={formData.notes || ''} onChange={e => handleInputChange('notes', e.target.value)} rows={3} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent resize-none" placeholder="Add any additional notes..." data-unique-id="38fe3bc8-ee01-495d-9321-6c61c3d02d5c" data-file-name="components/edit-returned-part-modal.tsx" />
             </div>
           </div>
 
           {/* Footer */}
-          <div className="flex justify-end items-center p-6 border-t border-gray-200 bg-gray-50 space-x-3" data-unique-id="1ceda6f0-6d52-4749-9302-10cb414b5341" data-file-name="components/edit-returned-part-modal.tsx">
-            <button onClick={onClose} className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors" data-unique-id="ad8e951c-d3c3-48c4-8590-b7a868bb5be3" data-file-name="components/edit-returned-part-modal.tsx">
-              <span className="editable-text" data-unique-id="a09d8884-4cfe-47eb-829d-c5bab1ed7bc2" data-file-name="components/edit-returned-part-modal.tsx">Cancel</span>
+          <div className="flex justify-end items-center p-6 border-t border-gray-200 bg-gray-50 space-x-3" data-unique-id="2accf2b9-c916-4304-82e0-c13da7e30e9f" data-file-name="components/edit-returned-part-modal.tsx">
+            <button onClick={onClose} className="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors" data-unique-id="56a74cfd-734c-4b30-bb63-51dacafa1846" data-file-name="components/edit-returned-part-modal.tsx">
+              <span className="editable-text" data-unique-id="95279f10-491f-4adb-a9b1-c69c4b66838f" data-file-name="components/edit-returned-part-modal.tsx">Cancel</span>
             </button>
-            <button onClick={handleSave} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center" data-unique-id="3b0be8ea-e67e-42e8-91c6-d403ec07c78d" data-file-name="components/edit-returned-part-modal.tsx">
+            <button onClick={handleSave} className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center" data-unique-id="f4eddabb-94cf-46dc-90e4-a51fcdeec785" data-file-name="components/edit-returned-part-modal.tsx">
               <Save className="h-4 w-4 mr-2" />
-              <span className="editable-text" data-unique-id="b85b7975-a144-49bb-bb77-1b8f2553262a" data-file-name="components/edit-returned-part-modal.tsx">Save Changes</span>
+              <span className="editable-text" data-unique-id="3de33f37-d6a3-4fac-8bf1-e6a8135e6cfa" data-file-name="components/edit-returned-part-modal.tsx">Save Changes</span>
             </button>
           </div>
         </motion.div>

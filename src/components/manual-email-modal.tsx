@@ -126,7 +126,7 @@ export function ManualEmailModal({
         opacity: 0
       }} transition={{
         duration: 0.2
-      }} className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose} data-unique-id="717b4183-2288-4ae0-a4e9-366afc0e823d" data-file-name="components/manual-email-modal.tsx">
+      }} className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4 overflow-y-auto" onClick={onClose} data-unique-id="dfd86735-3a19-4cf5-b180-04e7ea51611c" data-file-name="components/manual-email-modal.tsx">
           <motion.div initial={{
           scale: 0.95,
           opacity: 0
@@ -138,66 +138,66 @@ export function ManualEmailModal({
           opacity: 0
         }} transition={{
           duration: 0.2
-        }} className="bg-background w-full max-w-4xl rounded-lg shadow-xl overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="bedec1ed-eb07-4c40-b8ed-0546a0348841" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+        }} className="bg-background w-full max-w-4xl rounded-lg shadow-xl overflow-hidden" onClick={e => e.stopPropagation()} data-unique-id="68aa6e26-9b9f-49b3-bcec-10e6bd2f9e58" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
             {/* Modal Header */}
-            <div className="bg-primary text-primary-foreground p-6" data-unique-id="87085b67-c0b8-4d4a-a1b4-9cfb80a318d1" data-file-name="components/manual-email-modal.tsx">
-              <div className="flex justify-between items-center" data-unique-id="2fbc6c58-65ab-4430-a805-b200d89dbd16" data-file-name="components/manual-email-modal.tsx">
-                <h3 className="text-xl font-medium flex items-center" data-unique-id="c067aa64-27f7-40bb-aa9b-9ee0f19e74df" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="b60bf48d-331a-4ba8-abdd-079563793bd5" data-file-name="components/manual-email-modal.tsx">
+            <div className="bg-primary text-primary-foreground p-6" data-unique-id="c5855fc7-a890-458b-ac98-6a90cce79c27" data-file-name="components/manual-email-modal.tsx">
+              <div className="flex justify-between items-center" data-unique-id="590abb94-3bc2-483c-a9f0-d9d7bb696101" data-file-name="components/manual-email-modal.tsx">
+                <h3 className="text-xl font-medium flex items-center" data-unique-id="12686f37-f6f2-4585-af0f-a4d31c215b9c" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="01e04477-e70a-4290-bf41-d5336e5ab22d" data-file-name="components/manual-email-modal.tsx">
                   Email Review & Manual Send
                 </span></h3>
-                <button onClick={onClose} className="text-primary-foreground opacity-70 hover:opacity-100 p-2 rounded-full hover:bg-primary-foreground/20 transition-colors" aria-label="Close modal" data-unique-id="9ad4102b-bec3-42c9-a20a-dfa6e681fd62" data-file-name="components/manual-email-modal.tsx">
+                <button onClick={onClose} className="text-primary-foreground opacity-70 hover:opacity-100 p-2 rounded-full hover:bg-primary-foreground/20 transition-colors" aria-label="Close modal" data-unique-id="798d1a56-23dc-4fa2-90bf-d0124d9b12db" data-file-name="components/manual-email-modal.tsx">
                   <X size={24} />
                 </button>
               </div>
               
-              <p className="text-primary-foreground/80 text-sm mt-1" data-unique-id="3625df19-ebc6-469a-9641-8dd3b628da6e" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="ce45ace5-26d1-4d14-8e2e-6c6da15d8425" data-file-name="components/manual-email-modal.tsx">
+              <p className="text-primary-foreground/80 text-sm mt-1" data-unique-id="1dfd023f-4a46-4c97-a07b-fdf054a37816" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="cfec20c5-e21e-4eba-a775-d52ad5ae921e" data-file-name="components/manual-email-modal.tsx">
                 Review email details, copy content to your email client, and mark as sent when complete.
               </span></p>
               
-              <div className="flex items-center justify-between mt-6" data-unique-id="e2caeb72-e50e-449e-a831-c1ccc1968429" data-file-name="components/manual-email-modal.tsx">
-                <div data-unique-id="ee2a9213-bb16-4dc0-b026-aed31af91ed4" data-file-name="components/manual-email-modal.tsx">
-                  <span className="text-sm text-primary-foreground/90" data-unique-id="951fccd9-d2f5-4f5f-b61b-15cb9178299d" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="5ccec3df-64ae-48ee-bf1e-335788d31388" data-file-name="components/manual-email-modal.tsx">
-                    Email </span>{currentEmailIndex + 1}<span className="editable-text" data-unique-id="f88868a0-2816-43d9-bf58-fede22b6d125" data-file-name="components/manual-email-modal.tsx"> of </span>{totalEmails}<span className="editable-text" data-unique-id="6272ca00-e7bf-4658-bfdf-99de92cc031f" data-file-name="components/manual-email-modal.tsx"> (</span>{completionPercentage}<span className="editable-text" data-unique-id="beed1451-1273-42b8-9b20-1f15e59bfad8" data-file-name="components/manual-email-modal.tsx">% complete)
+              <div className="flex items-center justify-between mt-6" data-unique-id="b8e397ef-9df5-48c7-bc2a-beca1e994d2e" data-file-name="components/manual-email-modal.tsx">
+                <div data-unique-id="d049e97e-9684-484e-a45a-50805af09029" data-file-name="components/manual-email-modal.tsx">
+                  <span className="text-sm text-primary-foreground/90" data-unique-id="5c2a543d-487c-4098-869a-c0e3f19f03f2" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="936c9576-5b17-4abf-b0fc-420d9d1b411b" data-file-name="components/manual-email-modal.tsx">
+                    Email </span>{currentEmailIndex + 1}<span className="editable-text" data-unique-id="f0bf0cde-7737-441a-b821-a65d3927ef26" data-file-name="components/manual-email-modal.tsx"> of </span>{totalEmails}<span className="editable-text" data-unique-id="72f0dc02-dc06-455c-9ba2-1070258e8be6" data-file-name="components/manual-email-modal.tsx"> (</span>{completionPercentage}<span className="editable-text" data-unique-id="ed512077-bc03-43dc-b261-2f6b81452bbc" data-file-name="components/manual-email-modal.tsx">% complete)
                   </span></span>
                 </div>
                 
-                <div className="flex items-center space-x-2" data-unique-id="9e06a611-237b-4927-8cc1-5c88fc7c1c2d" data-file-name="components/manual-email-modal.tsx">
-                  <button onClick={onPrevious} disabled={currentEmailIndex === 0} className="p-1.5 rounded hover:bg-primary-foreground/10 disabled:opacity-40" data-unique-id="3d982161-f5cb-44fa-a1bb-805cb2f2f6cb" data-file-name="components/manual-email-modal.tsx">
+                <div className="flex items-center space-x-2" data-unique-id="ed8fbf6e-85c2-41c0-ab43-4630ff2f385f" data-file-name="components/manual-email-modal.tsx">
+                  <button onClick={onPrevious} disabled={currentEmailIndex === 0} className="p-1.5 rounded hover:bg-primary-foreground/10 disabled:opacity-40" data-unique-id="4f5542e9-6e45-43d3-bedf-8d5d36ce1365" data-file-name="components/manual-email-modal.tsx">
                     <ChevronLeft className="h-5 w-5" />
                   </button>
-                  <button onClick={onNext} disabled={currentEmailIndex === totalEmails - 1} className="p-1.5 rounded hover:bg-primary-foreground/10 disabled:opacity-40" data-unique-id="5090851f-ccef-45ae-8886-8d7437c39f08" data-file-name="components/manual-email-modal.tsx">
+                  <button onClick={onNext} disabled={currentEmailIndex === totalEmails - 1} className="p-1.5 rounded hover:bg-primary-foreground/10 disabled:opacity-40" data-unique-id="e5644fe4-0880-450c-98a2-7f0ba8a58c2f" data-file-name="components/manual-email-modal.tsx">
                     <ChevronRight className="h-5 w-5" />
                   </button>
                 </div>
               </div>
               
-              <div className="w-full bg-primary-foreground/20 h-2 mt-3 rounded-full" data-unique-id="396aee2c-8bca-46f7-82ca-421339d14f4b" data-file-name="components/manual-email-modal.tsx">
+              <div className="w-full bg-primary-foreground/20 h-2 mt-3 rounded-full" data-unique-id="69fa0ecb-f4bc-47e0-a44e-f562f2985036" data-file-name="components/manual-email-modal.tsx">
                 <div className="bg-primary-foreground h-2 rounded-full transition-all duration-300" style={{
                 width: `${completionPercentage}%`
-              }} data-unique-id="23cb016b-3f8e-43e8-9d9d-e19b6ec4d2d6" data-file-name="components/manual-email-modal.tsx"></div>
+              }} data-unique-id="69e1e7ec-87de-4f43-8128-c4a740221139" data-file-name="components/manual-email-modal.tsx"></div>
               </div>
             </div>
             
             {/* Modal Content */}
-            <div className="p-6 max-h-[70vh] overflow-y-auto space-y-6" data-unique-id="d343d0be-ad92-4c58-abe0-92577feffd67" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+            <div className="p-6 max-h-[70vh] overflow-y-auto space-y-6" data-unique-id="05c65aea-a066-4ccb-bdf3-6f31258a483f" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
               {/* Recipient information */}
-              <div className="bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="1ed0750e-30bb-4eb5-986a-f169bb124a34" data-file-name="components/manual-email-modal.tsx">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-unique-id="609e62ed-2235-4ff9-8a17-a1f0c1d86f08" data-file-name="components/manual-email-modal.tsx">
-                  <div data-unique-id="03888df4-14b6-47dc-9b9f-745b802edd13" data-file-name="components/manual-email-modal.tsx">
-                    <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="e936e91d-b703-41d5-9f30-54844724e56b" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="444272f8-795c-4a8b-9f1b-a3d987e5765b" data-file-name="components/manual-email-modal.tsx">To:</span></div>
-                    <div className="flex items-center justify-between" data-unique-id="76494f90-697c-4ad0-b356-bb8276350e9d" data-file-name="components/manual-email-modal.tsx">
-                      <div className="text-base" data-unique-id="3ac984ad-a49b-499f-955f-be936e5d2769" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{currentEmail.to}</div>
-                      <button onClick={() => handleCopy(currentEmail.to || '', 'recipient')} className="text-primary p-1.5 rounded hover:bg-accent/20" title="Copy recipient" data-unique-id="55182bf9-810b-445e-8017-b1c4ef5e10be" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+              <div className="bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="e5e35123-1989-427e-be7a-a630ffd687e7" data-file-name="components/manual-email-modal.tsx">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6" data-unique-id="9af822a4-f33d-43cf-8e29-04aea640dab3" data-file-name="components/manual-email-modal.tsx">
+                  <div data-unique-id="a7d36c98-2313-4fea-a506-b0fcb99c5e40" data-file-name="components/manual-email-modal.tsx">
+                    <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="dca38ef3-425b-4a94-805a-6bd359467ef4" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="ed3642bd-ac21-4635-98e4-eb5a7a839d40" data-file-name="components/manual-email-modal.tsx">To:</span></div>
+                    <div className="flex items-center justify-between" data-unique-id="1ac140ac-9dab-4cd1-b6b0-0ef89a9a372e" data-file-name="components/manual-email-modal.tsx">
+                      <div className="text-base" data-unique-id="c8f8af3e-d933-46f3-b4f9-cec5ae4d5192" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{currentEmail.to}</div>
+                      <button onClick={() => handleCopy(currentEmail.to || '', 'recipient')} className="text-primary p-1.5 rounded hover:bg-accent/20" title="Copy recipient" data-unique-id="9b1e3ac5-5e43-4ae3-9fe1-33f61068361f" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                         {copySuccess === 'recipient' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                       </button>
                     </div>
                   </div>
                   
-                  <div data-unique-id="58777e82-0cfa-4f36-bd61-4ee7f358414b" data-file-name="components/manual-email-modal.tsx">
-                    <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="0407bf4c-c0a3-445c-a51c-3599ba6d5e16" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="121b9ae2-50c3-4a62-8d18-c3b63f527c11" data-file-name="components/manual-email-modal.tsx">From:</span></div>
-                    <div className="flex items-center justify-between" data-unique-id="583b2329-87e6-41af-9769-f210f4fd71c6" data-file-name="components/manual-email-modal.tsx">
-                      <div className="text-base" data-unique-id="b5906b0b-18c9-4be3-9cd4-41e414ef1500" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{currentEmail.from}</div>
-                      <button onClick={() => handleCopy(currentEmail.from || '', 'sender')} className="text-primary p-1.5 rounded hover:bg-accent/20" title="Copy sender" data-unique-id="a8b51cdd-f097-4be8-9386-b01086e5a78e" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+                  <div data-unique-id="8888a188-3b38-4d5b-b417-8bef968f06ac" data-file-name="components/manual-email-modal.tsx">
+                    <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="0cd9ead8-cea3-49c0-ad02-81cb1a9ecafa" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="489c8193-2d49-4e3b-b464-02fd26993e91" data-file-name="components/manual-email-modal.tsx">From:</span></div>
+                    <div className="flex items-center justify-between" data-unique-id="43a51ff5-77cc-48e3-8b3c-bcb9ee239631" data-file-name="components/manual-email-modal.tsx">
+                      <div className="text-base" data-unique-id="9f561908-4892-4dd5-9e6f-8fb6a975928b" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{currentEmail.from}</div>
+                      <button onClick={() => handleCopy(currentEmail.from || '', 'sender')} className="text-primary p-1.5 rounded hover:bg-accent/20" title="Copy sender" data-unique-id="3441f037-06ff-43a7-809b-0648e9705da4" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                         {copySuccess === 'sender' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                       </button>
                     </div>
@@ -206,51 +206,51 @@ export function ManualEmailModal({
               </div>
               
               {/* Template selector */}
-              {availableTemplates.length > 0 && <div className="bg-card p-4 rounded-lg shadow-sm border border-border mb-4" data-unique-id="1a61db9d-b38d-4bc9-a59a-06c5076e4df6" data-file-name="components/manual-email-modal.tsx">
-                  <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="0709c700-bae4-48e6-a0e7-41bd5aca6e18" data-file-name="components/manual-email-modal.tsx">
-                    <span className="editable-text" data-unique-id="a86d5756-6184-448a-b61c-85097596c991" data-file-name="components/manual-email-modal.tsx">Email Template:</span>
+              {availableTemplates.length > 0 && <div className="bg-card p-4 rounded-lg shadow-sm border border-border mb-4" data-unique-id="73018f63-6ef8-40dd-b878-d7466c4b7597" data-file-name="components/manual-email-modal.tsx">
+                  <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="d79ef5ca-6593-4eb6-ae63-4a25529705f1" data-file-name="components/manual-email-modal.tsx">
+                    <span className="editable-text" data-unique-id="720e2e34-3b4f-4ae0-8373-c1846980da8f" data-file-name="components/manual-email-modal.tsx">Email Template:</span>
                   </div>
-                  <div className="relative" data-unique-id="741164f2-6d6d-4aea-99f5-a2707e23c486" data-file-name="components/manual-email-modal.tsx">
-                    <select value={currentTemplateId || ''} onChange={e => onSelectTemplate?.(e.target.value)} className="w-full p-2 pr-8 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" disabled={isSent} data-unique-id="0410e4d1-e216-4834-805a-862833ad67c8" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
-                      {availableTemplates.map(template => <option key={template.id} value={template.id} data-unique-id="098c8fd7-d329-4b5d-91cf-e7a6bdfd6799" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{template.name}</option>)}
+                  <div className="relative" data-unique-id="97a0832c-63dd-419a-aa93-5ef7f8f958f0" data-file-name="components/manual-email-modal.tsx">
+                    <select value={currentTemplateId || ''} onChange={e => onSelectTemplate?.(e.target.value)} className="w-full p-2 pr-8 border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/30 bg-background" disabled={isSent} data-unique-id="9eb72e46-cac0-4cbb-b88f-ffe9953e20c0" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+                      {availableTemplates.map(template => <option key={template.id} value={template.id} data-unique-id="fa7449a4-acf5-4d36-9bbb-0292b1f6a3a3" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{template.name}</option>)}
                     </select>
                     <ChevronDown className="absolute right-2 top-1/2 transform -translate-y-1/2 h-4 w-4 pointer-events-none text-muted-foreground" />
                   </div>
                 </div>}
               
               {/* Subject line */}
-              <div className="bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="2b672a1f-0f28-4eeb-a6f0-f13324253d95" data-file-name="components/manual-email-modal.tsx">
-                <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="abce48aa-8ba0-4951-b032-316a2fcdf163" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="77391595-8916-40fc-9a2a-670d04b98a2a" data-file-name="components/manual-email-modal.tsx">Subject:</span></div>
-                <div className="flex items-center justify-between" data-unique-id="77b7710f-15f8-47b4-975c-c7132241f978" data-file-name="components/manual-email-modal.tsx">
-                  <div className="text-base font-medium" data-unique-id="06693b3c-01c2-48a3-8ff8-05028ff5dd4c" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{currentEmail.subject}</div>
-                  <button onClick={() => handleCopy(currentEmail.subject || '', 'subject')} className="text-primary p-1.5 rounded hover:bg-accent/20" title="Copy subject" data-unique-id="f393ba53-e2e9-473e-9686-7abcbaab988d" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+              <div className="bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="a37e4380-8ba2-4675-8a49-b0f0af958da5" data-file-name="components/manual-email-modal.tsx">
+                <div className="text-xs font-medium uppercase text-muted-foreground mb-1" data-unique-id="e71b4c82-c8e8-49c4-996f-28e70d2ec8e3" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="0f473fea-46b4-4486-bf27-3dfcf83f3f1c" data-file-name="components/manual-email-modal.tsx">Subject:</span></div>
+                <div className="flex items-center justify-between" data-unique-id="ca204340-e09f-45b5-a756-d9d41d5f4078" data-file-name="components/manual-email-modal.tsx">
+                  <div className="text-base font-medium" data-unique-id="2f74bacb-7cae-46bd-b266-28673c203aee" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{currentEmail.subject}</div>
+                  <button onClick={() => handleCopy(currentEmail.subject || '', 'subject')} className="text-primary p-1.5 rounded hover:bg-accent/20" title="Copy subject" data-unique-id="330e37d1-6714-4ada-97f8-6c3b80f73110" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                     {copySuccess === 'subject' ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
                   </button>
                 </div>
               </div>
 
               {/* Tracking Numbers */}
-              {currentEmail.customer?.trackingNumber && <div className="bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="81e66729-3187-4880-9ab1-d78b357d4381" data-file-name="components/manual-email-modal.tsx">
-                  <div className="flex items-center justify-between mb-3" data-unique-id="21d3a325-e002-4290-ab3e-04b91a52f45d" data-file-name="components/manual-email-modal.tsx">
-                    <div className="text-xs font-medium uppercase text-muted-foreground flex items-center" data-unique-id="1eb16417-0ddc-497d-b89c-056b2aed5266" data-file-name="components/manual-email-modal.tsx">
+              {currentEmail.customer?.trackingNumber && <div className="bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="cfad2668-fd6e-464d-84db-1e2526965b37" data-file-name="components/manual-email-modal.tsx">
+                  <div className="flex items-center justify-between mb-3" data-unique-id="6ddf3eb9-eedf-4e40-9c2e-a57a0b752af0" data-file-name="components/manual-email-modal.tsx">
+                    <div className="text-xs font-medium uppercase text-muted-foreground flex items-center" data-unique-id="080a4e74-aca6-4c1f-ac93-7178fcbe8f17" data-file-name="components/manual-email-modal.tsx">
                       <Truck className="h-4 w-4 mr-1" />
-                      <span className="editable-text" data-unique-id="84aed712-f1f3-4dc0-8b45-6200f0de1451" data-file-name="components/manual-email-modal.tsx">Tracking Numbers:</span>
+                      <span className="editable-text" data-unique-id="3c10b782-8962-4d22-a3d2-9acca56a415b" data-file-name="components/manual-email-modal.tsx">Tracking Numbers:</span>
                     </div>
                   </div>
-                  <div className="space-y-2" data-unique-id="bfa7d6c7-b277-4dd3-a869-3b6a489c19ce" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+                  <div className="space-y-2" data-unique-id="a3dd029e-5ec4-46df-8a8d-da00f050bc70" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                     {(() => {
                   const trackingNumbers = Array.isArray(currentEmail.customer.trackingNumber) ? currentEmail.customer.trackingNumber : [currentEmail.customer.trackingNumber].filter(Boolean);
-                  return trackingNumbers.map((trackingNum: string, index: number) => <div key={index} className="flex items-center justify-between p-3 bg-accent/10 rounded-md border border-border/50" data-unique-id="94ea7bcf-fbf0-4c06-9211-de2fef2a33db" data-file-name="components/manual-email-modal.tsx">
-                          <div className="flex items-center space-x-3" data-unique-id="4c640363-1e84-4a5d-be85-7766c54c96d0" data-file-name="components/manual-email-modal.tsx">
-                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center" data-unique-id="41d148eb-8487-45b6-8453-46044dbbf228" data-file-name="components/manual-email-modal.tsx">
-                              <Truck className="h-4 w-4 text-primary" data-unique-id="2cf09c7b-6977-4da3-95a3-d938f3d71bdd" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
+                  return trackingNumbers.map((trackingNum: string, index: number) => <div key={index} className="flex items-center justify-between p-3 bg-accent/10 rounded-md border border-border/50" data-unique-id="373a467f-4fc9-4c56-9bc0-82ddd33f1b40" data-file-name="components/manual-email-modal.tsx">
+                          <div className="flex items-center space-x-3" data-unique-id="a31643ce-6a39-46a9-8bad-750f365e040e" data-file-name="components/manual-email-modal.tsx">
+                            <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center" data-unique-id="330230a2-5c36-4ee0-938d-6bb4cdb73a02" data-file-name="components/manual-email-modal.tsx">
+                              <Truck className="h-4 w-4 text-primary" data-unique-id="8e9990da-b0eb-43f0-898f-aab6fae9966d" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
                             </div>
-                            <div data-unique-id="9903daf7-0eb8-4927-88f5-68b05115dba3" data-file-name="components/manual-email-modal.tsx">
-                              <div className="font-medium text-sm" data-unique-id="26ab3ec8-e252-4525-ad17-cd66dbb21e56" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{trackingNum}</div>
-                              <div className="text-xs text-muted-foreground" data-unique-id="316dcd82-2e7d-405d-a1cd-f7722f428cb8" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="becbe3a9-ef9e-4337-bffe-5fe2de906d4e" data-file-name="components/manual-email-modal.tsx">FedEx Tracking</span></div>
+                            <div data-unique-id="e573a84e-332d-43df-99f3-33ecf9c38c10" data-file-name="components/manual-email-modal.tsx">
+                              <div className="font-medium text-sm" data-unique-id="6d5d1016-e0fc-465c-bf1d-c77128bce854" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{trackingNum}</div>
+                              <div className="text-xs text-muted-foreground" data-unique-id="a86d78f1-d0c6-4d08-93ad-4e9b5d450b00" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="81407665-38e8-4f59-88de-41fc97fc8355" data-file-name="components/manual-email-modal.tsx">FedEx Tracking</span></div>
                             </div>
                           </div>
-                          <div className="flex items-center space-x-2" data-unique-id="32a65e8e-9336-445a-8255-7a143507fce7" data-file-name="components/manual-email-modal.tsx">
+                          <div className="flex items-center space-x-2" data-unique-id="77a1e549-650e-4dfa-b601-8d2957f93919" data-file-name="components/manual-email-modal.tsx">
                             <button onClick={e => {
                         e.stopPropagation();
                         try {
@@ -294,15 +294,15 @@ export function ManualEmailModal({
                           }
                           document.body.removeChild(textArea);
                         }
-                      }} className="p-2 rounded-full hover:bg-accent/20 transition-colors flex items-center justify-center" title="Copy tracking number" data-unique-id="274b48be-7809-4d92-b4cd-46218f2ebdb1" data-file-name="components/manual-email-modal.tsx">
-                              <Copy className="h-4 w-4 text-primary" data-unique-id="6b8f7295-4a72-494d-a561-6e2226ab88a4" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
+                      }} className="p-2 rounded-full hover:bg-accent/20 transition-colors flex items-center justify-center" title="Copy tracking number" data-unique-id="11f4a1f7-9438-4fd5-a3b5-b4c9dc798e1d" data-file-name="components/manual-email-modal.tsx">
+                              <Copy className="h-4 w-4 text-primary" data-unique-id="e2651888-aa27-4e80-8903-f8b935c2a505" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
                             </button>
                             <button onClick={e => {
                         e.stopPropagation();
                         const trackingUrl = `https://www.fedex.com/apps/fedextrack/?tracknumbers=${trackingNum}`;
                         window.open(trackingUrl, '_blank', 'noopener,noreferrer');
-                      }} className="p-2 rounded-full hover:bg-accent/20 transition-colors flex items-center justify-center" title="Open FedEx tracking" data-unique-id="fed260c4-c92e-4941-b180-97c77abbc315" data-file-name="components/manual-email-modal.tsx">
-                              <ExternalLink className="h-4 w-4 text-blue-600" data-unique-id="d9cd804f-3bc6-48ba-8aa7-6471076c0ed5" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
+                      }} className="p-2 rounded-full hover:bg-accent/20 transition-colors flex items-center justify-center" title="Open FedEx tracking" data-unique-id="4b8d0ceb-e086-4155-9dc4-dc1a1b4b5bc1" data-file-name="components/manual-email-modal.tsx">
+                              <ExternalLink className="h-4 w-4 text-blue-600" data-unique-id="20046cde-8d3a-4db0-8d3e-76e6fdae33b5" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
                             </button>
                             <button onClick={e => {
                         e.stopPropagation();
@@ -350,8 +350,8 @@ export function ManualEmailModal({
                           }
                           document.body.removeChild(textArea);
                         }
-                      }} className="px-2 py-1 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded text-xs text-blue-700 transition-colors" title="Copy FedEx tracking link" data-unique-id="3a001183-77f5-4688-b733-3fe0bffbb9b3" data-file-name="components/manual-email-modal.tsx">
-                              <Copy className="h-3 w-3 mr-1" data-unique-id="c1336ef8-1b5d-4025-bce9-ed8692083bf1" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" /><span className="editable-text" data-unique-id="8c6b4686-32a2-4dcd-ab7d-833cd9d85c8e" data-file-name="components/manual-email-modal.tsx">
+                      }} className="px-2 py-1 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded text-xs text-blue-700 transition-colors" title="Copy FedEx tracking link" data-unique-id="a1753e6f-d968-41fa-bf21-37fd1a957e3c" data-file-name="components/manual-email-modal.tsx">
+                              <Copy className="h-3 w-3 mr-1" data-unique-id="72ebc0a1-80bf-4f50-b104-5d79b74942fb" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" /><span className="editable-text" data-unique-id="0490299c-7961-4ce8-ab06-1adea66a6f98" data-file-name="components/manual-email-modal.tsx">
                               Copy Link
                             </span></button>
                           </div>
@@ -361,22 +361,22 @@ export function ManualEmailModal({
                 </div>}
               
               {/* Email content */}
-              <div className="bg-white dark:bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="e51306bc-4dde-4801-922b-d36d4cffa2a4" data-file-name="components/manual-email-modal.tsx">
-                <div className="flex items-center justify-between mb-3" data-unique-id="eaad07b2-5a26-4dbf-806c-77cbd7da8e11" data-file-name="components/manual-email-modal.tsx">
-                  <div className="text-xs font-medium uppercase text-muted-foreground" data-unique-id="bb432767-4d63-4a0c-8794-087b65fa5253" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="b8f912f0-0959-4ea5-9235-1d2451027843" data-file-name="components/manual-email-modal.tsx">Email Content:</span></div>
-                  <div className="flex items-center space-x-2" data-unique-id="e7e6a8ea-02d2-4e29-918c-51d2972d2d14" data-file-name="components/manual-email-modal.tsx">
-                    <button onClick={() => handleCopy(currentEmail.content || '', 'content')} className="flex items-center text-xs text-primary p-1.5 px-2.5 rounded hover:bg-accent/20" title="Copy plain text content" data-unique-id="dda8523e-c427-4ddf-98ab-e6646530cf3e" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+              <div className="bg-white dark:bg-card p-4 rounded-lg shadow-sm border border-border" data-unique-id="1a9ca75b-aae1-4cd6-8310-b0e2b7620c94" data-file-name="components/manual-email-modal.tsx">
+                <div className="flex items-center justify-between mb-3" data-unique-id="f8e51560-fcb4-462a-9bde-3237d9e5f224" data-file-name="components/manual-email-modal.tsx">
+                  <div className="text-xs font-medium uppercase text-muted-foreground" data-unique-id="e750807e-d164-490b-92f1-2db6b3a5305d" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="1d975efe-b39e-439a-9597-0b8bcd64495f" data-file-name="components/manual-email-modal.tsx">Email Content:</span></div>
+                  <div className="flex items-center space-x-2" data-unique-id="a51cd534-7a94-4075-8788-a069c5e96b63" data-file-name="components/manual-email-modal.tsx">
+                    <button onClick={() => handleCopy(currentEmail.content || '', 'content')} className="flex items-center text-xs text-primary p-1.5 px-2.5 rounded hover:bg-accent/20" title="Copy plain text content" data-unique-id="55f781f7-d88f-4d46-8bde-aeb2b5f88d0e" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                       {copySuccess === 'content' ? <><Check className="h-3 w-3 mr-1.5" />Copied!</> : <><Copy className="h-3 w-3 mr-1.5" />Copy Text</>}
                     </button>
                     
-                    <button onClick={() => handleCopy(currentEmail.html || '', 'html')} className="flex items-center text-xs text-primary p-1.5 px-2.5 rounded hover:bg-accent/20" title="Copy HTML content" data-unique-id="046ce31a-b959-4122-a901-5c3d40534656" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+                    <button onClick={() => handleCopy(currentEmail.html || '', 'html')} className="flex items-center text-xs text-primary p-1.5 px-2.5 rounded hover:bg-accent/20" title="Copy HTML content" data-unique-id="6a8de375-7008-48cb-9f58-4b72388fdcab" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                       {copySuccess === 'html' ? <><Check className="h-3 w-3 mr-1.5" />Copied!</> : <><Copy className="h-3 w-3 mr-1.5" />Copy HTML</>}
                     </button>
                   </div>
                 </div>
                 
-                <div className="border border-border rounded-lg p-5 max-h-80 overflow-y-auto bg-accent/5 dark:bg-card/60" data-unique-id="dbbd6b84-d2d3-4574-9ce7-7008eb80158c" data-file-name="components/manual-email-modal.tsx">
-                  <div className="whitespace-pre-wrap text-base" data-unique-id="a02c1733-1923-42b9-820c-8c2d863f3b31" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+                <div className="border border-border rounded-lg p-5 max-h-80 overflow-y-auto bg-accent/5 dark:bg-card/60" data-unique-id="2705bee7-6487-4cfb-8371-da70b82b111c" data-file-name="components/manual-email-modal.tsx">
+                  <div className="whitespace-pre-wrap text-base" data-unique-id="d7c91055-798b-4d3d-b7df-e587a7c180c5" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                     {currentEmail.content.split('\n').map((line, i) => {
                     // Make tracking numbers clickable
                     if (line.includes('Tracking Number:') || line.includes('trackingNumber')) {
@@ -392,8 +392,8 @@ export function ManualEmailModal({
 
                         // Add the tracking number as a clickable link with copy buttons
                         const trackingNum = match[0];
-                        parts.push(<span key={`${i}-${match.index}`} className="inline-flex items-center" data-unique-id="89caa373-4fb7-44fe-9155-32c12a949beb" data-file-name="components/manual-email-modal.tsx">
-                        <a href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${trackingNum}`} target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium" data-unique-id="a543287b-c2e4-40ea-8878-92a8f5731584" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+                        parts.push(<span key={`${i}-${match.index}`} className="inline-flex items-center" data-unique-id="dac1cbfb-f154-4d0d-a7df-cbe473669b3d" data-file-name="components/manual-email-modal.tsx">
+                        <a href={`https://www.fedex.com/apps/fedextrack/?tracknumbers=${trackingNum}`} target="_blank" rel="noopener noreferrer" className="text-primary underline font-medium" data-unique-id="a5a88bcf-c416-4a2e-b22b-422e43e71c70" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                           {trackingNum}
                         </a>
                         <button onClick={e => {
@@ -437,8 +437,8 @@ export function ManualEmailModal({
                               }
                               document.body.removeChild(textArea);
                             }
-                          }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy tracking number" data-unique-id="6ed24768-9af3-4024-9400-a7fd2f851a8c" data-file-name="components/manual-email-modal.tsx">
-                          <Copy className="h-3 w-3 text-primary" data-unique-id="3d4b5827-7579-4882-86ad-c99e0bedebc4" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
+                          }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy tracking number" data-unique-id="c6506836-1cec-4345-a42f-6884571e60fb" data-file-name="components/manual-email-modal.tsx">
+                          <Copy className="h-3 w-3 text-primary" data-unique-id="5216084f-958a-4712-80a4-4e7c275881a4" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
                         </button>
                         <button onClick={e => {
                             e.stopPropagation();
@@ -484,9 +484,9 @@ export function ManualEmailModal({
                               }
                               document.body.removeChild(textArea);
                             }
-                          }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy FedEx link" data-unique-id="3e8d772a-6d10-48ce-b32b-439c56eabef6" data-file-name="components/manual-email-modal.tsx">
-                          <svg className="h-3 w-3 text-[#4D148C]" viewBox="0 0 24 24" fill="currentColor" data-unique-id="d1a7ad40-1ba5-48d6-ae6d-1f34d9237301" data-file-name="components/manual-email-modal.tsx">
-                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 5a3 3 0 11-3 3 3 3 0 013-3zm0 11.13c-2.03-.31-3.88-1.47-5.14-3.13h10.28c-1.26 1.66-3.11 2.82-5.14 3.13z" data-unique-id="c836b257-127d-422a-9b10-0bde3f267a54" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
+                          }} className="ml-1 p-0.5 rounded-full hover:bg-accent/20 inline-flex" title="Copy FedEx link" data-unique-id="6575f3df-1c6b-4120-8807-8a26e8afdb64" data-file-name="components/manual-email-modal.tsx">
+                          <svg className="h-3 w-3 text-[#4D148C]" viewBox="0 0 24 24" fill="currentColor" data-unique-id="98499477-69b3-4b56-9054-e0a814570f3e" data-file-name="components/manual-email-modal.tsx">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 5a3 3 0 11-3 3 3 3 0 013-3zm0 11.13c-2.03-.31-3.88-1.47-5.14-3.13h10.28c-1.26 1.66-3.11 2.82-5.14 3.13z" data-unique-id="9a07458d-403b-4f78-a367-582ce34d8454" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
                           </svg>
                         </button>
                       </span>);
@@ -495,21 +495,21 @@ export function ManualEmailModal({
 
                       // Add any remaining text
                       parts.push(line.substring(lastIndex));
-                      return <div key={i} className="mb-3" data-unique-id="3451f24f-9a53-4a91-aa3f-1be5a9d34db0" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{parts}</div>;
+                      return <div key={i} className="mb-3" data-unique-id="adfb7341-a5bc-4519-a383-f90a8d027a95" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{parts}</div>;
                     }
                     // Make survey link clickable
                     else if (line.includes('https://feed-back-dax.netlify.app')) {
-                      return <div key={i} className="mb-3 p-2 bg-blue-50 dark:bg-blue-900/30 rounded border border-blue-200 dark:border-blue-800" data-unique-id="168a5a30-0f46-4f59-aa46-5999bc94ea60" data-file-name="components/manual-email-modal.tsx">
-                        <div className="font-medium mb-1 text-blue-700 dark:text-blue-300" data-unique-id="2b30e6ea-7ab6-41bd-b68d-e1a1f1625470" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="6009012f-15fe-4448-bd37-6c205832710f" data-file-name="components/manual-email-modal.tsx">Customer Feedback Survey</span></div>
-                        <div data-unique-id="d34f23e8-bd19-4e2a-bfbe-78e68afd65da" data-file-name="components/manual-email-modal.tsx">
-                          <a href="https://feed-back-dax.netlify.app" target="_blank" rel="noopener noreferrer" className="text-primary underline flex items-center" data-unique-id="38fdabf7-e521-4095-aa1c-6bf85eed2a1f" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+                      return <div key={i} className="mb-3 p-2 bg-blue-50 dark:bg-blue-900/30 rounded border border-blue-200 dark:border-blue-800" data-unique-id="3a848c84-5954-4250-9e75-419070782198" data-file-name="components/manual-email-modal.tsx">
+                        <div className="font-medium mb-1 text-blue-700 dark:text-blue-300" data-unique-id="f909c89f-d1f8-4d4a-a063-81137d34747c" data-file-name="components/manual-email-modal.tsx"><span className="editable-text" data-unique-id="82637d0b-1300-41ed-9c80-a931ef999a64" data-file-name="components/manual-email-modal.tsx">Customer Feedback Survey</span></div>
+                        <div data-unique-id="eeed51ed-c31d-4609-b00c-0e9758c1b90d" data-file-name="components/manual-email-modal.tsx">
+                          <a href="https://feed-back-dax.netlify.app" target="_blank" rel="noopener noreferrer" className="text-primary underline flex items-center" data-unique-id="b598d2d5-2bde-4221-9721-f517d43645bb" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                             {line}
-                            <ExternalLink className="h-3.5 w-3.5 ml-1" data-unique-id="5c418758-0ab2-4845-908c-18814322adf1" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
+                            <ExternalLink className="h-3.5 w-3.5 ml-1" data-unique-id="87558fee-4e03-4421-835c-5a5e7dd84b3d" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true" />
                           </a>
                         </div>
                       </div>;
                     }
-                    return <div key={i} className={line.trim() === "" ? "h-4" : "mb-3"} data-unique-id="5201258f-d293-42c0-a069-607e6099e1bb" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{line}</div>;
+                    return <div key={i} className={line.trim() === "" ? "h-4" : "mb-3"} data-unique-id="dd269cc8-d3df-4f4c-ad36-30617946cf6c" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">{line}</div>;
                   })}
                   </div>
                 </div>
@@ -517,13 +517,13 @@ export function ManualEmailModal({
             </div>
             
             {/* Modal Footer */}
-            <div className="p-6 border-t border-border flex items-center justify-between" data-unique-id="9e1387a7-bd6b-4fba-a85c-71df997cb3ba" data-file-name="components/manual-email-modal.tsx">
-              <button onClick={onOpenInEmailClient} className="flex items-center px-4 py-2.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" data-unique-id="53738e7c-bc3a-4206-93b0-ae2542fb5589" data-file-name="components/manual-email-modal.tsx">
-                <ExternalLink className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="31bf6294-9736-41c1-ba1a-a6d5d4799700" data-file-name="components/manual-email-modal.tsx">
+            <div className="p-6 border-t border-border flex items-center justify-between" data-unique-id="90a58a25-e35a-4fd8-bd69-b934da8e79e2" data-file-name="components/manual-email-modal.tsx">
+              <button onClick={onOpenInEmailClient} className="flex items-center px-4 py-2.5 bg-secondary text-secondary-foreground rounded-md hover:bg-secondary/90 transition-colors" data-unique-id="d273ec6c-399d-4c73-a47f-0710f650b306" data-file-name="components/manual-email-modal.tsx">
+                <ExternalLink className="mr-2 h-4 w-4" /><span className="editable-text" data-unique-id="82a8a9fb-974c-468e-889f-282514b760c8" data-file-name="components/manual-email-modal.tsx">
                 Open in Email Client
               </span></button>
               
-              <button onClick={onMarkAsSent} disabled={isSent} className={`flex items-center px-5 py-2.5 rounded-md transition-colors ${isSent ? "bg-green-100 text-green-700 cursor-default dark:bg-green-900/30 dark:text-green-400" : "bg-primary text-primary-foreground hover:bg-primary/90"}`} data-unique-id="3fe341e8-f42e-468d-8c1d-f851c8c512e7" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
+              <button onClick={onMarkAsSent} disabled={isSent} className={`flex items-center px-5 py-2.5 rounded-md transition-colors ${isSent ? "bg-green-100 text-green-700 cursor-default dark:bg-green-900/30 dark:text-green-400" : "bg-primary text-primary-foreground hover:bg-primary/90"}`} data-unique-id="676269fd-0564-416a-8246-4910dc07c213" data-file-name="components/manual-email-modal.tsx" data-dynamic-text="true">
                 {isSent ? <>
                     <Check className="mr-2 h-4 w-4" />
                     Marked as Sent

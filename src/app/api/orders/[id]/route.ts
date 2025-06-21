@@ -83,43 +83,8 @@ export async function PUT(
       updatedOrder.updatedAt = new Date();
     }
     
-    // Update shipping address
-    if (body.shippingAddress && updatedOrder.shippingAddress) {
-      const {
-        shipToName,
-        shipToPhone,
-        shipToEmail,
-        shipToLine1,
-        shipToLine2,
-        shipToCity,
-        shipToStateProvince,
-        shipToPostalCode,
-        shipToCountry
-      } = body.shippingAddress;
-      
-      if (shipToName !== undefined) updatedOrder.shippingAddress.shipToName = shipToName;
-      if (shipToPhone !== undefined) updatedOrder.shippingAddress.shipToPhone = shipToPhone;
-      if (shipToEmail !== undefined) updatedOrder.shippingAddress.shipToEmail = shipToEmail;
-      if (shipToLine1 !== undefined) updatedOrder.shippingAddress.shipToLine1 = shipToLine1;
-      if (shipToCity !== undefined) updatedOrder.shippingAddress.shipToCity = shipToCity;
-      if (shipToStateProvince !== undefined) updatedOrder.shippingAddress.shipToStateProvince = shipToStateProvince;
-      if (shipToPostalCode !== undefined) updatedOrder.shippingAddress.shipToPostalCode = shipToPostalCode;
-      if (shipToCountry !== undefined) updatedOrder.shippingAddress.shipToCountry = shipToCountry;
-    }
-    
-    // Update tracking information
-    if (body.tracking && Array.isArray(body.tracking)) {
-      // Replace tracking info
-      updatedOrder.tracking = body.tracking.map(track => ({
-        id: track.id || Date.now() + Math.floor(Math.random() * 1000),
-        orderId: id,
-        trackingNumber: track.trackingNumber,
-        carrier: track.carrier || 'FedEx',
-        trackingUrl: track.trackingUrl || `https://www.fedex.com/apps/fedextrack/?tracknumbers=${track.trackingNumber}`,
-        status: track.status || null,
-        lastUpdated: new Date()
-      }));
-    }
+    // Note: Order schema doesn't include shippingAddress or tracking as nested properties
+    // These would need to be handled separately if needed
     
     // Save the updated order
     const result = orderStorage.update(id, updatedOrder);

@@ -137,40 +137,40 @@ export default function ExcelImporter({
   }} animate={{
     opacity: 1,
     y: 0
-  }} className="bg-card border border-border rounded-lg p-6 shadow-md" data-unique-id="b48213bf-c57a-43c5-9c70-c8549f7e67dd" data-file-name="components/excel-importer.tsx" data-dynamic-text="true">
-      <div className="flex items-center mb-4" data-unique-id="2f00d489-db0e-4e60-a67f-1bfa6d4c98eb" data-file-name="components/excel-importer.tsx">
+  }} className="bg-card border border-border rounded-lg p-6 shadow-md" data-unique-id="01c911e2-6742-474c-a8cb-62fb80b78f47" data-file-name="components/excel-importer.tsx" data-dynamic-text="true">
+      <div className="flex items-center mb-4" data-unique-id="1825f6eb-b8e9-4641-9eca-1f124c7d8d45" data-file-name="components/excel-importer.tsx">
         <FileSpreadsheet className="h-5 w-5 text-primary mr-2" />
-        <h3 className="text-lg font-medium" data-unique-id="53fe4fc4-54e7-42d4-86cd-183f790fa482" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="b47a2a12-634b-4f2b-a225-7cdd5086e9a3" data-file-name="components/excel-importer.tsx">Import Excel Data</span></h3>
+        <h3 className="text-lg font-medium" data-unique-id="a36bcd7b-403b-4770-9447-fc004eff8840" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="5148bb5d-3769-4989-9f1d-27f6324e7bd8" data-file-name="components/excel-importer.tsx">Import Excel Data</span></h3>
       </div>
 
       {/* File Upload Area */}
-      <div className="mb-4" data-unique-id="b111c9bc-be51-442d-9346-d674469ee270" data-file-name="components/excel-importer.tsx">
-        <input ref={fileInputRef} type="file" accept=".xlsx,.xls" onChange={handleFileUpload} className="hidden" disabled={isImporting} data-unique-id="bd876b6e-c487-4868-a7bb-5e4cf9d9c2e7" data-file-name="components/excel-importer.tsx" />
+      <div className="mb-4" data-unique-id="c6f53ca2-f8d9-4f10-9edb-dd0f5839b586" data-file-name="components/excel-importer.tsx">
+        <input ref={fileInputRef} type="file" accept=".xlsx,.xls" onChange={handleFileUpload} className="hidden" disabled={isImporting} data-unique-id="a1683f29-000a-49fa-82ea-e19c27bb0135" data-file-name="components/excel-importer.tsx" />
         
-        <div onClick={() => fileInputRef.current?.click()} className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${isImporting ? 'border-gray-300 bg-gray-50 cursor-not-allowed' : 'border-primary/30 hover:border-primary/50 hover:bg-primary/5'}`} data-unique-id="1fe212b4-030e-4ced-b2d6-e1d956b83474" data-file-name="components/excel-importer.tsx" data-dynamic-text="true">
-          {isImporting ? <div className="flex flex-col items-center" data-unique-id="067008af-4d0e-426f-bd29-8f804a9c8767" data-file-name="components/excel-importer.tsx">
-              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mb-2" data-unique-id="af5e80ad-9ad4-44ba-a032-be43665372f2" data-file-name="components/excel-importer.tsx"></div>
-              <p className="text-sm text-muted-foreground" data-unique-id="4b9740fc-d85c-4667-af9b-75f25f06aaea" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="a332cb71-edb6-456e-a7f9-eb41731ebd1b" data-file-name="components/excel-importer.tsx">Processing Excel file...</span></p>
-            </div> : <div className="flex flex-col items-center" data-unique-id="0f54467b-2cb3-46cf-8d8e-6757c5a8be2b" data-file-name="components/excel-importer.tsx">
+        <div onClick={() => fileInputRef.current?.click()} className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${isImporting ? 'border-gray-300 bg-gray-50 cursor-not-allowed' : 'border-primary/30 hover:border-primary/50 hover:bg-primary/5'}`} data-unique-id="06db254b-65a0-41d6-99d9-84a48860bb6d" data-file-name="components/excel-importer.tsx" data-dynamic-text="true">
+          {isImporting ? <div className="flex flex-col items-center" data-unique-id="a89509a1-35ea-4d23-a648-cb0fca99b793" data-file-name="components/excel-importer.tsx">
+              <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin mb-2" data-unique-id="82d7feb1-1b19-4e47-b347-7b305d5e6fe1" data-file-name="components/excel-importer.tsx"></div>
+              <p className="text-sm text-muted-foreground" data-unique-id="87b6c47c-172b-45b2-b060-85f413869317" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="85b96990-95c0-431e-a9ec-7e9150322ea6" data-file-name="components/excel-importer.tsx">Processing Excel file...</span></p>
+            </div> : <div className="flex flex-col items-center" data-unique-id="7be4c57b-ad51-435c-85e7-d1e778fe4944" data-file-name="components/excel-importer.tsx">
               <Upload className="h-8 w-8 text-primary mb-2" />
-              <p className="text-sm font-medium mb-1" data-unique-id="e1f5a0c6-2aa5-4c77-9917-2638d078edca" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="6d08d7b0-7926-4d9a-91fc-4df524429c86" data-file-name="components/excel-importer.tsx">Click to upload Excel file</span></p>
-              <p className="text-xs text-muted-foreground" data-unique-id="bee8b50a-e0e5-48c4-b870-98964fdde528" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="2f205007-c343-4be8-8165-5ece92c2e3a4" data-file-name="components/excel-importer.tsx">Supports .xlsx and .xls files</span></p>
+              <p className="text-sm font-medium mb-1" data-unique-id="c84e9c1b-be4e-42aa-b7ae-0f63c75f9752" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="d2b3b94f-f498-444d-968f-6fbcd8ed8b91" data-file-name="components/excel-importer.tsx">Click to upload Excel file</span></p>
+              <p className="text-xs text-muted-foreground" data-unique-id="526d8e9d-b911-47d0-8c2f-19da9689b9ae" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="5340201e-d700-4e99-9854-2773b3a1b0c5" data-file-name="components/excel-importer.tsx">Supports .xlsx and .xls files</span></p>
             </div>}
         </div>
       </div>
 
       {/* Expected Format */}
-      <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg" data-unique-id="4c924aa7-afc9-4c18-ae7b-6abfac17ae84" data-file-name="components/excel-importer.tsx">
-        <h4 className="text-sm font-medium text-blue-800 mb-2" data-unique-id="36b03e40-ba84-4a67-8bfc-c6e0380a3c29" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="ac54c7f6-ab79-48ef-b4af-dbfe4e8ed6d2" data-file-name="components/excel-importer.tsx">Expected Excel Columns:</span></h4>
-        <div className="text-xs text-blue-700 grid grid-cols-2 gap-1" data-unique-id="8e176cd1-6313-466e-b6f6-13e98cf52972" data-file-name="components/excel-importer.tsx">
-          <span data-unique-id="5bc15356-0727-4ad8-bb37-75cfbd374acd" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="f08f8afb-6e94-471e-bc3a-cc4f6c7fecc0" data-file-name="components/excel-importer.tsx">• Customer</span></span>
-          <span data-unique-id="4c5b4fba-75a4-438a-b5f6-8a576e5b07e8" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="7430525e-95f2-4cf2-804c-f0681e53c3c5" data-file-name="components/excel-importer.tsx">• Date</span></span>
-          <span data-unique-id="0fe7191b-0157-42e2-816b-63cb0cfdd6e1" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="d470617a-6d24-40cf-9c0a-ca5d6f354c79" data-file-name="components/excel-importer.tsx">• Push/Pull</span></span>
-          <span data-unique-id="cb9e596b-53bf-4f79-97b8-88843d51cb0b" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="fa064f43-3346-4dd1-b6c8-601c71856c71" data-file-name="components/excel-importer.tsx">• Notes</span></span>
-          <span data-unique-id="a39b2ff2-82bc-4b65-91a5-9a7b6bf3d958" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="cd8af405-c315-44c0-889e-2c4c3e2d8d9b" data-file-name="components/excel-importer.tsx">• Team</span></span>
-          <span data-unique-id="361edb33-3a0b-4e44-886f-33978bbce5d0" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="b20f89ee-d22b-40cc-a7a3-ae43bf6a5a74" data-file-name="components/excel-importer.tsx">• Owner</span></span>
-          <span data-unique-id="96e3d6e1-6d43-4eb7-bff5-5cb4939e8ac6" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="905089fa-467c-4253-97ab-f46eccb8fa42" data-file-name="components/excel-importer.tsx">• Progress</span></span>
-          <span data-unique-id="bbfbe6a1-b6ad-44aa-920d-6047b95f3873" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="51b7f2f1-138b-48d1-aa00-2e93745c76cd" data-file-name="components/excel-importer.tsx">• Type</span></span>
+      <div className="mb-4 p-4 bg-blue-50 border border-blue-200 rounded-lg" data-unique-id="9156667e-ec3d-4d42-ae5a-bf54c15f9b9c" data-file-name="components/excel-importer.tsx">
+        <h4 className="text-sm font-medium text-blue-800 mb-2" data-unique-id="2c70d8a5-9557-487b-ba27-e0271366f8cc" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="764e7fbb-cef3-4f22-943e-d39ddf08101b" data-file-name="components/excel-importer.tsx">Expected Excel Columns:</span></h4>
+        <div className="text-xs text-blue-700 grid grid-cols-2 gap-1" data-unique-id="3fa1513b-cf49-43f0-953c-bee3972eb469" data-file-name="components/excel-importer.tsx">
+          <span data-unique-id="18232dc1-c844-4041-893c-9671ea5a5f3d" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="7c69e17a-fbab-4ed0-8c43-56939038dbba" data-file-name="components/excel-importer.tsx">• Customer</span></span>
+          <span data-unique-id="43fbd2de-da0a-4bca-865d-39816c18f8d6" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="d3bb5602-0bcc-48dd-b533-6811cac0036d" data-file-name="components/excel-importer.tsx">• Date</span></span>
+          <span data-unique-id="7f5ea494-eeec-4aa3-91ee-aeb0df6fd7c1" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="1db9634c-3d10-4d3c-bb40-a383ca96422e" data-file-name="components/excel-importer.tsx">• Push/Pull</span></span>
+          <span data-unique-id="801dbba5-0f8b-4f07-9cf1-1ba038b4c800" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="b237bf7a-ff97-4de4-a8be-8d5922bd2584" data-file-name="components/excel-importer.tsx">• Notes</span></span>
+          <span data-unique-id="db6bce41-de7e-47bb-8cd3-d0cb1ae52f90" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="20544144-c110-4a0f-b5f1-c103b837f3a9" data-file-name="components/excel-importer.tsx">• Team</span></span>
+          <span data-unique-id="063475d7-0252-4f69-99d6-d612a74693fa" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="f973e6fa-3e50-4f99-8970-402aa8c2c649" data-file-name="components/excel-importer.tsx">• Owner</span></span>
+          <span data-unique-id="8ca9483a-1fd5-4a9a-a0ef-a5a079848fee" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="a4acedf1-d356-49a4-a0e2-9f4061519c81" data-file-name="components/excel-importer.tsx">• Progress</span></span>
+          <span data-unique-id="5fa3b256-fa6d-41a1-9d93-98d17ab7f2f2" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="e76db2bd-b829-443d-92ad-ee745f46035b" data-file-name="components/excel-importer.tsx">• Type</span></span>
         </div>
       </div>
 
@@ -181,9 +181,9 @@ export default function ExcelImporter({
     }} animate={{
       opacity: 1,
       scale: 1
-    }} className="flex items-center p-3 bg-green-50 text-green-700 rounded-lg border border-green-200" data-unique-id="0b38feb5-c129-4856-a449-20ad59bc86be" data-file-name="components/excel-importer.tsx">
+    }} className="flex items-center p-3 bg-green-50 text-green-700 rounded-lg border border-green-200" data-unique-id="40afba28-b3dd-4e73-ac9c-b90d931e38e9" data-file-name="components/excel-importer.tsx">
           <CheckCircle className="h-4 w-4 mr-2" />
-          <span className="text-sm" data-unique-id="df11e8a9-a3f6-49b7-b0a2-d2f14b02060e" data-file-name="components/excel-importer.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="b3705b2e-094b-4da9-ad84-6de55bc06b0c" data-file-name="components/excel-importer.tsx">Successfully imported </span>{importedCount}<span className="editable-text" data-unique-id="9399c806-6b98-4c72-97d1-cbe938fc4cd8" data-file-name="components/excel-importer.tsx"> entries!</span></span>
+          <span className="text-sm" data-unique-id="51674099-f242-4692-9e49-025463d1073f" data-file-name="components/excel-importer.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="924873ca-057f-4e08-b0c1-656ed1f098a2" data-file-name="components/excel-importer.tsx">Successfully imported </span>{importedCount}<span className="editable-text" data-unique-id="99958c15-fa6c-4889-a870-9ed75c50435e" data-file-name="components/excel-importer.tsx"> entries!</span></span>
         </motion.div>}
 
       {importStatus === 'error' && <motion.div initial={{
@@ -192,11 +192,11 @@ export default function ExcelImporter({
     }} animate={{
       opacity: 1,
       scale: 1
-    }} className="flex items-start p-3 bg-red-50 text-red-700 rounded-lg border border-red-200" data-unique-id="15556c71-9207-4972-89ef-3a7a63177f99" data-file-name="components/excel-importer.tsx">
+    }} className="flex items-start p-3 bg-red-50 text-red-700 rounded-lg border border-red-200" data-unique-id="a8204859-4336-42b4-bb03-11a0c7688667" data-file-name="components/excel-importer.tsx">
           <AlertCircle className="h-4 w-4 mr-2 mt-0.5 flex-shrink-0" />
-          <div className="text-sm" data-unique-id="2ba23247-23d7-41f2-9ebc-06e756a36559" data-file-name="components/excel-importer.tsx">
-            <p className="font-medium" data-unique-id="f80a9cc8-bfc8-443b-afd2-0583ce315bb1" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="c0bda761-7329-40a4-84c9-1528f9688ecc" data-file-name="components/excel-importer.tsx">Import Failed</span></p>
-            <p data-unique-id="0455393e-abc2-4b0d-97b3-3731fda2bf60" data-file-name="components/excel-importer.tsx" data-dynamic-text="true">{errorMessage}</p>
+          <div className="text-sm" data-unique-id="3c45c0eb-9cf7-404f-a1e3-29723c109cc4" data-file-name="components/excel-importer.tsx">
+            <p className="font-medium" data-unique-id="2f3525b3-47a8-4cd3-91bf-ab0cea7ffe80" data-file-name="components/excel-importer.tsx"><span className="editable-text" data-unique-id="d310d816-cedc-4f00-98b8-887fb8592937" data-file-name="components/excel-importer.tsx">Import Failed</span></p>
+            <p data-unique-id="0adf4109-0ed8-4e97-8a00-0b446fb668fa" data-file-name="components/excel-importer.tsx" data-dynamic-text="true">{errorMessage}</p>
           </div>
         </motion.div>}
     </motion.div>;

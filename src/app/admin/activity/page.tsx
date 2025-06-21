@@ -66,21 +66,21 @@ export default function ActivityLogsPage() {
     link.click();
     document.body.removeChild(link);
   };
-  return <div className="space-y-6" data-unique-id="77ff77c7-af1f-4c1a-9071-1f507bddec84" data-file-name="app/admin/activity/page.tsx">
-      <div className="flex justify-between items-center" data-unique-id="99f5529b-d8c5-43a5-9129-0815feb9327d" data-file-name="app/admin/activity/page.tsx">
-        <h1 className="text-3xl font-bold text-white flex items-center gap-3" data-unique-id="7d2efc15-92b9-48c3-9eb2-d53c5a29c391" data-file-name="app/admin/activity/page.tsx">
-          <Activity className="h-8 w-8 text-indigo-400" /><span className="editable-text" data-unique-id="10df06e8-21e3-4a07-af00-3ce89a162fc9" data-file-name="app/admin/activity/page.tsx">
+  return <div className="space-y-6" data-unique-id="189ed3e0-0ccd-4d76-8534-ef3bbe491a61" data-file-name="app/admin/activity/page.tsx">
+      <div className="flex justify-between items-center" data-unique-id="373fa9a9-303c-4ff5-8804-c7cea8da551d" data-file-name="app/admin/activity/page.tsx">
+        <h1 className="text-3xl font-bold text-white flex items-center gap-3" data-unique-id="172969a9-4550-492b-9997-fe19ba7c13ff" data-file-name="app/admin/activity/page.tsx">
+          <Activity className="h-8 w-8 text-indigo-400" /><span className="editable-text" data-unique-id="26f2801f-4fb0-4760-9121-bc9384287ecd" data-file-name="app/admin/activity/page.tsx">
           User Activity Logs
         </span></h1>
         
-        <div className="flex gap-2" data-unique-id="21da1105-1b13-4438-a1bd-cfb81164048a" data-file-name="app/admin/activity/page.tsx">
-          <button onClick={() => fetchAllLogs()} className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md flex items-center" data-unique-id="dd15af6b-69d8-44b0-97cd-d854ede77e6a" data-file-name="app/admin/activity/page.tsx">
-            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} /><span className="editable-text" data-unique-id="04a4228d-7b90-4759-95f9-57c9393cedca" data-file-name="app/admin/activity/page.tsx">
+        <div className="flex gap-2" data-unique-id="7dc76a3d-5131-4255-95d4-335f8e685bf5" data-file-name="app/admin/activity/page.tsx">
+          <button onClick={() => fetchAllLogs()} className="px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-md flex items-center" data-unique-id="da642553-cd5d-4bcd-8f3d-e446abfc09ec" data-file-name="app/admin/activity/page.tsx">
+            <RefreshCw className={`h-4 w-4 mr-2 ${isLoading ? 'animate-spin' : ''}`} /><span className="editable-text" data-unique-id="20b172a5-ccec-4be3-9da4-5d52cbf8af95" data-file-name="app/admin/activity/page.tsx">
             Refresh
           </span></button>
           
-          <button onClick={exportLogs} className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md flex items-center" data-unique-id="803fa2eb-81dd-429d-8fc9-ed6f5a72d442" data-file-name="app/admin/activity/page.tsx">
-            <Download className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="3780d323-4246-49c9-8e73-96eefbbaa48f" data-file-name="app/admin/activity/page.tsx">
+          <button onClick={exportLogs} className="px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded-md flex items-center" data-unique-id="a0770732-4b89-4502-a7fd-dea8da4db6d8" data-file-name="app/admin/activity/page.tsx">
+            <Download className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="14cbd12a-2c18-450c-8fac-2610148341b2" data-file-name="app/admin/activity/page.tsx">
             Export CSV
           </span></button>
           
@@ -88,72 +88,72 @@ export default function ActivityLogsPage() {
           if (window.confirm('Are you sure you want to clear all logs? This action cannot be undone.')) {
             clearLogs();
           }
-        }} className="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center" data-unique-id="c1cc8b63-c882-4a2f-a7cb-70a28701d507" data-file-name="app/admin/activity/page.tsx">
-            <Trash2 className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="9617e74d-e5da-4ee4-b696-915f0c95b214" data-file-name="app/admin/activity/page.tsx">
+        }} className="px-3 py-2 bg-red-600 hover:bg-red-700 text-white rounded-md flex items-center" data-unique-id="93d51a99-4c41-4fbe-acd8-1ee08c070350" data-file-name="app/admin/activity/page.tsx">
+            <Trash2 className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="5f2ccf20-ea3e-4046-85bd-9841781ed92c" data-file-name="app/admin/activity/page.tsx">
             Clear Logs
           </span></button>
         </div>
       </div>
       
-      <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="500b57aa-ff61-4f9c-b611-3b2b8c6b2c10" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-        <div className="flex flex-wrap gap-4 mb-6" data-unique-id="6a4ce02b-bf08-4599-bbff-5f61007bdf09" data-file-name="app/admin/activity/page.tsx">
-          <div className="flex-1" data-unique-id="7f59e599-e30e-40cf-bdd0-353ef5925d7b" data-file-name="app/admin/activity/page.tsx">
-            <div className="relative" data-unique-id="a034b551-dca8-4b7d-ba9d-e61aa454d521" data-file-name="app/admin/activity/page.tsx">
+      <div className="bg-gray-800 rounded-xl p-6 shadow-xl" data-unique-id="67ea7bc9-f02b-497b-b797-8645ba2ccb0c" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+        <div className="flex flex-wrap gap-4 mb-6" data-unique-id="074791fc-d323-49e1-bc2b-67406e8ece37" data-file-name="app/admin/activity/page.tsx">
+          <div className="flex-1" data-unique-id="7c92f33d-f3e1-49ad-ba4a-73143a483bcb" data-file-name="app/admin/activity/page.tsx">
+            <div className="relative" data-unique-id="09a8c396-ae8e-48be-88f4-283e29615daa" data-file-name="app/admin/activity/page.tsx">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-5 w-5" />
               <input type="text" value={searchTerm} onChange={e => {
               setSearchTerm(e.target.value);
               setCurrentPage(1);
-            }} placeholder="Search logs by action, user, or details..." className="w-full pl-10 pr-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" data-unique-id="2acc0826-6b6c-4335-a2e0-49c40c9ca884" data-file-name="app/admin/activity/page.tsx" />
+            }} placeholder="Search logs by action, user, or details..." className="w-full pl-10 pr-4 py-2.5 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent" data-unique-id="caf63814-6a55-4890-b4cf-ccbd4b4638ca" data-file-name="app/admin/activity/page.tsx" />
             </div>
           </div>
           
-          <div className="flex gap-2" data-unique-id="963b052e-b6a3-4a75-83fd-e83b4fce87d9" data-file-name="app/admin/activity/page.tsx">
-            <div className="w-48" data-unique-id="9ca16c86-bf68-4e72-be4b-3434f54a5094" data-file-name="app/admin/activity/page.tsx">
-              <div className="flex items-center bg-gray-700 border border-gray-600 rounded-lg overflow-hidden" data-unique-id="81623f96-a529-411d-b3fd-f7ae83b3a277" data-file-name="app/admin/activity/page.tsx">
+          <div className="flex gap-2" data-unique-id="cb7077c0-4266-48e2-8769-496839f15cd6" data-file-name="app/admin/activity/page.tsx">
+            <div className="w-48" data-unique-id="8184e993-a65f-4054-9e1f-d586ed80eeae" data-file-name="app/admin/activity/page.tsx">
+              <div className="flex items-center bg-gray-700 border border-gray-600 rounded-lg overflow-hidden" data-unique-id="c0b5bc84-c524-4404-b487-17f165af8c3c" data-file-name="app/admin/activity/page.tsx">
                 <Filter className="ml-3 text-gray-400 h-4 w-4" />
                 <select value={filter} onChange={e => {
                 setFilter(e.target.value);
                 setCurrentPage(1);
-              }} className="w-full bg-transparent text-white py-2.5 pl-2 pr-8 appearance-none focus:outline-none" data-unique-id="5ff1dcdb-ed28-408a-ad30-1cbdf04bc766" data-file-name="app/admin/activity/page.tsx">
-                  <option value="all" data-unique-id="5d3e81d8-8f25-4b43-a522-7f30d896154f" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="352e25a2-13cf-4801-8b86-ec4882d44104" data-file-name="app/admin/activity/page.tsx">All Activities</span></option>
-                  <option value="email" data-unique-id="013b945e-2728-453b-806c-46b8b01abc99" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="f95d0aeb-8d6d-4f42-ba16-49708c2a36a0" data-file-name="app/admin/activity/page.tsx">Email Activities</span></option>
-                  <option value="order" data-unique-id="d9071045-8dd3-4eff-8725-05f4b68ced54" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="471d028c-e46f-4f83-b869-a03aabc0d486" data-file-name="app/admin/activity/page.tsx">Order Activities</span></option>
-                  <option value="user" data-unique-id="4b7a8faf-0f95-4af4-84a5-e44082cd2f05" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="b553a345-4e88-4446-ace0-1d6240fbd264" data-file-name="app/admin/activity/page.tsx">User Activities</span></option>
-                  <option value="auth" data-unique-id="89b9a189-30fc-4347-9e2e-98192bf9d406" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="6b43bcb2-1c44-443e-a34f-103965918a10" data-file-name="app/admin/activity/page.tsx">Authentication</span></option>
+              }} className="w-full bg-transparent text-white py-2.5 pl-2 pr-8 appearance-none focus:outline-none" data-unique-id="5c77e30d-57ca-4d12-b375-1e26c373b249" data-file-name="app/admin/activity/page.tsx">
+                  <option value="all" data-unique-id="c93192aa-e1d8-4f97-ba10-8e0d5af3b966" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="fad6a645-9211-423f-be98-2e548f40c4ee" data-file-name="app/admin/activity/page.tsx">All Activities</span></option>
+                  <option value="email" data-unique-id="d02630b7-9d64-47d2-86f0-bab4e27c36f7" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="69e31c0a-9147-40fb-a62f-d6c7c7ab39cc" data-file-name="app/admin/activity/page.tsx">Email Activities</span></option>
+                  <option value="order" data-unique-id="9b91d194-9241-471a-b92e-86345f9f1ebb" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="c8a94e7f-e4e1-4fd4-8914-c0c350d1a4aa" data-file-name="app/admin/activity/page.tsx">Order Activities</span></option>
+                  <option value="user" data-unique-id="9f516457-c47d-4b65-bddb-b1d866abfaf9" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="9b8bb402-a999-40b4-b30b-bc3f50fc3f3d" data-file-name="app/admin/activity/page.tsx">User Activities</span></option>
+                  <option value="auth" data-unique-id="7f6b114d-9eaf-4cc7-a815-e3604b7af640" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="e1aec35b-168e-4910-829c-8fc30ad309f8" data-file-name="app/admin/activity/page.tsx">Authentication</span></option>
                 </select>
               </div>
             </div>
           </div>
         </div>
         
-        {isLoading ? <div className="flex flex-col items-center justify-center py-12" data-unique-id="0c0256fe-23fe-4766-8487-76a2b23126de" data-file-name="app/admin/activity/page.tsx">
+        {isLoading ? <div className="flex flex-col items-center justify-center py-12" data-unique-id="e8e0a8e5-d07f-4092-9176-537388a4842e" data-file-name="app/admin/activity/page.tsx">
             <RefreshCw className="h-12 w-12 animate-spin text-indigo-500 mb-4" />
-            <p className="text-gray-400" data-unique-id="f7eebd1e-009a-4605-a9c5-38a533d9d187" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="94900486-7da7-4719-a9c0-540cecff5f88" data-file-name="app/admin/activity/page.tsx">Loading activity logs...</span></p>
+            <p className="text-gray-400" data-unique-id="7f33aa60-4e75-401d-a575-2e53b1e76376" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="64915c9a-3d6e-4138-a1c2-86a07d3f24da" data-file-name="app/admin/activity/page.tsx">Loading activity logs...</span></p>
           </div> : paginatedLogs.length > 0 ? <>
-            <div className="overflow-x-auto" data-unique-id="e0e92bc3-0078-4191-a740-d62694818375" data-file-name="app/admin/activity/page.tsx">
-              <table className="min-w-full bg-gray-800 rounded-lg overflow-hidden" data-unique-id="59cea8f1-8943-411f-a755-f3d984685136" data-file-name="app/admin/activity/page.tsx">
-                <thead className="bg-gray-700" data-unique-id="e72e452b-3257-4367-adc5-c96c397dd2b4" data-file-name="app/admin/activity/page.tsx">
-                  <tr data-unique-id="9fe82c68-52d4-4b5b-8474-4111aafac70c" data-file-name="app/admin/activity/page.tsx">
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="a7769a53-536d-4633-984b-1360a7691263" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="5c1c2d57-8fb8-41e7-bd73-064df9da829f" data-file-name="app/admin/activity/page.tsx">User</span></th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="14836b1a-00d4-43cd-9984-c620edb14e19" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="cd6fbb8c-feae-42fa-a626-26de2c1a54b4" data-file-name="app/admin/activity/page.tsx">Action</span></th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="3c764836-f0b1-44b2-a96b-fdb3191781bf" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="87efcbcb-1d6b-45f3-a982-44c254b68703" data-file-name="app/admin/activity/page.tsx">Details</span></th>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="efede2b8-ffa5-49ec-91f1-67edc4d90ff8" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="e68edf0b-ecd7-4486-a79f-82416c96c920" data-file-name="app/admin/activity/page.tsx">Timestamp</span></th>
+            <div className="overflow-x-auto" data-unique-id="ae4b2d08-56b9-4655-8529-df95bfb3949f" data-file-name="app/admin/activity/page.tsx">
+              <table className="min-w-full bg-gray-800 rounded-lg overflow-hidden" data-unique-id="abfeef14-2f87-4caa-9780-8d5e7ddb0db0" data-file-name="app/admin/activity/page.tsx">
+                <thead className="bg-gray-700" data-unique-id="b0d0d998-c7df-47ed-9f62-de8de031c7df" data-file-name="app/admin/activity/page.tsx">
+                  <tr data-unique-id="b571925c-5d7c-424d-8904-26a065334ff6" data-file-name="app/admin/activity/page.tsx">
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="402b3961-d380-479d-aa67-5c1754112ed0" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="d49324ed-8a0b-43e5-a953-533bf7fbbfbe" data-file-name="app/admin/activity/page.tsx">User</span></th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="4b7db908-6bfb-4fbb-82d2-af59448e7c99" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="a2a5c27b-42a3-4a4e-a9fc-875a64b2e3a1" data-file-name="app/admin/activity/page.tsx">Action</span></th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="06118e14-0cfb-447f-9222-23b02f029352" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="e07fb5c7-1782-4d8f-80fa-1a31f23d6908" data-file-name="app/admin/activity/page.tsx">Details</span></th>
+                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-300 uppercase tracking-wider" data-unique-id="1bf50e99-55df-47aa-9256-143958cd189d" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="b3c8acce-8a21-42f4-ac11-5be779d94dc6" data-file-name="app/admin/activity/page.tsx">Timestamp</span></th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-700" data-unique-id="ecfdd3a5-783b-43db-a9c5-d0facf41d0b2" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-                  {paginatedLogs.map((log, index) => <ActivityLogRow key={log.id || index} log={log} data-unique-id="5271f697-ac23-4eec-b214-39b9465bdfdc" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true" />)}
+                <tbody className="divide-y divide-gray-700" data-unique-id="174ee930-4987-4b28-81d0-7c1b57b92c2c" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+                  {paginatedLogs.map((log, index) => <ActivityLogRow key={log.id || index} log={log} data-unique-id="dae9ecc6-6b39-4e51-9c6b-d54ee72a6a2d" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true" />)}
                 </tbody>
               </table>
             </div>
             
             {/* Pagination */}
-            <div className="flex items-center justify-between mt-6" data-unique-id="d4dd7101-ee3c-4ad2-83cc-4e76ef9ba9fa" data-file-name="app/admin/activity/page.tsx">
-              <div className="text-sm text-gray-400" data-unique-id="db09fa4c-d4df-4b12-ac9a-60a4a2b8d409" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="61b7ca12-4bc8-4947-9312-b10ce98a7cea" data-file-name="app/admin/activity/page.tsx">
-                Showing </span>{(currentPage - 1) * itemsPerPage + 1}<span className="editable-text" data-unique-id="98b50294-d490-4a70-8cb8-6af20647d609" data-file-name="app/admin/activity/page.tsx"> to </span>{Math.min(currentPage * itemsPerPage, filteredLogs.length)}<span className="editable-text" data-unique-id="d994b866-9cd4-4e82-a256-189e6c57bc3a" data-file-name="app/admin/activity/page.tsx"> of </span>{filteredLogs.length}<span className="editable-text" data-unique-id="7d30b601-bb91-48e1-b5a1-d0ad4cc0042a" data-file-name="app/admin/activity/page.tsx"> logs
+            <div className="flex items-center justify-between mt-6" data-unique-id="a86cee24-2826-4c0e-9f78-bd95c0fbb0f6" data-file-name="app/admin/activity/page.tsx">
+              <div className="text-sm text-gray-400" data-unique-id="7d9052c4-4744-4d97-9dff-cdd8d319eedb" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true"><span className="editable-text" data-unique-id="cf51c513-90a1-43f6-8e80-353e3613bc6b" data-file-name="app/admin/activity/page.tsx">
+                Showing </span>{(currentPage - 1) * itemsPerPage + 1}<span className="editable-text" data-unique-id="bfde6da5-9cc7-46c7-a785-c513c8e354a9" data-file-name="app/admin/activity/page.tsx"> to </span>{Math.min(currentPage * itemsPerPage, filteredLogs.length)}<span className="editable-text" data-unique-id="6601f06e-4ad5-4a62-b6b8-b62507296b9b" data-file-name="app/admin/activity/page.tsx"> of </span>{filteredLogs.length}<span className="editable-text" data-unique-id="b18f2492-feae-42b2-a193-fce5a7a19122" data-file-name="app/admin/activity/page.tsx"> logs
               </span></div>
               
-              <div className="flex gap-2" data-unique-id="14a7e752-a9a8-450f-af1f-a1e82644f9db" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className="p-2 bg-gray-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="5749bf07-a364-40bd-b16a-14ea1845afae" data-file-name="app/admin/activity/page.tsx">
+              <div className="flex gap-2" data-unique-id="010897c8-7836-4bf1-85ce-50ac7f7b80e3" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+                <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1} className="p-2 bg-gray-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="04dac934-52f7-49de-983b-6ef5f8d3d6f7" data-file-name="app/admin/activity/page.tsx">
                   <ChevronLeft className="h-5 w-5 text-gray-300" />
                 </button>
                 
@@ -172,20 +172,20 @@ export default function ActivityLogsPage() {
                 pageNum = currentPage - 2 + i;
               }
               if (pageNum > totalPages) return null;
-              return <button key={pageNum} onClick={() => handlePageChange(pageNum)} className={`w-10 h-10 rounded-md ${currentPage === pageNum ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`} data-unique-id="9827e1ab-8bcb-485d-99cd-7ec232a6b8dd" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+              return <button key={pageNum} onClick={() => handlePageChange(pageNum)} className={`w-10 h-10 rounded-md ${currentPage === pageNum ? 'bg-indigo-600 text-white' : 'bg-gray-700 text-gray-300 hover:bg-gray-600'}`} data-unique-id="bba3290b-58ea-49f5-90a2-4b1fecf14646" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
                       {pageNum}
                     </button>;
             })}
                 
-                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className="p-2 bg-gray-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="93d4bf29-60f4-47a2-9a05-947b9de11964" data-file-name="app/admin/activity/page.tsx">
+                <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages} className="p-2 bg-gray-700 rounded-md disabled:opacity-50 disabled:cursor-not-allowed" data-unique-id="168c188b-9c57-4106-a394-0c833054a284" data-file-name="app/admin/activity/page.tsx">
                   <ChevronRight className="h-5 w-5 text-gray-300" />
                 </button>
               </div>
             </div>
-          </> : <div className="flex flex-col items-center justify-center py-12" data-unique-id="46378b40-f08b-4eab-9094-4866f7a9fabc" data-file-name="app/admin/activity/page.tsx">
+          </> : <div className="flex flex-col items-center justify-center py-12" data-unique-id="2e36772f-dc88-4cb0-9448-f588b31bf091" data-file-name="app/admin/activity/page.tsx">
             <AlertCircle className="h-12 w-12 text-gray-500 mb-4" />
-            <p className="text-gray-400 mb-2" data-unique-id="e1790150-6741-4a22-b418-58f514527347" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="22c40f0f-0bb4-4a2f-a562-539f42bb24e9" data-file-name="app/admin/activity/page.tsx">No activity logs found</span></p>
-            <p className="text-gray-500 text-sm" data-unique-id="bf0ad72a-a612-4651-94eb-9f9725f1f5df" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="788d0986-c1e3-4efe-9dfc-1c70465ccb96" data-file-name="app/admin/activity/page.tsx">Try adjusting your search terms or filters</span></p>
+            <p className="text-gray-400 mb-2" data-unique-id="14013072-133e-4035-b5e5-f3e6ec67b141" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="38e0f365-163e-4e2b-886b-d7426a4ded28" data-file-name="app/admin/activity/page.tsx">No activity logs found</span></p>
+            <p className="text-gray-500 text-sm" data-unique-id="c3e87a9e-bbea-40ca-bdb8-1572a02033d9" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="3398735d-e1f4-43ab-a235-55e20c36af42" data-file-name="app/admin/activity/page.tsx">Try adjusting your search terms or filters</span></p>
           </div>}
       </div>
     </div>;
@@ -208,29 +208,29 @@ function ActivityLogRow({
     opacity: 1
   }} transition={{
     duration: 0.3
-  }} className="hover:bg-gray-700/50 cursor-pointer" onClick={() => hasDetails && setExpanded(!expanded)} data-unique-id="8aa39faf-b372-4b36-b062-c35cf07cca18" data-file-name="app/admin/activity/page.tsx">
-      <td className="px-6 py-4 whitespace-nowrap" data-unique-id="7c70ff9f-efed-458f-a790-654f22a54839" data-file-name="app/admin/activity/page.tsx">
-        <div className="flex items-center" data-unique-id="b55058b8-952d-4bcf-b25f-54cb543fed92" data-file-name="app/admin/activity/page.tsx">
-          <div className="h-8 w-8 rounded-full bg-indigo-700/20 flex items-center justify-center mr-3" data-unique-id="04792aea-ecb9-4db9-9fa9-ceb7d63a010e" data-file-name="app/admin/activity/page.tsx">
+  }} className="hover:bg-gray-700/50 cursor-pointer" onClick={() => hasDetails && setExpanded(!expanded)} data-unique-id="aad267da-55b3-4816-ae2d-6d2008704b7d" data-file-name="app/admin/activity/page.tsx">
+      <td className="px-6 py-4 whitespace-nowrap" data-unique-id="92ebadf8-bae4-43b6-ae5c-8e801394028d" data-file-name="app/admin/activity/page.tsx">
+        <div className="flex items-center" data-unique-id="4c282708-531e-4838-8219-7c81622ed807" data-file-name="app/admin/activity/page.tsx">
+          <div className="h-8 w-8 rounded-full bg-indigo-700/20 flex items-center justify-center mr-3" data-unique-id="bec31d72-8799-4d83-a268-af64f04dc553" data-file-name="app/admin/activity/page.tsx">
             <User className="h-4 w-4 text-indigo-400" />
           </div>
-          <div data-unique-id="2c3a853f-23cb-4fdb-a77d-b2ae2cfac1d2" data-file-name="app/admin/activity/page.tsx">
-            <div className="text-sm font-medium text-white" data-unique-id="f4ae22e2-c379-4bbb-bba1-34a3efff0af6" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+          <div data-unique-id="5e9a839f-47d7-48cf-a7dc-ba09468786cb" data-file-name="app/admin/activity/page.tsx">
+            <div className="text-sm font-medium text-white" data-unique-id="bf254217-907a-4c66-be05-bc6e748fe017" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
               {log.user_email || 'Anonymous'}
             </div>
-            <div className="text-xs text-gray-400" data-unique-id="0954de89-fdc1-458b-82db-be3e696c564b" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+            <div className="text-xs text-gray-400" data-unique-id="bfc87f94-f36d-4114-90f0-761f85fd1810" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
               {log.user_id || 'No ID'}
             </div>
           </div>
         </div>
       </td>
-      <td className="px-6 py-4" data-unique-id="9676c0fc-222c-405b-bcd7-b8e700dd8268" data-file-name="app/admin/activity/page.tsx">
-        <div className="text-sm text-white" data-unique-id="b63388d3-051f-42a6-99d0-24e2d12fa3ec" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">{log.action}</div>
+      <td className="px-6 py-4" data-unique-id="2dcf5e7e-e953-4359-b891-50e603b9d717" data-file-name="app/admin/activity/page.tsx">
+        <div className="text-sm text-white" data-unique-id="16b3dcef-7e6a-4acb-ad0f-74dc0be10f48" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">{log.action}</div>
       </td>
-      <td className="px-6 py-4" data-unique-id="25e4dc80-c579-4958-9f21-4d7d03ac61d4" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-        {hasDetails ? <div className="text-sm" data-unique-id="8a6a8b7f-a2ec-42ba-88c2-8955961a0963" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-            <button className="text-indigo-400 hover:text-indigo-300 flex items-center" data-unique-id="e0db8898-637c-4d11-8c8e-46efda53858f" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-              {expanded ? 'Hide' : 'Show'}<span className="editable-text" data-unique-id="cbb633ad-cb78-4cff-ac23-26132fc65211" data-file-name="app/admin/activity/page.tsx"> Details
+      <td className="px-6 py-4" data-unique-id="f19db4b0-2b96-4990-8085-10254b4df1c6" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+        {hasDetails ? <div className="text-sm" data-unique-id="1d9b028e-9220-4b7e-a52d-87cd3bf0d9e4" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+            <button className="text-indigo-400 hover:text-indigo-300 flex items-center" data-unique-id="1dec84a6-b2de-479b-8726-6a7cfb9bc7f6" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+              {expanded ? 'Hide' : 'Show'}<span className="editable-text" data-unique-id="d602b500-3eee-4806-9f1b-5c29515a3a81" data-file-name="app/admin/activity/page.tsx"> Details
             </span></button>
             
             {expanded && <motion.div initial={{
@@ -242,19 +242,19 @@ function ActivityLogRow({
         }} exit={{
           opacity: 0,
           height: 0
-        }} className="mt-2 bg-gray-900/50 p-3 rounded text-xs text-gray-300 max-w-lg" data-unique-id="04f1138c-0575-4129-a972-645bac4668d1" data-file-name="app/admin/activity/page.tsx">
-                <div className="space-y-1" data-unique-id="460b17d5-a762-403e-83e0-23c054eb42ca" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-                  {Object.entries(log.details).map(([key, value]) => <div key={key} data-unique-id="a0985c31-f15f-4f74-8d28-168df2bdaef0" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-                      <span className="text-gray-400" data-unique-id="87d32d94-98b1-454d-9e1c-37e43f435b88" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">{key}<span className="editable-text" data-unique-id="7d89669e-f647-4ea5-ac9c-a0552aa89e55" data-file-name="app/admin/activity/page.tsx">: </span></span>
+        }} className="mt-2 bg-gray-900/50 p-3 rounded text-xs text-gray-300 max-w-lg" data-unique-id="88ded845-f306-4269-9495-5f341c6b3e1f" data-file-name="app/admin/activity/page.tsx">
+                <div className="space-y-1" data-unique-id="bdfee578-f552-4876-a8b3-743ddb6c0467" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+                  {Object.entries(log.details).map(([key, value]) => <div key={key} data-unique-id="11b9de31-9523-4aea-8f30-6d2fa4f1dd9a" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+                      <span className="text-gray-400" data-unique-id="9b6601d0-cf32-4841-ac69-148c5a4494e6" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">{key}<span className="editable-text" data-unique-id="18188a05-1218-4cd0-958f-b9f984e31829" data-file-name="app/admin/activity/page.tsx">: </span></span>
                       {typeof value === 'object' ? JSON.stringify(value) : String(value)}
                     </div>)}
                 </div>
               </motion.div>}
-          </div> : <span className="text-sm text-gray-500" data-unique-id="5c021f06-bd8f-4d6c-b1be-1e2864eb05f6" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="0d27a1dc-d184-4c6e-89e7-4db10e5f4bff" data-file-name="app/admin/activity/page.tsx">No details available</span></span>}
+          </div> : <span className="text-sm text-gray-500" data-unique-id="fcc3d07d-4734-4da6-8ae7-20ebd7b10858" data-file-name="app/admin/activity/page.tsx"><span className="editable-text" data-unique-id="d8201949-2622-4a82-a65d-54f56b28b01d" data-file-name="app/admin/activity/page.tsx">No details available</span></span>}
       </td>
-      <td className="px-6 py-4 whitespace-nowrap" data-unique-id="afe50452-4575-41de-8514-b3ae97690bfb" data-file-name="app/admin/activity/page.tsx">
-        <div className="flex items-center text-sm text-gray-300" data-unique-id="b84906d2-9ef6-4730-b71a-0d531694e000" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
-          <Calendar className="h-4 w-4 mr-2 text-gray-400" data-unique-id="1455d264-9ec9-4ba5-835a-6b505f54f887" data-file-name="app/admin/activity/page.tsx" />
+      <td className="px-6 py-4 whitespace-nowrap" data-unique-id="96c772a8-8060-41b6-a584-d7e6efe6e826" data-file-name="app/admin/activity/page.tsx">
+        <div className="flex items-center text-sm text-gray-300" data-unique-id="3d60a29c-7a9a-42e8-bdd4-b763276795fd" data-file-name="app/admin/activity/page.tsx" data-dynamic-text="true">
+          <Calendar className="h-4 w-4 mr-2 text-gray-400" data-unique-id="9e8d8b8f-8209-4651-8ce1-c2aa5ce24cfc" data-file-name="app/admin/activity/page.tsx" />
           {formattedDate}
         </div>
       </td>

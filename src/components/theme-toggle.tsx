@@ -15,7 +15,7 @@ export function ThemeToggle() {
     setMounted(true);
   }, []);
   if (!mounted) {
-    return <div className="w-9 h-9" data-unique-id="671c45b7-2c40-4d49-b2b7-aff48869f1c1" data-file-name="components/theme-toggle.tsx"></div>;
+    return <div className="w-9 h-9" data-unique-id="d95ccfdf-4cc9-4ace-9aaf-78cf6fc06450" data-file-name="components/theme-toggle.tsx"></div>;
   }
   const handleToggle = () => {
     if (theme === 'light') {
@@ -51,14 +51,14 @@ export function ThemeToggle() {
       }
     }
   };
-  return <div className="relative" data-unique-id="d1451a40-fd36-48d4-b70b-aeeaa7e507dc" data-file-name="components/theme-toggle.tsx">
+  return <div className="relative" data-unique-id="40ba9f8d-745b-40f0-9a25-821ac882f9cd" data-file-name="components/theme-toggle.tsx">
       <motion.button id="theme-toggle-button" whileTap={{
       scale: 0.85
     }} whileHover={{
       scale: 1.05
-    }} onClick={handleToggle} className={`w-9 h-9 flex items-center justify-center rounded-md border ${resolvedTheme === 'dark' ? 'border-slate-700' : 'border-border'} bg-background text-foreground hover:bg-accent transition-all duration-300 relative overflow-hidden shadow-md hover:shadow-lg`} title={`Current theme: ${theme}. Click to switch.`} aria-label={`Switch theme, current theme is ${theme}`} data-unique-id="a147af9a-078f-4211-8712-b15dda88b1ff" data-file-name="components/theme-toggle.tsx">
+    }} onClick={handleToggle} className={`w-9 h-9 flex items-center justify-center rounded-md border ${resolvedTheme === 'dark' ? 'border-slate-700' : 'border-border'} bg-background text-foreground hover:bg-accent transition-all duration-300 relative overflow-hidden shadow-md hover:shadow-lg`} title={`Current theme: ${theme}. Click to switch.`} aria-label={`Switch theme, current theme is ${theme}`} data-unique-id="50e71e9d-bb75-4bc6-ab29-d4be1f2af86f" data-file-name="components/theme-toggle.tsx">
         <AnimatePresence mode="wait">
-          <motion.div key={theme} initial="hidden" animate="visible" exit="exit" variants={variants} className="absolute" data-unique-id="35f6e223-91db-48b0-afce-6ba1ea829bf0" data-file-name="components/theme-toggle.tsx" data-dynamic-text="true">
+          <motion.div key={theme} initial="hidden" animate="visible" exit="exit" variants={variants} className="absolute" data-unique-id="09ed5f7e-688b-4949-9a72-a5e8bfc1307c" data-file-name="components/theme-toggle.tsx" data-dynamic-text="true">
             {theme === 'dark' ? <Moon size={18} /> : theme === 'light' ? <Sun size={18} /> : <Laptop size={18} />}
           </motion.div>
         </AnimatePresence>

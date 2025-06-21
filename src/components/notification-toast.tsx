@@ -113,7 +113,7 @@ export default function NotificationToast({
         };
     }
   };
-  return <div className="fixed top-4 right-4 z-50 space-y-2 max-w-sm" data-unique-id="ab30386e-6af1-41c1-a76a-43416a44a5a2" data-file-name="components/notification-toast.tsx">
+  return <div className="fixed top-4 right-4 z-50 space-y-2 max-w-sm" data-unique-id="b0f28fa2-26f7-4505-a24f-dd0423a45402" data-file-name="components/notification-toast.tsx">
       <AnimatePresence>
         {visibleNotifications.map(notification => {
         const styles = getNotificationStyles(notification.priority);
@@ -133,26 +133,26 @@ export default function NotificationToast({
           type: 'spring',
           stiffness: 300,
           damping: 30
-        }} className={`${styles.bg} border rounded-lg shadow-lg p-4 backdrop-blur-sm`} data-unique-id="4ce621bf-cc77-476e-b926-16ad4dd9214f" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
-              <div className="flex items-start space-x-3" data-unique-id="39cd46e9-ee08-4a57-8688-ae85b610d9d6" data-file-name="components/notification-toast.tsx">
-                <div className={`${styles.icon} mt-0.5`} data-unique-id="b7ee84ad-9291-4b3f-8864-326b7f65ec77" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
+        }} className={`${styles.bg} border rounded-lg shadow-lg p-4 backdrop-blur-sm`} data-unique-id="75162b11-a26d-4ad1-9d77-410586026775" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
+              <div className="flex items-start space-x-3" data-unique-id="7e53b14d-38e4-4dfd-800c-b9c5071ee377" data-file-name="components/notification-toast.tsx">
+                <div className={`${styles.icon} mt-0.5`} data-unique-id="14a12943-f234-4dd1-bfb6-cc883cbe54d1" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
                   {getNotificationIcon(notification.type)}
                 </div>
                 
-                <div className="flex-1 min-w-0" data-unique-id="190a8475-f908-41ee-ade0-a6f4b596174a" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
-                  <h4 className={`text-sm font-semibold ${styles.title}`} data-unique-id="900549d2-2a9b-4d76-a632-bfadd2545f18" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
+                <div className="flex-1 min-w-0" data-unique-id="4bbca45e-a053-4c2e-bdb7-7166c12de202" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
+                  <h4 className={`text-sm font-semibold ${styles.title}`} data-unique-id="1857a980-682c-4217-9251-2d82200477a5" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
                     {notification.title}
                   </h4>
-                  <p className={`text-sm mt-1 ${styles.message}`} data-unique-id="b873114b-7156-447f-960f-a65538b7aa4b" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
+                  <p className={`text-sm mt-1 ${styles.message}`} data-unique-id="41ac092d-9fa7-4d89-9e3b-8f82a22d5227" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
                     {notification.message}
                   </p>
                   
-                  {notification.action && <button onClick={notification.action.onClick} className={`text-xs font-medium mt-2 px-2 py-1 rounded ${styles.button} transition-colors`} data-unique-id="4d7a2875-0629-4b0d-a0e5-a5a84e313caf" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
+                  {notification.action && <button onClick={notification.action.onClick} className={`text-xs font-medium mt-2 px-2 py-1 rounded ${styles.button} transition-colors`} data-unique-id="dff52a4d-7672-4221-ae20-2fe417872c55" data-file-name="components/notification-toast.tsx" data-dynamic-text="true">
                       {notification.action.label}
                     </button>}
                 </div>
                 
-                <button onClick={() => onRemove(notification.id)} className={`p-1 rounded-full ${styles.button} transition-colors`} data-unique-id="6b9a8c71-e3dd-4140-ab73-4690bec558ed" data-file-name="components/notification-toast.tsx">
+                <button onClick={() => onRemove(notification.id)} className={`p-1 rounded-full ${styles.button} transition-colors`} data-unique-id="0bf7350d-3e87-494d-9ac3-b48d95da115c" data-file-name="components/notification-toast.tsx">
                   <X className="h-4 w-4" />
                 </button>
               </div>
@@ -165,8 +165,8 @@ export default function NotificationToast({
           }} transition={{
             duration: (notification.duration || getDurationByPriority(notification.priority)) / 1000,
             ease: 'linear'
-          }} data-unique-id="75b98fcc-d9e7-4826-a3cc-aa0e7c71ef23" data-file-name="components/notification-toast.tsx">
-                <div className={`h-full ${styles.icon.replace('text-', 'bg-')} opacity-60`} data-unique-id="10ab8a34-c65c-43b5-8486-1e8ae6bc10c3" data-file-name="components/notification-toast.tsx" />
+          }} data-unique-id="d59278f9-7618-4c86-b7aa-cfba46353b3e" data-file-name="components/notification-toast.tsx">
+                <div className={`h-full ${styles.icon.replace('text-', 'bg-')} opacity-60`} data-unique-id="1fe6ff57-4550-4ed9-8be9-d9dcec8069b1" data-file-name="components/notification-toast.tsx" />
               </motion.div>
             </motion.div>;
       })}

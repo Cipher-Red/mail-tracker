@@ -13,7 +13,7 @@ export default function AITemplateGenerator({
 }: AITemplateGeneratorProps) {
   const [isGenerating, setIsGenerating] = useState(false);
   const [prompt, setPrompt] = useState('');
-  const [selectedModel, setSelectedModel] = useState('gemini-2.0-flash-exp');
+  const [selectedModel, setSelectedModel] = useState('claude-bedrock');
   const [generatedTemplate, setGeneratedTemplate] = useState<TemplateData | null>(null);
   const availableModels = getTextProviders();
   const generateTemplate = async () => {
@@ -65,32 +65,32 @@ export default function AITemplateGenerator({
   }} animate={{
     opacity: 1,
     y: 0
-  }} className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl p-6 border border-purple-200" data-unique-id="151921fc-ddb1-4eb7-8d98-f0f55d18f786" data-file-name="components/ai-template-generator.tsx">
-      <div className="flex items-center mb-4" data-unique-id="d5f04bed-b29c-4725-9d43-9ffb5f2856a3" data-file-name="components/ai-template-generator.tsx">
+  }} className="bg-gradient-to-br from-purple-50 to-blue-50 rounded-xl p-6 border border-purple-200" data-unique-id="d1c9c465-bb75-4882-9d90-504cdef0f29d" data-file-name="components/ai-template-generator.tsx">
+      <div className="flex items-center mb-4" data-unique-id="c687c7d0-3620-45c0-b4c2-fcbef38645c1" data-file-name="components/ai-template-generator.tsx">
         <Sparkles className="h-6 w-6 text-purple-600 mr-2" />
-        <h3 className="text-xl font-semibold text-gray-800" data-unique-id="6655a868-5f48-4d26-8742-d2c31f3e48f1" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="3c840002-e1ff-40b0-b74a-8b5abb483baa" data-file-name="components/ai-template-generator.tsx">AI Template Generator</span></h3>
+        <h3 className="text-xl font-semibold text-gray-800" data-unique-id="11d92cd5-9c41-4aee-ba42-0f417c1d4e3f" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="d0965198-bcba-431b-a85b-a90d3d0aee5b" data-file-name="components/ai-template-generator.tsx">AI Template Generator</span></h3>
       </div>
 
-      <div className="space-y-4" data-unique-id="287b0014-513a-44b3-93d6-23512c8cd8ca" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
-        <div data-unique-id="70c346d3-bda8-47cc-ad22-e6f4487c9c5b" data-file-name="components/ai-template-generator.tsx">
-          <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="468ec266-4f89-45da-884d-93c93c49d98e" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="aee6cfc6-94dc-4064-b676-a47754a0e176" data-file-name="components/ai-template-generator.tsx">
+      <div className="space-y-4" data-unique-id="5557a7c0-4716-4131-97a5-818384120c5b" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
+        <div data-unique-id="5892440d-8115-4e52-b392-749f69dfdb72" data-file-name="components/ai-template-generator.tsx">
+          <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="7479be89-9f64-4a7f-ae05-e54e35cd2c91" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="b81ec2d2-9234-4821-a123-e4a5d8654712" data-file-name="components/ai-template-generator.tsx">
             AI Model
           </span></label>
-          <select value={selectedModel} onChange={e => setSelectedModel(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" data-unique-id="810829e8-da9d-475b-9063-870ddaf9e747" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
-            {availableModels.map(model => <option key={model} value={model} data-unique-id="50f8c34e-0a0b-4bf0-bc8f-cb43af4f7e81" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
-                {model === 'gemini-2.0-flash-exp' ? 'Gemini 2.0 Flash' : model === 'gemini-1.5-pro' ? 'Gemini 1.5 Pro' : model}
+          <select value={selectedModel} onChange={e => setSelectedModel(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" data-unique-id="682044d8-1492-4734-a351-d1584707dc70" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
+            {availableModels.map(model => <option key={model} value={model} data-unique-id="eb4973ec-ca49-4d41-bc1a-fff99a8cbff4" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
+                {model === 'claude-bedrock' ? 'Claude (Bedrock)' : model}
               </option>)}
           </select>
         </div>
 
-        <div data-unique-id="ff0b8cef-c802-4e18-9376-51c0070b4877" data-file-name="components/ai-template-generator.tsx">
-          <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="fb810bb0-4676-48b9-a027-cdcb706f7703" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="14e74316-6cfa-46d9-8b5d-49a7609be9a6" data-file-name="components/ai-template-generator.tsx">
+        <div data-unique-id="034c0aee-ee88-4f7d-9729-394e9b756e49" data-file-name="components/ai-template-generator.tsx">
+          <label className="block text-sm font-medium text-gray-700 mb-2" data-unique-id="ab16f21e-ec27-4ed4-a228-03239669c240" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="8ec71b13-41a2-4557-be21-ef09f0970be7" data-file-name="components/ai-template-generator.tsx">
             Describe the email template you want to create
           </span></label>
-          <textarea value={prompt} onChange={e => setPrompt(e.target.value)} placeholder="e.g., Create a shipping confirmation email for automotive parts orders with tracking information..." rows={4} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none" data-unique-id="390472de-8e6f-4240-b68d-b0c54eec4022" data-file-name="components/ai-template-generator.tsx" />
+          <textarea value={prompt} onChange={e => setPrompt(e.target.value)} placeholder="e.g., Create a shipping confirmation email for automotive parts orders with tracking information..." rows={4} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none" data-unique-id="2ddf77b6-afbc-434f-b69d-9924c499476c" data-file-name="components/ai-template-generator.tsx" />
         </div>
 
-        <button onClick={generateTemplate} disabled={isGenerating || !prompt.trim()} className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" data-unique-id="405e73ca-c281-47af-a4db-0afa9e33ad49" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
+        <button onClick={generateTemplate} disabled={isGenerating || !prompt.trim()} className="w-full bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:from-purple-700 hover:to-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center" data-unique-id="f97751c6-4111-4bfa-8269-8217fbca0c6f" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
           {isGenerating ? <>
               <Loader2 className="animate-spin h-5 w-5 mr-2" />
               Generating Template...
@@ -106,31 +106,31 @@ export default function AITemplateGenerator({
       }} animate={{
         opacity: 1,
         scale: 1
-      }} className="mt-6 p-4 bg-white rounded-lg border border-gray-200 shadow-sm" data-unique-id="ae2fa8d0-077f-4242-aa35-6ffc8098cdeb" data-file-name="components/ai-template-generator.tsx">
-            <h4 className="font-semibold text-gray-800 mb-2" data-unique-id="de12a7bb-298d-445e-98d9-c3ad2bb43a42" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="8b585faf-7d21-456b-92f9-443623ede477" data-file-name="components/ai-template-generator.tsx">Generated Template</span></h4>
-            <div className="space-y-2 text-sm" data-unique-id="a4a7ff9a-c5a8-4e7d-af99-338fc4c4034c" data-file-name="components/ai-template-generator.tsx">
-              <div data-unique-id="f35f5560-1f43-4910-989f-780ac1c1cf20" data-file-name="components/ai-template-generator.tsx">
-                <span className="font-medium text-gray-600" data-unique-id="4baa7067-2c50-4a9c-a717-23deb0e6891a" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="a400548f-4c46-43a6-8a70-6e590afac296" data-file-name="components/ai-template-generator.tsx">Name:</span></span>
-                <span className="ml-2 text-gray-800" data-unique-id="8e391989-de01-4c7c-8926-4a30be1d4e97" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">{generatedTemplate.name}</span>
+      }} className="mt-6 p-4 bg-white rounded-lg border border-gray-200 shadow-sm" data-unique-id="fcf722bb-fef0-4934-b43e-6c7d5f1f7d6e" data-file-name="components/ai-template-generator.tsx">
+            <h4 className="font-semibold text-gray-800 mb-2" data-unique-id="44fe9dc1-50e6-4552-9603-cd594fc4696b" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="169e81ff-74fa-4a6c-9606-3123f85c6e8a" data-file-name="components/ai-template-generator.tsx">Generated Template</span></h4>
+            <div className="space-y-2 text-sm" data-unique-id="3f3b66a5-787e-45a5-8c22-cf116578003d" data-file-name="components/ai-template-generator.tsx">
+              <div data-unique-id="28fc88ff-9201-41fc-bd20-01901b03ddb5" data-file-name="components/ai-template-generator.tsx">
+                <span className="font-medium text-gray-600" data-unique-id="386db9bc-9336-4549-81a4-4ea98a205182" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="5b650787-a1d9-4a22-9933-b74cea3473dc" data-file-name="components/ai-template-generator.tsx">Name:</span></span>
+                <span className="ml-2 text-gray-800" data-unique-id="b379fa13-8696-4b8b-9284-d0a4c70635e3" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">{generatedTemplate.name}</span>
               </div>
-              <div data-unique-id="dec009f3-4c9b-4b7a-abc8-85ebbd52fa00" data-file-name="components/ai-template-generator.tsx">
-                <span className="font-medium text-gray-600" data-unique-id="69560c99-c783-4c73-a09b-fe4531dc5a0f" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="854d4366-4950-41e9-8512-9c21ba8882c8" data-file-name="components/ai-template-generator.tsx">Subject:</span></span>
-                <span className="ml-2 text-gray-800" data-unique-id="003bc72d-0c3f-4031-919b-45774a1e929f" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">{generatedTemplate.subject}</span>
+              <div data-unique-id="27e113d0-cd59-426b-b4e3-5377f52bf561" data-file-name="components/ai-template-generator.tsx">
+                <span className="font-medium text-gray-600" data-unique-id="1d570495-3609-4261-b48d-0ea6d28e8e53" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="e7809e59-ff10-467b-a949-61d1d0900c20" data-file-name="components/ai-template-generator.tsx">Subject:</span></span>
+                <span className="ml-2 text-gray-800" data-unique-id="cdd53413-aedd-488c-956d-9dc6bbdc6783" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">{generatedTemplate.subject}</span>
               </div>
-              <div data-unique-id="c885f37b-a80c-44b8-bb3a-cdd464bf33a6" data-file-name="components/ai-template-generator.tsx">
-                <span className="font-medium text-gray-600" data-unique-id="fef6d669-18e6-4d1f-869d-ea38aedb9722" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="e6746a64-809e-4fbe-80d6-7dd67a9f82c0" data-file-name="components/ai-template-generator.tsx">Content Preview:</span></span>
-                <div className="ml-2 text-gray-800 bg-gray-50 p-2 rounded mt-1 max-h-32 overflow-y-auto" data-unique-id="3eaf24dc-e180-4775-9eff-6ac9c2876cd3" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
-                  {generatedTemplate.content.substring(0, 200)}<span className="editable-text" data-unique-id="798547e6-aed8-4b87-aa46-49047d153b0b" data-file-name="components/ai-template-generator.tsx">...
+              <div data-unique-id="53de5a4f-1ce7-417e-8e05-eff23ee90ecb" data-file-name="components/ai-template-generator.tsx">
+                <span className="font-medium text-gray-600" data-unique-id="c59ea5af-3a2a-4f60-b074-ce87d4532881" data-file-name="components/ai-template-generator.tsx"><span className="editable-text" data-unique-id="f36af311-910f-4c92-9508-70d0253a470d" data-file-name="components/ai-template-generator.tsx">Content Preview:</span></span>
+                <div className="ml-2 text-gray-800 bg-gray-50 p-2 rounded mt-1 max-h-32 overflow-y-auto" data-unique-id="964068ed-8507-454d-8cf0-5af1ee3d7f23" data-file-name="components/ai-template-generator.tsx" data-dynamic-text="true">
+                  {generatedTemplate.content.substring(0, 200)}<span className="editable-text" data-unique-id="f7de634d-0ddf-48ae-b053-92be36f73f11" data-file-name="components/ai-template-generator.tsx">...
                 </span></div>
               </div>
             </div>
             
-            <div className="flex gap-2 mt-4" data-unique-id="a0c0b3b8-2784-4b56-a4ff-49e875b07041" data-file-name="components/ai-template-generator.tsx">
-              <button onClick={useTemplate} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 flex items-center justify-center" data-unique-id="aef2fbf4-fef7-4be1-90f5-3275ff056b12" data-file-name="components/ai-template-generator.tsx">
-                <Copy className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="b2b7124e-cc87-4c60-b75b-449383eaac2f" data-file-name="components/ai-template-generator.tsx">
+            <div className="flex gap-2 mt-4" data-unique-id="9864ec31-1249-40cf-8ee5-ca979cc1d57b" data-file-name="components/ai-template-generator.tsx">
+              <button onClick={useTemplate} className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 flex items-center justify-center" data-unique-id="675cf72c-2c24-4737-8d74-a7547ee1d79e" data-file-name="components/ai-template-generator.tsx">
+                <Copy className="h-4 w-4 mr-2" /><span className="editable-text" data-unique-id="a573ab36-4fc7-4cb0-98c1-00e2846e0ceb" data-file-name="components/ai-template-generator.tsx">
                 Use This Template
               </span></button>
-              <button onClick={() => setGeneratedTemplate(null)} className="px-4 py-2 text-gray-600 hover:text-gray-800" data-unique-id="7d90bdbd-be7c-457f-9ad6-7424cc2c307d" data-file-name="components/ai-template-generator.tsx">
+              <button onClick={() => setGeneratedTemplate(null)} className="px-4 py-2 text-gray-600 hover:text-gray-800" data-unique-id="4f5df9f3-626c-40d1-a1e0-d1513b8e3429" data-file-name="components/ai-template-generator.tsx">
                 <RefreshCw className="h-4 w-4" />
               </button>
             </div>

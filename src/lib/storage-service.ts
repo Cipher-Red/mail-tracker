@@ -1,6 +1,6 @@
 'use client';
 
-import { Order, Customer, EmailTemplate, TrackingInfo, ShippingAddress, EmailAnalytic } from "@/db/schema";
+import { Order, Customer, EmailTemplate, EmailAnalytic } from "@/db/schema";
 
 // Storage keys
 const STORAGE_KEYS = {
@@ -16,8 +16,8 @@ const STORAGE_KEYS = {
 export function saveToStorage<T>(key: string, data: T): void {
   if (typeof window === 'undefined') return;
   try {
-    // We've already checked window exists, use localStorage via window
-    const storage = window.localStorage;
+    // We've already checked window exists, use localStorage directly
+    const storage = localStorage;
     storage.setItem(key, JSON.stringify(data));
   } catch (error) {
     console.error(`Error saving data to localStorage (${key}):`, error);
@@ -32,8 +32,8 @@ export function saveToStorage<T>(key: string, data: T): void {
 export function getFromStorage<T>(key: string, defaultValue: T): T {
   if (typeof window === 'undefined') return defaultValue;
   try {
-    // We've already checked window exists, use localStorage via window
-    const storage = window.localStorage;
+    // We've already checked window exists, use localStorage directly
+    const storage = localStorage;
     const item = storage.getItem(key);
     return item ? JSON.parse(item) : defaultValue;
   } catch (error) {
@@ -92,50 +92,8 @@ export const orderStorage = {
   }
 };
 
-// Related order data storage (tracking, shipping address)
-export const trackingStorage = {
-  getByOrderId: (orderId: number): TrackingInfo[] => {
-    const orders = getFromStorage<Order[]>(STORAGE_KEYS.ORDERS, []);
-    const order = orders.find(order => order.id === orderId);
-    return order?.tracking || [];
-  },
-  
-  saveForOrder: (orderId: number, trackingData: TrackingInfo[]): boolean => {
-    const orders = getFromStorage<Order[]>(STORAGE_KEYS.ORDERS, []);
-    const index = orders.findIndex(order => order.id === orderId);
-    if (index === -1) return false;
-    
-    orders[index].tracking = trackingData.map(t => ({
-      ...t,
-      id: t.id || generateId(),
-      orderId
-    }));
-    saveToStorage(STORAGE_KEYS.ORDERS, orders);
-    return true;
-  }
-};
-
-export const shippingAddressStorage = {
-  getByOrderId: (orderId: number): ShippingAddress | undefined => {
-    const orders = getFromStorage<Order[]>(STORAGE_KEYS.ORDERS, []);
-    const order = orders.find(order => order.id === orderId);
-    return order?.shippingAddress;
-  },
-  
-  saveForOrder: (orderId: number, addressData: ShippingAddress): boolean => {
-    const orders = getFromStorage<Order[]>(STORAGE_KEYS.ORDERS, []);
-    const index = orders.findIndex(order => order.id === orderId);
-    if (index === -1) return false;
-    
-    orders[index].shippingAddress = {
-      ...addressData,
-      id: addressData.id || generateId(),
-      orderId
-    };
-    saveToStorage(STORAGE_KEYS.ORDERS, orders);
-    return true;
-  }
-};
+// Note: Tracking and shipping address are separate entities in the database schema
+// They would be handled through their own storage services if needed
 
 // Customer storage operations
 export const customerStorage = {

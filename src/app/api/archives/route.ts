@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { db } from '@/db';
-import { archives } from '@/db/schema';
+import { excelArchives } from '@/db/schema';
 import { eq } from 'drizzle-orm';
 
 // GET all archives
 export async function GET() {
   try {
-    const allArchives = await db.select().from(archives);
+    const allArchives = await db.select().from(excelArchives);
     return NextResponse.json(allArchives);
   } catch (error) {
     console.error('Error fetching archives:', error);
@@ -31,14 +31,12 @@ export async function POST(request: NextRequest) {
     }
 
     // Insert archive record
-    const result = await db.insert(archives)
+    const result = await db.insert(excelArchives)
       .values({
-        id,
         fileName,
         uploadDate: new Date(uploadDate),
         fileSize,
-        contentType,
-        supabasePath,
+        data: '',
         metadata: metadata || {}
       })
       .returning();
@@ -67,8 +65,8 @@ export async function DELETE(request: NextRequest) {
     }
 
     // Delete the archive record
-    const deletedArchive = await db.delete(archives)
-      .where(eq(archives.id, id))
+    const deletedArchive = await db.delete(excelArchives)
+      .where(eq(excelArchives.id, parseInt(id)))
       .returning();
 
     if (!deletedArchive.length) {
